@@ -19,11 +19,10 @@
   - 'git commit -m ' （打点保存，名为开始的开始）
   - 'git remote add origin https://github.com/HFmt/biao-class' (添加远程仓库，名：'origin')
   - 'git push -u origin master' (把本地代码推到'origin'[github])
-
 - 3步重复
   - 'git add .'
   - 'git commit -m ' （打点保存，名为开始的开始）
 - 'git push -u origin master' (把本地代码推到'origin'[github])
 
-  - 更改仓库地址
+- 更改仓库地址
      -git remote set-url origin https://github.com/HFmt/biao-class'
