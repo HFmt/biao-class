@@ -26,4 +26,4 @@
 - 'git push -u origin master' (把本地代码推到'origin'[github])
 
   - 更改仓库地址
-     -git remoteset-url origin https://github.com/HFmt/biao-class'
+     -git remote set-url origin https://github.com/HFmt/biao-class'
