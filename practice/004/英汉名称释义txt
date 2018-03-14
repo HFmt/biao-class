@@ -1,44 +1,46 @@
-行      row
+row             行      
 
-列      column
+column          列      
 
-主体    main
+main            主体    
 
-组      group
+group           组      
+ 
+area            区        
 
-区      area  
+navigation      导航    
 
-导航    navigation
+title           标题    
 
-标题    title
+theme           主题    
 
-主题    theme
+first-screen    首屏    
 
-首屏    first-screen
+card            卡片    
 
-卡片    card
+thumbnail       缩略图  
 
-缩略图  thumbnail
+text            文字    
 
-文字    text
+information     信息    
 
-搜索    search
+search          搜索    
 
-链接    link
+link            链接    
 
-轮播    slider
+slider          轮播    
 
-促销    promotion
+promotion       促销    
 
-价格    price
+price           价格    
 
-售后    after sales
+after sales     售后     
 
-分类    category
+category        分类    
 
-其他    others
+others          其他    
 
-页脚    footer
+footer          页脚    
 
 
 
