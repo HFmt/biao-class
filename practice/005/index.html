@@ -5,30 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>feimaotui</title>
+    <style>
+        body{
+            width: 666px;
+            margin: 0 auto;
+        }
+        .main{
+            margin-top: 44px;
+        }
+    </style>
 </head>
-<body>
-    <input type="color"> <br>
-    <input type="date"><br>
-    <input type="email"><button type="submit">submit</button><br>
-    <form action="">
-        <select name="food" id="">
-            <option value="fruit">fruit</option>
-            <option value="meat">meat</option>
-            <option value="meat">milk</option>
-        </select>
-        <div>
-            <input type="checkbox" name="fruits"><span>banana</span>
+<body>  
+    <div class="main">  
+        <form action="search" >
+            <input type="search" name="" id="" placeholder="SOS" autofocus>
+            <button type="submit">seach</button>
+        </form>
+            <br>
+            
+            <input type="color">
+            <br><br>
+            <input type="date">
+            <br><br>
+        <form action="text">
+            <input type="tel" name="" id=""><br><br>
+            <input type="email" name="" id=""><br><br>
+            <input type="password" name="" id=""><br><br>
+            <input type="txt" name="username" value="text"><br><br>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Tex editing area"></textarea><br>
+            <button type="submit">submit</button>
+            <input type="reset" value="reset">
+            <br>
+        </form>
+        
+            <br>
+            <input type="range" min="1024" max="10240" step="1024"> <br><br>
+        <form action="">
+            <select name="food" id="">  
+                <option value="fruit">fruit</option>
+                <option value="meat">meat</option>
+                <option value="meat">milk</option>
+            </select>
+            <br> <br>
+            <div>
+                <input type="checkbox" name="fruits"><span>banana</span>
+            </div>
+            <div>
+                <input type="checkbox" name="meats"><span>beef</span>
+            </div>
+            <div>
+                <input type="checkbox" name="milks"><span>milk</span>
+            </div>
+            <div class="radio">
+                <input type="radio" name="attribute">
+                <span>Yin</span>
+                <input type="radio" name="attribute">
+                <span>Yang</span>
+            </div>
+        </form>
         </div>
-        <div>
-            <input type="checkbox" name="meats"><span>beef</span>
-        </div>
-        <div>
-            <input type="checkbox" name="milks"><span>milk</span>
-        </div>
-    </form>
-    <div class="radio">
-        <input type="radio" name="attribute"><span>Yin</span>
-        <input type="radio" name="attribute"><span>Yang</span>
-    </div>
 </body>
 </html>
