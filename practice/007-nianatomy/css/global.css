@@ -8,6 +8,7 @@ body{
 }
 .row{
     font-size: 0;
+    display: block;
 }
 .col{
     display: inline-block;
@@ -23,7 +24,12 @@ img{
     max-width: 100%;
 }
 
-a {
-    text-decoration:none;
+a{
+    text-decoration: none;
+    color: rgb(32, 28, 28)
+}
+
+.row .right{
+    text-align: right;
 }
 /* 全局样式结束 */

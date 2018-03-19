@@ -1,0 +1,12 @@
+.card:hover {
+    box-shadow: 0 0 4px rgba(0,0,0,.3);
+}
+
+.head .left,
+.head .right{
+    width: 50%;
+}
+
+a:hover{
+    color: tomato;
+}
