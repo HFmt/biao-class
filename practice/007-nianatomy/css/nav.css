@@ -1,0 +1,51 @@
+/* 全局样式开始 */
+body{
+    margin: 0;
+}
+.row{
+    font-size: 0;
+}
+.col{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 15px;
+}
+
+/* 全局样式结束 */
+
+
+
+.col:nth-child(odd){
+    background: rgba(0,0,0.3);
+}
+.col:nth-child(even){
+    background: rgba(0,0,0.5);
+}
+.left, .right{
+    width: 50%;
+}
+.right{
+    text-align: right;
+}
+
+.nav{
+    background: rgba(0,0,0,.8);
+}
+
+.container{
+    margin: 0 auto;
+    width: 1226px;
+}
+
+.container a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 15px;
+    color: #ccc;
+    font-size: 80%;
+}
+
+.nav a:hover{
+    background: #ccc;
+    color: #000;
+}

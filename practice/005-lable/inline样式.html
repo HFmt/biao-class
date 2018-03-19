@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .row{
+            font-size:0;
+        }
+        .col{
+            display: inline-block;
+            font-size: 24px;
+            vertical-align:top;
+        }
+        .sm{
+            width: 20%;
+            background: yellow;
+        }
+         .md{
+            width: 30%;
+            background: blue;
+        }
+         .lg{
+            width: 50%;
+            background: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let oSm = document.getElementsByClassName('sm')[0];
+            let oMd = document.getElementsByClassName('md')[0];
+            let oLg = document.getElementsByClassName('lg')[0];
+            let oBs = document.getElementById('bs');
+            
+            oBs.onmouseover = function () {
+                oSm.style.width= "50%";
+                oMd.style.width= "20%";
+                oLg.style.width= "30%";
+            }
+            oBs.onmouseout = function () {
+                oSm.style.width= "20%";
+                oMd.style.width= "30%";
+                oLg.style.width= "50%";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="row">
+        <div class="col sm">fma</div>
+        <div class="col md">Fmb</div>
+        <div class="col lg">Fmc</div>
+    </div>
+    <button id="bs">变</button>
+  
+</body>
+</html>
