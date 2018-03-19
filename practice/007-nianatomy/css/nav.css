@@ -1,4 +1,8 @@
 /* 全局样式开始 */
+*{
+    box-sizing: content-box;
+}
+
 body{
     margin: 0;
 }
@@ -7,8 +11,12 @@ body{
 }
 .col{
     display: inline-block;
-    vertical-align: top;
     font-size: 15px;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1226px;
 }
 
 /* 全局样式结束 */
@@ -28,21 +36,25 @@ body{
     text-align: right;
 }
 
+.left a:first-child{
+    margin-left:0;
+}
 .nav{
     background: rgba(0,0,0,.8);
+    height: 40px;
 }
 
-.container{
-    margin: 0 auto;
-    width: 1226px;
-}
+
 
 .container a{
     text-decoration: none;
+    color: #b0b0b0;
+    font-size: 10px;
+}
+
+.sep{
     display: inline-block;
-    padding: 10px 15px;
-    color: #ccc;
-    font-size: 80%;
+    padding: 10px 6px;  
 }
 
 .nav a:hover{
