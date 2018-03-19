@@ -1,0 +1,27 @@
+
+.main-promote .cat {
+    width: 20%;
+    background: rgba(0, 0, 0, .8);
+}
+.main-promote .slider{
+    width: 80%;
+}
+
+.main-promote{
+    background-color: #DDDCE1;
+    background-image:url(../img/mi.jpg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-promote .cat a {
+    display: block;
+    font-size: 64%;
+    color:#ccc;
+    padding: 10px 12px;
+}
+.main-promote a:hover{
+    background: #ccc;
+    color: #fff;
+}

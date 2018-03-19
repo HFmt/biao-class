@@ -1,0 +1,29 @@
+/* 全局样式开始 */
+*{
+    box-sizing: content-box;
+}
+
+body{
+    margin: 0;
+}
+.row{
+    font-size: 0;
+}
+.col{
+    display: inline-block;
+    font-size: 15px;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1226px;
+}
+
+img{
+    max-width: 100%;
+}
+
+a {
+    text-decoration:none;
+}
+/* 全局样式结束 */

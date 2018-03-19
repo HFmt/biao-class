@@ -1,33 +1,8 @@
-/* 全局样式开始 */
-*{
-    box-sizing: content-box;
-}
-
-body{
-    margin: 0;
-}
-.row{
-    font-size: 0;
-}
-.col{
-    display: inline-block;
-    font-size: 15px;
-}
-
-.container{
-    margin: 0 auto;
-    max-width: 1226px;
-}
-
-/* 全局样式结束 */
-
-
-
 .col:nth-child(odd){
-    background: rgba(0,0,0.3);
+    background: rgba(0,0,.3);
 }
 .col:nth-child(even){
-    background: rgba(0,0,0.5);
+    background: rgba(0,0,.5);
 }
 .left, .right{
     width: 50%;
@@ -47,14 +22,13 @@ body{
 
 
 .container a{
-    text-decoration: none;
     color: #b0b0b0;
     font-size: 10px;
 }
 
 .sep{
     display: inline-block;
-    padding: 10px 6px;  
+    padding: 10px 2px;  
 }
 
 .nav a:hover{
