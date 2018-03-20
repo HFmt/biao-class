@@ -21,14 +21,18 @@
 .container a{
     color: #b0b0b0;
     font-size: 10px;
+    display: inline-block;
+    padding: 14px 4px;
 }
 
-.sep{
-    display: inline-block;
-    padding: 10px 2px;  
-}
 
 .nav a:hover{
-    background: #ccc;
-    color: #000;
+    color: rgb(139, 125, 125);
+}
+
+.nav a:first-child{
+    padding-left: 0;
+}
+.nav a:last-child{
+         padding-right: 0;
 }

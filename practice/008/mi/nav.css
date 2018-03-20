@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+.row{
+    font-size: 0;
+}
+.col {
+    font-size: 8px;
+    display: inline-block;
+}
+.nav{
+    background: rgb(63, 55, 55);
+    
+}
+
+
+.container{
+    width: 1226px;
+    margin: 0 auto;
+}
+ .left, .right{
+    width: 50%;
+}
+.nav .right{
+    text-align: right;
+}
+.nav .sep{
+    color: rgb(77, 67, 67);
+}
+.nav a{
+    color: rgb(122, 114, 114);
+    display: inline-block;
+    padding: 12px 4px;
+}
+.nav a:hover{
+    background: #fff;
+    color: #000;
+}
+.nav a:first-child{
+    padding-left: 0;
+}
+.nav a:last-child{
+         padding-right: 0;
+}
