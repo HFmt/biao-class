@@ -1,26 +1,9 @@
-body{
-    margin: 0;
-}
-a{
-    text-decoration: none;
-}
-.row{
-    font-size: 0;
-}
-.col {
-    font-size: 8px;
-    display: inline-block;
-}
+
 .nav{
     background: rgb(63, 55, 55);
     
 }
 
-
-.container{
-    width: 1226px;
-    margin: 0 auto;
-}
  .left, .right{
     width: 50%;
 }
@@ -36,12 +19,12 @@ a{
     padding: 12px 4px;
 }
 .nav a:hover{
-    background: #fff;
-    color: #000;
+    
+    color: #fff;
 }
 .nav a:first-child{
     padding-left: 0;
 }
 .nav a:last-child{
-         padding-right: 0;
+    padding-right: 0;
 }
