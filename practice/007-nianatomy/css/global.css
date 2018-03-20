@@ -13,6 +13,7 @@ body{
 .col{
     display: inline-block;
     font-size: 15px;
+    vertical-align: top;
 }
 
 .container{
