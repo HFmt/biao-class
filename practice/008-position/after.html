@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素</title>
+    <style>
+        div{
+            background: #000;
+        }
+        a{
+            display: inline-block;
+            padding: 10px;
+            color: yellow;
+        }
+         .after:after{
+             display: inline-block;
+             position: relative;
+            content:" ";
+            background: red;
+            width: 2px;
+            height: 20px;
+            top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div >
+        <span class="after"></span>
+        <a href="">Item</a>
+                <span class="after"></span>
+
+        <a href="">Item</a>
+                <span class="after"></span>
+
+        <a href="">Item</a>
+                <span class="after"></span>
+
+        <a href="">Item</a>
+    </div>
+</body>
+</html>

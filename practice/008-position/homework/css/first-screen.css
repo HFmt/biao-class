@@ -1,0 +1,55 @@
+.first-screen{
+    height: 640px;
+    background-image: url(banner.jpg);
+    -webkit-background-size: contain;
+    background-size: 150%;
+    background-position: center 0;
+    background-repeat: no-repeat;
+}
+
+.nav{
+    background: rgb(150, 150, 150);
+}
+
+.nav .left{
+    width: 30%;
+}
+
+.nav .right{
+    width: 70%;
+}
+
+.logo , .location{
+    display: inline-block;
+    
+    vertical-align: middle;
+}
+.location .icon{
+    
+}
+.location{
+    color: #fff;
+    padding: 5px 20px;
+    text-align: center;
+    border-radius: 16px;
+    background: #58585a;
+}
+.logo{
+    width: 150px;
+    height: 80px;
+    background-image: url(../img/spriteV2_new@2x.png);
+    background-repeat: no-repeat;
+    background-position:-33px -30px ;
+}
+
+
+
+.nav .right{
+    text-align: right;
+}
+
+.nav a{
+    color: rgb(182, 174, 174);
+    display: inline-block;
+    padding: 5px 2px;
+}
