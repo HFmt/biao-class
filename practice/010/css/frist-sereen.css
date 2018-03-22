@@ -1,0 +1,58 @@
+.col, .row{
+    background: #ccc;
+}
+
+.nav .left{
+    width: 30%;
+    text-align: center;
+}
+.nav .right{
+    width: 70%;
+}
+
+.nav a{
+    display: inline-block;
+    padding: 8px;
+}
+
+
+.nav .logo,
+.nav .location{
+    display: inline-block;
+}
+
+h1{ 
+    font-size: 50px;
+    margin: 60px;
+    margin-bottom: 20px;
+}
+
+.nav .logo{
+    width: 150px;
+    height: 80px;
+    background: #000;
+}
+
+.center{
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.box input,
+.box button{
+    padding: 20px;
+    line-height: 1.1;
+    /* border: 1px solid rgb(236, 130, 130); */
+    border:0;
+}
+
+.box button{
+    background: rgb(228, 220, 220);
+    width: 80px;
+}
+
+.box input{
+    width: 400px;
+    background: #000;
+}
