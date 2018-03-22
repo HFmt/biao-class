@@ -9,45 +9,6 @@
 }
 
 
-
-.nav .left{
-    width: 30%;
-}
-.nav .right{
-    width: 70%;
-}
-
-.nav a, h1{
-    display: inline-block;
-    padding: 8px;
-    color: #eee;    
-}
-
-
-.nav .logo,
-.nav .location{
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.location{
-    width: 60px;
-    height: 30px;
-    background: rgb(87, 61, 61);
-}
-    
-h1{ 
-    font-size: 50px;
-    margin: 60px;
-    margin-bottom: 20px;
-}
-
-.nav .logo{
-    width: 130px;
-    height: 60px;
-    background: #000;
-}
-
 .center{
     text-align: center;
 }
@@ -57,14 +18,6 @@ h1{
     margin: 0 auto;
     text-align: left;
 }
-
-.search-area .type {
-    display: inline-block;
-    font-size: 14px;
-    padding-left: 0;
-}
-
-
 
  .search-area .search,
  .search-area .btn{

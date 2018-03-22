@@ -39,48 +39,9 @@
     position: relative;
 } 
 
-.icon-location{
-    margin:0 4px;
-    top: 5px;
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    background-image: url(../img/V2_newx1.png);
-    background-repeat: no-repeat;
-    background-position: -184px -17px;
-
-}
-.location{
-    width: 60px;
-    height: 30px;
-    color: #fff;
-    vertical-align: center;
-    border-radius: 16px;
-    background: #474340;
-    position: relative;
-}
-
-.location .name{
-    top:5px;
-    position: absolute;
-    display: inline-block;
-}
-.logo{
-    width: 150px;
-    height: 80px;
-    background-image: url(../img/V2_newx1.png);
-    background-repeat: no-repeat;
-    background-position: -8px -370px;
-}
 
 
-.nav .link-group a{
-    color: #eee;
-    display: inline-block;
-    padding: 5px 2px;
-    font-size: 18px;
-    font-weight: bold;
-}
+
 
 .search-area {
     max-width: 780px;
