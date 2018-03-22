@@ -1,26 +1,41 @@
-.col, .row{
-    background: #ccc;
+.firsh-screen{
+    background-image: url(img/);
+      height: 640px;
+    background-image: url(../img/banner.jpg);
+    -webkit-background-size: contain;
+    background-size: 100%;
+    background-position: center 0;
+    background-repeat: no-repeat;
 }
+
+
 
 .nav .left{
     width: 30%;
-    text-align: center;
 }
 .nav .right{
     width: 70%;
 }
 
-.nav a{
+.nav a, h1{
     display: inline-block;
     padding: 8px;
+    color: #eee;    
 }
 
 
 .nav .logo,
 .nav .location{
     display: inline-block;
+    vertical-align: middle;
 }
 
+.location{
+    width: 60px;
+    height: 30px;
+    background: rgb(87, 61, 61);
+}
+    
 h1{ 
     font-size: 50px;
     margin: 60px;
@@ -28,31 +43,44 @@ h1{
 }
 
 .nav .logo{
-    width: 150px;
-    height: 80px;
+    width: 130px;
+    height: 60px;
     background: #000;
 }
 
 .center{
-    max-width: 600px;
-    margin: 0 auto;
     text-align: center;
 }
 
-.box input,
-.box button{
-    padding: 20px;
+.search-area {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.search-area .type {
+    display: inline-block;
+    font-size: 14px;
+    padding-left: 0;
+}
+
+
+
+ .search-area .search,
+ .search-area .btn{
+
+    padding: 21px 30px;
+    border: 0;
     line-height: 1.1;
-    /* border: 1px solid rgb(236, 130, 130); */
-    border:0;
 }
 
-.box button{
-    background: rgb(228, 220, 220);
-    width: 80px;
+.search-area .btn{
+    background: #00b86b;
+    color: #ccc;
+    width: 20%;
 }
 
-.box input{
-    width: 400px;
-    background: #000;
+.search-area .search{
+    width: 80%;
 }
+

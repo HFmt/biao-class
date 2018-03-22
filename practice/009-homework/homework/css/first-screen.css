@@ -37,7 +37,7 @@
 
 .icon-location, .name{
     position: relative;
-}
+} 
 
 .icon-location{
     margin:0 4px;
@@ -136,9 +136,10 @@ h1{
 .search-area .btn{
     background: #00b86b;
     color: #ccc;
+    width: 20%;
 }
 .search-area .search{
-    width: 650px;
+    width: 80%;
 }
 
 
