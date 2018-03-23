@@ -4,7 +4,6 @@
     font-size: 1rem;
     vertical-align: top;
     border:1px solid #ccc;
-    min-height: 15px;
 }
 
 .nav{
@@ -106,10 +105,22 @@
 /* ======================== */
 
 .type-card{
-    margin-top: 15px;
+    margin-top: 10px;
+    font-size: 0;
 }
 
 .img-card{
-    margin-left: 15px;;
+    float: right;
+    background-image: url(../img/type1.jpg);
+    background-size: cover;
+    background-position: center top;
+    display: inline-block;
+    height: 170px;
+    width: 95%;
+    clear: both;
+}
+
+.type-card .col-10{
+    font-size: 0;
 }
 
