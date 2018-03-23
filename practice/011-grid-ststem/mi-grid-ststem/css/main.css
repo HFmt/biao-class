@@ -4,7 +4,7 @@
     font-size: 1rem;
    
     /*  */
-    border: 1px solid #ccc;
+ 
 
     vertical-align: top;
 }
@@ -19,16 +19,34 @@
     color: #eee;
 }
 
-.logo{
+.first-screen .top{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#logo{
     background: #000;
     display: inline-block;
     background-image: url(../img/mi-logo.png);
+    background-size: cover;
     width: 60px;
     height: 60px;
 
 }
 
+.nav-list{
+    padding: 10px;
+}
+
+.nav-list li{
+    display: inline-block;
+    padding: 10px;
+}
+
+/* ===========search============ */
+
 #search-area{
+    margin-top: 10px;
     font-size: 0;
     position: relative;
 }
@@ -36,28 +54,43 @@
 #sec , #btn{
     display: inline-block;
     font-size: 1rem;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid rgb(134, 125, 125);
+    line-height: 1.1;
 }
 
 #sec{
-    outline: 0;
-    border-right: 0;
+    outline: 0;  
+}
+
+.btn{
+    border-left: 0;
 }
 
 #sec:focus{
     border-color: rgb(204, 211, 172);
 }
 
-#search-area.rec-list{
+#search-area .rec-list{
     position: absolute;
+    top: 10px;
+    left: 75px;
 }
 
-.rec-list {
+.rec {
     display: inline-block;
     font-size: .4rem;
     background: #ccc;
+    margin-left: 5px;
 
+}
+
+/* ====================== */
+
+.main-promo{
+    background-image: url(../img/first-creen.jpg);
+    background-size: cover;
+    background-position: center top;
 }
 
 .cat-list{
