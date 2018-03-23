@@ -1,0 +1,74 @@
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12
+{
+    display: inline-block;
+    font-size: 1rem;
+   
+    /*  */
+    border: 1px solid #ccc;
+
+    vertical-align: top;
+}
+
+.nav{
+    background: #555;
+}
+
+.nav a{
+    display: inline-block;
+    padding: 4px 12px;
+    color: #eee;
+}
+
+.logo{
+    background: #000;
+    display: inline-block;
+    background-image: url(../img/mi-logo.png);
+    width: 60px;
+    height: 60px;
+
+}
+
+#search-area{
+    font-size: 0;
+    position: relative;
+}
+
+#sec , #btn{
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid rgb(134, 125, 125);
+}
+
+#sec{
+    outline: 0;
+    border-right: 0;
+}
+
+#sec:focus{
+    border-color: rgb(204, 211, 172);
+}
+
+#search-area.rec-list{
+    position: absolute;
+}
+
+.rec-list {
+    display: inline-block;
+    font-size: .4rem;
+    background: #ccc;
+
+}
+
+.cat-list{
+    background: #ccc;
+}
+
+.cat-list li{
+    padding:10px 20px;
+}
+
+.cat-list li:hover{
+    background: #000;
+}
+
