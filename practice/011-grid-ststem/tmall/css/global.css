@@ -7,8 +7,14 @@ html{
     font-family: serif;
 }
 
-ul li{
-    list-style-type: disc;
+ul,ol,li{
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    display: inline-block;
 }
 
 img{
@@ -20,9 +26,23 @@ a{
     text-decoration: none;
 }
 
+.container{
+    width: 1260px;
+    margin: 0 auto;
+    background: rgb(236, 229, 229);
+}
+
 .row{
     display: block;
     font-size: 0;
+}
+
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
 }
 
 .col,
@@ -35,40 +55,47 @@ a{
 .col-7,
 .col-8,
 .col-9,
-.col-10{
+.col-10,
+.col-2_5{
     display: inline-block;
     vertical-align: top;
     font-size: 1rem;
+    border: 1px solid rgb(218, 37, 37);
 }
 
 
-col-1{
+.col-1{
     width: 10%;
 }
-col-2{
+.col-2{
     width: 20%;
 }
-col-3{
+
+.col-2_5{
+    width: 25%;
+}
+
+.col-3{
     width: 30%;
 }
-col-4{
+.col-4{
     width: 40%;
 }
-col-5{
+.col-5{
     width: 50%;
 }
-col-6{
+.col-6{
     width: 60%;
 }
-col-7{
+.col-7{
     width: 70%;
 }
-col-8{
+.col-8{
     width: 80%;
 }
-col-9{
+.col-9{
     width: 90%;
 }
-col-10{
+.col-10{
     width: 100%;
 }

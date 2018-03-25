@@ -1,0 +1,123 @@
+
+/* ======公用样式====== */
+
+.brand-rear,.brand-card,exclusive, .promotion-card, .recommend-area, .footer{
+    padding-top: 20px;
+}
+
+/* ======公用样式结束====== */
+
+
+/* =============nav================== */
+
+
+
+.list-group{
+    background: #a61010;
+}
+
+
+.list-group li{
+
+    display: block;
+    padding: 10px;
+    margin: 0;
+}
+
+.list-group li:hover{
+    background: rgb(209, 188, 188);
+}
+
+.logo{
+    background-image: url(../img/logo.png);
+    display: inline-block;
+    background-size: cover;
+    width: 240px;
+    height: 130px;
+}
+
+
+
+
+/* ============================== */
+
+/* ==========frist-screen======== */
+
+.slider{
+    background-image: url(../img/slider.png);
+    background-size: cover;
+}
+
+
+
+/* ========================================= */
+.brand-1{
+     width: 234px;
+    height: 316px;
+    background-image: url(../img/p1.png);
+    background-size: cover;
+    display: inline-block;
+}
+.brand-2{
+     width: 485px;
+    height: 316px;
+    background-image: url(../img/p2.png);
+    background-size: cover;
+    display: inline-block;
+}
+.brand-3{
+    width: 485px;
+    height: 316px;
+    background-image: url(../img/p2.png);
+    background-size: cover;
+    display: inline-block;
+}
+
+.brand-min{
+    width: 122px;
+    height: 108px;
+    background-image: url(../img/brand-min.png);
+    background-size: cover;
+    display: inline-block;
+
+}
+
+/* ============================= */
+
+
+.promotion-card .title-img{
+     width: 214px;
+    height: 25px;
+    background-image: url(../img/title-img.png);
+    background-size: cover;
+    display: inline-block;
+}
+.promotion-card .promotion-rank{
+     width: 235px;
+    height: 618px;
+    background-image: url(../img/rank.jpg);
+    background-size: cover;
+    display: inline-block;
+}
+
+
+/* =========================== */
+
+.recommend-area .recommend-1{
+    width: 185px;
+    height: 185px;
+    background-image: url(../img/recommend-1.jpg);
+    background-size: cover;
+    display: inline-block;
+}
+
+
+/* ========================== */
+
+
+/* ==========foorer=========== */
+
+.after-sales .col-2_5{
+    padding: 30px;
+    text-align: center;
+}
