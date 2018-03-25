@@ -1,0 +1,74 @@
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 14px;
+    font-family: serif;
+}
+
+ul li{
+    list-style-type: disc;
+}
+
+img{
+    display: block;
+    min-width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.row{
+    display: block;
+    font-size: 0;
+}
+
+.col,
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1rem;
+}
+
+
+col-1{
+    width: 10%;
+}
+col-2{
+    width: 20%;
+}
+col-3{
+    width: 30%;
+}
+col-4{
+    width: 40%;
+}
+col-5{
+    width: 50%;
+}
+col-6{
+    width: 60%;
+}
+col-7{
+    width: 70%;
+}
+col-8{
+    width: 80%;
+}
+col-9{
+    width: 90%;
+}
+col-10{
+    width: 100%;
+}
