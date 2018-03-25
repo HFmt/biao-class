@@ -1,10 +1,13 @@
 
 /* ======公用样式====== */
 
-.brand-rear,.brand-card,exclusive, .promotion-card, .recommend-area, .footer{
+.brand-rear,.brand-card,exclusive, .promotion-card, .recommend-area, .footer, .tm, .albb{
     padding-top: 20px;
 }
 
+a{
+    color: rgb(216, 206, 206);
+}
 /* ======公用样式结束====== */
 
 
@@ -120,4 +123,8 @@
 .after-sales .col-2_5{
     padding: 30px;
     text-align: center;
+}
+
+.footer .container{
+    padding-bottom:30px; 
 }
