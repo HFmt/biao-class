@@ -14,12 +14,11 @@
             margin: 100px auto;
             max-width: 1444px;
             display: block;
-            font-size: 0;
+            /* font-size: 0; */
             border: 2px solid rgb(212, 85, 85);
         }
 
         .col{
-            display: inline-block;
             width: 10%;
             min-height:44px;
             background: #000;
@@ -27,7 +26,8 @@
             float: left;
         }
 
-        .row:after{
+        .row:after,
+        .row::before{
             content:"";
             clear: both;
             display: block;
@@ -45,7 +45,17 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="col"></div>
-        
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
 </body>
 </html>

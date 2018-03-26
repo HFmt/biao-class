@@ -1,0 +1,43 @@
+
+
+
+.head{
+    background: url(../img/slider-01.jpg) no-repeat;
+    background-position: center top;
+    background-size: cover;
+    height: 866px;
+    position: relative;
+}
+
+.nav{
+    position: absolute;
+    top: 40px;
+    left: 25%;
+    right: 25%;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.nav a{
+    color: rbag(0,0,0,.8);
+    padding: 10px 20px;
+}
+
+.nav:after, 
+.nav:before{
+    content:"";
+    display: block;
+    clear: both;
+}
+
+.fl, .fr{
+    font-size: 1rem;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
