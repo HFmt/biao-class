@@ -7,13 +7,14 @@ html{
     font-size: 14px;
 }
 
-body{
+body,p{
     margin: 0;
     padding: 0;
 }
 
 img{
     max-width: 100%;
+    display: block;
 }
 
 a{

@@ -18,12 +18,20 @@
             border: 2px solid rgb(212, 85, 85);
         }
 
-        .col{
+        .fl{
             width: 10%;
             min-height:44px;
             background: #000;
             border: 1px solid #ccc;
             float: left;
+        }
+
+        .fr{
+            width: 10%;
+            min-height:44px;
+           
+            border: 1px solid #ccc;
+            float: right;
         }
 
         .row:after,
@@ -36,26 +44,29 @@
 </head>
 <body>
     <div class="row">
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl">
+            <div>1</div>
+        </div>
+        <div class="fr"><div>2</div></div>
+        <div class="fr"><div>3</div></div>
+        <div class="fr"><div>4</div></div>
+        <div class="fr"><div>5</div></div>
     </div>
     <div class="row">
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fr"></div>
+        <div class="fr"></div>
+        <div class="fr"></div>
+        <div class="fr"></div>
     </div>
+
 </body>
 </html>
