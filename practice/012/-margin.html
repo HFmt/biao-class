@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .row{
+            font-size: 0;
+            display: block;
+        }
+
+        .col{
+           
+            display: inline-block;
+            font-size: 1rem;
+            vertical-align: top;
+            width: 33.333333333%;
+            border: 1px solid #ccc
+        }
+
+        .row.fat{
+            padding-left: -30px;
+            padding-right: -30px;
+        }
+
+        .col.fat{
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        .card{
+            background: #000;
+            min-height: 50px;
+            margin-bottom: 20px;
+        }
+        p{
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <h2>参照物</h2>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam, sed ipsa illo, facilis est explicabo quia error dignissimos unde laboriosam, repellendus adipisci rem. Quidem expedita assumenda dolores distinctio repudiandae quas.</p>
+
+    <h2>有负margin</h2>
+    <div class="row fat">
+        <div class="col fat">
+            <div class="card"></div>
+        </div>
+        <div class="col fat">
+            <div class="card"></div>
+        </div>
+        <div class="col fat">
+            <div class="card"></div>
+        </div>
+    </div>
+</body>
+</html>
