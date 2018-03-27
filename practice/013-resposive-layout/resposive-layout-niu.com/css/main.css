@@ -1,0 +1,77 @@
+
+
+
+.head{
+    background: url(../img/slider-01.jpg) no-repeat;
+    background-position: center top;
+    background-size: cover;
+    height: 866px;
+    position: relative;
+}
+
+.nav{
+    position: absolute;
+    top: 30px;
+    left: 20%;
+    right: 20%;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.nav a{
+    color: rgba(0, 0, 0,.7);
+    padding: 20px 30px;
+}
+
+.nav a:hover{
+    background: rgb(172, 162, 162);
+}
+
+.nav:after, 
+.nav:before{
+    content:"";
+    display: block;
+    clear: both;
+}
+
+.fl, .fr{
+    font-size: 1rem;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
+
+
+.card{
+    padding: 20px 10px 0px;   
+}
+
+
+.thumbnial{
+    border-radius: 5px;
+    overflow: hidden;
+    padding-bottom: 0px;
+}
+
+ 
+
+.text{
+    padding: 10px 30px 0;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-bottom: 5px;
+    color:rgb(0, 0,0,.8);
+}
+
+.desc{
+    font-style: 0.8rem;
+    color:rgb(0, 0,0,.6);
+}
