@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .col{
+            float: left;
+            width: 50%;
+            border: 1px solid #000;
+            min-height: 50px;
+        }
+
+        @media (max-width:400px){
+            .col{
+                width: 100%;
+                margin: 20px;
+                text-align: center;
+                line-height: 40px;
+            }
+
+            .col:after{
+                content:"样式变了";
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+</body>
+</html>
