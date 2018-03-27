@@ -5,7 +5,7 @@
     background: url(../img/slider-01.jpg) no-repeat;
     background-position: center top;
     background-size: cover;
-    height: 866px;
+    min-height: 866px;
     position: relative;
 }
 
@@ -20,7 +20,7 @@
 
 .nav a{
     color: rgba(0, 0, 0,.7);
-    padding: 20px 30px;
+    padding: 10px 20px;
 }
 
 .nav a:hover{
