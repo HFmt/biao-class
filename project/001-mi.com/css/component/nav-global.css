@@ -1,8 +1,16 @@
 .nav-global{
     background: #333;
-    color:#eee;
+    color:#ccc;
 }
 
 .nav-global a{
-    
+    color: inherit;
+    padding: 4px;
 }
+
+
+
+
+
+
+
