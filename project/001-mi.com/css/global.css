@@ -45,7 +45,7 @@ li{
 
 
 
-[class^="col-"]{
+[class^="col-"], .col{
     display: inline-block;
     vertical-align: top;
     font-size: 1rem;
@@ -81,6 +81,10 @@ li{
 }
 
 .col-lg-5{
+    width: 50%;
+}
+
+.col-lg-5_5{
     width: 50%;
 }
 

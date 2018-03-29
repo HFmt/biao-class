@@ -1,0 +1,40 @@
+
+.nav-page{
+    padding-top: 20px;
+}
+
+.logo a{
+    background: #ff6700;
+}
+
+.link-group{
+    padding: 16px;
+}
+
+.nav-page .link-group a
+{
+    padding-right: 10px;
+    color:rgba(0,0,0,.8);
+}
+
+.search-area .sec, .search-area .btn{
+    padding: 16px;
+    line-height: 1.1;
+
+}
+
+.search-area{
+    position: relative;
+}
+
+.hot-words{
+    position: absolute;
+    top:16px;
+    left: 60px;
+}
+
+.search-area a{
+    font-size: 0.7rem;
+    color:rgba(0,0,0,.6);
+    background: #cccccc;
+}

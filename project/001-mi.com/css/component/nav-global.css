@@ -5,7 +5,19 @@
 
 .nav-global a{
     color: inherit;
-    padding: 4px;
+    padding: 6px;
+}
+
+.nav-global a:first-child{
+    padding-left: 0px;
+}
+
+.nav-global a:last-child{
+    padding-right: 0px;
+}
+
+.fr{
+    text-align: right;
 }
 
 
