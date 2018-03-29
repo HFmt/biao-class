@@ -2,3 +2,9 @@
     display: block;
     padding: 5px 10px;
 }
+
+
+.first-screen .card-area, .time-area, .Mphone-area, .promotion-area, .video-area,
+.after-sales, .others, .metamessage{
+    margin-top: 10px;
+}
