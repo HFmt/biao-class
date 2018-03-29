@@ -1,0 +1,27 @@
+.after-sales, .others{
+    text-align: center;
+    
+}
+
+.after-sales a{
+    padding: 20px;
+    color: rgba(0,0,0,.8);
+    font-size: 1.1rem;
+}
+
+
+.others .link-group .th{
+    font-size: .9rem;
+    color:rgba(0,0,0,.8);
+}
+
+.others .link-group a{
+    color:#757575;
+    font-size: .6rem;
+     display: block;
+}
+
+.others .link-group li{
+    padding: 6px;
+   
+}

@@ -8,3 +8,7 @@
 .after-sales, .others, .metamessage{
     margin-top: 10px;
 }
+
+.first-screen .type-list li:hover{
+    background: #ff6700;
+}

@@ -22,8 +22,13 @@ img{
     max-width: 100%;
 }
 
+ul{
+     padding: 0;
+}
+
 li{
     list-style-type: none;
+   padding:2px 0 2px 15px;
 }
 
 .container{
