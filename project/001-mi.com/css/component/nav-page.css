@@ -4,6 +4,10 @@
     padding-bottom: 20px;
 }
 
+.nav-page .link-group a:hover{
+    color: #ff6700;
+}
+
 .logo a{
     background: #ff6700;
 }
@@ -38,4 +42,12 @@
     font-size: 0.7rem;
     color:rgba(0,0,0,.6);
     background: #cccccc;
+}
+
+.search-area .btn{
+    cursor:pointer;
+}
+
+.search-area a:hover{
+    background: #ff6700;
 }

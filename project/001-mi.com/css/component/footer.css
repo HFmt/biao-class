@@ -1,7 +1,23 @@
-.after-sales, .others{
-    text-align: center;
+
+    /*==========公共样式开始===========  */
     
-}
+    .after-sales, .others{
+        text-align: center;
+        
+    }
+    
+   .after-sales a:hover, .others .link-group a:hover,
+   .metamessage a:hover{
+        color:#ff6700;
+    }
+
+    .others .link-group, .others .business{
+        padding: 10px;
+    }
+ 
+    /*==========公共样式结束===========  */
+    
+ 
 
 .after-sales a{
     padding: 20px;
@@ -9,9 +25,6 @@
     font-size: 1.1rem;
 }
 
-.others .link-group, .others .business{
-    padding: 10px;
-}
 
 
 .others .link-group .th{
@@ -47,7 +60,13 @@
 .server-link{
     font-size: 0.8rem;
      color:#ff6700;
-     border: 1px solid #ff6700;;
+     border: 1px solid #ff6700;
+}
+
+.server-link:hover{
+    color: #fff;
+    background: #ff6700;
+    
 }
 
 
@@ -56,9 +75,7 @@
     
 }
 
-.metamessage a{
 
-}
 
 .metamessage .desc {
     font-size: .7rem;
