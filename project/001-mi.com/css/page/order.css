@@ -4,6 +4,6 @@
 }
 
 
- ul li{
+.nav-bar ul li, .choose-area ul li{
     display: inline-block;
 }
