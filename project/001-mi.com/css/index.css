@@ -4,9 +4,8 @@
 }
 
 
-.first-screen .card-area, .time-area, .Mphone-area, .promotion-area, .video-area,
-.after-sales, .others, .metamessage{
-    margin-top: 10px;
+.first-screen , .promotion-area .box-bd{
+    margin-top: 20px;
 }
 
 .first-screen .type-list li:hover{
