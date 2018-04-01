@@ -5,8 +5,12 @@
 
 
 
-
-
+.login-area.bg{
+    background-image: url(../../img/login-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 400px;
+}
 
 
 
