@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>perspective</title>
+    <style>
+
+        .parent{
+            perspective: 600px;
+        }
+
+        .side{
+            display: inline-block;
+            height: 200px;
+            width: 200px;
+            background: #ccc;
+            transform: translate(100px,100px) rotateY(40deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">      
+        <div class="side"></div>
+    </div>
+</body>
+</html>
