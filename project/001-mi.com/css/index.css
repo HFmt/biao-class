@@ -67,15 +67,25 @@
     margin-top: 10px;
 }
 
-/* .first-screen .business{
-    text-align: center;
-} */
+.first-screen .business{
+   background: #5f5750;
+}
+
+.first-screen .business a{
+   color: #ccc;
+}
+
+.first-screen .business a:hover{
+   color: #fff;
+}
+
 
 
 
 .first-screen .business .business-spc{
     text-align: center;
     padding: 26.5px 0;
+   
     
 }
 
@@ -100,11 +110,25 @@
     color: #ff6700;
 }
 
+/* ==========卡片间距开始=========== */
 
-.box-spacing{
+.box-pd-spacing{
     padding: 10px 10px 20px;
     text-align: center;
 }
+
+.box-mg-spacing{
+    margin-left: 10px;
+}
+
+/* ==========卡片间距结束=========== */
+
+
+.countdown-area{
+    background: #f1eded;
+    border-top:1px solid #e53939;
+}
+
 .countdown-area p{
     padding-top: 30px;
     font-size: 21px;
