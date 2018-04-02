@@ -8,12 +8,16 @@
     color: #ff6700;
 }
 
+.nav-page .logo{
+    margin-top: 4px;
+}
+
 .logo a{
     background: #ff6700;
 }
 
 .nav-page .link-group{
-    padding: 16px;
+    padding: 20.6px 10px;
 }
 
 .nav-page .link-group a
@@ -30,6 +34,7 @@
 
 .search-area{
     position: relative;
+    padding: 4px;
 }
 
 .hot-words{

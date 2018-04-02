@@ -17,6 +17,10 @@ a{
     display: inline-block;
 }
 
+a:hover{
+    /* color: #ff6700; */
+}
+
 img{
     display: block;
     max-width: 100%;

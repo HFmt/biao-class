@@ -1,12 +1,54 @@
+.first-screen .type-list{
+    /* height: 352px; */
+}
+
+
+.abt{
+    
+}
+
 .first-screen li{
-   padding: 10px;
+   padding: 8px 15px;
    
+}
+
+.first-screen .type-list:after,
+.first-screen .type-list::before
+{
+   content:"";
+   padding: 2px;
+   
+}
+
+.first-screen .bg{
+    background-image: url(../img/first-screen-bg.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.first-link{
+    position: relative;
+}
+
+.first-link a{
+    height: 352px;
+    display: block;
+}
+
+.first-link .switch-btn{
+    position: absolute;
+    bottom: 10px;
+    right: 0;
 }
 
 .card-area li{
     display: inline-block;
-    padding: 2px;
+    padding: 0px;
 }
+
+
+
+/* ================首屏开始========= */
 
 .first-screen , .promotion-area .box-bd{
     margin-top: 20px;
@@ -23,4 +65,69 @@
 
 .first-screen .card-area{
     margin-top: 10px;
+}
+
+/* .first-screen .business{
+    text-align: center;
+} */
+
+
+
+.first-screen .business .business-spc{
+    text-align: center;
+    padding: 26.5px 0;
+    
+}
+
+
+
+/* ================首屏结束========= */
+
+
+/* =============主体开始============== */
+.promotion-area .title-area .fl{
+    font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+    color: #333;
+}
+.promotion-area .title-area .fr a{
+    font-size: 16px;
+    line-height: 58px;
+    color: #424242;
+}
+.promotion-area .title-area .fr a:hover{
+    color: #ff6700;
+}
+
+
+.box-spacing{
+    padding: 10px 10px 20px;
+    text-align: center;
+}
+.countdown-area p{
+    padding-top: 30px;
+    font-size: 21px;
+    color: #ef3a3b;
+}
+.countdown-area img{
+    margin: 25px auto;
+}
+
+.countdown-desc span {
+    font-size: 15px;
+    color: rgba(0,0,0,0.54);
+}
+
+.countdown{
+    margin: 28px auto 10px;
+    
+}
+
+.countdown .box{
+    padding: 18px;
+}
+
+.countdown .dosh{
+    margin-top: 20px;
 }
