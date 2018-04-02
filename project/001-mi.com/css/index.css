@@ -1,8 +1,12 @@
-.first-screen a{
-    display: block;
-    padding: 5px 10px;
+.first-screen li{
+   padding: 10px;
+   
 }
 
+.card-area li{
+    display: inline-block;
+    padding: 2px;
+}
 
 .first-screen , .promotion-area .box-bd{
     margin-top: 20px;
@@ -11,3 +15,4 @@
 .first-screen .type-list li:hover{
     background: #ff6700;
 }
+
