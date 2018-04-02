@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transtion</title>
+    <style>
+        .box{
+            background: #ccc;
+            height: 200px;
+            width: 200px;
+            transition: all 4s;
+        }
+
+        .box:hover{
+            font-size: 50px;
+            transform:translateX(200px) translateY(200px) scale(.5) rotate(45deg)  ;    
+            background: rgb(207, 126, 126);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">test</div>
+</body>
+</html>
