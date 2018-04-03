@@ -114,12 +114,10 @@
 
 .box-pd-spacing{
     padding: 10px 10px 20px;
+    margin: 20px;
     text-align: center;
 }
 
-.box-mg-spacing{
-    margin-left: 10px;
-}
 
 /* ==========卡片间距结束=========== */
 
