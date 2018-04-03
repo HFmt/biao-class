@@ -54,7 +54,7 @@ li{
 
 
 
-[class^="col-"], .col{
+[class*="col-"], .col{
     display: inline-block;
     vertical-align: top;
     font-size: 1rem;
