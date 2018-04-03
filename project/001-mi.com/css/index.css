@@ -112,10 +112,14 @@
 
 /* ==========卡片间距开始=========== */
 
+.text, .box-pd-spacing{
+    text-align: center;
+}
+
 .box-pd-spacing{
     padding: 10px 10px 20px;
     margin: 20px;
-    text-align: center;
+    
 }
 
 
