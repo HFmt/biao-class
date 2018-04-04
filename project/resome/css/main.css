@@ -1,0 +1,71 @@
+
+
+
+.introduction, .box-wrapper{
+    padding-top: 40px;
+}
+
+
+.banner{
+    background-image: url(../img/banner.jpg);
+    min-height: 750px;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center top;
+
+}
+
+.cl:after,
+.cl::before{
+    content:" ";
+    display: block;
+    clear: both;
+}
+
+.header{
+    padding: 40px;
+    width: 100%;;
+    top:0;
+    left:0;
+    position: fixed;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+   /* text-align: right; */
+}
+
+
+.nav-page a, .mi{
+    padding: 10px;
+}
+
+.banner-inner-wrapper{
+    padding-top: 300px;
+}
+
+.banner-inner-text{
+    padding: 10px;
+}
+
+.box-wrapper{
+    margin: 40px 0;
+    text-align: center;
+}
+
+
+.footer{
+    padding: 60px;
+}
+
+.foot-share li{
+    padding: 10px 10px 10px 0;
+}
+
+.footer .bd{
+    padding: 40px;
+}
