@@ -6,6 +6,10 @@
 }
 
 
+.content-title{
+    text-align: center;
+}
+
 .banner{
     background-image: url(../img/banner.jpg);
     min-height: 750px;
@@ -66,6 +70,6 @@
     padding: 10px 10px 10px 0;
 }
 
-.footer .bd{
+.bd{
     padding: 40px;
 }
