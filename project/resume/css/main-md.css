@@ -4,6 +4,10 @@
     min-height: 608px;
 }
 
+.banner-inner-wrapper{
+    padding-top: 28%;
+}
+
 .col-md:after{
     content:"small type";
     font-size: 1rem;

@@ -1,16 +1,17 @@
-@media (max-width:767
-px){
+@media (max-width:767px){
 
  
     
 .banner{
-    min-height: 450px;
+    min-height: 420px;
 }
 
 
-.banner-inner-text{
+
+
+.banner-inner-wrapper{
     text-align: center;
-    padding-top: 55%;
+    padding-top: 52%;
 }
 
 .col-sm:after{

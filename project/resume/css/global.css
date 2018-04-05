@@ -46,60 +46,13 @@ a{
     min-height: 20px;
 }
 
-.col-lg-1{
-    width: 8.33333333%;
-}
-
-.col-lg-2{
-    width: 16.66666666%;
-}
-
-.col-lg-3{
-    width: 25%;
-}
-
-.col-lg-4{
-    width:33.33333333%;
-}
-
-.col-lg-5{
-    width: 41.66666666%;
-}
-
-.col-lg-6{
-    width: 50%;
-}
-
-.col-lg-7{
-    width: 58.33333333%; 
-}
-
-.col-lg-8{
-    width: 66.66666666%;
-}
-
-.col-lg-9{
-    width: 75%;
-}
-
-.col-lg-10{
-    width: 83.333333335%;
-}
-
-.col-lg-11{
-    width: 91.66666666%;
-}
-
-.col-lg-12{
-    width: 100%;
-}
 
 
 
 
 
 
-/* ============================== */
+/* =============index公共样式================= */
 
 
 
@@ -122,13 +75,13 @@ a{
     padding: 24px;
 }
 
-.banner{
-    background-image: url(../img/banner.jpg);
-    min-height: 750px;
-    background-size: cover;
-    background-repeat: no-repeat; 
-    background-position: center top;
+.fl{
+    float: left;
+}
 
+.fr{
+    float: right;
+   /* text-align: right; */
 }
 
 .cl:after,
@@ -138,22 +91,24 @@ a{
     clear: both;
 }
 
+
+
+/* ========================导航============================== */
+
+.banner{
+    background-image: url(../img/banner.jpg);
+    min-height: 750px;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center top;
+
+}
+
 .header{
     width: 100%;;
     z-index: 999;
     position: fixed;
     background: rgba(0,0,0,.04);
-}
-
-
-
-.fl{
-    float: left;
-}
-
-.fr{
-    float: right;
-   /* text-align: right; */
 }
 
 .logo a{
@@ -196,13 +151,20 @@ a{
     color: #fff;
 }
 
+
+/* ===============首屏====================== */
+
+.banner-inner-wrapper{
+    padding-top: 24%;
+}
+
 .banner-inner-text > * {
     padding-top: 20px;
 }
 
-.banner-inner-text{
-    padding-top: 47%;
-}
+
+
+/* ===============主体内容============================= */
 
 .content-title{
     font-size: 55px;
@@ -210,17 +172,10 @@ a{
     letter-spacing: -3px;
 }
 
-
-.banner-inner-wrapper{
-    padding: 0 15px 0 15px;
-}
-
-
 .box-wrapper{
     margin: 40px 0;
     text-align: center;
 }
-
 
 
 .bd-box{
@@ -233,6 +188,10 @@ a{
 .bd-box:hover{
     margin: 6px;
 }
+
+
+
+/* =================页脚===================== */
 
 .footer .bd > *{
     padding:10px 10px 0 0;

@@ -1,153 +1,52 @@
-
 @media (min-width:1000px){
 
-.introduction, .box-wrapper, .footer{
-    padding: 80px 0 0;
+
+.col-lg-1{
+    width: 8.33333333%;
 }
 
-.header-container{
-    padding: 40px;
-    margin: 0 auto;
-    max-width: 1270px;
+.col-lg-2{
+    width: 16.66666666%;
 }
 
-.bd{
-    padding:20px 40px;
+.col-lg-3{
+    width: 25%;
 }
 
-.content-title{
-    text-align: center;
-    padding: 24px;
+.col-lg-4{
+    width:33.33333333%;
 }
 
-.banner{
-    background-image: url(../img/banner.jpg);
-    min-height: 750px;
-    background-size: cover;
-    background-repeat: no-repeat; 
-    background-position: center top;
-
+.col-lg-5{
+    width: 41.66666666%;
 }
 
-.cl:after,
-.cl::before{
-    content:" ";
-    display: block;
-    clear: both;
+.col-lg-6{
+    width: 50%;
 }
 
-.header{
-    width: 100%;;
-    z-index: 999;
-    position: fixed;
-    background: rgba(0,0,0,.04);
+.col-lg-7{
+    width: 58.33333333%; 
 }
 
-
-
-.fl{
-    float: left;
+.col-lg-8{
+    width: 66.66666666%;
 }
 
-.fr{
-    float: right;
-   /* text-align: right; */
+.col-lg-9{
+    width: 75%;
 }
 
-.logo a{
-    color: #000;
-    font-size: 27px;
-    letter-spacing: 4px;
-    font-weight: 300;
-    float: left;
-    text-transform: uppercase;
+.col-lg-10{
+    width: 83.333333335%;
 }
 
-.nav-page a{
-    padding: 10px 20px 0;
-    color:#808080;
+.col-lg-11{
+    width: 91.66666666%;
 }
 
-
-.nav-page a:hover{
-    color: #000;
-    font-size: 1.4rem;
-}
-
-.me{
-    color: #393939;
-    font-size: 24px;
-    font-weight: 400;
-}
-
-.more{
-    border: 1px solid #000;
-    padding: 8px 20px;
-    color: #2a2a2a;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 4px;
-}
-
-.more:hover{
-    background: #000;
-    color: #fff;
-}
-
-.banner-inner-text > * {
-    padding-top: 20px;
-}
-
-.content-title{
-    font-size: 55px;
-    font-weight: 700;
-    letter-spacing: -3px;
-}
-
-
-.banner-inner-wrapper{
-    padding: 0 15px 0 15px;
-}
-
-.box-wrapper{
-    margin: 40px 0;
-    text-align: center;
-}
-
-
-
-.bd-box{
-    display: block;
-    border: 1px solid #000;
-    margin: 10px;
-    min-height: 300px;
-}
-
-.bd-box:hover{
-    margin: 6px;
-}
-
-.footer .bd > *{
-    padding:10px 10px 0 0;
-    font-size: 12px;
-    color: #6c7279;
-}
-
-
-.footer .ftl{
-    font-size: 14px;
-    color: #000;
-    letter-spacing: 4px;
-    padding:0 0 20px;
-}
-
-.foot-share li{
-    padding-right: 10px;
-    font-size: 1.2rem;
-}
-
-.footer a{
-    color: #000;
+.col-lg-12{
+    width: 100%;
 }
 
 }
