@@ -1,68 +1,63 @@
-@media (max-width:767
-px){
+@media (min-width:768px) and (max-width:999px)  {
 
- 
-    
 .banner{
-    min-height: 450px;
+    min-height: 608px;
 }
 
-
-.banner-inner-text{
-    text-align: center;
-    padding-top: 55%;
-}
-
-.col-sm:after{
+.col-md:after{
     content:"small type";
     font-size: 1rem;
 }
 
-.col-sm-1{
+.col-md-1{
     width: 8.33333333%;
 }
 
-.col-sm-2{
+.col-md-2{
     width: 16.66666666%;
 }
 
-.col-sm-3{
+.col-md-3{
     width: 25%;
 }
 
-.col-sm-4{
+.col-md-4{
     width:33.33333333%;
 }
 
-.col-sm-5{
+.col-md-5{
     width: 41.66666666%;
 }
 
-.col-sm-6{
+.col-md-6{
     width: 50%;
 }
 
-.col-sm-7{
+.col-md-7{
     width: 58.33333333%; 
 }
 
-.col-sm-8{
+.col-md-8{
     width: 66.66666666%;
 }
 
-.col-sm-9{
+.col-md-9{
     width: 75%;
 }
 
-.col-sm-10{
+.col-md-10{
     width: 83.333333335%;
 }
 
-.col-sm-11{
+.col-md-11{
     width: 91.66666666%;
 }
 
-.col-sm-12{
+.col-md-12{
     width: 100%;
 }
+
+
+
+
 }
