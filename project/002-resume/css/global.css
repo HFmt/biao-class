@@ -57,7 +57,7 @@ a{
 
 
 .introduction, .box-wrapper, .footer{
-    padding: 80px 0 0;
+    padding: 100px 0 0;
 }
 
 .header-container{
@@ -127,14 +127,17 @@ a{
 
 
 .nav-page a:hover{
-    color: #000;
-    font-size: 1.4rem;
+    color: #000;  
+}
+
+.me, .sgt, .more{
+    font-weight: 400;
+    letter-spacing: 4px;
 }
 
 .me{
     color: #393939;
     font-size: 24px;
-    font-weight: 400;
 }
 
 .more{
@@ -142,7 +145,6 @@ a{
     padding: 8px 20px;
     color: #2a2a2a;
     font-size: 12px;
-    font-weight: 400;
     letter-spacing: 4px;
 }
 
@@ -155,7 +157,7 @@ a{
 /* ===============首屏====================== */
 
 .banner-inner-wrapper{
-    padding-top: 24%;
+    padding-top: 38%;
 }
 
 .banner-inner-text > * {
@@ -185,18 +187,18 @@ a{
     min-height: 300px;
 }
 
-.bd-box:hover{
-    margin: 6px;
-}
 
 
 
 /* =================页脚===================== */
 
+.footer .bd, .email, .footer .fa{
+    color: #6c7279;
+}
+
 .footer .bd > *{
     padding:10px 10px 0 0;
     font-size: 12px;
-    color: #6c7279;
 }
 
 
@@ -212,7 +214,8 @@ a{
     font-size: 1.2rem;
 }
 
-.footer a{
+
+.email:hover, .footer .fa:hover{
     color: #000;
 }
 

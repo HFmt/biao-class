@@ -1,5 +1,10 @@
 @media (min-width:1000px){
 
+.banner-inner-wrapper{
+    padding-top: 37%;
+}
+
+
 
 .col-lg-1{
     width: 8.33333333%;
