@@ -209,15 +209,15 @@ a{
     padding:0 0 20px;
 }
 
-.foot-share a{
+.foot-share li{
     padding-right: 10px;
     font-size: 1.2rem;
 }
 
-
 .email:hover, .footer .fa:hover{
-    color: #000;
+    margin-top:20px;
+    margin-top:20px;
+    color: red;
 }
-
 
 
