@@ -15,7 +15,7 @@ body, h1, h2, h3, h4, ul, il, p{
 
 li{
     list-style-type: none;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 a{
@@ -23,6 +23,10 @@ a{
     text-decoration: none;
 }
 
+img{
+    max-width: 100%;
+    display: block;
+}
 
 .container{
     max-width: 1222px;
@@ -36,9 +40,17 @@ a{
 }
 
 .cf::after, .cf::before{
-    contect:"";
+    content:" ";
     display: block;
     clear: both;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
 }
 
 [class*="col-"], .col{
@@ -46,7 +58,7 @@ a{
     vertical-align: top;
     font-size: 1rem;
     /* === */
-    /* border: 1px solid #000; */
+    border: 1px solid #000;
     min-height: 20px;
 }
 
