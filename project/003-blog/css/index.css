@@ -13,7 +13,7 @@
     margin-top:10px ;
 }
 
-.card-box{
+.content .card-box{
     margin: 25px 25px 0 0;
     display: block;
 }
@@ -41,6 +41,10 @@
 .title-attribute{
     color: #000;
     word-wrap:break-word;
+}
+
+.card-box:hover.card-box .title-attribute {
+    color: #03a9f4;
 }
 
 .posts-more a{
@@ -124,9 +128,9 @@
 }
 
 .hot-topic-link-type a{
-    font-size: 17px;
+    font-size: 1.2rem;
     line-height: 17px;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     font-family: "Ano-Bold",Arial;
     color: #0018ff;
 }
