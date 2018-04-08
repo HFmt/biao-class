@@ -109,3 +109,9 @@ img{
 .col-lg-12{
     width: 100%;
 }
+
+
+.mailchimp-wrapper{
+    text-align: center;
+    padding: 20px 0;
+}
