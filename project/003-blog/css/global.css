@@ -24,7 +24,7 @@ a{
 }
 
 img{
-    max-width: 100%;
+    min-width: 100%;
     display: block;
 }
 
@@ -58,7 +58,7 @@ img{
     vertical-align: top;
     font-size: 1rem;
     /* === */
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     min-height: 20px;
 }
 
@@ -115,3 +115,19 @@ img{
     text-align: center;
     padding: 20px 0;
 }
+
+.sec-pointe{
+    outline:none;
+    caret-color:red;
+}
+
+.sub-pointe{
+    cursor: pointer;
+}
+
+@supports (caret-color: red) { 
+    .sub-pointe, .sub-pointe, [contenteditable] {
+    color: #000; /* 文本颜色 */ 
+    caret-color: red; /* 光标颜色 */ 
+    } 
+} 
