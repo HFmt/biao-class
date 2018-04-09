@@ -1,7 +1,10 @@
 
+.footer{
+    margin: 30px;
+}
 
 .email-wrapper, .spacing{
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 
@@ -33,10 +36,10 @@
 }
 
 .email-wrapper .email-sub:hover{
-    background: #f44336;f44336
+    background: #f44336;
 }
 
-.footer .bd, .email, .footer .fa{
+.footer .bd, .footer a{
     color: #6c7279;
 }
 
@@ -60,6 +63,6 @@
 }
 
 
-.email:hover, .footer .fa:hover{
+.footer a:hover{
     color: #000;
 }

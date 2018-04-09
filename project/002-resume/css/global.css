@@ -5,7 +5,7 @@
 html{
     font-family: sans-serif;
     font-size:14px;
-    
+    vertical-align: top;
 }
 
 body, h1, h2, h3, h4, ul, il, p{
@@ -111,7 +111,7 @@ a{
     background: rgba(0,0,0,.04);
 }
 
-.logo h2{
+.logo a{
     color: #000;
     font-size: 27px;
     letter-spacing: 4px;
