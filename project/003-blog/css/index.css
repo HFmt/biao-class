@@ -95,8 +95,8 @@
     color: #131421;
 }
 
-.sdb-box, .firsh-screen{
-    padding-top: 30px;
+.sdb-box, .firsh-screen, .other{
+    margin-top: 30px;
 }
 
 .interior-title{
