@@ -27,13 +27,13 @@
 
 
 .email-wrapper .email-sub{
-    background: #f44336;
+    background: #ff5722;
     color: #fff;
     font-size: 1.2rem;
 }
 
 .email-wrapper .email-sub:hover{
-    background: #ff987c;
+    background: #f44336;f44336
 }
 
 .footer .bd, .email, .footer .fa{
