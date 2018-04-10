@@ -5,21 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
     <script>
         window.onload=function() {
-            let oIpt=document.getElementById('ipt');
+            let oName=document.getElementById('name');
+            let oAge=document.getElementById('age');
             let oBtn=document.getElementById('btn');
 
             oBtn.addEventListener('click',function(){
-                let otxt=oIpt.value;
-                console.log(otxt);
+                let txt= oAge.value;
+                let name= oName.value;
+                txt= parseInt(txt);
+                if(!txt && !name){
+                    alert('不能为空');
+                }
+                else if (txt < 18) {
+                    oName.value = '无名氏';
+                    alert('回家喝奶吧')
+                }
+                else if(!name){
+                    oName.value='无名氏';
+                }
+                else if(txt==666){
+                    oName.value = '无名氏';
+                    alert('牛批牛批');
+                }
+                
+                console.log(txt);
             })
         }
     </script>
 </head>
 <body>
-    <input id="ipt" type="text">
+    <input type="text" id="name">
+    <input type="text" id="age">
     <button id="btn" type="submit">确认</button>
 </body>
 </html>
