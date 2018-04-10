@@ -150,6 +150,8 @@ person = {
         balance: 1200
     },
 }
+   a=person.name+(person.wife.balance-person.wife.huabei);
+    console.log(a);
 
 /* 打印出“我叫李拴蛋，我丈人有3个朋友” */
 

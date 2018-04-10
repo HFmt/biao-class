@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        window.onload=function() {
+            let oIpt=document.getElementById('ipt');
+            let oBtn=document.getElementById('btn');
+
+            oBtn.addEventListener('click',function(){
+                let otxt=oIpt.value;
+                console.log(otxt);
+            })
+        }
+    </script>
+</head>
+<body>
+    <input id="ipt" type="text">
+    <button id="btn" type="submit">确认</button>
+</body>
+</html>
