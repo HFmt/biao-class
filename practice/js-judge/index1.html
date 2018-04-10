@@ -27,8 +27,8 @@
                     alert(name+'回家喝奶吧');
                 }
                 else if (txt < 18) {
-                    oName.value = '无名氏';
-                    alert('回家喝奶吧')
+                    oName.value = '小屁孩';
+                    alert('小屁孩回家喝奶吧')
                 }
                 else if(!name){
                     oName.value='无名氏';
@@ -43,7 +43,9 @@
     </script>
 </head>
 <body>
-    <input type="text" id="name">
+    <span>姓名</span>
+    <input type="text" id="name"><br>
+    <span>年龄</span>
     <input type="number" id="age">
     <button id="btn" type="submit">确认</button>
 </body>
