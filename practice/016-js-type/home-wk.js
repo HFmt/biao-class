@@ -136,6 +136,8 @@ person = {
         age: 18
     }
 }
+    a = '我叫'+person.name+',我朋友叫'+person.wife.name+',今年'+person.wife.age+'岁了';
+    console.log(a);
 
 /* 打印出“我叫李拴蛋，我老婆一共有200块” */
 
@@ -208,3 +210,5 @@ person = {
         }
     },
 }
+
+

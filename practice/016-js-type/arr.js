@@ -48,8 +48,8 @@ var e = {
 }
 
 
-console.log(a.a1[2].v);  //a
-console.log(b[3].b2.c[0].z); //b
-console.log(c.a.d.p.yo[2]); //c 
-console.log(d[1][1].v[2].z);  //d
-console.log(e.a[1].v[2].p); //e
+console.log('a:',a.a1[2].v);  
+console.log('b:',b[3].b2.c[0].z); 
+console.log('c:',c.a.d.p.yo[2]); 
+console.log('d:',d[1][1].v[2].z); 
+console.log('e:',e.a[1].v[2].p); 
