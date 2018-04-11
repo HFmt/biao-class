@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for</title>
+
+    <script>
+        window.onload = function(){
+       
+            // for(let i=0; i<8; i++){
+            //     for(let j=0; j<8-i; j++){
+            //         document.write('&nbsp');
+            //     }
+            //     for (let k = 0; k < i * 2 - 1; k++) {
+            //         document.write('*');
+            //     }
+            //      document.write('<br>');
+            // }
+            // for(let i=1; i<=9; i++){
+            //     for (let j = 1; j <=i ; j++) {
+            //         document.write(i+'*'+j);
+            //         document.write('&nbsp');
+            //     }
+            //      document.write('<br>');
+            // }
+
+            let numList = [1, 2, 3,4 ,5, 6, 7, 8,9,10,11,13];
+
+                // for(let i=0; i< numList.length; i++){
+                //     if(numList[i]%2 == 1){
+                //         continue;
+                //     }
+                //     document.write(' ',numList[i]);
+                // }
+                
+                // 素数
+            //   for (let i = 2; i <= 100; i++) {
+            //     for (var j = 2; j < i; j++) {
+            //         if (i % j == 0)
+            //             break;
+            //     }
+            //     if (j == i)
+            //         document.write(' ', i);
+            // }
+            
+            let unmList=[
+                [
+                    [1, 11, 111],
+                    [2, 22, 222],
+                    [3, 33, 333], 
+                    [4, 44, 444]
+                ],
+               
+                [
+                    [1, 11, 111],
+                    [2, 22, 222],
+                    [3, 33, 333],
+                    [4, 44, 444]
+                ]  
+            ];
+    // for_i: for(let i=0; i< unmList.length; i++){
+    //             let list_i= unmList[i];
+    //     for_j: for (let j = 0; j < list_i.length; j++) {
+    //                 let list_j = list_i[j];   
+    //         for_k: for (let k = 0; k < list_j.length; k++) {
+    //                     let list_k = list_j[k];
+    //                     if(list_j[k]==3){
+    //                         break for_k;
+    //                     }
+    //                     document.write(' ', list_k,'<br>');
+    //                 }
+    //                 // document.write(' ', list_j, '<br>');
+    //             }
+    //         }
+    for_i: for(let i=0; i< unmList.length; i++){       
+        for_j: for (let j = 0; j < unmList[i].length; j++) {    
+            for_k: for (let k = 0; k < unmList[i][j].length; k++) {
+                        if(unmList[i][j][k]==3){
+                            break for_k;
+                        }
+                        document.write(' ', unmList[i][j][k],'<br>');
+                    }
+                    // document.write(' ', list_j, '<br>');
+                }
+            }
+         }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
