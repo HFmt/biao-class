@@ -47,17 +47,15 @@
 
 
 <h2>买东西</h2>
-<input id='money' type="text">
+<input id='money' type="number">
 <button id='btn' type="submit">确认</button>
 <script>
     ;;(function(){
         
         let oMoney = document.getElementById('money');
         let oBtn = document.getElementById('btn');
-
-        var eMoney=1;
-
-       
+        
+        let eMoney=null;
 
         function buy(money,success,fail){
             if(money>=99){
@@ -71,7 +69,6 @@
                     fail();
                 }
             }
-
         }
         
          function buySuccess() {
@@ -85,14 +82,12 @@
             else if (eMoney < 1) {
                 document.write('没付钱啊！', '<br>');
             }
-
         }
-
+        
          oBtn.onclick = function () {
             eMoney = oMoney.value;
             buy(eMoney, buySuccess, buyFail)
         }
-
     })();
 
         
