@@ -198,10 +198,9 @@
                 playing: ['红警', 'CS', '吃鸡'],
             },
         ]
-        
-        function arrSearch(arrKey) {
         document.write('完成一个搜索函数', '<br>');
         document.write(list[3].playing, '<br>');
+        function arrSearch(arrKey) {
             let resultimport = [];
             
         for (let i = 1; i < list.length; i++) {
@@ -213,11 +212,20 @@
             //     document.write('没有符合要求的', '<br>');
             //     break;
             // }
+            if (item.playing instanceof Array && resultimport instanceof Array) {
+            for (let j = 0, jLen = item.playing.length; i < jLen; j++) {
+                for (let k = 0, kLen = resultimport.length; k < kLen; k++) {
+                    if (item.playing[j] === resultimport[k]) {
+                        return true;
+                    }
+                }
+            }
         }
-        document.write(arrKey, '<br>');
+        }
+        document.write(resultimport, '<br>');
     }
 
-    arrSearch(['红警', 'CS', '吃鸡']);
+    arrSearch(['红警', '吃鸡']);
     
       
     })();
