@@ -52,21 +52,27 @@
 商品数量：
 <input id='money' type="number">
 <button id='btn' type="submit">确认下单</button>
-<script>
+ <script>
     ;;(function(){
         
         let oType = document.getElementById('type');
-        let oMoney = document.getElementById('money');
+        let oNumber = document.getElementById('money');
         let oBtn = document.getElementById('btn');
         
         let eType=null;
         let eMoney=null;
-
-        function buy(money,success,fail){
-            if(money>=99){
+        let product = {
+            price: 'Asam',
+            type: '阿萨姆'
+        };
+        
+    
+        function buy(number,success,fail){
+            if(number>=99){
                 document.write('请稍等','<br>');
-                if (success()) {
-                    success();
+                document.write('下单成功', '<br>');
+                if (success) {
+                    success(eType);
                 }
             }
             else {
@@ -76,26 +82,18 @@
             }
         }
         
-        function buySuccess() {
-            document.write('下单成功', '<br>');
-                if('虚拟道具' == eType){
-                    document.write('虚拟道具，直接发货', '<br>');
-                }
-                else if('实体货物' == eType){
-                    document.write('实体货物', '<br>');
-                    document.write('通知商家发货', '<br>');
-                    document.write('等待商家发货', '<br>');
-                }
-        }
+        function buyEntity(data) { 
+            document.write('实体货物：'+data, '<br>');
+            document.write('通知商家发货', '<br>');
+            document.write('等待商家发货', '<br>');
+         }
 
         function buyVirtual(){
             document.write('虚拟道具，直接发货', '<br>');
         }
 
-        function buyEntity (){
-            document.write('实体货物', '<br>');
-            document.write('通知商家发货', '<br>');
-            document.write('等待商家发货', '<br>');
+        function buyVirtual(){
+            document.write('虚拟道具，直接发货', '<br>');
         }
 
         function buyFail() {
@@ -108,13 +106,17 @@
         }
 
          oBtn.onclick = function () {
+            
+            document.write(product.type);
             eType = oType.value;
-            eMoney = oMoney.value;
-            buy(eMoney, buySuccess, buyFail)
+            eNumber = oNumber.value;
+            buy(eNumber, buyEntity, buyFail)
         }
     })();
 
         
-</script>
+ </script>
+
+
 </body>
 </html>

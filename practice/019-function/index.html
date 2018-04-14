@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -136,7 +136,7 @@
 <!-- 遍历完成一个搜索函数 -->
 <script>
     ;; (function () {
-        let arr = [
+        let list = [
             {
                 name: '王花花',
                 playing: ['CSGO', 'Dota2'],
@@ -147,17 +147,16 @@
             },
             {
                 name: '牛备备',
-                playing: ['Dota2', 'H1Z1'],
+                playing: ['CSGO', 'H1Z1'],
             },
         ];
-
+            console.log(list[1].playing);
         function arrSearch(key) {
             document.write('完成一个搜索函数', '<br>');
             let result = [];
-            for (let i = 1; i < arr.length; i++) {
-                let item = arr[i];
-                
-                if(item.playing.indexOf(key) != -1){
+            for (let i = 0; i < list.length; i++) {
+                let item = list[i];
+                if(item.playing.indexOf(key) !== -1){
                     result.push(item.name);
                 }
                 else{
@@ -168,7 +167,7 @@
             document.write(result, '<br>');
         }
 
-        arrSearch('H1Z1', 'CSGO', 'Dota2');
+        arrSearch('CSGO');
 
 
     })();
@@ -177,82 +176,53 @@
 
 其他'
 <br>
+
+
 <script>
-    ;;(function name(params) {
-        let list = 
-        [
-            {
-                name: '王花花',
-                playing: ['CS', '红警'],
-            },
-            {
-                name: '李拴蛋',
-                playing: ['守望屁股', '吃鸡', 'CS'],
-            },
-            {
-                name: '牛备备',
-                playing: ['红警', '吃鸡'],
-            },
-            {
-                name: '木哈哈',
-                playing: ['红警', 'CS', '吃鸡'],
-            },
-        ]
-        document.write('完成一个搜索函数', '<br>');
-        document.write(list[3].playing, '<br>');
+    ;; (function name(params) {
+        let list =
+            [
+                {
+                    name: '王花花',
+                    playing: ['CS', '红警'],
+                },
+                {
+                    name: '李拴蛋',
+                    playing: ['守望屁股', '吃鸡', 'CS'],
+                },
+                {
+                    name: '牛备备',
+                    playing: ['红警', '吃鸡'],
+                },
+                {
+                    name: '木哈哈',
+                    playing: ['红警', 'CS', '吃鸡'],
+                },
+            ]
+
+        
         function arrSearch(arrKey) {
             let resultimport = [];
-            
-        for (let i = 1; i < list.length; i++) {
-            let item = list[i];
-            if(arrKey.toString() == list[i].playing.toString()){
-                resultimport.push(item.name);
-            }
-            // else {
-            //     document.write('没有符合要求的', '<br>');
-            //     break;
-            // }
-            if (item.playing instanceof Array && resultimport instanceof Array) {
-            for (let j = 0, jLen = item.playing.length; i < jLen; j++) {
-                for (let k = 0, kLen = resultimport.length; k < kLen; k++) {
-                    if (item.playing[j] === resultimport[k]) {
-                        return true;
-                    }
+            let flag = true;
+            for (let i = 0; i < list.length; i++) {
+                let item = list[i];
+                for (let j = 0; j < arrKey.length; j++) {
+                    if (item.playing.indexOf(arrKey[j]) === -1) {
+                        flag = false;
+                    }                
+                }    
+                if (flag){
+                    resultimport.push(item.name);
                 }
-            }
+                flag = true;
+            }   
+            document.write(resultimport, '<br>');
         }
-        }
-        document.write(resultimport, '<br>');
-    }
+        arrSearch(['红警', '吃鸡']);
 
-    arrSearch(['红警', '吃鸡']);
-    
-      
     })();
 
-    
+
 </script>
 
-
-<script>
-
-//    Array.ExistsSameValues = function (a1, a2) {
-//         var exists = false;
-//         if (a1 instanceof Array && a2 instanceof Array) {
-//             for (var i = 0, iLen = a1.length; i < iLen; i++) {
-//                 for (var j = 0, jLen = a2.length; j < jLen; j++) {
-//                     if (a1[i] === a2[j]) {
-//                         return true;
-//                     }
-//                 }
-//             }
-//         }
-//         return exists;
-//     };
-
-//     var a1 = [1, 2, 5, 8];
-//     var a2 = [3, 1, 9, 5];
-
-//     alert(Array.ExistsSameValues(a1, a2));
-</script>
-</html>
+</html> 
