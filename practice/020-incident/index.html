@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>incident</title>
+</head>
+<body>
+
+
+<h2>绑定事件</h2>
+    <button id="btn1">绑定事件</button>
+    <div class="change">1</div>
+    <div class="change">2</div>
+    <div class="change">3</div>
+
+    <script>
+        ;;(function(){
+            let oBtn = document.getElementById('btn1');
+            let oCg = document.getElementsByClassName('change');
+           oBtn.addEventListener('click',function(){
+               for (let i = 0; i < oCg.length; i++) {
+                  oCg[i].innerHTML='Asam';
+               }
+           });
+        })();
+    </script>
+
+
+<h2>循环绑定事件</h2>
+    <a href="http://biaoyansu.com/">点</a>
+    <a href="http://biaoyansu.com/">点</a>
+    <a href="http://biaoyansu.com/">点</a>
+    <script>
+        let oAS = document.getElementsByTagName('a');
+
+        for(let i=0; i< oAS.length; i++){
+            let oA= oAS[i];
+        oA.addEventListener('click',function(event){
+            event.preventDefault();
+            oA.innerHTML='Asam'
+        });
+
+        }
+
+    </script>
+
+<h2>对象方法</h2>
+    <script>
+        let user={
+            name:'Asam',
+            type: function(){
+                document.write('age:22');
+            }
+        }
+       user.type();
+    </script>
+
+
+<h2>鼠标移入移出</h2>
+<button id="btn2">绑定事件</button>
+    <script>
+        
+        ;; (function () {
+            let oBtn = document.getElementsByTagName('button')[1];
+            oBtn.addEventListener('mouseenter', function () {
+                console.log('鼠标移入');
+            });
+
+            oBtn.addEventListener('mouseleave', function () {
+               console.log('鼠标移出');
+            });
+        })();
+    </script>
+
+
+<h2>聚焦的时候</h2>
+<input id="text1" type="text" value="快点我">
+<script>
+
+    ;; (function () {
+        let oText = document.getElementById('text1');
+        oText.addEventListener('focus', function () {
+            oText.value='已经聚焦';
+        });
+
+        oText.addEventListener('blur', function () {
+            oText.value='不再聚焦';
+        });
+    })();
+</script>
+</body>
+</html>
