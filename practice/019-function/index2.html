@@ -61,10 +61,10 @@
         
         let eType=null;
         let eMoney=null;
-        let product = {
-            price: 'Asam',
-            type: '阿萨姆'
-        };
+        // let product = {
+        //     price: 'Asam',
+        //     type: '阿萨姆'
+        // };
         
     
         function buy(number,success,fail){
@@ -77,7 +77,7 @@
             }
             else {
                 if(fail){
-                    fail();
+                    fail(eType);
                 }
             }
         }
@@ -96,18 +96,17 @@
             document.write('虚拟道具，直接发货', '<br>');
         }
 
-        function buyFail() {
-            if (eMoney >= 1 && eMoney < 99) {
-                document.write('买太少了，不给你发货', '<br>');
+        function buyFail(data) {
+            if (eNumber >= 1 && eNumber < 99) {
+                document.write(data+'买太少了，不给你发货', '<br>');
             }
-            else if (eMoney < 1) {
-                alert('请您输入购买的数量')
+            else if (eNumber < 1) {
+                alert('请您输入购买的数量');
             }
         }
 
          oBtn.onclick = function () {
-            
-            document.write(product.type);
+            // document.write(product.type);
             eType = oType.value;
             eNumber = oNumber.value;
             buy(eNumber, buyEntity, buyFail)
@@ -117,6 +116,26 @@
         
  </script>
 
+<script>
+
+    var arr1 = {
+        name:'asam',
+        age : '22'
+    }
+    
+    function sec(a1,a2,a3) {
+        if(a1){
+            a1(arr1);
+        }
+    }
+
+        function s1(o1){
+            alert("我是"+o1.name+',年龄'+o1.age);
+        }
+
+        sec(s1);
+
+</script>
 
 </body>
 </html>
