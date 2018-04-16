@@ -224,4 +224,53 @@
 </script>
 
 
+<h2>第九题 遍历（暂未实现）</h2>
+<script>
+    ;; (function name(params) {
+        let list =
+            [
+                {
+                    name: '王花花',
+                    playing: ['CS', '红警'],
+                },
+                {
+                    name: '李拴蛋',
+                    playing: ['守望屁股', '吃鸡', 'CS'],
+                },
+                {
+                    name: '牛备备',
+                    playing: ['红警', '吃鸡'],
+                },
+                {
+                    name: '木哈哈',
+                    playing: ['红警', 'CS', '吃鸡'],
+                },
+            ]
+
+
+        function arrSearch(arrKey) {
+            let resultimport = [];
+            let flag = true;
+           Fi: for (let i = 0; i < list.length; i++) {
+                let item = list[i];
+             Fj:   for (let j = 0; j < item.playing.length; j++) {
+                Fk:    for(let k=0; k< arrKey.length; k++){
+                    if (item.playing[j] === arrKey[k] && item.playing.length === arrKey.length) {
+                            resultimport.push(item.name);
+                    }
+                    else{
+                        break Fj;
+                        
+                    }
+                    }
+                }
+            }
+            document.write(resultimport, '<br>');
+        }
+        arrSearch(['红警', 'CS', '吃鸡']);
+
+    })();
+
+
+</script>
 </html> 
