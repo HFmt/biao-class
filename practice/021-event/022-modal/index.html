@@ -71,28 +71,33 @@
 
     <script>
         ;; let oLogin = document.querySelector('.login')//触发事件节点
-         ,oMask = document.querySelector('.mask')//触发事件对象
+         ,oMask = document.querySelector('.mask')//触发事件对象，闭触发的事件对象
          ,oModal = oMask.querySelector('.modal')//触发事件对象
          ,oClose = oModal.querySelector('.close');//关闭触发的事件对象
 
+        //添加事件方法
          function show() { 
              oMask.classList.add('show');
           }
 
+        //删除事件方法
          function hide() { 
              oMask.classList.remove('show');
           }
           
+        //触发事件节点 触发添加事件方法
           oLogin.addEventListener('click',function () { 
                 show();
            });
-
+           
+        //使用冒泡判断 target 目标源  使目标源触发删除事件方法
           oMask.addEventListener('click',function (ev) { 
               if(ev.target=== oMask|| ev.target=== oClose){
                   hide();
               }
            });
-
+           
+        //使用键盘事件 Escape键盘 触发删除事件方法
            document.addEventListener('keyup',function (ev) { 
                if(ev.code==='Escape'){
                    hide();
