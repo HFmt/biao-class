@@ -19,7 +19,6 @@
         .mask,
         .modal {
             position: fixed;
-            display: none;
         }
         
         .mask.show,
@@ -29,6 +28,7 @@
         }
 
         .mask {
+            display: none;
             top: 0;
             bottom: 0;
             left: 0;
@@ -56,37 +56,48 @@
         <nav>
             <button class="login" >登录</button>
         </nav>
-        <div class="mask"></div>
-        <div class="modal">
-            <div class="toolbar">
-                <button class="close" >关闭</button>
+        <div class="mask">
+            <div class="modal">
+                <div class="toolbar">
+                    <button class="close" >关闭</button>
+                </div>
+                <h3>登录</h3>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fugiat laboriosam possimus quam, repudiandae similique vel!
+                Consequatur, dignissimos, dolor magni neque nulla odit porro praesentium, recusandae reprehenderit similique tempore
+                unde.
             </div>
-            <h3>登录</h3>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fugiat laboriosam possimus quam, repudiandae similique vel!
-            Consequatur, dignissimos, dolor magni neque nulla odit porro praesentium, recusandae reprehenderit similique tempore
-            unde.
         </div>
     </div>
 
     <script>
-        ;; let oLogin = document.querySelector('.login');//触发事件节点
-        let oMask = document.querySelector('.mask');//触发事件对象
-        let oModal = document.querySelector('.modal');//触发事件对象
-        let oClose = document.querySelector('.close');//关闭触发的事件对象
+        ;; let oLogin = document.querySelector('.login')//触发事件节点
+         ,oMask = document.querySelector('.mask')//触发事件对象
+         ,oModal = oMask.querySelector('.modal')//触发事件对象
+         ,oClose = oModal.querySelector('.close');//关闭触发的事件对象
 
-         function  show() { 
-            oMask.classList.add('show');
-            oModal.classList.add('show');
+         function show() { 
+             oMask.classList.add('show');
           }
 
-         function  hide() { 
-            oMask.classList.remove('show');
-            oModal.classList.remove('show');
+         function hide() { 
+             oMask.classList.remove('show');
           }
+          
+          oLogin.addEventListener('click',function () { 
+                show();
+           });
 
-        oLogin.addEventListener('click', show);
-        oMask.addEventListener('click', hide);
-        oClose.addEventListener('click', hide);
+          oMask.addEventListener('click',function (ev) { 
+              if(ev.target=== oMask|| ev.target=== oClose){
+                  hide();
+              }
+           });
+
+           document.addEventListener('keyup',function (ev) { 
+               if(ev.code==='Escape'){
+                   hide();
+               }
+            })
     </script>
 </body>
 </html>
