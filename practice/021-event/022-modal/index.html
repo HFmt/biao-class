@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>modal</title>
+    <style>
+        body {
+            /*margin: 0;*/
+            font-size: 20px;
+        }
+    
+        button {
+            font-size: 20px;
+            padding: 10px;
+        }
+    
+        .mask,
+        .modal {
+            position: fixed;
+            display: none;
+        }
+    
+        .mask {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, .5);
+        }
+    
+        .modal {
+            top: 100px;
+            bottom: 100px;
+            left: 100px;
+            right: 100px;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #ccc;
+        }
+    
+        .modal .toolbar {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <nav>
+            <button class="login" >登录</button>
+        </nav>
+        <div class="mask"></div>
+        <div class="modal">
+            <div class="toolbar">
+                <button class="close" >关闭</button>
+            </div>
+            <h3>登录</h3>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fugiat laboriosam possimus quam, repudiandae similique vel!
+            Consequatur, dignissimos, dolor magni neque nulla odit porro praesentium, recusandae reprehenderit similique tempore
+            unde.
+        </div>
+    </div>
+
+    <script>
+        ;; let oLogin = document.querySelector('.login');//触发节点
+        let oMask = document.querySelector('.mask');//触发对象
+        let oModal = document.querySelector('.modal');//触发对象
+        let oClose = document.querySelector('.close');//关闭触发的事件
+
+        oLogin.addEventListener('click',function () { 
+            oMask.style.display='block';
+            oModal.style.display='block';
+         });
+
+        oClose.addEventListener('click',function () { 
+            oMask.style.display='none';
+            oModal.style.display='none';
+         });
+    </script>
+</body>
+</html>
