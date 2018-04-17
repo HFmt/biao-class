@@ -21,7 +21,13 @@
             position: fixed;
             display: none;
         }
-    
+        
+        .mask.show,
+        .modal.show{
+            display: block;
+            border: 2px solid #000;
+        }
+
         .mask {
             top: 0;
             bottom: 0;
@@ -63,20 +69,24 @@
     </div>
 
     <script>
-        ;; let oLogin = document.querySelector('.login');//触发节点
-        let oMask = document.querySelector('.mask');//触发对象
-        let oModal = document.querySelector('.modal');//触发对象
-        let oClose = document.querySelector('.close');//关闭触发的事件
+        ;; let oLogin = document.querySelector('.login');//触发事件节点
+        let oMask = document.querySelector('.mask');//触发事件对象
+        let oModal = document.querySelector('.modal');//触发事件对象
+        let oClose = document.querySelector('.close');//关闭触发的事件对象
 
-        oLogin.addEventListener('click',function () { 
-            oMask.style.display='block';
-            oModal.style.display='block';
-         });
+         function  show() { 
+            oMask.classList.add('show');
+            oModal.classList.add('show');
+          }
 
-        oClose.addEventListener('click',function () { 
-            oMask.style.display='none';
-            oModal.style.display='none';
-         });
+         function  hide() { 
+            oMask.classList.remove('show');
+            oModal.classList.remove('show');
+          }
+
+        oLogin.addEventListener('click', show);
+        oMask.addEventListener('click', hide);
+        oClose.addEventListener('click', hide);
     </script>
 </body>
 </html>
