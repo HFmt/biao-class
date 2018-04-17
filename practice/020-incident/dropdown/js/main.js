@@ -67,25 +67,6 @@ let menu_trigger = document.querySelector('#menu-trigger'),
             }
         });
 
-let flag = true;  
-    console.log(flag);
-    //    鼠标移入
-    menu_content.onmouseenter = function(){
-            flag = false;
-            console.log(flag);
-        }
-    //    鼠标移出
-    menu_content.onmouseleave = function () {
-        flag = true;  
-            console.log(flag);
-    }
-
-    if (flag) 
-    {
-        menu_trigger.addEventListener('blur', function () {
-            hide();
-        });
-    }
     
 ;
 
