@@ -87,6 +87,17 @@
   margin:15px 5px;
 }
 
+#Mback, #Mnext{
+    border: 0;
+    background: #000;
+    color: #fff;
+    padding: 5px;
+}
+
+#Mback:hover, #Mnext:hover{
+    background: #fff;
+    color: #000;
+}
 
 #mdp, #audio{
     position: absolute;
