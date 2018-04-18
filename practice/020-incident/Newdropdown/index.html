@@ -116,7 +116,8 @@
             return menu_content.classList.contains('show');
         }
 
-        function show() {
+        function show() 
+        {
             menu_content.classList.add('show');
         }
 
@@ -124,12 +125,14 @@
             menu_content.classList.remove('show');
         }
 
-        menu_trigger.addEventListener('click', function () {
+        menu_trigger.addEventListener('click', function () 
+        {
            isVisible() ? hide():show();
         });
         ;
 
-        document.addEventListener('click',function (ev) { 
+        document.addEventListener('click',function (ev) 
+        { 
             ev = ev||event;
             let menu = ev.target.closest('#menu-content');
             

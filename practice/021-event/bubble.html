@@ -25,21 +25,28 @@
         let oDiv2=document.querySelector('#div2');
         let oDiv3=document.querySelector('#div3');
 
-        oDiv1.addEventListener('click',function (ev) { 
+        oDiv1.addEventListener('click',function (ev) 
+        { 
             ev = ev || event;
             // ev.stopPropagation();
             console.log(ev.target);
+            console.log(1);
          },false);
 
-        oDiv2.addEventListener('click',function (ev) { 
+        oDiv2.addEventListener('click',function (ev) 
+        { 
             ev = ev || event;
             // ev.stopPropagation();
             console.log(ev.target);
+            console.log(2);
          },false);
 
-        oDiv3.addEventListener('click',function (ev) { 
+        oDiv3.addEventListener('click',function (ev) 
+        { 
+             // ev.stopPropagation();
             ev = ev || event;
             console.log(ev.target);
+            console.log(3);
          },false);
     </script>
 </body>

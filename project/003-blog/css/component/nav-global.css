@@ -18,6 +18,7 @@
 
 .nav{
     display: flex;
+    display: -webkit-flex; /* Safari */
 }
 
 .logo, .search-nav{
@@ -83,13 +84,31 @@
 
 #Mback, #Mnext, #mname{
   cursor: pointer;
-  margin:10px 5px;
+  margin:15px 5px;
 }
 
-.audio{
+
+#mdp, #audio{
+    position: absolute;
+ 
+}
+
+#audio{
     text-align: center;
-        top:10%;
-        left: 0;
-        position: absolute;
-        position: fixed;
+    width: 290px;
+    height: 150px;
+    top:15%;
+    left: -290px;
+    position: fixed;
+    background: rgba(0,0,0,.4);
+}
+
+#mdp{
+    color: #fff;
+    background: #000;
+    width: 15px;
+    right:-15px;
+    top:55px;
+    line-height:20px;
+    cursor: pointer;
 }
