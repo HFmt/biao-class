@@ -1,0 +1,151 @@
+
+    *{
+        box-sizing: border-box;
+    }
+         
+    body{
+
+        margin: 0;
+        font-family: sans-serif;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .container {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+
+    .row {
+        font-size: 0;
+    }
+
+    .col {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 15px;
+    }
+
+    .col.left,
+    .col.right {
+        width: 50%;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    /*========================*/
+
+    .nav {
+        line-height: 1;
+    }
+
+    .nav a {
+        padding: 5px;
+    }
+
+    .nav,
+    #menu-content {
+        background: #aaa;
+    }
+
+
+    #menu-content {
+        display: none;
+        font-size: 15px;
+        width: 100px;
+        position: absolute;
+        top:25px;
+        right: 0;
+        text-align: center;
+    }
+
+    #menu-content.show {
+    display: inline-block;
+  }
+
+    #menu-content a {
+        display: block;
+  }
+ 
+
+
+  
+    button {
+            font-size: 20px;
+            padding: 10px;
+        }
+    
+        #mask,
+        #modal {
+            position: fixed;
+        }
+        
+        #mask.show,
+        #modal.show{
+            display: block;
+            border: 2px solid #000;
+        }
+
+        #mask {
+            display: none;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, .5);
+        }
+    
+        #modal {
+            top: 100px;
+            bottom: 100px;
+            left: 100px;
+            right: 100px;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #ccc;
+        }
+    
+        #modal .toolbar {
+            float: right;
+        }
+
+
+
+
+
+
+#dp, #box{
+    position: absolute;
+ 
+}
+
+#box{
+    text-align: center;
+    width: 290px;
+    height: 150px;
+    top:35%;
+    left: -290px;
+    position: fixed;
+    background: rgba(0,0,0,.4);
+}
+
+#dp{
+    color: #fff;
+    background: #000;
+    width: 15px;
+    right:-15px;
+    top:55px;
+    line-height:20px;
+    cursor: pointer;
+}
