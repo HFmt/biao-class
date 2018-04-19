@@ -111,3 +111,7 @@ let menu_trigger = document.querySelector('#menu-trigger'),
              },30);
 
          }
+
+
+    let menu_trigger2 = document.querySelector('#menu-trigger2'),
+        menu_content2 = document.querySelector('#menu-content2');

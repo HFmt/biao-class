@@ -149,3 +149,34 @@
     line-height:20px;
     cursor: pointer;
 }
+
+
+
+    nav>* {
+        padding: 10px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    #menu-content2 {
+        display: block;
+        background: #444;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        color: #fff;
+        transition: left .3s;
+    }
+
+    #menu-content2>* {
+        padding: 15px 20px;
+    }
+
+    #menu-content2>div:hover {
+        background: rgba(0, 0, 0, .1);
+    }
+
+    #menu-content2[hidden] {
+        /* left: -100%; */
+    }

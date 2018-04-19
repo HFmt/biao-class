@@ -1,132 +1,76 @@
-<!doctype html>
-<html lang="en">
+<style>
+    [hidden] {
+        display: none;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    body {
+        margin: 0;
+        font-family: sans-serif;
+    }
 
-        a {
-            display: inline-block;
-            text-decoration: none;
-        }
+    nav {
+        background: #777;
+    }
 
-        .row {
-            font-size: 0;
-        }
+    nav>* {
+        padding: 10px;
+        cursor: pointer;
+        display: inline-block;
+    }
 
-        .col {
-            font-size: 1rem;
-            display: inline-block;
-            vertical-align: top;
-            width: 50%;
-        }
+    #menu-content {
+        display: block;
+        background: #444;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        color: #fff;
+        transition: left .3s;
+    }
 
-        .left {
-            text-align: left;
-        }
+    #menu-content>* {
+        padding: 15px 20px;
+    }
 
-        .right {
-            text-align: right;
-        }
+    #menu-content>div:hover {
+        background: rgba(0, 0, 0, .1);
+    }
 
-        .container {
-            width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
+    #menu-content[hidden] {
+        left: -100%;
+    }
 
-        .nav {
-            background-color: black;
-        }
+    /*#menu-trigger {*/
 
-        .nav a {
-            padding: 10px;
-            color: white;
-        }
+    /*}*/
+</style>
 
-        .nav a:hover {
-            background-color: #fae2b4;
-        }
+<nav>
+    <span id="menu-trigger">MENU</span>
+</nav>
 
-        .menu-content {
-            display: none;
-            font-size: 1rem;
-            background-color: black;
-            position: absolute;
-            right: 0;
-            text-align: center;
-        }
+<div id="menu-content" hidden>
+    <div id="menu-close">收起</div>
+    <div>Item</div>
+    <div>Item</div>
+    <div>Item</div>
+    <div>Item</div>
+    <div>Item</div>
+    <div>Item</div>
+    <div>Item</div>
+</div>
 
-        .menu-content a {
-            display: block;
-            padding: 10px 40px;
-        }
-    </style>
-    <title>Document</title>
-</head>
-
-<body>
-
-    <div class="row nav">
-        <div class="container">
-            <div class="col left">
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-            </div>
-            <div class="col right">
-                <a href="#">Item</a>
-                <a href="#" id="menu">Menu</a>
-            </div>
-            <div class="menu-content" id="menu-content">
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-                <a href="#">Item</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        ; (function () {
-            var menu = document.querySelector('#menu');
-            var menu_content = document.querySelector('#menu-content');
-
-        //     menu.addEventListener('mouseenter', function () {
-        //         menu_content.style.display = 'block';
-        //     });
-        //     menu_content.addEventListener('mouseenter', function () {
-        //         menu_content.style.display = 'block';
-        //     });
-
-            
-        //     menu.addEventListener('mouseleave', function () {
-        //         menu_content.style.display = 'none';
-        //     });
-        //     menu_content.addEventListener('mouseleave', function () {
-        //         menu_content.style.display = 'none';
-        //     });
-        // 
-
-        menu_content.onmouseenter = menu.onmouseenter= function () {
-                menu_content.style.display = 'block';
-            }
-
-        menu_content.onmouseleave = menu.onmouseleave= function () {
-                menu_content.style.display = 'none';
-            }
-        })();
-    </script>
-
-</body>
-
-</html>
+<script>
+    var menu_trigger = document.querySelector('#menu-trigger')
+        , menu_content = document.querySelector('#menu-content')
+        , menu_close = document.querySelector('#menu-close')
+        ;
+    menu_trigger.addEventListener('click', function () {
+        menu_content.hidden = !menu_content.hidden;
+    });
+    menu_close.addEventListener('click', function () {
+        menu_content.hidden = true;
+    })
+</script>

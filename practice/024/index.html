@@ -5,8 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+    
+        label {
+            display: block;
+            padding: 5px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    
+        label:hover {
+            background: rgba(0, 0, 255, .1);
+        }
+    </style>
 </head>
 <body>
+    <div>
+        <button id="all">全选</button>
+        <button id="none">全不选</button>
+        <button id="reverse">倒置</button>
+    </div>
     
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+    <label>
+        <input type="checkbox"> Item
+    </label>
+
 </body>
+<script>
+    let all = document.querySelector('#all'),
+        none = document.querySelector('#none'),
+        reverse = document.querySelector('#reverse'),
+        list = document.querySelectorAll('[type=checkbox]');
+
+        all.addEventListener('click',function () { 
+            list.forEach(function (item, index) { 
+                item.checked=true;
+                console.log(item.checkbox);
+             });
+         });
+
+
+        none.addEventListener('click',function () { 
+            list.forEach(function (item, index) { 
+                item.checked=false;
+                console.log(item.checkbox);
+             });
+         });
+
+         reverse.addEventListener('click',function () { 
+             list.forEach(function (item) { 
+                 item.checked=!item.checked;
+              });
+          })
+</script>
 </html>
