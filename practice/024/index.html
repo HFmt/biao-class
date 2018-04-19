@@ -70,6 +70,56 @@
         reverse = document.querySelector('#reverse'),
         list = document.querySelectorAll('[type=checkbox]');
 
+    /*全不选
+    * @param Element except 例外的元素
+    * */
+    //    function unChecnked(execpt) { 
+    //        /*迭代所有元素*/
+    //        list.forEach(function (item) {
+               
+    //         /*如果正在迭代的元素是传进来的例外元素，那么就不要管，直接放弃本次迭代*/
+    //            if(item === execpt){
+    //                return;
+    //            }
+    //            /*否则取消打钩*/
+    //             item.checked = false;
+    //         });
+    //     }
+
+    //  list.forEach(function (item) { 
+    //      /*给每一个checkbox绑定点击事件*/
+    //     item.addEventListener('click',function () { 
+    //         /*有任何一个元素被点击了就清掉所有元素的勾，除了被点击的这个元素≈*/
+    //             unChecnked(this);
+    //          });
+    //      });
+
+
+           list.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    let ethis=this;
+                    list.forEach(function (item) {
+                        if (item === ethis) {
+                            return;
+                        }
+                        item.checked = false;
+                    });
+                });
+            });
+
+            
+            for (let i = 0; i < list.length; i++) {
+                list[i].addEventListener('click', function () {
+                    let ethis = this;
+                    for (let j = 0; j < list.length; j++) {
+                        if (list[j] === ethis) {
+                            return;
+                        }
+                        list[j].checked = false;
+                    }
+                });
+            }
+
         all.addEventListener('click',function () { 
             list.forEach(function (item, index) { 
                 item.checked=true;
@@ -89,6 +139,6 @@
              list.forEach(function (item) { 
                  item.checked=!item.checked;
               });
-          })
+          });
 </script>
 </html>
