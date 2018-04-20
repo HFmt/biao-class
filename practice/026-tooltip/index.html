@@ -55,7 +55,8 @@
             if (tip) {
                 tip.style.display = 'block';
                 return;
-                }         
+                }     
+
                //创建tip.
                 tip=document.createElement('div');
                 tip.classList.add('tip');
@@ -69,7 +70,6 @@
                 tip.style.left= (tipPosition.left+ oTipTrigger.offsetWidth/2) - tip.offsetWidth/ 2+'px' ;
 
                 //tip移入移出效果。
-
                tip.addEventListener('mouseenter', function () {
       
                  // 关闭 tip.mouseleave定时器。
