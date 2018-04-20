@@ -49,30 +49,30 @@
 
         oTipTrigger.addEventListener('mouseenter',function () { 
 
-            // 关闭 oTipTrigger.mouseleave定时器
+            // 关闭 oTipTrigger.mouseleave定时器。
              clearTimeout(noneTime);
              
             if (tip) {
                 tip.style.display = 'block';
                 return;
                 }         
-               //创建tip
+               //创建tip.
                 tip=document.createElement('div');
                 tip.classList.add('tip');
                 tip.innerHTML ='Asam';
                 tip.style.display='block';
                 document.body.appendChild(tip);
                 
-                //tip的位置
+                //tip的位置。
                 tipPosition= oTipTrigger.getBoundingClientRect();
                 tip.style.top= tipPosition.top- tip.offsetHeight-2+'px';
                 tip.style.left= (tipPosition.left+ oTipTrigger.offsetWidth/2) - tip.offsetWidth/ 2+'px' ;
 
-                //tip移入移出效果
+                //tip移入移出效果。
 
                tip.addEventListener('mouseenter', function () {
       
-                 // 关闭 tip.mouseleave定时器
+                 // 关闭 tip.mouseleave定时器。
                 clearTimeout(noneTime);
 
                 tip.style.display = 'block';
