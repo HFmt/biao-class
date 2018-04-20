@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tooltip</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+    
+        .tip-trigger {
+            background: pink;
+        }
+    
+        .tip {
+            position: fixed;
+            background: #222;
+            color: #fff;
+            padding: 5px;
+            /*-webkit-border-radius: 3px;*/
+            /*-moz-border-radius: 3px;*/
+            /*border-radius: 3px;*/
+            -webkit-box-shadow: 0 0 2px #000;
+            -moz-box-shadow: 0 0 2px #000;
+            box-shadow: 0 0 2px #000;
+            opacity: .8;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        At corporis dignissimos eum facilis
+        <span data-tip="Yoooooo" class="tip-trigger">Yo</span>
+        
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis
+    </div>
+    <script>
+        let oTipTrigger = document.querySelector('.tip-trigger');
+        let tip;
+        let tipPosition;
+        let noneTime;
+
+
+        oTipTrigger.addEventListener('mouseenter',function () { 
+
+            // 关闭 oTipTrigger.mouseleave定时器
+             clearTimeout(noneTime);
+             
+            if (tip) {
+                tip.style.display = 'block';
+                return;
+                }         
+               //创建tip
+                tip=document.createElement('div');
+                tip.classList.add('tip');
+                tip.innerHTML ='Asam';
+                tip.style.display='block';
+                document.body.appendChild(tip);
+                
+                //tip的位置
+                tipPosition= oTipTrigger.getBoundingClientRect();
+                tip.style.top= tipPosition.top- tip.offsetHeight-2+'px';
+                tip.style.left= (tipPosition.left+ oTipTrigger.offsetWidth/2) - tip.offsetWidth/ 2+'px' ;
+
+                //tip移入移出效果
+
+               tip.addEventListener('mouseenter', function () {
+      
+                 // 关闭 tip.mouseleave定时器
+                clearTimeout(noneTime);
+
+                tip.style.display = 'block';
+            });
+
+            tip.addEventListener('mouseleave', function () {
+
+                //给tip加鼠标离开的定时器
+                noneTime = setTimeout(function () {
+                    tip.style.display = 'none';
+                }, 500);  
+            });
+
+         });
+
+         //给oTipTrigger加鼠标离开的定时器
+         oTipTrigger.addEventListener('mouseleave', function () {
+                 noneTime = setTimeout(function () {
+                     tip.style.display = 'none';
+                 }, 500);   
+          });
+    </script>
+</body>
+</html>
