@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>checked-new</title>
+   
+        <style>
+        body {
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+    
+        label {
+            display: block;
+            padding: 5px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    
+        label:hover {
+            background: rgba(0, 0, 255, .1);
+        }
+    </style>
+</head>
+<body>
+        <div>
+            <button id="all">全选</button>
+            <button id="none">全不选</button>
+            <button id="reverse">倒置</button>
+        </div>
+        
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+        <label>
+            <input type="checkbox"> Item
+        </label>
+</body>
+<script>
+    let  oAll= document.querySelector('#all'),
+        oNone = document.querySelector('#none'),
+        oReverse = document.querySelector('#reverse'),
+        oList = document.querySelectorAll('[type=checkbox]');
+
+        oAll.addEventListener('click',function () { 
+            oList.forEach(function (item,index) { 
+                 item.checked = true;
+             });
+         });
+
+        oNone.addEventListener('click',function () { 
+            oList.forEach(function (item,index) { 
+                 item.checked = false;
+             });
+         });
+
+        oReverse.addEventListener('click',function () { 
+            oList.forEach(function (item,index) { 
+                 item.checked = !item.checked;
+             });
+         });
+
+         oList.forEach(function (item,indenx) { 
+             item.addEventListener('click',function (ev) { 
+                 let ethis=this; //存储当前函数的this
+                 oList.forEach(function (item2, indenx) { 
+                     if(item2== ethis || ev.ctrlKey || ev.shiftKey)
+                     return;
+
+                     item2.checked=false;
+                  });
+              });
+          });
+
+          let start,
+              start_index,
+              end_index;
+
+          oList.forEach(function (item,index) { 
+              item.addEventListener('click',function (ev) { 
+                  if(ev.shiftKey){
+                      end_index= index;
+                      oList.forEach(function (item2,index2) {
+                          let let_than = index2 > start_index || index2<end_index;
+                          let greater_than = index2 < start_index || index2 > end_index
+                          if(start_index> end_index && let_than || (!(start_index > end_index) && greater_than)){
+                              return;
+                          }
+                          item2.checked= start.checked;
+                       });
+                  }
+                  else{
+                      start=this;
+                      start_index= index;
+                  }
+               });
+           });
+
+</script>
+</html>
