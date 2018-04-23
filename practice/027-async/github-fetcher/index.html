@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>github-fetcher</title>
+</head>
+<body>
+    <form id="search-form" action="">
+        <input type="search" name="" id="search-input" placeholder="输入用户名">
+        <button id="search-btn">搜索</button>
+    </form>
+    <p id="Introduce"></p>
+</body>
+<script>
+    let search_form = document.querySelector('#search-form'),
+        search_input = document.querySelector('#search-input'),
+        search_btn = document.querySelector('#search-btn'),
+        Introduce = document.querySelector('#Introduce')
+        ;
+
+        init();
+
+        function init() {
+            search_form.addEventListener('submit', function (ev) {
+                ev = ev || event;
+                ev.preventDefault();
+
+                search(search_input.value);
+            });
+        }
+
+        function search(username) {
+            send('https://api.github.com/users/' + username, function (data) {
+                console.log(data);
+                user = data;
+                render_user()
+                });
+            }
+
+
+        function render_user() { 
+            let html=[];
+            
+            for(let key in user){
+
+             html+= key+':'+user[key] + '<br>'
+
+            }
+            Introduce.innerHTML = html;
+            
+         }
+
+        
+
+
+        function send(url, fn, methed) {
+            methed = methed || 'get';
+
+            let http = new XMLHttpRequest();
+
+            http.open(methed, url);
+            http.send();
+
+            http.addEventListener('load',function () { 
+                var data = JSON.parse(this.responseText);
+                if(fn)
+                fn(data);
+             });
+        }
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>async</title>
+</head>
+<body>
+    <script>
+        fetch('https://api.github.com/users/HFmt')
+        .then(function (res) { 
+            res .json().then(function (name) { 
+                console.log(name);
+             });
+         });
+
+        
+
+        XMLHttpRequest接口
+        var http = new XMLHttpRequest();
+            http.open('get', 'https://api.github.com/users/HFmt');
+            http.send();
+
+            http.addEventListener('load',function () { 
+                console.log(this.responseText);
+             });
+    </script>
+</body>
+</html>

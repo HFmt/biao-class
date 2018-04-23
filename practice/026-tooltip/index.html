@@ -35,15 +35,29 @@
     <div>
          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet,
         consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        At corporis<span data-tip="Yoooooo" class="tip-trigger">Yo</span> dignissimos eum facilis
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         At corporis dignissimos eum facilis
-        <span data-tip="Yoooooo" class="tip-trigger">Yo</span>
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        At corporis dignissimos eum facilis
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        At corporis dignissimos eum facilis
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. At corporis dignissimos eum facilis Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        At corporis dignissimos eum facilis
+       
         
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis
     </div>
     <script>
         let oTipTrigger = document.querySelector('.tip-trigger');
         let tip;
-        let tipPosition;
+
         let noneTime;
 
 
@@ -61,13 +75,13 @@
                 tip=document.createElement('div');
                 tip.classList.add('tip');
                 tip.innerHTML ='Asam';
-                tip.style.display='block';
+                tip.style.display ='block';
                 document.body.appendChild(tip);
                 
-                //tip的位置。.
-                tipPosition= oTipTrigger.getBoundingClientRect();
-                tip.style.top= tipPosition.top- tip.offsetHeight-2+'px';
-                tip.style.left= (tipPosition.left+ oTipTrigger.offsetWidth/2) - tip.offsetWidth/ 2+'px' ;
+                  //tip的位置。.
+                position_top();
+          
+
 
                 //tip移入移出效果。
                tip.addEventListener('mouseenter', function () {
@@ -94,6 +108,29 @@
                      tip.style.display = 'none';
                  }, 500);   
           });
+
+
+            //tip的位置。.
+          function position_top() {    
+              let tipPosition = oTipTrigger.getBoundingClientRect();
+
+              let tip_top = tipPosition.top - tip.offsetHeight - 2 + 'px',
+                  tip_left = (tipPosition.left + oTipTrigger.offsetWidth / 2) - tip.offsetWidth / 2 + 'px';
+
+              let out_top = tip_top < 0+'px';
+                console.log(out_top);
+              
+
+              if (out_top) {
+                  
+                  tip_top = 100 + 'px';
+              }
+
+              tip.style.top = tip_top;
+              tip.style.left = tip_left;
+            
+
+            }
     </script>
 </body>
 </html>
