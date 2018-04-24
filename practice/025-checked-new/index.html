@@ -109,9 +109,9 @@
                   if(ev.shiftKey){
                       end_index= index;
                       oList.forEach(function (item2,index2) {
-                          let let_than = index2 > start_index || index2<end_index;
+                          let let_than = index2 > start_index || index2 < end_index;
                           let greater_than = index2 < start_index || index2 > end_index
-                          if(start_index> end_index && let_than || (!(start_index > end_index) && greater_than)){
+                          if(start_index > end_index && let_than || (!(start_index > end_index) && greater_than)){
                               return;
                           }
                           item2.checked= start.checked;
