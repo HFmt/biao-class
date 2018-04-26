@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>github-search</title>
+    <style>
+        img {
+            width: 60px;
+            height: 60px;
+        }
+
+        #more {
+            cursor: pointer;
+        }
+
+        .col,
+        a {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="search-form" action="">
+        <input type="search" name="" id="search-input" value="biaoyansu">
+        <button id="search-btn">搜索</button>
+    </form>
+    <p id="Introduce"></p>
+    <div id="more" hidden>加载更多</div>
+</body>
+<script>
+    let search_form = document.getElementById('search-form')
+        , search_input = document.getElementById('search-input')
+        , search_btn = document.getElementById('search-btn')
+        , Introduce = document.getElementById('Introduce')
+        , more = document.getElementById('more')
+        , user
+        , stime
+        , page = 1;
+    ;
+
+    init();
+
+    function init() {
+        search_form.addEventListener('submit', function (ev) {
+            ev = ev || event;
+            ev.preventDefault();
+            reset_page();
+            reset_innerhtml();
+            if (!search_input.value) {
+                alert('你闹呢');
+                return;
+            }
+            finde_user(search_input.value);
+
+        });
+        search_input.addEventListener('keyup', function () {
+
+            clearTimeout(stime);
+
+            stime = setTimeout(function () {
+                reset_page();
+                reset_innerhtml();
+                if (!search_input.value) {
+                    alert('你闹呢');
+                    return;
+                }
+                finde_user(search_input.value);
+            }, 700);
+
+        });
+        more_page();
+    }
+
+
+    function finde_user(username) {
+        more.disabled = true;
+        more.innerHTML = '加载中';
+        send('https://api.github.com/search/users?q=' + username + '&page=' + page, function (result) {
+            console.log(result);
+            
+            user = result;
+
+            render();
+        });
+    }
+
+    function send(url, fn, method) {
+        method = method || 'get';
+
+        let http = new XMLHttpRequest();
+        http.open(method, url);
+        http.send();
+
+        http.addEventListener('load', function () {
+
+            let data = JSON.parse(this.responseText);
+            if (fn)
+                fn(data);
+            more.disabled = false;
+            more.innerHTML = '加载更多';
+        });
+    }
+
+    function render() {
+        let list = ' ';
+
+        for (let key in user.items) {
+            
+            list += 
+                    `<div>
+                        <a href= "${user.items[key].html_url} "> 
+                            <img src="${user.items[key].avatar_url}"> 
+                        </a> 
+                        <div class="col">
+                            <div> ${user.items[key].login} </div>
+                            <div>
+                                <a href= "${user.items[key].html_url}" target="_blank" > 
+                                    ${user.items[key].html_url}
+                                </a>
+                            </div>
+                        </div>
+                    </div>`
+        }
+        Introduce.innerHTML += list;
+        
+        more.hidden = false;
+
+        // user.forEach();
+    }
+
+    function more_page() {
+
+        more.addEventListener('click', function () {
+            page++;
+            console.log('Asam');
+             finde_user(search_input.value);
+        });
+    }
+
+    function reset_page() {
+        page = 1;
+    }
+
+    function reset_innerhtml() {
+        Introduce.innerHTML = '';
+    }
+</script>
+
+</html>

@@ -5,28 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>github-fetcher</title>
+    <style>
+        img {
+        width: 60px;
+        height: 60px;
+    }
+    </style>
 </head>
 <body>
     <form id="search-form" action="">
-        <input type="search" name="" id="search-input" value="HFmt">
+        <input type="search" name="" id="search-input" placeholder="请输入用户名">
         <button id="search-btn">搜索</button>
     </form>
     <p id="Introduce"></p>
 </body>
 <script>
-    let search_form = document.querySelector('#search-form'),
-        search_input = document.querySelector('#search-input'),
-        search_btn = document.querySelector('#search-btn'),
-        Introduce = document.querySelector('#Introduce')
+    let search_form = document.querySelector('#search-form')
+        ,search_input = document.querySelector('#search-input')
+        ,search_btn = document.querySelector('#search-btn')
+        ,Introduce = document.querySelector('#Introduce')
+        ,user
+        ,stime
         ;
 
        init ();
 
        function init() {
-           search_input.addEventListener('click', function (ev) {
+           search_btn.addEventListener('click', function (ev) {
                ev= ev || event;
-               ev.preventDefault;
-           })
-       }
+               ev.preventDefault();
+
+               finde_user(search_input.value);
+           });
+
+           search_input.addEventListener('keyup', function () {
+
+            clearTimeout(stime);
+
+            stime = setTimeout(function () { 
+
+                finde_user(search_input.value);
+             }, 700);
+
+           });
+        }
+           function finde_user(username) {
+
+               send('https://api.github.com/search/users/' + username, function (result) { 
+                  
+
+                   user = result;
+
+                   render();
+                })
+           }
+
+           function send(url, fn, method) {
+               method = method || 'get';
+
+               let http = new XMLHttpRequest();
+               http.open(method, url);
+               http.send();
+
+               http.addEventListener('load', function () { 
+                   
+                   let data = JSON.parse(this.responseText);
+
+                   if(fn)
+                   fn(data);
+                });
+           }
+           
+           function render() {
+                console.log(user);
+               let list = '';
+               for(let key in user){
+                   list += key+':'+user[key]+'<br>';
+               }
+               Introduce.innerHTML = list;
+           }
 </script>
 </html>
