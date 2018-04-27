@@ -6,44 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>github-search</title>
-    <style>
-        img {
-            width: 60px;
-            height: 60px;
-        }
-
-
-
-        .col,
-        a {
-            display: inline-block;
-        }
-
-        #top {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <h2>GitHub用户搜索</h2>
-    <form id="search-form" action="">
-        <input type="search" name="" id="search-input" placeholder="请输入用户名">
-        <button id="search-btn">搜索</button>
+<div class="container">
+    <h1>GitHub用户搜索</h1>
+    <form id="search-form">
+        <input id="search-input" type="text" autofocus autocomplete="off" placeholder="请输入用户名">
+        <button type="submit">搜索</button>
     </form>
+    <div id="amount"></div>
     <div id="user-list"></div>
-
-    <div id="placeholder" hidden='true'>没有了</div>
+    <div class="tac" id="placeholder" hidden>谋了 - . -</div>
     <div id="pagination-container">
         <div></div>
         <div id="pagination"></div>
         <div></div>
     </div>
-    <div id="top">Top</div>
+</div>
+<div class="toolbar">
+    <button id="top">Top</button>
+</div>
 </body>
 <script>
+     ; (function () {
+            'use strict';
     let search_form = document.getElementById('search-form')
         , search_input = document.getElementById('search-input')
         , search_btn = document.getElementById('search-btn')
@@ -82,12 +70,16 @@
 
 
     function finde_user() {
-        send('https://api.github.com/search/users?q=' + keyword + '&page=' + current_page + '&per_page=' + limit, function (result) {
+        let link = 'https://api.github.com/search/users?q=' + keyword + '&page=' + current_page + '&per_page=' + limit
+        send(link, function (result) {
             user = result;
+            // console.log('有问题');
+            // console.log(link);
             amount = user.total_count;
             render();  
             render_pagination();
         });
+        
     }
 
     function send(url, fn, method) {
@@ -100,20 +92,21 @@
             if (fn)
                 fn(data);
         });
+        
     }
 
     function render() {
         let list = ' ';
         for (let key in user.items) {
             list +=
-                    `<div>
-                        <a href= "${user.items[key].html_url} "> 
+                    `<div class="user">
+                        <a class="avatar" href= "${user.items[key].html_url}" target="_blank"> 
                             <img src="${user.items[key].avatar_url}"> 
                         </a> 
-                        <div class="col">
-                            <div> ${user.items[key].login} </div>
+                        <div class="info">
+                            <div class="username"> ${user.items[key].login} </div>
                             <div>
-                                <a href= "${user.items[key].html_url}" target="_blank" > 
+                                <a  href= "${user.items[key].html_url}" target="_blank"> 
                                     ${user.items[key].html_url}
                                 </a>
                             </div>
@@ -158,27 +151,38 @@
             end_page = amount_page;
         }
 
-            for (let i = start_page; i <= end_page; i++) {
-                btn = document.createElement('button');
-                btn.innerHTML = i;
-                btn.dataset.page = i;
-                if (current_page == i) {
-                    btn.style.background = 'pink';
-                }
-                pagination.appendChild(btn);
+        for (let i = start_page; i <= end_page; i++) {
+            btn = document.createElement('button');
+            btn.innerHTML = i;
+            btn.dataset.page = i;
+            if (current_page == i) {
+                btn.style.background = 'pink';
             }
+            pagination.appendChild(btn);
+            btn.addEventListener('click', function () {
+            current_page = this.dataset.page;
+            console.log(current_page);
+            // finde_user();
+            a1()
+            });
+        }
 
-            pagination.addEventListener('click', function (e) {
-            if (e.target && e.target.nodeName.toUpperCase()== 'BUTTON') {
-                current_page = e.target.dataset.page;
-                finde_user();
-            }
-            else {
-               return ;
-            }
-        });
+        // pagination.addEventListener('click', function (e) {
+        //     if (e.target && e.target.nodeName.toUpperCase() == 'BUTTON') {
+        //         current_page = parseInt(e.target.dataset.page);
+        //         // finde_user();
+        //         console.log(current_page);
+        //         a1();
+        //     }
+        //     else {
+        //         return;
+        //     }   
+        // });
     }
-
+        function a1() {
+                console.log('a1');
+                render_pagination();
+            }
     /*总人数除以每页的数量*/
     function get_page_amout() {
         amount_page = Math.ceil(amount / limit);
@@ -199,6 +203,9 @@
         pagination.innerHTML = '';
         placeholder.hidden = true;
     }
+
+    
+    })();
 </script>
 
 </html>

@@ -272,6 +272,7 @@
                 el_placeholer.hidden = true;
             }
         }
+        
         function clear_pagination() {
             el_pagination.innerHTML = '';
         }
@@ -341,11 +342,15 @@
                     console.log(this);
                     current_page = this.innerHTML;
                     console.log(current_page);
-                    search();
+                    // search();
+                    a1()
                 })
             }
         }
-
+         function a1() {
+            console.log('a1');
+            render_pagination()
+        }
         function get_page_amount() {
             /*总人数除以每页的数量*/
             page_amount = Math.ceil(amount / limit);
