@@ -33,14 +33,12 @@
         <input type="search" name="" id="search-input" placeholder="请输入用户名">
         <button id="search-btn">搜索</button>
     </form>
-    <p id="Introduce"></p>
+    <div id="user-list"></div>
 
     <div id="placeholder" hidden='true'>没有了</div>
     <div id="pagination-container">
         <div></div>
-        <div id="pagination">
-            
-        </div>
+        <div id="pagination"></div>
         <div></div>
     </div>
     <div id="top">Top</div>
@@ -49,45 +47,45 @@
     let search_form = document.getElementById('search-form')
         , search_input = document.getElementById('search-input')
         , search_btn = document.getElementById('search-btn')
-        , Introduce = document.getElementById('Introduce')
+        , user_list = document.getElementById('user-list')
         , pagination = document.getElementById('pagination')
         , placeholder = document.getElementById('placeholder')
         , user
+        , keyword
         , stime
         , no_more
         , amount
         , amount_page
         , max_page = 5
         , current_page = 1
-        , limit = 10;
+        , limit = 5;
     ;
 
     init();
 
     function init() {
-        search_form.addEventListener('submit', function (ev) {
-            ev = ev || event;
-            ev.preventDefault();
+        search_form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            keyword = search_input.value
             clearTimeout(stime);
             stime = setTimeout(function () {
-                reset_page()
-                reset_innerhtml();
                 if (!search_input.value) {
                     return;
                 }
-                finde_user(search_input.value);
-                
+                reset_page();
+                reset_user_list();
+                finde_user(keyword);
+                clear_pagination();
             }, 200);
         });
     }
 
 
-    function finde_user(username) {
-        send('https://api.github.com/search/users?q=' + username + '&page=' + current_page + '&per_page=' + limit, function (result) {
-            console.log(result);
+    function finde_user() {
+        send('https://api.github.com/search/users?q=' + keyword + '&page=' + current_page + '&per_page=' + limit, function (result) {
             user = result;
+            amount = user.total_count;
             render();  
-            get_page_amout();
             render_pagination();
         });
     }
@@ -98,17 +96,14 @@
         http.open(method, url);
         http.send();
         http.addEventListener('load', function () {
-
             let data = JSON.parse(this.responseText);
             if (fn)
                 fn(data);
         });
-
     }
 
     function render() {
         let list = ' ';
-        console.log(user.total_count);
         for (let key in user.items) {
             list +=
                     `<div>
@@ -125,94 +120,68 @@
                         </div>
                     </div>`;
         }
-        Introduce.innerHTML += list;
-
-        no_more = page * limit >= user.total_count;
-
+        user_list.innerHTML = list;
+        no_more = current_page * limit >= amount;
         placeholder.hidden = !no_more;
-        // user.forEach();
     }
 
     function render_pagination() {
+        clear_pagination();
+        get_page_amout();
             let start_page = 1
-                , end_page = max_page
+                , end_page
                 , middle = Math.ceil(max_page / 2)
                 , reaching_left = current_page <= middle
                 , reaching_right = current_page >= amount_page - middle
+                , btn 
                 ;
+        if (reaching_left) {
+        start_page = 1;
+        end_page = max_page;
+        } 
 
-            //当可视页按钮在昨天
-            // 当前页 小于 可见页中间值 时，使 开始页 = 1;
-            if (reaching_left) {
-                start_page = 1;
-                end_page = max_page;
-            }
+        else if (reaching_right) {
+            start_page = amount_page - max_page;
+            end_page = amount_page;
+        }
 
-            //当可视页按钮在右边
-            //当前页 大于 总页数-可见页中间值 时，使 结束页值 = 总页数值;
-            else if (reaching_right) {
-                start_page = amount_page - max_page + 1;
-                end_page = amount_page;
-            }
-
-            /*
-            当前页在中间
-            ...[...]...
-            */
-            /*加1或减1是为了排除中间按钮*/
-            /*设按钮开始为当前页减去可视按钮最大值的一半*/
-            else {
-                start_page = current_page - (middle - 1);
-                /*设按钮结束为当前页加上可视按钮最大值的一半*/
-                end_page = current_page + (middle - 1);
-            }
+         else {
+            start_page = current_page - middle + 1; 
+            end_page = current_page + middle - 1;
+        }
+     
+        if (start_page < 1) {
+            start_page = 1;
+        }
+     
+        if (end_page > amount_page) {
+            end_page = amount_page;
+        }
 
             for (let i = start_page; i <= end_page; i++) {
-
-                let btn = document.createElement('button');
+                btn = document.createElement('button');
                 btn.innerHTML = i;
                 btn.dataset.page = i;
-
                 if (current_page == i) {
                     btn.style.background = 'pink';
                 }
-
                 pagination.appendChild(btn);
-
-                // 事件遍历
-                // btn.addEventListener('click', function () {
-                //     console.log(this);
-                //     current_page = this.dataset.page;
-                //     console.log(current_page);
-                // });
-
-                // 事件代理
-                pagination.addEventListener('click', function (e) {
-                    if (e.target == btn) {
-                        console.log(btn);
-                        console.log(btn.dataset.page)
-                        current_page = btn.dataset.page;
-                    }
-                    else {
-                        return;
-                    }
-                });
             }
-        }
 
-    // function click_page(num) {
-    //     let a = 1;
-    //     return function () {
-   
-    //         console.log(num);
-    //     }
-    // }
-
+            pagination.addEventListener('click', function (e) {
+            if (e.target && e.target.nodeName.toUpperCase()== 'BUTTON') {
+                current_page = e.target.dataset.page;
+                finde_user();
+            }
+            else {
+               return ;
+            }
+        });
+    }
 
     /*总人数除以每页的数量*/
     function get_page_amout() {
-        amount_page = Math.ceil(user.total_count / limit);
-        console.log(amount_page);
+        amount_page = Math.ceil(amount / limit);
     }
 
     //重置页数
@@ -220,9 +189,14 @@
             current_page = 1;
         }
 
+    //切换当前页面的用户
+    function reset_user_list() {
+        user_list.innerHTML='';
+    }
+
     //重置搜索的内容
-    function reset_innerhtml() {
-        Introduce.innerHTML = '';
+    function clear_pagination() {
+        pagination.innerHTML = '';
         placeholder.hidden = true;
     }
 </script>
