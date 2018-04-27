@@ -132,7 +132,7 @@
         Introduce.innerHTML += list;
 
         no_more = page * limit >= user.total_count;
-        console.log(no_more);
+        console.log(user.total_count / limit);
         more.hidden = no_more;
         placeholder.hidden = !no_more;
         // user.forEach();
