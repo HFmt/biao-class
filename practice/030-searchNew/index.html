@@ -159,30 +159,27 @@
                 btn.style.background = 'pink';
             }
             pagination.appendChild(btn);
-            btn.addEventListener('click', function () {
-            current_page = this.dataset.page;
-            console.log(current_page);
+            // btn.addEventListener('click', function () {
+            // current_page = this.dataset.page;
+            // console.log(current_page);
             // finde_user();
-            a1()
-            });
+            // });
         }
 
-        // pagination.addEventListener('click', function (e) {
-        //     if (e.target && e.target.nodeName.toUpperCase() == 'BUTTON') {
-        //         current_page = parseInt(e.target.dataset.page);
-        //         // finde_user();
-        //         console.log(current_page);
-        //         a1();
-        //     }
-        //     else {
-        //         return;
-        //     }   
-        // });
     }
-        function a1() {
-                console.log('a1');
-                render_pagination();
+    
+        pagination.addEventListener('click', function (e) {
+            if (e.target && e.target.nodeName.toUpperCase() == 'BUTTON') {
+                current_page = parseInt(e.target.dataset.page);
+                finde_user();
+                console.log(current_page);
             }
+            else {
+                return;
+            }   
+        });
+            
+
     /*总人数除以每页的数量*/
     function get_page_amout() {
         amount_page = Math.ceil(amount / limit);
