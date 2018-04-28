@@ -5,11 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>localStorage</title>
+    <style>
+    #history-list {
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-top: 0;
+        font-size: 14px;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        cursor: default;
+        }
+    .history {
+        padding: 5px 10px;
+        font-size: 0;
+    }
+    .history:hover {
+        background: rgba(0, 0, 200, .1);
+    }
+    .history .text,
+    .history .tool {
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .history .text {
+        width: 70%;
+        font-size: .9rem;
+    }
+    .history .tool {
+        display: none;
+        width: 30%;
+        font-size: .6rem;
+        text-align: right;
+        cursor: pointer;
+        color: #aaa;
+    }
+    .history:hover .tool {
+        display: inline-block;
+    }
+    </style>
 </head>
 <body>
-    
+    <form id="search-form" action="">
+        <input id="search-ipt" type="text">
+        <button id="search-btn">搜索</button>
+    </form>
+        <div id="history-list" hidden>
+            <div class="history"></div>
+        </div>
 </body>
-<script>
+<!-- <script>
     let history_list = ['a', 'b', 'c']
         , set_loca
         , get_loca
@@ -32,5 +77,93 @@
 
     get_json_loca = JSON.parse(localStorage.getItem('set_json_loca'));
     console.log('get_json_loca', get_json_loca);
+</script> -->
+
+<script>
+    let el_history_list = document.getElementById('history-list')
+      , el_form = document.getElementById('search-form')
+      , el_input = document.getElementById('search-ipt')
+      , history_list
+      , arr= []
+      , keywords
+      ;
+    el_form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        arr.unshift(el_input.value);
+        stroe_set('Asam', arr);
+        reload_history_list();
+        render_history_list();
+        reload_history_list();
+    });
+ 
+    stroe_set('Asam', arr);          
+    reload_history_list();
+    render_history_list();
+    show_elenemt()
+
+    function reload_history_list() {
+        history_list = stroe_get('Asam') || [];
+    }
+
+    function render_history_list() {
+        el_history_list.innerHTML = '';
+
+        history_list.forEach(function (history) {
+            let  el_history = document.createElement('div');
+            el_history.classList.add('history');
+            el_history.dataset.history = history;
+            el_history.innerHTML = 
+            `<div class="text">${history}</div>
+             <div class="tool">
+                <span class="delete">删除</span>
+             </div>
+            `
+            let el_delete_history = el_history.getElementsByClassName('delete')[0];
+            console.log(el_delete_history);
+            el_history_list.appendChild(el_history);
+             
+            el_history.addEventListener('click', function (e) {
+                if(e.target.classList.contains('delete')){
+                    return;
+                }
+                console.log(this.dataset.history);
+                set_keyword(this.dataset.history);        
+            });
+
+            el_delete_history.addEventListener('click', function () { 
+                overwrite_history_list(history_list);
+                el_history_list.removeChild(this.closest('.history'));
+                arr.shift(this.closest('.history.text'));
+                stroe_set('Asam', arr);
+                reload_history_list();
+             });
+        });
+    }
+    localStorage
+    function overwrite_history_list(data) {
+            console.log(data)
+            stroe_set('Asam', data);
+        }
+
+     function set_keyword(keyword) {
+            el_input.value = keyword;
+            keywords = keyword;
+        }
+
+    function stroe_set(key, val) {
+        let set_json = JSON.stringify(val);
+        localStorage.setItem(key, set_json);
+    }
+
+    function stroe_get(key) {
+        let get_json = localStorage.getItem(key);
+        return JSON.parse(get_json);
+    }
+
+    function show_elenemt() {
+        if (!el_history_list.innerHTML == '') {
+            el_history_list.hidden = true;
+        }
+    }
 </script>
 </html>

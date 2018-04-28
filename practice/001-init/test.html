@@ -15,6 +15,7 @@
     h1 {
         font-size: 25px;
         font-weight: lighter;
+        color: #aaa;
     }
 
     img {
@@ -28,6 +29,7 @@
     }
 
     form {
+        position: relative;
         font-size: 0;
     }
 
@@ -40,13 +42,17 @@
         color: #555;
     }
 
-    form input {
-        width: 80%;
-        border-right: 0;
+    button:focus,
+    button:hover,
+    input:focus {
+        border-color: rgba(0, 0, 200, .4);
     }
+
+    form input {}
 
     form button {
         width: 20%;
+        border-left: 0;
     }
 
     [hidden] {
@@ -59,11 +65,11 @@
     }
 
     .container {
+        position: relative;
         max-width: 600px;
         margin: 0 auto;
         padding-left: 10px;
         padding-right: 10px;
-        overflow: auto;
     }
 
     .container>* {
@@ -125,24 +131,104 @@
         bottom: 0;
     }
 
+    #pagination-container {
+        text-align: center;
+    }
+
+    #pagination-container>* {
+        display: inline-block;
+    }
+
+    .pager {
+        padding: 5px 10px;
+        border: 1px solid rgba(0, 0, 0, .1);
+        border-left-width: 0;
+    }
+
+    .pager:first-child {
+        border-left-width: 1px;
+    }
+
     .pager.active {
-        border: 2px solid #000;
+        background: rgba(0, 0, 0, .2);
+        color: #000;
+    }
+
+    form input,
+    #history-list {
+        width: 80%;
+    }
+
+    #history-list {
+        z-index: 1;
+        position: absolute;
+        max-height: 300px;
+        overflow: auto;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-top: 0;
+        font-size: 14px;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        cursor: default;
+    }
+
+    .history {
+        padding: 5px 10px;
+        font-size: 0;
+    }
+
+    .history:hover {
+        background: rgba(0, 0, 200, .1);
+    }
+
+    .history .text,
+    .history .tool {
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .history .text {
+        width: 70%;
+        font-size: .9rem;
+    }
+
+    .history .tool {
+        display: none;
+        width: 30%;
+        font-size: .6rem;
+        text-align: right;
+        color: #aaa;
+    }
+
+    .history:hover .tool {
+        display: inline-block;
+    }
+
+    .history .tool>* {
+        cursor: pointer;
     }
 </style>
 
 <div class="container">
     <h1>GayHub用户搜索</h1>
     <form id="search-form">
-        <input id="search-input" type="text" autofocus autocomplete="off" placeholder="请输入用户名">
+        <input id="search-input" type="search" autofocus autocomplete="off" placeholder="请输入用户名">
         <button type="submit">搜索</button>
+        <div id="history-list" hidden></div>
     </form>
     <div id="amount"></div>
     <div id="user-list"></div>
     <div class="tac" id="placeholer" hidden>谋了 - . -</div>
-    <div id="pagination-container">
-        <div></div>
+    <div id="pagination-container" hidden>
+        <div>
+            <button id="pagination-start" class="pager">首页</button>
+        </div>
         <div id="pagination"></div>
-        <div></div>
+        <div>
+            <button id="pagination-end" class="pager">末页</button>
+        </div>
     </div>
 </div>
 <div class="toolbar">
@@ -157,18 +243,39 @@
             , el_input = document.getElementById('search-input')
             , el_top = document.getElementById('top')
             , el_placeholer = document.getElementById('placeholer')
-            , el_pagination = document.getElementById('pagination')
+            , el_pagination_container = document.getElementById('pagination-container')
+            , el_pagination = el_pagination_container.querySelector('#pagination')
+            , el_pagination_start = el_pagination_container.querySelector('#pagination-start')
+            , el_pagination_end = el_pagination_container.querySelector('#pagination-end')
+            , el_history_list = document.getElementById('history-list')
+            , history_list
             , keyword
             , no_more
             , amount
             , page_amount
-            , max_page_btn = 10
+            , MAX_LIMIT = 999
+            , max_page_btn = 7
             , current_page = 1
-            , limit = 10
+            , limit = 5
             ;
         /*返回的数据*/
         var res;
         init();
+        /*初始化*/
+        function init() {
+            reload_history_list();
+            render_history_list();
+            bind_events();
+        }
+        function bind_events() {
+            detect_submit();
+            detect_click_top();
+            detect_click_pagination();
+            detect_click_input();
+            detect_click_document();
+            // detect_blur_input();
+            //@1 detect_click_history_list();
+        }
         /*通过用户名搜Github用户
         * @param String keyword 关键词
         * */
@@ -183,18 +290,160 @@
             http.addEventListener('load', function () {
                 /*解析（将JSON格式的字符串转换为JS能理解的数据）返回数据*/
                 res = JSON.parse(http.responseText);
-                console.log(res.total_count);
                 /*拿到搜索结果总数*/
                 amount = res.total_count;
                 /*既然有了数据，不就可以渲染用户列表和页码组件了吗？*/
                 render();
                 render_pagination();
             });
+            append_history(keyword);
         }
-        /*初始化*/
-        function init() {
-            detect_submit();
-            detect_click_top();
+        /*将关键词写入历史记录*/
+        function append_history(kwd) {
+            /*不管有没有已经搜过的先删一遍再说*/
+            find_and_delete(history_list, kwd);
+            /*更新炒瓢数据*/
+            history_list.unshift(kwd);
+            /*更新冰箱数据*/
+            overwrite_history_list(history_list);
+        }
+        /*从冰箱中重新获取搜索历史记录*/
+        function reload_history_list() {
+            history_list = store_get('history_list') || [];
+        }
+        function overwrite_history_list(data) {
+            store_set('history_list', data);
+        }
+        /*渲染历史记录*/
+        function render_history_list() {
+            el_history_list.innerHTML = '';
+            history_list.forEach(function (history) {
+                var el_delete
+                    , el_history = document.createElement('div');
+                el_history.classList.add('history');
+                el_history.dataset.history = history;
+                el_history.innerHTML = `
+        <div class="text">${history}</div>
+        <div class="tool">
+          <span class="delete">删除</span>
+        </div>`;
+                el_delete = el_history.querySelector('.delete');
+                el_history_list.appendChild(el_history);
+                /*当本条历史记录被点击时将搜索框的关键词改为对应的历史关键词*/
+                el_history.addEventListener('click', function (e) {
+                    /*如果点的是里面的删除按钮，就直接返回，既不上屏，又不搜索*/
+                    if (e.target.classList.contains('delete'))
+                        return;
+                    /*上屏*/
+                    set_keyword(this.dataset.history);
+                    /*搜搜*/
+                    search();
+                });
+                /*当删除按钮点击时*/
+                el_delete.addEventListener('click', function () {
+                    /*先找到叫.history的先人，因为它那里存着对应的关键词*/
+                    var el_history = this.closest('.history')
+                        , kwd = el_history.dataset.history;
+                    /*如果删除失败，直接返回*/
+                    if (!find_and_delete(history_list, kwd))
+                        return;
+                    /*否则用新数据覆盖冰箱里的数据*/
+                    overwrite_history_list(history_list);
+                    /*重新渲染历史记录*/
+                    setTimeout(function () {
+                        render_history_list();
+                    }, 0);
+                    /*如果没有历史记录了就隐藏整个记录列表*/
+                    if (!history_list.length) {
+                        el_history_list.hidden = true;
+                    }
+                });
+            });
+        }
+        function find_and_delete(arr, element) {
+            var shit_index = arr.indexOf(element);
+            if (shit_index == -1)
+                return false;
+            arr.splice(shit_index, 1);
+            return true;
+        }
+        //@1
+        // function detect_click_history_list() {
+        //   el_history_list.addEventListener('click', function (e) {
+        //     var history_wrapper = e.target.closest('.history');
+        //     if (!history_wrapper)
+        //       return;
+        //
+        //     set_keyword(history_wrapper.dataset.history);
+        //   });
+        // }
+        function set_keyword(kwd) {
+            el_input.value = kwd;
+            keyword = kwd;
+        }
+        /*往冰箱存*/
+        function store_set(key, val) {
+            /*加保鲜膜（JSON化）*/
+            var json = JSON.stringify(val);
+            /*存冰箱（状态稳定不轻易改变）*/
+            localStorage.setItem(key, json);
+        }
+        /*从冰箱取*/
+        function store_get(key) {
+            /*从冰箱取到带保鲜膜的数据*/
+            var json = localStorage.getItem(key);
+            /*撕膜（将数据转化为JS可以理解的数据类型）*/
+            return JSON.parse(json);
+        }
+        function detect_click_pagination() {
+            el_pagination_start.addEventListener('click', function () {
+                goto_page(1);
+            });
+            el_pagination_end.addEventListener('click', function () {
+                goto_page(page_amount);
+            });
+        }
+        function detect_click_input() {
+            el_input.addEventListener('click', function () {
+                show_history_list();
+            });
+        }
+        function detect_click_document() {
+            /*给html元素加点击事件*/
+            document
+                .documentElement
+                .addEventListener('click', function (e) {
+                    var target = e.target;
+                    console.log(target);
+                    var in_search_input = target.closest('#search-input')
+                        , in_history_list = target.closest('#history-list')
+                        ;
+                    if (in_search_input || in_history_list)
+                        return;
+                    console.log(1);
+                    hide_history_list();
+                });
+        }
+        function detect_blur_input() {
+            el_input.addEventListener('blur', function () {
+            });
+        }
+        function show_history_list() {
+            if (!history_list.length)
+                return;
+            el_history_list.hidden = false;
+        }
+        function hide_history_list() {
+            el_history_list.hidden = true;
+        }
+        function goto_page(page) {
+            var max_user_limit_reached = page * limit > MAX_LIMIT;
+            if (max_user_limit_reached) {
+                current_page = Math.floor(MAX_LIMIT / limit);
+            } else {
+                current_page = page;
+            }
+            search();
         }
         /*绑定表单提交事件*/
         function detect_submit() {
@@ -214,6 +463,7 @@
                 el_placeholer.hidden = true;
                 search(keyword);
                 clear_pagination();
+                hide_pagination();
             });
         }
         /*重置页码为1*/
@@ -236,7 +486,6 @@
         function render() {
             /*初始化HTML*/
             var html = '';
-            
             /*遍历用户列表*/
             res.items.forEach(function (user) {
                 /*每个用户都追加到HTML后面*/
@@ -272,11 +521,17 @@
                 el_placeholer.hidden = true;
             }
         }
-        
         function clear_pagination() {
             el_pagination.innerHTML = '';
         }
+        function hide_pagination() {
+            el_pagination_container.hidden = true;
+        }
+        function show_pagination() {
+            el_pagination_container.hidden = false;
+        }
         function render_pagination() {
+            show_pagination();
             clear_pagination()
             get_page_amount();
             var start
@@ -338,19 +593,18 @@
                 }
                 /*追加到页码容器的后面*/
                 el_pagination.appendChild(btn);
-                btn.addEventListener('click', function () {
-                    console.log(this);
-                    current_page = this.innerHTML;
-                    console.log(current_page);
-                    // search();
-                    a1()
-                })
+                btn.addEventListener('click', make_function_on_page_change(num));
             }
         }
-         function a1() {
-            console.log('a1');
-            render_pagination()
+        function make_function_on_page_change(num) {
+            return function (e) {
+                /*让current_page（当前页面）等于点击的按钮的序号*/
+                current_page = num;
+                /*然后再搜索，不然的话永远都在取第1页的数据*/
+                search();
+            };
         }
+        /*获取页面总数*/
         function get_page_amount() {
             /*总人数除以每页的数量*/
             page_amount = Math.ceil(amount / limit);
