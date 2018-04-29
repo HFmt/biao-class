@@ -53,63 +53,40 @@
         <div id="history-list" hidden>
             <div class="history"></div>
         </div>
+
 </body>
-<!-- <script>
-    let history_list = ['a', 'b', 'c']
-        , set_loca
-        , get_loca
-        , set_json_loca
-        , get_json_loca
-        ;
-    
-    console.log('history_list', history_list);
-    localStorage.setItem('set_loca', history_list);
-    console.log('set_loca', localStorage.set_loca);
-
-    get_loca = localStorage.getItem('set_loca');
-    console.log('get_loca', get_loca);
-
-
-    console.log('history_list', history_list);
-    set_json_loca = JSON.stringify(history_list);
-    localStorage.setItem('set_json_loca', set_json_loca);
-    console.log('set_json_loca', localStorage.set_json_loca);
-
-    get_json_loca = JSON.parse(localStorage.getItem('set_json_loca'));
-    console.log('get_json_loca', get_json_loca);
-</script> -->
 
 <script>
     let el_history_list = document.getElementById('history-list')
       , el_form = document.getElementById('search-form')
       , el_input = document.getElementById('search-ipt')
       , history_list
-      , arr = []
+      , arr_element = []
       , keywords
       ;
+      
     el_form.addEventListener('submit', function (e) {
         e.preventDefault();
-        arr.unshift(el_input.value);
-        stroe_set('Asam', arr);
+        arr_element.push(el_input.value);
+        
+        stroe_set('Asam', arr_element);
         reload_history_list();
         render_history_list();
         show_elenemt();
-
     });
- 
-    // stroe_set('Asam', arr);          
-    // reload_history_list();
-    // render_history_list();
-   
+
     function reload_history_list() {
         history_list = stroe_get('Asam') || [];
     }
 
     function render_history_list() {
-        el_history_list.innerHTML = '';
+        let  el_history 
+           , el_delete_history
+           ;
+            el_history_list.innerHTML = '';
 
         history_list.forEach(function (history) {
-            let  el_history = document.createElement('div');
+            el_history = document.createElement('div');
             el_history.classList.add('history');
             el_history.dataset.history = history;
             el_history.innerHTML = 
@@ -118,49 +95,75 @@
                 <span class="delete">删除</span>
              </div>
             `
-            let el_delete_history = el_history.getElementsByClassName('delete')[0];
-            console.log(el_delete_history);
-            el_history_list.appendChild(el_history);
-             
+            el_delete_history = el_history.getElementsByClassName('delete')[0];
+
+            reverse_appendChild(el_history_list, el_history)
             el_history.addEventListener('click', function (e) {
                 if(e.target.classList.contains('delete')){
                     return;
                 }
-                console.log(this.dataset.history);
                 set_keyword(this.dataset.history);        
             });
+           
+            delete_click_history(el_delete_history);
+        });
+    }
 
-            el_delete_history.addEventListener('click', function () { 
-                overwrite_history_list(history_list);
-                el_history_list.removeChild(this.closest('.history'));
-                arr.shift(this.closest('.history.text'));
-                stroe_set('Asam', arr);
+    function reverse_appendChild(el_father, el_children){
+        if(el_father.children[0]){
+            el_father.insertBefore(el_children,el_father.children[0]);
+            }
+            else{
+                el_father.appendChild(el_children);
+            }
+    }
+
+    //触发删除历史记录按钮事件
+    function  delete_click_history(this_delete) {
+                this_delete.addEventListener('click', function () { 
+                let this_history = this.closest('.history').dataset.history
+                  , loca_index = arr_element.indexOf(this_history)
+                  ;           
+                
+                delete_history(this.closest('.history'), loca_index);
+                // overwrite_history_list(history_list);
+                
+                stroe_set('Asam', arr_element);
                 reload_history_list();
                 show_elenemt();
              });
-        });
     }
-    localStorage
+
+    //删除历史搜索记录
+    function delete_history(closest, index) {
+        el_history_list.removeChild(closest);
+        arr_element.indexOf(closest);
+        arr_element.splice(index, 1);
+    }
+
     function overwrite_history_list(data) {
-            console.log(data)
-            stroe_set('Asam', data);
-        }
+        stroe_set('Asam', data);
+    }
 
-     function set_keyword(keyword) {
-            el_input.value = keyword;
-            keywords = keyword;
-        }
-
+    //搜索框键入历史搜索记录的值
+    function set_keyword(keyword) {
+        el_input.value = keyword;
+        keywords = keyword;
+    }
+    
+    //以JSON格式设置localStorage.setItem
     function stroe_set(key, val) {
         let set_json = JSON.stringify(val);
         localStorage.setItem(key, set_json);
     }
 
+    //取消JSON格式获取localStorage.getItem
     function stroe_get(key) {
         let get_json = localStorage.getItem(key);
         return JSON.parse(get_json);
     }
 
+    //显示隐藏历史搜索容器
     function show_elenemt() {
         if (el_history_list.innerHTML == '') {
             el_history_list.hidden = true;
@@ -168,6 +171,5 @@
             el_history_list.hidden = false;
         }
     }
-
 </script>
 </html>
