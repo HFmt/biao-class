@@ -88,18 +88,22 @@
       , keywords
       ;
 
-    
+
     //表单提交  有问题
     el_form.addEventListener('submit', function (e) {
         e.preventDefault();
+
         arr_element.push(el_input.value);
-        console.log(arr_element);
-       
-        //问题点
         stroe_set('Asam', arr_element);
-         reload_history_list();
+        console.log('stroe_get', stroe_get('Asam'));
+
+        arr_element = stroe_get('Asam');
+        console.log(arr_element);
+        
+        reload_history_list();
         render_history_list();
         show_elenemt();
+
     });
 
     function render_history_list() {
