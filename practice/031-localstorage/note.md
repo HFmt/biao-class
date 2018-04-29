@@ -21,3 +21,5 @@
     往数组前面
     unshift()   添加
     shift（)    删除
+
+    concat()    连接数组
