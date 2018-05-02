@@ -18,7 +18,7 @@
   - git add . （将仓库所有的修改存入暂存区）
   - git commit -m "开始的开始" （打点保存，名为开始的开始）
   - git remote add origin https://github.com/HFmt/biao-class (添加远程仓库，名：'origin')
-  - git push -u origin mastergit  (把本地代码推到'origin'[github])
+  - git push -u origin master  (把本地代码推到'origin'[github])
 
 - 3步重复
   - git add .
