@@ -5,6 +5,9 @@ let form = document.getElementById('search-form')
   , input = document.getElementById('search-input')   
   , next = document.getElementById('next')   
   , user_list = document.getElementById('user-list')
+  , page = 1
+  , limit = 5
+  ;
  
 
 /*渲染用户列表*/
@@ -28,9 +31,12 @@ function render_user_list(data) {
   });
 }
 
-function show_next() {
-  if(!user_list.innerHTML=='')
+function show_next(limit_num) {
+  if(limit_num > 1)
     next.hidden = false;
+    else{
+      next.hidden = true;
+    }
 }
 
 
@@ -38,6 +44,8 @@ module.exports = {
   form: form,
   input: input,
   next: next,
+  page: page,
+  limit: limit,
   user_list: user_list,
   render_user_list: render_user_list,
   show_next: show_next,

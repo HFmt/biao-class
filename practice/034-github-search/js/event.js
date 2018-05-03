@@ -3,8 +3,6 @@
 
 let el = require('./element.js')
   , search = require('./search.js')
-  , page = 1
-  , limit = 5
   , keyword
   ;
 
@@ -18,8 +16,9 @@ function add_events() {
 function detect_submit() {
     el.form.addEventListener('submit', function (e) {
         e.preventDefault();
-        keyword= el.input.value;
-        console.log('page',page, 'limit',limit)
+        page = 1;
+        el.user_list.innerHTML='';
+        keyword= el.input.value;   
         search.find_user(keyword);
     });
 }
@@ -28,10 +27,9 @@ function detect_next_page() {
     el.next.addEventListener('click', function () {
 
         let config = {
-            page: ++page,
-            limit: limit,
+            page: ++el.page,
+            limit: el.limit,
         }
-        console.log('page',page, 'limit',limit)
         search.find_user(keyword, config)
     });
 }
