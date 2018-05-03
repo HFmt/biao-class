@@ -1,17 +1,19 @@
 
-let el2 = require('./element.js')
- 
+
+
+let el = require('./element.js')
+  , send = require('./send.js')
   ;  
 
-function send(me, url, on_load) {
-    let http = new XMLHttpRequest();
-    http.open(me, url);
-    http.send();
-    http.addEventListener('load', function () {
-        let data = JSON.parse(this.responseText);
-        on_load(data);
-    });
-}
+// function send(me, url, on_load) {
+//     let http = new XMLHttpRequest();
+//     http.open(me, url);
+//     http.send();
+//     http.addEventListener('load', function () {
+//         let data = JSON.parse(this.responseText);
+//         on_load(data);
+//     });
+// }
 
 function find_user(keyword, config) {
     let def = {
@@ -19,7 +21,7 @@ function find_user(keyword, config) {
         limit: 5,
     }
     config = Object.assign({}, def, config);
-    send('get','https://api.github.com/search/users?q='+keyword + '&page=' + config.page + '&per_page=' + config.limit, function (data) {
+    send.send('get','https://api.github.com/search/users?q='+keyword + '&page=' + config.page + '&per_page=' + config.limit, function (data) {
         el2.render_user_list(data.items);
     },config);
 }
