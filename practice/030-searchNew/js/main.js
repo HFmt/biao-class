@@ -1,11 +1,12 @@
 ; (function () {
     'use strict';
-let search_form = document.getElementById('search-form')
-, search_input = document.getElementById('search-input')
-, search_btn = document.getElementById('search-button')
-, user_list = document.getElementById('user-list')
-, pagination = document.getElementById('pagination')
-, placeholder = document.getElementById('placeholder')
+let el_search_form = document.getElementById('search-form')
+, el_search_input = document.getElementById('search-input')
+, el_user_list = document.getElementById('user-list')
+, el_pagination = document.getElementById('pagination')
+, el_placeholder = document.getElementById('placeholder')
+, el_first_page = document.getElementById('first-page')
+, el_last_page = document.getElementById('last-page')
 , user
 , keyword
 , stime
@@ -20,16 +21,18 @@ let search_form = document.getElementById('search-form')
 init();
 
 function init() {
-    form_submit()
+    form_submit();
+    first_page();
+    last_page();
 }
 
 function form_submit() {
-    search_form.addEventListener('submit', function (e) {
+    el_search_form.addEventListener('submit', function (e) {
         e.preventDefault();
-        keyword = search_input.value
+        keyword = el_search_input.value
         clearTimeout(stime);
         stime = setTimeout(function () {
-            if (!search_input.value) {
+            if (!el_search_input.value) {
                 return;
             }
             reset_page();
@@ -41,15 +44,34 @@ function form_submit() {
 }
 
 
-function finde_user() {
-let link = 'https://api.github.com/search/users?q=' + keyword + '&page=' + current_page + '&per_page=' + limit
-send(link, function (result) {
-    user = result;
+    //首页
+    function first_page() {
+        el_first_page.addEventListener('click', function (){
+            reset_page();
+            console.log(current_page);
+            finde_user(keyword);
+        });
+    }
 
-    amount = user.total_count;
-    render();  
-    render_pagination();
-});
+    //尾页
+    function last_page() {
+        el_last_page.addEventListener('click', function (){
+            get_page_amout()
+            current_page = amount_page;
+            console.log(current_page);
+            finde_user(keyword);
+        });
+    }
+
+
+function finde_user() {
+    let link = 'https://api.github.com/search/users?q=' + keyword + '&page=' + current_page + '&per_page=' + limit
+    send(link, function (result) {
+        user = result;
+        amount = user.total_count;
+        render();  
+        render_pagination();
+    });
 
 }
 
@@ -84,9 +106,9 @@ function render() {
                     </div>
                 </div>`;
     }
-    user_list.innerHTML = list;
+    el_user_list.innerHTML = list;
     no_more = current_page * limit >= amount;
-    placeholder.hidden = !no_more;
+    el_placeholder.hidden = !no_more;
 }
 
 function render_pagination() {
@@ -97,7 +119,7 @@ function render_pagination() {
             , middle = Math.ceil(max_page / 2)
             , reaching_left = current_page <= middle
             , reaching_right = current_page >= amount_page - middle
-            , btn 
+            , page_button 
             ;
     if (reaching_left) {
     start_page = 1;
@@ -123,19 +145,19 @@ function render_pagination() {
     }
 
     for (let i = start_page; i <= end_page; i++) {
-        btn = document.createElement('button');
-        btn.innerHTML = i;
-        btn.dataset.page = i;
+        page_button = document.createElement('button');
+        page_button.innerHTML = i;
+        page_button.dataset.page = i;
         if (current_page == i) {
-            btn.style.background = 'pink';
+            page_button.style.background = 'pink';
         }
-        pagination.appendChild(btn);
+        el_pagination.appendChild(page_button);
 
     }
 
 }
 
-pagination.addEventListener('click', function (e) {
+el_pagination.addEventListener('click', function (e) {
     if (e.target && e.target.nodeName.toUpperCase() == 'BUTTON') {
         current_page = parseInt(e.target.dataset.page);
         finde_user();
@@ -147,26 +169,26 @@ pagination.addEventListener('click', function (e) {
 });
     
 
-/*总人数除以每页的数量*/
-function get_page_amout() {
-amount_page = Math.ceil(amount / limit);
-}
+/*总人数除以每页的数量得到总页数*/
+    function get_page_amout() {
+        amount_page = Math.ceil(amount / limit);
+    }
 
 //重置页数
-function reset_page() {
-    current_page = 1;
-}
+    function reset_page() {
+        current_page = 1;
+    }
 
 //切换当前页面的用户
-function reset_user_list() {
-user_list.innerHTML='';
-}
+    function reset_user_list() {
+        el_user_list.innerHTML='';
+    }
 
 //重置搜索的内容
-function clear_pagination() {
-pagination.innerHTML = '';
-placeholder.hidden = true;
-}
+    function clear_pagination() {
+        el_pagination.innerHTML = '';
+        el_placeholder.hidden = true;
+    }
 
 
 })();

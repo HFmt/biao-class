@@ -32,20 +32,20 @@
     el_input.addEventListener('keyup', function(){
         if(replace_value())
             return;
-        console.log('1');
         render_history_list();
         show_history_list();
     });
 
     document.documentElement.addEventListener('click', function (e) {
-        console.log(e.target.closest('#search-input'))
+        console.log(e.target.closest('#search-input'));
         console.log(e.target.closest('#history-list'));
         if(e.target == e.target.closest('#search-input') || 
            e.target == e.target.closest('#history-list')){
+            console.log('触发条件')
             return
         }
-        
-        show_history_list();
+        console.log('没有触发条件')
+        el_history_list.hidden = true;
     });
     
     function replace_value() {
@@ -150,5 +150,5 @@
             el_history_list.hidden = false;
         }
     }
- 
+    
 })();
