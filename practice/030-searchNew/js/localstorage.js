@@ -1,100 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+;(function () {
+    'use strict';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>localStorage</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        .container {
-            max-width: 699px;
-            margin: 0 auto;
-        }
-
-        #history-list {
-            background: #fff;
-            border: 1px solid rgba(0, 0, 0, .2);
-            border-top: 0;
-            font-size: 14px;
-            -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
-            -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
-            cursor: default;
-        }
-
-        #search-form {
-            font-size: 0;
-        }
-
-        #search-ipt,
-        #search-btn {
-            line-height: 1.2;
-            font-size: 14px;
-            padding: 10px;
-        }
-
-        #search-ipt {
-            width: 70%;
-        }
-
-        #search-btn {
-            width: 30%;
-        }
-
-        .history {
-            padding: 5px 10px;
-            font-size: 0;
-        }
-
-        .history:hover {
-            background: rgba(0, 0, 200, .1);
-        }
-
-        .history .text,
-        .history .tool {
-            vertical-align: middle;
-            display: inline-block;
-        }
-
-        .history .text {
-            width: 70%;
-            font-size: .9rem;
-        }
-
-        .history .tool {
-            display: none;
-            width: 30%;
-            font-size: .6rem;
-            text-align: right;
-            cursor: pointer;
-            color: #aaa;
-        }
-
-        .history:hover .tool {
-            display: inline-block;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <form id="search-form" action="">
-            <input id="search-ipt" type="search">
-            <button id="search-btn">搜索</button>
-        </form>
-        <div id="history-list" hidden></div>
-    </div>
-</body>
-
-<script>
-    let el_history_list = document.getElementById('history-list')
-        , el_form = document.getElementById('search-form')
-        , el_input = document.getElementById('search-ipt')
+    let el_form = document.getElementById('search-form')
+        , el_history_list = document.getElementById('history-list')
+        , el_input = document.getElementById('search-input')
         , history_list
         , keywords
         ;
@@ -109,16 +18,41 @@
     //表单提交  
     function form_submit() {
         el_form.addEventListener('submit', function (e) {
-            e.preventDefault();
-                
+            e.preventDefault()
+            
+            if(replace_value())
+            return;
             history_list.push(el_input.value);
             stroe_set('Asam', history_list);
             render_history_list();
-            show_elenemt();
+            show_history_list();
         });  
     }
-    
 
+    el_input.addEventListener('keyup', function(){
+        if(replace_value())
+            return;
+        console.log('1');
+        render_history_list();
+        show_history_list();
+    });
+
+    document.documentElement.addEventListener('click', function (e) {
+        console.log(e.target.closest('#search-input'))
+        console.log(e.target.closest('#history-list'));
+        if(e.target == e.target.closest('#search-input') || 
+           e.target == e.target.closest('#history-list')){
+            return
+        }
+        
+        show_history_list();
+    });
+    
+    function replace_value() {
+        let str = el_input.value.replace(/(^\s*)|(\s*$)/g, '');
+        return  (str == '' || str == null || str == undefined)
+    }
+  
     function render_history_list() {
         let el_history
             , el_delete_history
@@ -131,20 +65,14 @@
             el_history.dataset.history = history;
             el_history.innerHTML =
                 `<div class="text">${history}</div>
-             <div class="tool">
-                <span class="delete">删除</span>
-             </div>
-            `
+                <div class="tool">
+                    <span class="delete">删除</span>
+                </div>
+                `
             el_delete_history = el_history.getElementsByClassName('delete')[0];
 
             reverse_appendChild(el_history_list, el_history)
 
-            // el_history.addEventListener('click', function (e) {
-            //     if (e.target.classList.contains('delete')) {
-            //         return;
-            //     }
-            //     set_keyword(this.dataset.history);
-            // });
             push_input_value(el_history)
 
             delete_click_history(el_delete_history);
@@ -179,7 +107,7 @@
                 ;
             delete_history(this.closest('.history'), loca_index);
             stroe_set('Asam', history_list);
-            show_elenemt();
+            show_history_list();
         });
     }
 
@@ -215,13 +143,12 @@
     }
 
     //显示隐藏历史搜索容器
-    function show_elenemt() {
+    function show_history_list() {
         if (el_history_list.innerHTML == '') {
             el_history_list.hidden = true;
         } else {
             el_history_list.hidden = false;
         }
     }
-</script>
-
-</html>
+ 
+})();
