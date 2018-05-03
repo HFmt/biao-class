@@ -20,7 +20,7 @@ function detect_submit() {
         e.preventDefault();
         keyword= el.input.value;
         console.log('page',page, 'limit',limit)
-        search.find_user(keyword)
+        search.find_user(keyword);
     });
 }
 

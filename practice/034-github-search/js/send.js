@@ -9,6 +9,7 @@ function send(me, url, on_success) {
     http.addEventListener('load', function () {
         let data = JSON.parse(this.responseText);
         on_success(data);
+        el.show_next()
     });
 }
 

@@ -5,16 +5,6 @@ let el = require('./element.js')
   , send = require('./send.js')
   ;  
 
-// function send(me, url, on_load) {
-//     let http = new XMLHttpRequest();
-//     http.open(me, url);
-//     http.send();
-//     http.addEventListener('load', function () {
-//         let data = JSON.parse(this.responseText);
-//         on_load(data);
-//     });
-// }
-
 function find_user(keyword, config) {
     let def = {
         page: 1,

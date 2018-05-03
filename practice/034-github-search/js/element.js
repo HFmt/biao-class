@@ -28,9 +28,17 @@ function render_user_list(data) {
   });
 }
 
+function show_next() {
+  if(!user_list.innerHTML=='')
+    next.hidden = false;
+}
+
+
 module.exports = {
   form: form,
   input: input,
   next: next,
+  user_list: user_list,
   render_user_list: render_user_list,
+  show_next: show_next,
 }
