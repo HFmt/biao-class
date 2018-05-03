@@ -4,7 +4,7 @@
 let el = require('./element.js')
   , search = require('./search.js')
   , page = 1
-  , limit = 10
+  , limit = 5
   , keyword
   ;
 
@@ -28,7 +28,7 @@ function detect_next_page() {
     el.next.addEventListener('click', function () {
 
         let config = {
-            page: page++,
+            page: ++page,
             limit: limit,
         }
         console.log('page',page, 'limit',limit)

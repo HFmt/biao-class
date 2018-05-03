@@ -22,7 +22,7 @@ function find_user(keyword, config) {
     }
     config = Object.assign({}, def, config);
     send.send('get','https://api.github.com/search/users?q='+keyword + '&page=' + config.page + '&per_page=' + config.limit, function (data) {
-        el2.render_user_list(data.items);
+        el.render_user_list(data.items);
     },config);
 }
 
