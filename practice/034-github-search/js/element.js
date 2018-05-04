@@ -43,6 +43,21 @@ function show_next(limit_num) {
     }
 }
 
+function ready_search_state() {
+  next.disabled = true;
+  next.hidden = false;
+  placeholer.hidden = true;
+  next.innerHTML = '加载中';
+}
+
+function end_search_state(data) {
+  render_user_list(data.items);
+  show_next(data.total_count/limit);
+  next.disabled = false;
+  next.innerHTML = '加载更多';
+}
+
+
 
 module.exports = {
   form: form,
@@ -51,6 +66,11 @@ module.exports = {
   page: page,
   limit: limit,
   user_list: user_list,
+  placeholer: placeholer,
+
+  //函数体
   render_user_list: render_user_list,
   show_next: show_next,
+  ready_search_state: ready_search_state,
+  end_search_state: end_search_state,
 }

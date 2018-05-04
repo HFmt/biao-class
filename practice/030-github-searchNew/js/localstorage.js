@@ -39,8 +39,8 @@
     document.documentElement.addEventListener('click', function (e) {
         // console.log(e.target.closest('#search-input'));
         console.log(e.target.closest('#history-list'));
-        if(e.target == e.target.closest('#search-input') || 
-           e.target == e.target.closest('#history-list')){
+        if(e.target.closest('#search-input') || 
+           e.target.closest('#history-list')){
             console.log('触发条件')
             return
         }

@@ -79,7 +79,7 @@
     <div id="user-list">
         <div class="user">
             <a class="avatar" target="_blank" href="${user.html_url}">
-              <img src="${user.avatar_url}">
+              <img src="#">
             </a>
             <div class="info">
               <div class="username">aaaaaaaaaaaa</div>
@@ -89,4 +89,42 @@
     </div>
   </div>
 </body>
+<script>
+    let search_form = document.getElementById('search-form')
+      , search_input = document.getElementById('search-input')
+      , user_list = document.getElementById('user-list')
+
+
+      init();
+
+      function init() {
+        on_form_submit();
+      }
+
+      function on_form_submit() {
+        search_form.addEventListener('submit', function(e){
+          e = e||window.event;
+          e.preventDefault();
+          search_user(search_input.value);
+        });
+      }
+      
+      function search_user(keyword) {
+        send('get', 'https://api.github.com/users/' + keyword, function (result){
+          console.log(result);
+          document.write("<img src="+result.avatar_url+">")
+        });
+      }
+
+      function send(method, url, on_success) {
+        let http = new XMLHttpRequest();
+        http.open(method, url);
+        http.send();
+
+        http.addEventListener('load', function () {
+          let data = JSON.parse(this.responseText);
+          on_success(data);
+        });
+      }
+</script>
 </html>

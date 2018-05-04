@@ -1,7 +1,4 @@
 
-let el = require('./element.js');
-
-
 function send(method, url, on_success) {
     let http = new XMLHttpRequest();
     http.open(method, url);
@@ -13,5 +10,5 @@ function send(method, url, on_success) {
 }
 
 module.exports = {
-    send: send
+    send: send,
 }
