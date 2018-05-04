@@ -9,8 +9,6 @@ function send(method, url, on_success) {
     http.addEventListener('load', function () {
         let data = JSON.parse(this.responseText);
         on_success(data);
-        console.log(data.total_count/el.limit);
-        el.show_next(data.total_count/el.limit);
     });
 }
 

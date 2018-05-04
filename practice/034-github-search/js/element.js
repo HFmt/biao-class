@@ -5,6 +5,7 @@ let form = document.getElementById('search-form')
   , input = document.getElementById('search-input')   
   , next = document.getElementById('next')   
   , user_list = document.getElementById('user-list')
+  , placeholer = document.getElementById('placeholer')
   , page = 1
   , limit = 5
   ;
@@ -32,10 +33,13 @@ function render_user_list(data) {
 }
 
 function show_next(limit_num) {
-  if(limit_num > 1)
+  if(limit_num > 1){
     next.hidden = false;
+    placeholer.hidden = true;
+  }
     else{
       next.hidden = true;
+      placeholer.hidden = false;
     }
 }
 

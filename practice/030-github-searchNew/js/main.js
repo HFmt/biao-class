@@ -154,7 +154,6 @@ function render_pagination() {
         el_pagination.appendChild(page_button);
 
     }
-
 }
 
 el_pagination.addEventListener('click', function (e) {
