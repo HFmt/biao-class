@@ -10,6 +10,7 @@ let el = require('./element.js')
 function add_events() {
     detect_submit();
     detect_next_page();
+    detect_previous_page();
 }
 
 /*监听搜索表单事件*/
@@ -30,13 +31,23 @@ function detect_submit() {
 }
 
 function detect_next_page() {
-    // el.next.addEventListener('click', function () {
-    //     let config = {
-    //         page: ++el.page,
-    //         limit: el.limit,
-    //     }
-    //     search.sear_user(keyword, config);
-    // });
+    el.next.addEventListener('click', function () {
+        el.config.page++;
+        console.log(el.config);
+        search.sear_user(keyword, el.config);
+    });
+}
+
+function detect_previous_page() {
+    el.previous.addEventListener('click', function () {
+        console.log(1);
+        if(el.config.page <= 1){
+            return;
+        }
+        el.config.page--;
+        console.log(el.config);
+        search.sear_user(keyword, el.config);
+    });
 }
 
 module.exports = {

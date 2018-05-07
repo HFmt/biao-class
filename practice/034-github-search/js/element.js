@@ -3,10 +3,13 @@
 
 let form = document.getElementById('search-form')
   , input = document.getElementById('search-input')   
+  , previous = document.getElementById('previous')   
   , next = document.getElementById('next')   
   , user_list = document.getElementById('user-list')
   , placeholer = document.getElementById('placeholer')
+  , pagination_start = document.getElementById('pagination-start')
   , pagination = document.getElementById('pagination')
+  , pagination_end = document.getElementById('pagination-end')
   , page_amount
   , max_page = 5
   , page = 1
@@ -41,7 +44,7 @@ function render_user_list(user_list_result) {
   });
 }
 
-function render_pagination(config_page, amount, fn, val) {
+function render_pagination(config_page, amount, fn) {
 
   pagination.innerHTML = '';
 
@@ -98,22 +101,27 @@ function get_page_amount(amount) {
 
 function ready_prompt_state() {
   next.disabled = true;
-  next.hidden = false;
+  // previous.hidden = false;
+  // next.hidden = false;
   placeholer.hidden = true;
-  next.innerHTML = '加载中...';
 }
 
 function end_prompt_state(page, amount) {
   if(page * limit < amount.total_count){
+    if(config.page > 1){
+      previous.hidden = false;
+    }
+    else(previous.hidden = true);
     next.hidden = false;
     placeholer.hidden = true;
   }
   else{
+    previous.hidden = true;
     next.hidden = true;
     placeholer.hidden = false;
   }
+  previous.disabled = false;
   next.disabled = false;
-  next.innerHTML = '加载更多';
 }
 
 function replace_value(val) {
@@ -137,6 +145,7 @@ module.exports = {
   limit: limit,
   user_list: user_list,
   placeholer: placeholer,
+  previous: previous,
 
   //函数体
 

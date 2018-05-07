@@ -13,14 +13,15 @@ function sear_user(keyword, config) {
         limit: 5,
     }
     config = Object.assign({}, def, el.config);
+
     el.ready_prompt_state();
 
-    url = 'https://api.github.com/search/users?q='+keyword + '&page=' + el.config.page + '&per_page=' + config.limit ;
+    url = 'https://api.github.com/search/users?q='+keyword + '&page=' + config.page + '&per_page=' + config.limit ;
     send.send('get', url, function (data) {
         el.render_user_list(data);
-        el.end_prompt_state(el.config.page, data);
-        el.render_pagination(el.config.page, data, sear_user);
-        console.log('config.page',el.config.page);
+        el.end_prompt_state(config.page, data);
+        el.render_pagination(config.page, data, sear_user);
+        console.log('config.page', config.page);
         console.log(url);
     },config);
    
