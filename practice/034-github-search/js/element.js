@@ -57,6 +57,10 @@ function end_search_state(data) {
   next.innerHTML = '加载更多';
 }
 
+function replace_value() {
+  let str = input.value.replace(/(^\s*)|(\s*$)/g, '');
+  return  (str == '' || str == null || str == undefined);
+}
 
 
 module.exports = {
@@ -73,4 +77,5 @@ module.exports = {
   show_next: show_next,
   ready_search_state: ready_search_state,
   end_search_state: end_search_state,
+  replace_value: replace_value,
 }

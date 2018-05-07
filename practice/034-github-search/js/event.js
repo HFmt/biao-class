@@ -15,6 +15,10 @@ function add_events() {
 function detect_submit() {
     el.form.addEventListener('submit', function (e) {
         e.preventDefault();
+        if(el.replace_value()){
+            console.log(1)
+            return;
+        }
         el.page = 1;
         el.user_list.innerHTML='';
         keyword= el.input.value;   
