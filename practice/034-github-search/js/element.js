@@ -101,8 +101,6 @@ function get_page_amount(amount) {
 
 function ready_prompt_state() {
   next.disabled = true;
-  // previous.hidden = false;
-  // next.hidden = false;
   placeholer.hidden = true;
 }
 
