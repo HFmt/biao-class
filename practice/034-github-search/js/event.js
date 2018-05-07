@@ -30,13 +30,13 @@ function detect_submit() {
 }
 
 function detect_next_page() {
-    el.next.addEventListener('click', function () {
-        let config = {
-            page: ++el.page,
-            limit: el.limit,
-        }
-        search.sear_user(keyword, config);
-    });
+    // el.next.addEventListener('click', function () {
+    //     let config = {
+    //         page: ++el.page,
+    //         limit: el.limit,
+    //     }
+    //     search.sear_user(keyword, config);
+    // });
 }
 
 module.exports = {

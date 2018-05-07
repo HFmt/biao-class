@@ -113,3 +113,11 @@ form button {
   right: 10px;
   bottom: 0;
 }
+
+#pagination-container > *{
+  display: inline-block;
+}
+
+.active{
+  border: 1px solid yellow;
+}

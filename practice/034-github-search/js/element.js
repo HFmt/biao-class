@@ -6,14 +6,23 @@ let form = document.getElementById('search-form')
   , next = document.getElementById('next')   
   , user_list = document.getElementById('user-list')
   , placeholer = document.getElementById('placeholer')
+  , pagination = document.getElementById('pagination')
+  , page_amount
+  , max_page = 5
   , page = 1
   , limit = 5
+  , config = {
+    page: page,
+    limit: limit,
+    }
   ;
- 
+
+    
+
 
 /*渲染用户列表*/
 function render_user_list(user_list_result) {
-  let html = user_list.innerHTML;
+  let html = '';
 
   user_list_result.items.forEach(function (user) {
     html+=
@@ -32,6 +41,68 @@ function render_user_list(user_list_result) {
   });
 }
 
+function render_pagination(config_page, amount, fn, val) {
+
+  pagination.innerHTML = '';
+
+  get_page_amount(amount.total_count);
+        let start_page 
+          , middle = Math.ceil(max_page/2)
+          , end_page = max_page
+        ;
+
+        if(config_page <= middle){
+          start_page = 1;
+          end_page = max_page;
+        }
+        else if(config_page >= page_amount - middle){
+          start_page = page_amount - max_page;
+          end_page = page_amount;
+        }
+        else{
+          start_page = config_page - middle + 1;
+          end_page = config_page + middle - 1;
+        }
+
+        if(start_page < 1){
+          start_page = 1;
+        }
+        if(end_page > page_amount){
+          end_page = page_amount;
+        }
+
+        for (let i = start_page; i<=end_page; i++){
+          
+          let btn = document.createElement('button');
+          btn.innerText = i;
+          pagination.appendChild(btn);
+
+          if(config_page == i){
+            btn.classList.add('active');
+          }
+
+          btn.addEventListener('click', (function make_function() {
+            return function () {  
+              console.log('i', i);
+              page = i;
+              config.page = page;
+              fn(input.value, config_page);
+            }
+          })());
+        }
+}
+
+function get_page_amount(amount) {
+  page_amount = Math.ceil(amount/limit);
+}
+
+function ready_prompt_state() {
+  next.disabled = true;
+  next.hidden = false;
+  placeholer.hidden = true;
+  next.innerHTML = '加载中...';
+}
+
 function end_prompt_state(page, amount) {
   if(page * limit < amount.total_count){
     next.hidden = false;
@@ -44,14 +115,6 @@ function end_prompt_state(page, amount) {
   next.disabled = false;
   next.innerHTML = '加载更多';
 }
-
-function ready_prompt_state() {
-  next.disabled = true;
-  next.hidden = false;
-  placeholer.hidden = true;
-  next.innerHTML = '加载中';
-}
-
 
 function replace_value(val) {
   let str = val.replace(/(^\s*)|(\s*$)/g, '');
@@ -93,4 +156,8 @@ module.exports = {
   //重置页码和用户列表HTML
   reset_page: reset_page,
   reset_user_list: reset_user_list,
+
+  render_pagination: render_pagination,
+
+  config: config,
 }
