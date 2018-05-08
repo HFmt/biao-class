@@ -99,6 +99,7 @@ function render_pagination(config_page, amount, fn) {
 
 function get_page_amount(amount) {
   page_amount = Math.ceil(amount/limit);
+  return page_amount;
 }
 
 function set_amount(){
@@ -156,6 +157,7 @@ module.exports = {
   limit: limit,
   user_list: user_list,
   placeholer: placeholer,
+  page_amount: page_amount,
   previous: previous,
   pagination_start: pagination_start,
   pagination_end: pagination_end,

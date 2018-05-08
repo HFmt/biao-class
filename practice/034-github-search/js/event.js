@@ -63,7 +63,7 @@ function detect_end_page() {
     el.pagination_end.addEventListener('click', function (){
         console.log('点击尾页-page_amount', el.page_amount);
         el.config.page = el.page_amount ;
-        // search.sear_user(keyword, el.config);
+        search.sear_user(keyword, el.config);
     });
 }
 
