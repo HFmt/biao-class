@@ -10,7 +10,7 @@ let form = document.getElementById('search-form')
   , pagination_start = document.getElementById('pagination-start')
   , pagination = document.getElementById('pagination')
   , pagination_end = document.getElementById('pagination-end')
-  , page_amount
+  , page_amount = null
   , max_page = 5
   , page = 1
   , limit = 5
@@ -89,9 +89,7 @@ function render_pagination(config_page, amount, fn) {
 
           btn.addEventListener('click', (function make_function() {
             return function () {  
-              console.log('i', i);
-              page = i;
-              config.page = page;
+              config.page = i;
               fn(input.value, config_page);
             }
           })());
@@ -99,8 +97,8 @@ function render_pagination(config_page, amount, fn) {
 }
 
 function get_page_amount(amount) {
-  page_amount = Math.ceil(amount/limit);
-  return page_amount;
+  return page_amount = Math.ceil(amount / limit);
+  
 }
 
 function set_amount(){
@@ -183,8 +181,10 @@ module.exports = {
   reset_page: reset_page,
   reset_user_list: reset_user_list,
 
+  //渲染页码
   render_pagination: render_pagination,
 
+  //初始页面对象
   config: config,
 
   show_start_end_page_btn: show_start_end_page_btn,
