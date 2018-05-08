@@ -11,6 +11,8 @@ function add_events() {
     detect_submit();
     detect_next_page();
     detect_previous_page();
+    detect_start_page();
+    detect_end_page();
 }
 
 /*监听搜索表单事件*/
@@ -49,6 +51,23 @@ function detect_previous_page() {
         search.sear_user(keyword, el.config);
     });
 }
+
+function detect_start_page() {
+    el.pagination_start.addEventListener('click', function(){
+        el.config.page = 1;
+        search.sear_user(keyword, el.config);
+    });
+}
+
+function detect_end_page() {
+    el.pagination_end.addEventListener('click', function (){
+        console.log('点击尾页-page_amount', el.page_amount);
+        el.config.page = el.page_amount ;
+        // search.sear_user(keyword, el.config);
+    });
+}
+
+
 
 module.exports = {
     add_events: add_events,

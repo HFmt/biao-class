@@ -20,14 +20,22 @@ function sear_user(keyword, config) {
     send.send('get', url, function (data) {
         el.render_user_list(data);
         el.end_prompt_state(config.page, data);
+
         el.render_pagination(config.page, data, sear_user);
-        console.log('config.page', config.page);
-        console.log(url);
+    
+        // console.log('page_amount', el.get_page_amount(data.total_count));
+        // detect_end_page(el.get_page_amount(data.total_count));
     },config);
    
 }
 
 
+// function detect_end_page(amount) {
+//     el.pagination_end.addEventListener('click', function (){
+//         el.config.page = amount ;
+//         sear_user(el.input.value, el.config);
+//     });
+// }
 
 
 module.exports = {
