@@ -145,7 +145,7 @@ function reset_user_list() {
 
 function show_start_end_page_btn() {
     pagination_start.hidden = false;
-    pagination_end.hidden = false
+    pagination_end.hidden = false;
 }
 
 module.exports = {
