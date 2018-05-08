@@ -115,12 +115,14 @@ function end_prompt_state(page, amount) {
     if(config.page > 1){
       previous.hidden = false;
     }
-    else(previous.hidden = true);
+    else
+    previous.hidden = true;
     next.hidden = false;
     placeholer.hidden = true;
+  
   }
   else{
-    previous.hidden = true;
+    previous.hidden = false;
     next.hidden = true;
     placeholer.hidden = false;
   }
@@ -139,6 +141,11 @@ function reset_page(params) {
 
 function reset_user_list() {
   user_list.innerHTML = '';
+}
+
+function show_start_end_page_btn() {
+    pagination_start.hidden = false;
+    pagination_end.hidden = false
 }
 
 module.exports = {
@@ -176,4 +183,6 @@ module.exports = {
   render_pagination: render_pagination,
 
   config: config,
+
+  show_start_end_page_btn: show_start_end_page_btn,
 }

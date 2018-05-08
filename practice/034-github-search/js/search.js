@@ -20,9 +20,8 @@ function sear_user(keyword, config) {
     send.send('get', url, function (data) {
         el.render_user_list(data);
         el.end_prompt_state(config.page, data);
-
         el.render_pagination(config.page, data, sear_user);
-    
+        el.show_start_end_page_btn();
         // console.log('page_amount', el.get_page_amount(data.total_count));
         // detect_end_page(el.get_page_amount(data.total_count));
     },config);
