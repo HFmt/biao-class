@@ -30,7 +30,7 @@
       font-size: 0;
     }
     #search-input,
-    #search-button{
+    button{
       font-size: 15px;
       padding: 10px;
       line-height: 1.1;
@@ -67,6 +67,20 @@
       padding: 0;
       font-size: 0;
     }
+    .tolbar{
+      position: fixed;
+      right: 0;
+      bottom: 0;
+     
+    }
+    #top{
+      padding: 10px;
+      background: #000;
+      color: #fff;
+    }
+    .active{
+      border: 1px solid yellow;
+    }
   </style>
 </head>
 <body>
@@ -77,30 +91,97 @@
         <button type="submit" id="search-button">搜索</button>
     </form>
     <div id="user-list">
-        <div class="user">
-            <a class="avatar" target="_blank" href="${user.html_url}">
-              <img src="#">
-            </a>
-            <div class="info">
-              <div class="username">aaaaaaaaaaaa</div>
-              <div><a target="_blank" href="${user.html_url}">aaaaaa</a></div>
-            </div>
-          </div>
+       
     </div>
+    <div id="pagination-container">
+      <div id="pagination">
+      </div>
+    </div>
+  </div>
+  <div class="tolbar">
+    <button id="top">Top</button>
   </div>
 </body>
 <script>
-    let search_form = document.getElementById('search-form')
+  ;(function () {
+    'use strict';
+
+      let search_form = document.getElementById('search-form')
       , search_input = document.getElementById('search-input')
       , user_list = document.getElementById('user-list')
-
+      , pagination = document.getElementById('pagination')
+      , come_top = document.getElementById('top')
+      , page = 1
+      , limit = 5
+      , amount
+      , page_amount
+      , max_page = 5
+      ;
 
       init();
-
+  
       function init() {
         on_form_submit();
+        detect_click_top();
+      }
+      
+      function render_pagination() {
+        pagination.innerHTML = '';
+        get_page_amount();
+        let start_page 
+          , middle = Math.ceil(max_page/2)
+          , end_page = max_page
+        ;
+
+        if(page <= middle){
+          start_page = 1;
+          end_page = max_page;
+        }
+        else if(page >= page_amount - middle){
+          start_page = page_amount - max_page;
+          end_page = page_amount;
+        }
+        else{
+          start_page = page - middle + 1;
+          end_page = page + middle - 1;
+        }
+
+        if(start_page <1){
+          start_page = 1;
+        }
+        if(end_page > page_amount){
+          end_page = page_amount;
+        }
+
+        for (let i = start_page; i<=end_page; i++){
+          let btn = document.createElement('button');
+          btn.innerText = i;
+          pagination.appendChild(btn);
+          if(page == i){
+            console.log(btn,page);
+            btn.classList.add('active');
+          }
+          btn.addEventListener('click', (function make_function() {
+            return function () {  
+              page = i;
+              search_user(search_input.value);
+            }
+          })());
+        }
       }
 
+
+
+      function get_page_amount() {
+        page_amount = Math.ceil(amount/limit)
+      }
+      
+      function detect_click_top() {
+        come_top.addEventListener('click', function (e) {
+          window.scrollTo(0, 0);
+      });
+      }
+     
       function on_form_submit() {
         search_form.addEventListener('submit', function(e){
           e = e||window.event;
@@ -110,9 +191,12 @@
       }
       
       function search_user(keyword) {
-        send('get', 'https://api.github.com/users/' + keyword, function (result){
-          console.log(result);
-          document.write("<img src="+result.avatar_url+">")
+        let link = 'https://api.github.com/search/users?q=' + keyword + '&page=' + page + '&per_page=' + limit
+        send('get', link, function (result){
+          amount = result.total_count;
+          render(result);
+          render_pagination();
+          console.log(link);
         });
       }
 
@@ -126,5 +210,24 @@
           on_success(data);
         });
       }
+
+      function render(data) {
+      let html = '';
+      data.items.forEach(function (user) {
+        html += 
+          `<div class="user">
+          <a class="avatar" target="_blank" href="${user.html_url}">
+            <img src="${user.avatar_url}">
+          </a>
+          <div class="info">
+            <div class="username">${user.login}</div>
+            <div><a target="_blank" href="${user.html_url}">${user.html_url}</a></div>
+          </div>
+        </div>`
+        user_list.innerHTML = html
+       });
+      }
+  })();
+  
 </script>
 </html>

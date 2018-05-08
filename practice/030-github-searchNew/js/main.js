@@ -114,7 +114,7 @@ function render() {
 function render_pagination() {
     clear_pagination();
     get_page_amout();
-        let start_page = 1
+        let start_page
             , end_page
             , middle = Math.ceil(max_page / 2)
             , reaching_left = current_page <= middle

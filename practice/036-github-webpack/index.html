@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>GitHub用户搜索</h1>
+        <form id="search-form">
+          <input id="search-input"
+                 type="search"
+                 autofocus
+                 autocomplete="off"
+                 placeholder="请输入用户名"
+          >
+          <button type="submit">搜索</button>
+          <div id="history-list" hidden></div>
+        </form>
+        <div id="amount"></div>
+        <div id="user-list"></div>
+        <div class="tac" id="placeholer" hidden>谋了 - . -</div>
+        <div id="pagination-container" hidden>
+          <div>
+            <button id="pagination-start" class="pager">首页</button>
+          </div>
+          <div id="pagination"></div>
+          <div>
+            <button id="pagination-end" class="pager">末页</button>
+          </div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button id="top">Top</button>
+      </div>
+</body>
+<script src="dist/build.js"></script>
+</html>
