@@ -43,13 +43,13 @@ function render_user_list(user_list_result) {
     user_list.innerHTML = html;
   });
 }
-console.log('search之前-page_amount', page_amount);
+
+
 function render_pagination(config_page, amount, fn) {
 
   pagination.innerHTML = '';
 
-  get_page_amount(amount.total_count);
-  console.log('search之后-page_amount', page_amount);
+  set_page_amount(amount.total_count);
         let start_page 
           , middle = Math.ceil(max_page/2)
           , end_page = max_page
@@ -96,14 +96,15 @@ function render_pagination(config_page, amount, fn) {
         }
 }
 
-function get_page_amount(amount) {
+function set_page_amount(amount) {
   return page_amount = Math.ceil(amount / limit);
   
 }
 
-function set_amount(){
-
+function get_page_amount(){
+  return page_amount;
 }
+
 
 function ready_prompt_state() {
   next.disabled = true;
@@ -176,6 +177,7 @@ module.exports = {
   //判断输入框是否为无效值（空格，空字符）
   replace_value: replace_value,
   //得到搜索到的总页数
+  set_page_amount: set_page_amount,
   get_page_amount: get_page_amount,
   //重置页码和用户列表HTML
   reset_page: reset_page,

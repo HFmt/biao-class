@@ -21,9 +21,18 @@ function set_age(val) {
     return age = val;
 }
 
+function a(a) {
+    set_age(22);
+}
+
+setTimeout(function(){
+    a(a);
+},0);
+
 module.exports = {
     get_name: get_name,
     get_age: get_age,
     set_name: set_name,
     set_age: set_age,
+    age: age,
 }
