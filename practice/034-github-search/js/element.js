@@ -43,18 +43,19 @@ function render_user_list(user_list_result) {
     user_list.innerHTML = html;
   });
 }
-
+console.log('search之前-page_amount', page_amount);
 function render_pagination(config_page, amount, fn) {
 
   pagination.innerHTML = '';
 
   get_page_amount(amount.total_count);
+  console.log('search之后-page_amount', page_amount);
         let start_page 
           , middle = Math.ceil(max_page/2)
           , end_page = max_page
         ;
         
-  console.log('search之后-page_amount', page_amount);
+  
 
         if(config_page <= middle){
           start_page = 1;
@@ -99,7 +100,7 @@ function render_pagination(config_page, amount, fn) {
 
 function get_page_amount(amount) {
   page_amount = Math.ceil(amount/limit);
-  return page_amount;
+  // return page_amount;
 }
 
 function set_amount(){
