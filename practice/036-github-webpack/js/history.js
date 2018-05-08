@@ -52,9 +52,9 @@
             return;
 
           /*上屏*/
-          set_keyword(this.dataset.history);
+          share.set_keyword(this.dataset.history);
           /*搜搜*/
-          search();
+          search.search();
         });
 
         /*当删除按钮点击时*/

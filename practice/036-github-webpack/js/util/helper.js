@@ -7,7 +7,7 @@
           return false;
   
         arr.splice(shit_index, 1);
-        return true;
+          return true;
       }
 
       module.exports = {

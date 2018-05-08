@@ -100,7 +100,7 @@ function render_pagination(config_page, amount, fn) {
 
 function get_page_amount(amount) {
   page_amount = Math.ceil(amount/limit);
-  // return page_amount;
+  return page_amount;
 }
 
 function set_amount(){
