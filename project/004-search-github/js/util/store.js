@@ -1,10 +1,9 @@
-;(function () {
-    'use strict';
+
 
         /*往冰箱存*/
-  function store_set(key, val) {
+  function store_set(key, arr) {
     /*加保鲜膜（JSON化）*/
-    let json = JSON.stringify(val);
+    let json = JSON.stringify(arr);
     /*存冰箱（状态稳定不轻易改变）*/
     localStorage.setItem(key, json);
   }
@@ -21,4 +20,3 @@
     store_set: store_set,
     store_get: store_get,
   }
-})();

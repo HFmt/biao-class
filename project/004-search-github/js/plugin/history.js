@@ -1,10 +1,16 @@
+
+//获取模块文件
 let helper = require('../util/helper')
+  , store = require('../util/store')
+  ;
+  
 let list= []  // list 是一个数组
   , el         // el 是 history 容器
-  , click_history   // click_history 是触发点击 history 的方法
-  , click_delete // click_delete 是触发点击删除 history 的方法
+  , click_history   // 回调函数 触发点击 history 的方法
+  , click_delete // 回调函数  触发点击删除 history 的方法
   ; 
 
+  //模块出口
 let output = {
     init: init
   , add: add
@@ -82,12 +88,12 @@ function render(){
 
 //  把 list 数组 存储进 localStorage 里面 [用 JSON.stringify() 方法存储]
 function sync_to_sore(){
-    localStorage.setItem('Asam', JSON.stringify(list));
+    store.store_set('asam', list);
 }
 
 // 取出 localStorage 里面的 list 数组 [用 JSON.parse() 方法取出]
 function sync_to_ladle(){
-    list =  JSON.parse(localStorage.getItem('Asam'))  || [];
+    list = store.store_get('asam') || [];
 }
 
 function show_histoty(){
