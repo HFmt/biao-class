@@ -12,11 +12,9 @@ let form = document.getElementById('search-form')
   , pagination_end = document.getElementById('pagination-end')
   , page_amount = null
   , max_page = 5
-  , page = 1
-  , limit = 5
   , config = {
-    page: page,
-    limit: limit,
+    page: 1,
+    limit: 5,
     }
   ;
 
@@ -97,7 +95,7 @@ function render_pagination(config_page, amount, fn) {
 }
 
 function set_page_amount(amount) {
-  return page_amount = Math.ceil(amount / limit);
+  return page_amount = Math.ceil(amount / config.limit);
   
 }
 
@@ -112,23 +110,26 @@ function ready_prompt_state() {
 }
 
 function end_prompt_state(page, amount) {
-  if(page * limit < amount.total_count){
+  if(page * config.limit < amount.total_count){
     if(config.page > 1){
       previous.hidden = false;
     }
-    else
+    else{
+      previous.hidden = true;
+      next.hidden = false;
+      placeholer.hidden = true;
+    }
+  }
+  else if(Math.ceil(amount.total_count/config.limit) == 1){
     previous.hidden = true;
-    next.hidden = false;
-    placeholer.hidden = true;
-  
+    next.hidden = true;
+    placeholer.hidden = false;
   }
   else{
     previous.hidden = false;
     next.hidden = true;
     placeholer.hidden = false;
   }
-  previous.disabled = false;
-  next.disabled = false;
 }
 
 function replace_value(val) {
@@ -153,8 +154,6 @@ module.exports = {
   form: form,
   input: input,
   next: next,
-  page: page,
-  limit: limit,
   user_list: user_list,
   placeholer: placeholer,
   page_amount: page_amount,
