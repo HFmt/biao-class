@@ -7,14 +7,18 @@
       ;
     history.init({
         el: 'history-list'
-      , on_history: function (key, e) {
-            console.log(key);
-      }
-      , on_delete: function (key, e) {
-            console.log(key);
-      }
+      , on_history: on_history
+      , on_delete: on_delete
     });
+
+    function on_history(key, e) {
+        console.log(key);
+    }
     
+    function on_delete(key, e) {
+        console.log(key);
+    }
+
     search_form.addEventListener('submit', function (e) {
         e.preventDefault();
 
