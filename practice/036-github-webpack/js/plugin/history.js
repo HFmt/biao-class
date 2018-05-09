@@ -27,7 +27,8 @@
     
 
     function clear_history() {
-        
+        list_history = [];
+        reander_history();
     }
 
     function remove_history(keyword) {
