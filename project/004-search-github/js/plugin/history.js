@@ -1,4 +1,4 @@
-
+let helper = require('../util/helper')
 let list= []  // list 是一个数组
   , el         // el 是 history 容器
   , click_history   // click_history 是触发点击 history 的方法
@@ -15,6 +15,7 @@ let output = {
 
 function init(config){
     el = config.el;
+    input = config.input
     click_history = config.click_history;
     click_delete = config.click_delete;
 
@@ -24,17 +25,20 @@ function init(config){
 
 // 删除 history 的方法
 function remove(keyword){               
-    if(list.indexOf(keyword) == -1)     // 判断传进的 history 是否在 list 数组里面
-        return false;                   
+    helper.find_and_delete(list, keyword);    // 判断传进的 history 是否在 list 数组里面, 在里面就删除对应的 history
 
-    list.splice(list.indexOf(keyword), 1); //在里面就删除对应的 history
     render();                          
-    sync_to_sore();                     
+    sync_to_sore();
+    if(el.innerHTML == '')
+    hide_histoty();                    
 }
 
 // 把 history 添加进 list 数组里面
 function add(keyword){
-    list.push(keyword);
+    sync_to_sore();
+    helper.find_and_delete(list, keyword); 
+
+    list.unshift(keyword);
     render();
     sync_to_sore();
 }
@@ -70,6 +74,9 @@ function render(){
             remove(keyword);
         }, 0);
         });
+
+        if(el.innerHTML == '')
+        hide_histoty();
     });
 }
 

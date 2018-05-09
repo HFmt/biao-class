@@ -33,8 +33,7 @@ function detect_submit() {
 }
 
 function detect_next_page() {
-    el.next.addEventListener('click', function(){
-        console.log(1);
+    el.next.addEventListener('click', function () {
         el.config.page++;
         search.sear_user(keyword, el.config);
     });
@@ -42,6 +41,7 @@ function detect_next_page() {
 
 function detect_previous_page() {
     el.previous.addEventListener('click', function () {
+        console.log(1);
         if(el.config.page <= 1){
             return;
         }

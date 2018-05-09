@@ -105,8 +105,7 @@ function get_page_amount(){
 
 
 function ready_prompt_state() {
-  // next.hidden = true;
-  placeholer.disabled = true;
+  placeholer.hidden = true;
 }
 
 function end_prompt_state(page, amount) {

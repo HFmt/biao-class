@@ -29,7 +29,7 @@ function search_submit(){
             return;
 
         history.add(search_input.value);
-        // history.show_histoty();
+        history.show_histoty();
     });
 }
 
@@ -46,10 +46,8 @@ function click_input(){
 
 function click_DOM(){
     document.addEventListener('click', function (e) {
-        
             if(e.target.closest('#search-form') || e.target.closest('#history-list'))
             return;
-          
             history.hide_histoty();
        
     });

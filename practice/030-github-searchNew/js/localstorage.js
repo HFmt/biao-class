@@ -40,11 +40,8 @@
         // console.log(e.target.closest('#search-input'));
         console.log(e.target.closest('#history-list'));
         if(e.target.closest('#search-input') || 
-           e.target.closest('#history-list')){
-            console.log('触发条件')
+           e.target.closest('#history-list'))
             return
-        }
-        console.log('没有触发条件')
         el_history_list.hidden = true;
     });
     
