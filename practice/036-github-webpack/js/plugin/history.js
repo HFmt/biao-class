@@ -4,32 +4,51 @@
       , helper = require('../util/helper.js')
       ;
 
-    let list = []
+    let list_history = []
       , el
-      , config
       , on_history
       , on_delete
       ;
 
-    function init(config) {
+    function init(config){
         el = document.getElementById(config.el);
-        on_history = config.on_history;
+        on_history = config.on_history ;
         on_delete = config.on_delete;
     }
 
-   
-   
-  
+    function hide_history() {
+        
+    }
+
+    function show_history() {
+        
+    }
 
     
 
-    function render_history() {
-       el.innerHTML  = '';
+    function clear_history() {
+        
+    }
 
-       list.forEach(function (item){
-            let el_history = document.createElement('div');
+    function remove_history(keyword) {
+        helper.find_and_delete(list_history, keyword);
+        sync_to_store();
+        reander_history();
+    }
 
-            el_history.innerHTML = 
+    function add_history(keyword) {
+        sync_to_ladle();
+        helper.find_and_delete(list_history, keyword);
+        list_history.unshift(keyword);
+        sync_to_store();
+        reander_history();
+    }
+
+    function reander_history() {
+        el.innerHTML = '';
+        list_history.forEach(function (item){
+            let history = document.createElement('div');
+            history.innerHTML = 
                 `
                 <div class="text">${item}</div>
                 <div class="tool">
@@ -37,66 +56,37 @@
                 </div>
                 `
             ;
-            el.appendChild(el_history);
+            el.appendChild(history);
+            let delete_history = history.getElementsByClassName('delete')[0];
 
-            el_history.addEventListener('click', function (e) {
-                if (on_history)
+            history.addEventListener('click', function (e){
+                if(on_history)
                 on_history(item, e);
             });
-            let delete_histoty = el_history.getElementsByClassName('delete')[0];
 
-            delete_histoty.addEventListener('click', function (e){
+            delete_history.addEventListener('click', function (e) {
                 if(on_delete)
                 on_delete(item, e);
 
                 remove_history(item);
-            });
-       });
+            })
+        });
     }
 
-  
-
-    
-    function remove_history(keyword) {
-        helper.find_and_delete(list, keyword); //判断是否有重复的值
-        
-        sync_to_store();  //把值重新添加到历史纪录
-
-        render_history();   //重新渲染页面历史纪录
-    }
-
-   
-    function clear_history() {
-        list = [];
-
-        render_history();
-    }
-
-    function add_history(keyword) {
-        
-        helper.find_and_delete(list, keyword); //判断是否有重复的值
-      
-        list.unshift(keyword);   //从头部添加历史纪录
-       
-        sync_to_store();  //把值重新添加到历史纪录
-
-        render_history();   //重新渲染页面历史纪录
-    }
-    
     function sync_to_ladle() {
-        list = store.store_get('history', list) || [];
+        list_history = store.store_get('history', list_history) || [];
     }
 
     function sync_to_store() {
-        store.store_set('history', list);
+        store.store_set('history', list_history);
     }
-
     module.exports = {
-        init: init,
-        sync_to_ladle: sync_to_ladle,
-        sync_to_store: sync_to_store,
-        add_history: add_history,
-        remove_history: remove_history,
-        clear_history: clear_history,
+        add_history: add_history
+      , remove_history: remove_history
+      , clear_history: clear_history
+      , reander_history: reander_history
+      , show_history: show_history
+      , hide_history: hide_history
+      , init: init
     }
 })();

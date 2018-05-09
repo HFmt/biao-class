@@ -1,103 +1,122 @@
-function goto_page(page) {
+<script src="">
+       let store = require('../util/store.js')
+      , helper = require('../util/helper.js')
+      ;
 
-    var max_user_limit_reached = page * el.limit > el.MAX_LIMIT;
+    let list = []
+      , el
+      , config
+      , on_history
+      , on_delete
+      ;
 
-    if (max_user_limit_reached) {
-      el.current_page = Math.floor(el.MAX_LIMIT / el.limit);
-    } else {
-      el.current_page = page;
+    function init(config) {
+        el = document.getElementById(config.el);
+        on_history = config.on_history;
+        on_delete = config.on_delete;
     }
 
-    search();
-  }
+   
+   
+  
 
+    
 
-function render_pagination() {
-    pagination.show_pagination();
-    pagination.clear_pagination()
-    share.get_page_amount();
+    function render_history() {
+       el.innerHTML  = '';
 
-    let start
-    , end
-    , middle = Math.ceil(el.max_page_btn / 2)
-    , reaching_left = el.current_page <= middle
-    , reaching_right = el.current_page >= el.page_amount - middle;
-    ;
+       list.forEach(function (item){
+            let el_history = document.createElement('div');
 
+            el_history.innerHTML = 
+                `
+                <div class="text">${item}</div>
+                <div class="tool">
+                <span class="delete">删除</span>
+                </div>
+                `
+            ;
+            el.appendChild(el_history);
 
-    if (reaching_left) {
-    /*
-    当前页在左边
-    [...].....
-    */
-    /*设按钮开始为1*/
-    start = 1;
+            el_history.addEventListener('click', function (e) {
+                if (on_history)
+                on_history(item, e);
+            });
+            let delete_histoty = el_history.getElementsByClassName('delete')[0];
 
-    /*设结束为可视按钮最大值*/
-    end = el.max_page_btn;
-    } else if (reaching_right) {
-    /*
-    当前页在右边
-    .....[...]
-    */
-    /*设按钮开始为总页数减去可视按钮最大值*/
-    start = el.page_amount - el.max_page_btn;
-    /*设按钮结束为总页数*/
-    end = el.page_amount;
-    } else {
-    /*
-    当前页在中间
-    ...[...]...
-    */
+            delete_histoty.addEventListener('click', function (e){
+                if(on_delete)
+                on_delete(item, e);
 
-    /*加1或减1是为了排除中间按钮*/
-
-    /*设按钮开始为当前页减去可视按钮最大值的一半*/
-    start = el.current_page - middle + 1;
-    /*设按钮结束为当前页加上可视按钮最大值的一半*/
-    end = el.current_page + middle - 1;
+                remove_history(item); //删除选中的值
+            });
+       });
     }
 
-    /*如果出于任何诡异的原因导致开始按钮小于1就将其复位为1*/
-    if (start < 1) {
-    start = 1;
+  
+
+    
+    function remove_history(keyword) {
+        helper.find_and_delete(list, keyword); //判断是否有重复的值
+        
+        sync_to_store();  //把值重新添加到历史纪录
+
+        render_history();   //重新渲染页面历史纪录
     }
 
-    /*如果出于任何诡异的原因导致结束按钮大于页面总数就将其复位为总数*/
-    if (end > el.page_amount) {
-    end = el.page_amount;
+   
+    function clear_history() {
+        list = [];
+
+        render_history();
     }
 
-    /*通过指定开始和结束动态的追加翻页按钮*/
-    for (var i = start; i <= end; i++) {
-    var num = i;
+    function add_history(keyword) {
+        
+        helper.find_and_delete(list, keyword); //判断是否有重复的值
+      
+        list.unshift(keyword);   //从头部添加历史纪录
+       
+        sync_to_store();  //把值重新添加到历史纪录
 
-    /*生成btn按钮*/
-    var btn = document.createElement('button');
-    /*指定它是第几页的按钮*/
-    btn.innerText = num;
-
-    /*给所有页码加pager类，方便以后指定样式*/
-    btn.classList.add('pager');
-
-    /*如果当前页等于正在迭代的按钮，就给按钮加一个激活的类，
-    不然用户不知道自己当前在第几页*/
-    if (el.current_page == num) {
-        btn.classList.add('active');
+        render_history();   //重新渲染页面历史纪录
+    }
+    
+    function sync_to_ladle() {
+        list = store.store_get('history', list) || [];
     }
 
-    /*追加到页码容器的后面*/
-    el.pagination.appendChild(btn);
-
-    btn.addEventListener('click', make_function_on_page_change(num));
+    function sync_to_store() {
+        store.store_set('history', list);
     }
-}
 
-function make_function_on_page_change(num) {
-    return function (e) {
-    /*让current_page（当前页面）等于点击的按钮的序号*/
-    el.current_page = num;
-    /*然后再搜索，不然的话永远都在取第1页的数据*/
-    search();
-    };
-}
+    module.exports = {
+        init: init,
+        sync_to_ladle: sync_to_ladle,
+        sync_to_store: sync_to_store,
+        add_history: add_history,
+        remove_history: remove_history,
+        clear_history: clear_history,
+    }
+</script>
+
+<script>
+     let history = require('./history');
+
+history.init({
+    el: 'history-list',
+    on_history: function (key, e) {
+        console.log(key);
+    },
+    on_delete: function (key, e) {
+       console.log(key);
+   }
+})
+
+
+ 
+       history.add_history('Asam1');
+       history.add_history('Asam2');
+       history.add_history('Asam3');
+       history.add_history('Asam4');
+</script>

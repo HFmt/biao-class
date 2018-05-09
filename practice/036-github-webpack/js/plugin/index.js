@@ -1,26 +1,34 @@
 ;(function (){
 'use strict';
- let history = require('./history');
+    let history = require('./history.js');
 
- history.init({
-     el: 'history-list',
-     on_history: function (key, e) {
-         console.log(key);
-     },
-     on_delete: function (key, e) {
-        console.log(key);
-    }
- })
-
-
-  
-        history.add_history('Asam1');
-        history.add_history('Asam2');
-        history.add_history('Asam1');
-        history.add_history('Asam2');
-      
+    let search_form = document.getElementById('search-form')
+      , search_input = document.getElementById('search-input')
       ;
-        // history.show_history();
-        // history.hide_history();
-        // history.clear_history();
+    history.init({
+        el: 'history-list'
+      , on_history: function (key, e) {
+            console.log(key);
+      }
+      , on_delete: function (key, e) {
+            console.log(key);
+      }
+    });
+    
+    search_form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        history.add_history(search_input.value);
+    });
+
+    search_input.addEventListener('click', function (e) {
+
+        history.add_history(search_input.value);
+    });
+    
+    // remove_history();
+    // clear_history();
+    // reander_history();
+    // show_history();
+    // hide_history(); 
 })();
