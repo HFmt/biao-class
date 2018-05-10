@@ -157,14 +157,11 @@ function render_pagination() {
 }
 
 el_pagination.addEventListener('click', function (e) {
-    if (e.target && e.target.nodeName.toUpperCase() == 'BUTTON') {
+    if (!(e.target && e.target.nodeName.toUpperCase() == 'BUTTON'))
+        return;
         current_page = parseInt(e.target.dataset.page);
         finde_user();
         console.log(current_page);
-    }
-    else {
-        return;
-    }   
 });
     
 

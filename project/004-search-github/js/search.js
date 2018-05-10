@@ -1,7 +1,12 @@
 
-let el = require('./element.js')
-  , send = require('./send.js')
-  ;  
+let send = require('./send')
+  , el = require('./element')
+  , pagination = require('./pagination')
+  ;
+
+let output = {
+    sear_user: sear_user
+}
 
 function sear_user(keyword, config) {
     let def
@@ -20,12 +25,10 @@ function sear_user(keyword, config) {
     send.send('get', url, function (data) {
         el.render_user_list(data);
         el.end_prompt_state(config.page, data);
-        el.render_pagination(config.page, data, sear_user);
+        pagination.render_pagination(config.page, data);
         el.show_start_end_page_btn();
     },config);
    
 }
 
-module.exports = {
-    sear_user: sear_user,
-}
+module.exports = output;

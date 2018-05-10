@@ -37,9 +37,11 @@
 
         for(let i=0; i< oAS.length; i++){
             let oA= oAS[i];
+           
         oA.addEventListener('click',function(event){
             event.preventDefault();
-            oA.innerHTML='Asam'
+            console.log(i);
+            oA.innerHTML='Asam'+i;
         });
 
         }

@@ -1,11 +1,12 @@
 
 //获取模块文件
-let helper = require('../util/helper')
-  , store = require('../util/store')
+let helper = require('./util/helper')
+  , store = require('./util/store')
   ;
   
-let list= []  // list 是一个数组
+let list= []  // list 是一个 history 存值数组
   , el         // el 是 history 容器
+  , input
   , click_history   // 回调函数 触发点击 history 的方法
   , click_delete // 回调函数  触发点击删除 history 的方法
   ; 
@@ -21,7 +22,7 @@ let output = {
 
 function init(config){
     el = config.el;
-    input = config.input
+    input = config.input;
     click_history = config.click_history;
     click_delete = config.click_delete;
 
@@ -68,14 +69,20 @@ function render(){
         let del_history = el_history.getElementsByClassName('delete')[0];
 
         el_history.addEventListener('click', function(e){
-            if(click_history)
-            click_history(keyword, e);
+            e.stopPropagation();
+            if(click_history){
+                
+                input.value = keyword;
+                click_history(keyword, e);
+            }
+
+            
         });
 
         del_history.addEventListener('click', function(e){
+            e.stopPropagation();
             if(click_delete)
             click_delete(keyword, e);
-
         setTimeout(function (){
             remove(keyword);
         }, 0);
