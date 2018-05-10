@@ -1,7 +1,4 @@
 
-
-let el = require('./element');
-
 let pagination
   , max_page
   , set_page_amount
