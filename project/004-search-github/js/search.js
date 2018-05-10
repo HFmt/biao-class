@@ -8,6 +8,13 @@ let output = {
     sear_user: sear_user
 }
 
+pagination.init({
+    pagination: el.pagination
+  , max_page: el.max_page
+  , set_page_amount: el.set_page_amount
+  , get_page_amount: el.get_page_amount
+});
+
 function sear_user(keyword, config) {
     let def
       , url

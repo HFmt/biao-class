@@ -38,6 +38,8 @@ function detect_submit() {
     });
 }
 
+
+
 //下一页事件
 function detect_next_page() {
     el.next.addEventListener('click', function () {
