@@ -7,12 +7,12 @@
     pagination: pagination
   , amount: 100
   , limit: 10
-  , range_page: 5
-  , current_page: 4
-  , on_change_current_page: on_change_current_page
+  , page_range: 5
+  , page_current: 1
+  , on_change_page_current: on_change_page_current
  });
 
- function on_change_current_page(current_page, e){
+ function on_change_page_current(current_page, e){
      console.log(current_page);
  }
  

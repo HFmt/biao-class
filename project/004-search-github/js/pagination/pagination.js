@@ -1,16 +1,16 @@
 
 let pagination_wrap
   , config
-  , amount_page
-  , range_page
+  , page_amount
+  , page_range
   , pagination_list
   ; 
 
   let default_config = {
       amount: null
     , limit: 5
-    , range_page:5
-    , current_page: 1
+    , page_range:5
+    , page_current: 1
   }
 
 
@@ -24,8 +24,8 @@ function init(init_config){
     config =Object.assign({}, default_config, init_config);
     
     render_pagination_structure();
-    calc_amount_page();
-    change_current_page(config.current_page);
+    calc_page_amount();
+    change_page_current(config.page_current);
     render_pagination_list();
     // disable();
 }
@@ -65,15 +65,15 @@ function render_pagination_structure(){
             , last_btn = e.target.classList.contains('pagination-last')
             ;
             if(first_btn)
-                change_current_page(1);
+                change_page_current(1);
             else if(prev_btn)
-                change_current_page(config.current_page-1);
+                change_page_current(config.page_current-1);
             else if(item_btn)
-                change_current_page(parseInt(e.target.dataset.page));
+                change_page_current(parseInt(e.target.dataset.page));
             else if(next_btn)
-                change_current_page(config.current_page+1);
+                change_page_current(config.page_current+1);
             else if(last_btn)
-                change_current_page(amount_page);
+                change_page_current(page_amount);
 
         render_pagination_list();
     }) ;
@@ -82,7 +82,7 @@ function render_pagination_structure(){
 function render_pagination_list(){
     pagination_list.innerHTML = '';
 
-    let between = calc_start_and_end_page()
+    let between = calc_page_range()
       , start_page = between.start_page
       , end_page = between.end_page
       ;
@@ -92,59 +92,59 @@ function render_pagination_list(){
         btn.innerHTML = i;
         btn.classList.add('pagination-item');
         btn.dataset.page = i;
-        if(config.current_page == i)
+        if(config.page_current == i)
         btn.classList.add('active');
         
         pagination_list.appendChild(btn);
     }
 }
 
-function calc_start_and_end_page(){
+function calc_page_range(){
     let start_page 
-      , middle = Math.ceil(config.range_page / 2)
+      , middle = Math.ceil(config.page_range / 2)
       , end_page
   ;
   
   //可视页码在左边
-  if(config.current_page <= middle){ 
+  if(config.page_current <= middle){ 
     start_page = 1;
-    end_page = config.range_page;
+    end_page = config.page_range;
   }
 
   //可视页码在右边
-  else if(config.current_page >= amount_page - middle){ 
-    start_page = amount_page - config.range_page + 1;
-    end_page = amount_page;
+  else if(config.page_current >= page_amount - middle){ 
+    start_page = page_amount - config.page_range + 1;
+    end_page = page_amount;
   }
 
   //可视页码在中间
   else{   
-    start_page = config.current_page - middle + 1;
-    end_page = config.current_page + middle - 1;
+    start_page = config.page_current - middle + 1;
+    end_page = config.page_current + middle - 1;
   }
 
   return {start_page: start_page, end_page: end_page}
 }
 
-function change_current_page(current_page){
-    let flag_page = config.current_page;
+function change_page_current(page_current){
+    let flag_page = config.page_current;
 
-    config.current_page = current_page;
+    config.page_current = page_current;
 
-    if(config.current_page > amount_page)
-        config.current_page = amount_page;
-    else  if(config.current_page < 1)
-        config.current_page = 1; 
+    if(config.page_current > page_amount)
+        config.page_current = page_amount;
+    else  if(config.page_current < 1)
+        config.page_current = 1; 
 
-    if(config.current_page == flag_page)
+    if(config.page_current == flag_page)
         return; 
        
-    if(config.on_change_current_page)
-        config.on_change_current_page(config.current_page);
+    if(config.on_change_page_current)
+        config.on_change_page_current(config.page_current);
 }
 
-function calc_amount_page(){
-   return amount_page =Math.ceil(config.amount / config.limit) ;
+function calc_page_amount(){
+   return page_amount =Math.ceil(config.amount / config.limit) ;
 }
 
 module.exports = output;
