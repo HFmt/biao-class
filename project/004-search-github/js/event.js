@@ -39,10 +39,11 @@ function detect_submit() {
             if(regular.replace_value(keyword))
                 return;
 
-            el.reset_page();
-            el.reset_user_list();  
+            share.reset_page();
+            share.reset_user_list(el.user_list);  
             history.add(el.input.value);
             history.show_histoty();
+            pagination.hide();
             search.search_user(on_search_succeed);
     });
 }
@@ -51,7 +52,7 @@ function on_search_succeed(data){
     share.set_amount(data.total_count);
     share.set_user_list(data.items);
     pagination.set_amount_and_limit(share.get_amount(), share.get_limit());
-    el.reset_user_list();
+    share.reset_user_list(el.user_list); 
     render_user_list();
 }
 
@@ -59,10 +60,6 @@ function on_search_succeed(data){
 //点击页面及显示隐藏 history-list 整合事件
 function detect_pageBtn(){
     document.addEventListener('click', function (e){
-        if (e.target.closest('#pagination')){
-            el.config.page = parseInt(e.target.dataset.page);
-            search.sear_user(); 
-        }
         if(!(e.target.closest('#search-form') || e.target.closest('#history-list')))
             history.hide_histoty();  
       });

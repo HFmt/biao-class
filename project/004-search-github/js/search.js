@@ -21,10 +21,12 @@ function search_user(on_succeed, on_fail) {
             + '&per_page=' 
             + share.get_limit();
     send.send('get', url, function (data) {
+        
         if(on_succeed)
             on_succeed(data);
-        el.end_prompt_state(share.get_current_page(), data);
-        // pagination.enable();
+        el.end_prompt_state(share.get_current_page(), share.get_page_amount());
+        pagination.enable();
+        pagination.show();
     });
    
 }

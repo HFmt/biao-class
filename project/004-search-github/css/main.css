@@ -37,14 +37,13 @@ button, input {
   padding: 10px;
   border: 1px solid #ccc;
   outline: 0;
-  color: #555;
+  color: #888;
   line-height: 1.1;
 }
 
-button:focus,
-button:hover,
-input:focus {
-  border-color: rgba(0, 0, 200, .4);
+button:hover{
+  cursor: pointer;
+  color: #000
 }
 
 

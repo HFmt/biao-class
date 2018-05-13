@@ -8,8 +8,8 @@ let pagination_wrap
 
 let default_config = {
     amount: null
-  , limit: null
-  , page_range:5
+  , limit: 5
+  , page_range: 5
   , page_current: 1
 }
 
@@ -20,19 +20,20 @@ let output = {
  , enable: enable
  , disable: disable
  , set_amount_and_limit: set_amount_and_limit
+ , show: show
+ , hide: hide
 }
 
 function init(init_config){
   pagination_wrap = init_config.pagination_wrap;
-  config =Object.assign({}, default_config, init_config);
+  config = Object.assign({}, default_config, init_config);
 
   render_pagination_structure();
 if(!init_config.amount || !init_config.limit)
   return;
-  
   calc_page_amount();
   change_page_current(config.page_current); 
-  
+
 }
 
 function enable(){
@@ -41,6 +42,14 @@ function enable(){
   
 function disable(){
     pagination_fieldset.disabled = true;
+}
+
+function hide(){
+    pagination_wrap.hidden = true;
+}
+
+function show(){
+    pagination_wrap.hidden = false;
 }
   
 function render_pagination_structure(){
@@ -77,8 +86,9 @@ function render_pagination_structure(){
               change_page_current(parseInt(e.target.dataset.page));
           else if(next_btn)
               change_page_current(config.page_current+1);
-          else if(last_btn)
+          else if(last_btn){
               change_page_current(page_amount);
+          }
 
       render_pagination_list();
   }) ;
@@ -87,6 +97,7 @@ function render_pagination_structure(){
 function set_amount_and_limit(amount, limit){
     config.amount = amount;
     config.limit = limit;
+    calc_page_amount();
 
     render_pagination_list();
 }
@@ -98,7 +109,8 @@ function render_pagination_list(){
     , start_page = between.start_page
     , end_page = between.end_page
     ;
-
+    console.log(start_page);
+    console.log(end_page);
   for(let i = start_page; i <= end_page; i++){
       let btn = document.createElement('button');
       btn.innerHTML = i;
@@ -136,6 +148,11 @@ else{
   end_page = config.page_current + middle - 1;
 }
 
+if(page_amount == 1){
+    start_page = page_amount
+    end_page = page_amount
+}
+
 return {start_page: start_page, end_page: end_page}
 }
 
@@ -157,7 +174,7 @@ function change_page_current(page_current){
 }
 
 function calc_page_amount(){
- return page_amount =Math.ceil(config.amount / config.limit) ;
+ return page_amount = Math.ceil(config.amount / config.limit) ;
 }
 
 module.exports = output;
