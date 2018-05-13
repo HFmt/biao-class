@@ -15,12 +15,13 @@ function add_events() {
     detect_input();
 }
 
+
 pagination.init({
     pagination_wrap: el.pagination_wrap
   , on_change_page_current: on_change_page_current
-    });
+});
 
-
+//当前页码改变的时候
 function on_change_page_current(page, e){
     console.log(page);
     if(page == share.get_current_page())
@@ -31,7 +32,7 @@ function on_change_page_current(page, e){
 
 
 
-/*搜索表单事件*/
+/*表单提交事件*/
 function detect_submit() {
     el.form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -48,6 +49,7 @@ function detect_submit() {
     });
 }
 
+//当加载成功
 function on_search_succeed(data){
     share.set_amount(data.total_count);
     share.set_user_list(data.items);

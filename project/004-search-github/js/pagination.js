@@ -36,6 +36,7 @@ if(!init_config.amount || !init_config.limit)
 
 }
 
+// pagination 显示状态
 function enable(){
     pagination_fieldset.disabled = false;
   }
@@ -51,7 +52,8 @@ function hide(){
 function show(){
     pagination_wrap.hidden = false;
 }
-  
+
+//渲染 pagination 结构， 绑定按钮事件
 function render_pagination_structure(){
 
   pagination_wrap.innerHTML = `
@@ -94,14 +96,8 @@ function render_pagination_structure(){
   }) ;
 }
 
-function set_amount_and_limit(amount, limit){
-    config.amount = amount;
-    config.limit = limit;
-    calc_page_amount();
 
-    render_pagination_list();
-}
-
+//渲染 pagination_list
 function render_pagination_list(){
   pagination_list.innerHTML = '';
 
@@ -109,8 +105,6 @@ function render_pagination_list(){
     , start_page = between.start_page
     , end_page = between.end_page
     ;
-    console.log(start_page);
-    console.log(end_page);
   for(let i = start_page; i <= end_page; i++){
       let btn = document.createElement('button');
       btn.innerHTML = i;
@@ -123,7 +117,16 @@ function render_pagination_list(){
   }
 }
 
+//设置 amount 和 limit 的值
+function set_amount_and_limit(amount, limit){
+    config.amount = amount;
+    config.limit = limit;
+    calc_page_amount();
 
+    render_pagination_list();
+}
+
+//计算页码范围
 function calc_page_range(){
   let start_page 
     , middle = Math.ceil(config.page_range / 2)
@@ -156,6 +159,7 @@ if(page_amount == 1){
 return {start_page: start_page, end_page: end_page}
 }
 
+// 改变当前页码
 function change_page_current(page_current){
   let flag_page = config.page_current;
 
@@ -173,6 +177,7 @@ function change_page_current(page_current){
       config.on_change_page_current(config.page_current);
 }
 
+//计算总页数
 function calc_page_amount(){
  return page_amount = Math.ceil(config.amount / config.limit) ;
 }
