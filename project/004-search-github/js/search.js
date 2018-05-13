@@ -1,41 +1,33 @@
 
 let send = require('./send')
   , el = require('./element')
+  , share = require('./share')
   , pagination = require('./pagination')
   ;
 
 let output = {
-    sear_user: sear_user
+    search_user: search_user
 }
 
-pagination.init({
-    pagination: el.pagination
-  , max_page: el.max_page
-  , set_page_amount: el.set_page_amount
-  , get_page_amount: el.get_page_amount
-});
 
-function sear_user(keyword, config) {
-    let def
-      , url
-      ;
-
-    def = {
-        page: 1,
-        limit: 5,
-    }
-    config = Object.assign({}, def, el.config);
-
+function search_user(on_succeed, on_fail) {
     el.ready_prompt_state();
-
-    url = 'https://api.github.com/search/users?q='+keyword + '&page=' + config.page + '&per_page=' + config.limit ;
+    share.set_keyword(el.input.value);
+    pagination.disable();
+    url = 'https://api.github.com/search/users?q='
+            + share.get_keyword()
+            + '&page=' 
+            + share.get_current_page()
+            + '&per_page=' 
+            + share.get_limit();
     send.send('get', url, function (data) {
-        el.render_user_list(data);
-        el.end_prompt_state(config.page, data);
-        pagination.render_pagination(config.page, data);
-        el.show_start_end_page_btn();
-    },config);
+        if(on_succeed)
+            on_succeed(data);
+        el.end_prompt_state(share.get_current_page(), data);
+        // pagination.enable();
+    });
    
 }
+
 
 module.exports = output;

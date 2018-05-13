@@ -130,32 +130,7 @@ form button {
   bottom: 0;
 }
 
-#pagination-container {
-  text-align: center;
-}
 
-#pagination-container > * {
-  display: inline-block;
-}
-
-.active{
-  border: 1px solid yellow;
-}
-
-.pager {
-  padding: 5px 10px;
-  border: 1px solid rgba(0, 0, 0, .1);
-  border-left-width: 0;
-}
-
-.pager:first-child {
-  border-left-width: 1px;
-}
-
-.pager.active {
-  background: rgba(0, 0, 0, .2);
-  color: #000;
-}
 
 form input,
 #history-list {
@@ -211,4 +186,16 @@ form input,
 
 .history .tool > * {
   cursor: pointer;
+}
+
+.active{
+  background: #ccc;
+}
+.pagination-fieldset{
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.pagination-fieldset > *{
+  display: inline-block;
 }

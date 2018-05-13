@@ -1,10 +1,10 @@
  
- let module_pagination = require('./pagination')
+ let pagination = require('./pagination')
  
- let pagination = document.getElementById('pagination-wrap');
+ let pagination_wrap = document.getElementById('pagination-wrap');
 
- module_pagination.init({
-    pagination: pagination
+pagination.init({
+    pagination: pagination_wrap
   , amount: 100
   , limit: 10
   , page_range: 5

@@ -83,9 +83,9 @@ function render(){
             e.stopPropagation();
             if(click_delete)
             click_delete(keyword, e);
-        setTimeout(function (){
-            remove(keyword);
-        }, 0);
+            setTimeout(function (){
+                remove(keyword);
+            }, 0);
         });
 
         if(el.innerHTML == '')

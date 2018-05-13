@@ -27,11 +27,11 @@ function init(init_config){
     calc_page_amount();
     change_page_current(config.page_current);
     render_pagination_list();
-    // disable();
+    disable();
 }
 
 function enable(){
-    pagination_fieldset.disabled = true;
+    pagination_fieldset.disabled = false;
 }
 
 function disable(){
