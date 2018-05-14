@@ -113,6 +113,8 @@ function end_prompt_state(page, amount) {
   if(page * config.limit < amount.total_count){
     if(config.page > 1){
       previous.hidden = false;
+      next.hidden = false;
+      placeholer.hidden = true;
     }
     else{
       previous.hidden = true;
@@ -120,15 +122,17 @@ function end_prompt_state(page, amount) {
       placeholer.hidden = true;
     }
   }
-  else if(Math.ceil(amount.total_count/config.limit) == 1){
-    previous.hidden = true;
-    next.hidden = true;
-    placeholer.hidden = false;
-  }
   else{
-    previous.hidden = false;
-    next.hidden = true;
-    placeholer.hidden = false;
+    if(Math.ceil(amount.total_count/config.limit) == get_page_amount()){
+      previous.hidden = false;
+      next.hidden = true;
+      placeholer.hidden = false;
+    }
+    else {
+      previous.hidden = false;
+      next.hidden = false;
+      placeholer.hidden = false;
+    }
   }
 }
 

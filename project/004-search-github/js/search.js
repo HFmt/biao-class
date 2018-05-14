@@ -11,15 +11,15 @@ let output = {
 
 
 function search_user(on_succeed, on_fail) {
-    el.ready_prompt_state();
-    share.set_keyword(el.input.value);
-    pagination.disable();
-    url = 'https://api.github.com/search/users?q='
+    let url = 'https://api.github.com/search/users?q='
             + share.get_keyword()
             + '&page=' 
             + share.get_current_page()
             + '&per_page=' 
             + share.get_limit();
+    el.ready_prompt_state();
+    share.set_keyword(el.input.value);
+    pagination.disable();
     send.send('get', url, function (data) {
         
         if(on_succeed)
