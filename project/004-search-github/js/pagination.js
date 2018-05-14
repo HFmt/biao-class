@@ -59,13 +59,13 @@ function render_pagination_structure(){
   pagination_wrap.innerHTML = `
   <fieldset class="pagination-fieldset">
       <div class="pagination-pre">
-          <button class="pagination-first">First</button>
-          <button class="pagination-prev">Prev</button>
+          <button class="pagination-first">首页</button>
+          <button class="pagination-prev">上一页</button>
       </div>
       <div class="pagination-list"></div>
       <div class="pagination-post">
-          <button class="pagination-next">Next</button>
-          <button class="pagination-last">Last</button>
+          <button class="pagination-next">下一页</button>
+          <button class="pagination-last">尾页</button>
       </div>
   </fieldset>
   `;

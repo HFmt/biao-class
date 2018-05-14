@@ -43,7 +43,6 @@ function detect_submit() {
             share.reset_page();
             share.reset_user_list(el.user_list);  
             history.add(el.input.value);
-            history.show_histoty();
             pagination.hide();
             search.search_user(on_search_succeed);
     });
@@ -59,10 +58,10 @@ function on_search_succeed(data){
 }
 
 
-//点击页面及显示隐藏 history-list 整合事件
+//显示隐藏 history-list 事件
 function detect_pageBtn(){
     document.addEventListener('click', function (e){
-        if(!(e.target.closest('#search-form') || e.target.closest('#history-list')))
+        if(!e.target.closest('#search-input'))
             history.hide_histoty();  
       });
 }

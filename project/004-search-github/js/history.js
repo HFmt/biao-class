@@ -83,9 +83,8 @@ function render(){
             e.stopPropagation();
             if(click_delete)
             click_delete(keyword, e);
-            setTimeout(function (){
-                remove(keyword);
-            }, 0);
+        
+            remove(keyword);
         });
 
         if(el.innerHTML == '')
