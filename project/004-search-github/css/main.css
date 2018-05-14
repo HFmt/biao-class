@@ -139,7 +139,6 @@ form input,
 
 #history-list {
   z-index: 1;
-  position: absolute;
   max-height: 300px;
   overflow: auto;
   background: #fff;
@@ -153,7 +152,7 @@ form input,
 }
 
 .history {
-  padding: 5px 10px;
+  padding: 0px 10px;
   font-size: 0;
 }
 
@@ -168,13 +167,13 @@ form input,
 }
 
 .history .text {
-  width: 70%;
+  width: 80%;
   font-size: .9rem;
 }
 
 .history .tool {
   display: none;
-  width: 30%;
+  width: 20%;
   font-size: .6rem;
   text-align: right;
   color: #aaa;
