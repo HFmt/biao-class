@@ -8,7 +8,6 @@ let form = document.getElementById('search-form')
     , pagination_wrap = document.getElementById('pagination-wrap')
     , history_list = document.getElementById('history-list')
     , amount = document.getElementById('amount')
-    , clear_history = document.getElementById('clear_history')
     ;
 
 let output = {
@@ -21,7 +20,6 @@ let output = {
   , pagination_wrap :pagination_wrap  
   , ready_prompt_state: ready_prompt_state
   , end_prompt_state: end_prompt_state
-  , clear_history: clear_history
   }
 
 
@@ -39,8 +37,8 @@ function ready_prompt_state() {
 
 //搜索后状态显示
 function end_prompt_state(page_current, page_amount) {
- if(page_current == page_amount)
-    placeholer.hidden = false;
+ if(page_current == page_amount || page_amount == 0)
+  placeholer.hidden = false;
 }
 
 

@@ -44,7 +44,7 @@ function detect_submit() {
             share.reset_user_list(el.user_list);  
             history.add(el.input.value);
             pagination.hide();
-            search.search_user(on_search_succeed);
+            // search.search_user(on_search_succeed);
     });
 }
 
@@ -61,22 +61,22 @@ function on_search_succeed(data){
 //显示隐藏 history-list 事件
 function detect_pageBtn(){
     document.addEventListener('click', function (e){
-        if(!e.target.closest('#search-input'))
+        if(!e.target.closest('#search-input')){
             history.hide_histoty();  
+        }
       });
 }
 
 // 导入 history 元素和事件 （回调）
 history.init({
-    el: el.history_list,
-    input: el.input
-   , click_history: click_history
- //   , click_delete: click_delete
+    history_list: el.history_list
+  , input: el.input
+  , click_history: click_history
  });
  
  // 点击 history 触发搜索事件
  function click_history(key) {
-    search.search_user(on_search_succeed);
+    // search.search_user(on_search_succeed);
  }
  
  // 点击 input 搜索框显示 history-list

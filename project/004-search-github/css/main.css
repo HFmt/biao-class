@@ -67,14 +67,10 @@ form button {
   max-width: 600px;
   margin: 0 auto;
 
-  padding-left: 10px;
-  padding-right: 10px;
+
 }
 
-.container > * {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+
 
 .tac {
   text-align: center;
@@ -137,7 +133,8 @@ form input,
   width: 80%;
 }
 
-#history-list {
+#history-list{
+  position: absolute;
   z-index: 1;
   max-height: 300px;
   overflow: auto;
@@ -151,8 +148,8 @@ form input,
   cursor: default;
 }
 
-.history {
-  padding: 0px 10px;
+.history{
+  padding: 5px 10px;
   font-size: 0;
 }
 
@@ -183,10 +180,25 @@ form input,
   display: inline-block;
 }
 
-.history .tool > * {
+.history > *,
+.clear-histoty{
   cursor: pointer;
 }
 
+.clear-histoty{
+  text-align: center;
+  font-size: .6rem;
+  padding: 5px 10px;
+  color: #ccc;
+}
+
+.delete:hover{
+  color: #DB7093;
+}
+
+.clear-histoty:hover{
+  color: 	#DC143C;
+}
 .active{
   background: #ccc;
 }

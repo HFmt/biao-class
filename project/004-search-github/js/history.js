@@ -5,7 +5,7 @@ let helper = require('./util/helper')
   ;
   
 let list= []  // list 是一个 history 存值数组
-  , el         // el 是 history 容器
+  , history_list         // el 是 history 容器
   , input
   , click_history   // 回调函数 触发点击 history 的方法
   , click_delete // 回调函数  触发点击删除 history 的方法
@@ -17,17 +17,28 @@ let output = {
   , add: add
   , show_histoty: show_histoty
   , hide_histoty: hide_histoty
+  , list
 }
 
 
 function init(config){
-    el = config.el;
+    history_list = config.history_list;
     input = config.input;
     click_history = config.click_history;
     click_delete = config.click_delete;
-
+    if(list = [])
+    return
     sync_to_ladle();
     render();
+}
+
+
+
+function  reset_history(){
+    list = [];
+    history_list.innerHTML = '';
+    sync_to_sore()
+    hide_histoty();  
 }
 
 // 删除 history 的方法
@@ -36,8 +47,9 @@ function remove(keyword){
 
     render();                          
     sync_to_sore();
-    if(el.innerHTML == '')
-    hide_histoty();                    
+    console.log(list.length);
+    if(list.length == 0)
+        reset_history()   ;              
 }
 
 // 把 history 添加进 list 数组里面
@@ -52,28 +64,28 @@ function add(keyword){
 
  // 渲染 history 容器里的数据
 function render(){
-    el.innerHTML = '';
+    history_list.innerHTML = '';
     list.forEach(function (keyword){
         let el_history = document.createElement('div');
         el_history.innerHTML = 
         `
         <div class="text">${keyword}</div>
         <div class="tool">
-        <span class="delete">删除</span>
+            <span class="delete">删除</span>
         </div>
         `
         ;
         el_history.classList.add('history');
-        el.appendChild(el_history);
+        history_list.appendChild(el_history);
 
         let del_history = el_history.getElementsByClassName('delete')[0];
 
         el_history.addEventListener('click', function(e){
             e.stopPropagation();
             if(click_history){
-                
                 input.value = keyword;
                 click_history(keyword, e);
+                hide_histoty();  
             }
 
             
@@ -87,10 +99,22 @@ function render(){
             remove(keyword);
         });
 
-        if(el.innerHTML == '')
-        hide_histoty();
+        if(history_list.innerHTML == '')
+            hide_histoty();
     });
+    let clear_history = document.createElement('div');
+    clear_history.innerHTML = '清空历史纪录';
+    clear_history.classList.add('clear-histoty');
+    history_list.appendChild(clear_history);
+
+    clear_history.addEventListener('click', function(e){
+        e.stopPropagation();
+        reset_history();
+    });
+
 }
+
+
 
 //  把 list 数组 存储进 localStorage 里面 [用 JSON.stringify() 方法存储]
 function sync_to_sore(){
@@ -103,11 +127,11 @@ function sync_to_ladle(){
 }
 
 function show_histoty(){
-    el.hidden = false;
+    history_list.hidden = false;
 }
 
 function hide_histoty(){
-    el.hidden = true;
+    history_list.hidden = true;
 }
 
 

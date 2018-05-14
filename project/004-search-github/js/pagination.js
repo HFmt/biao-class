@@ -8,7 +8,7 @@ let pagination_wrap
 
 let default_config = {
     amount: null
-  , limit: 5
+  , limit: null
   , page_range: 5
   , page_current: 1
 }
@@ -24,13 +24,14 @@ let output = {
  , hide: hide
 }
 
+
+
 function init(init_config){
   pagination_wrap = init_config.pagination_wrap;
   config = Object.assign({}, default_config, init_config);
-
   render_pagination_structure();
-if(!init_config.amount || !init_config.limit)
-  return;
+  if(!init_config.amount || !init_config.limit)
+    return;
   calc_page_amount();
   change_page_current(config.page_current); 
 
@@ -50,12 +51,17 @@ function hide(){
 }
 
 function show(){
-    pagination_wrap.hidden = false;
+    if(page_amount == 0 || page_amount == 1){
+        calc_page_amount();
+        console.log(page_amount);
+        pagination_wrap.hidden = true;
+    }
+    else
+        pagination_wrap.hidden = false;
 }
 
 //渲染 pagination 结构， 绑定按钮事件
 function render_pagination_structure(){
-
   pagination_wrap.innerHTML = `
   <fieldset class="pagination-fieldset">
       <div class="pagination-pre">
@@ -100,7 +106,6 @@ function render_pagination_structure(){
 //渲染 pagination_list
 function render_pagination_list(){
   pagination_list.innerHTML = '';
-
   let between = calc_page_range()
     , start_page = between.start_page
     , end_page = between.end_page
@@ -149,11 +154,6 @@ else if(config.page_current >= page_amount - middle){
 else{   
   start_page = config.page_current - middle + 1;
   end_page = config.page_current + middle - 1;
-}
-
-if(page_amount == 1){
-    start_page = page_amount
-    end_page = page_amount
 }
 
 return {start_page: start_page, end_page: end_page}
