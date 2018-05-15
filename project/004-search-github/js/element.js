@@ -8,6 +8,7 @@ let form = document.getElementById('search-form')
     , pagination_wrap = document.getElementById('pagination-wrap')
     , history_list = document.getElementById('history-list')
     , amount = document.getElementById('amount')
+    , toolbar = document.getElementById('toolbar')
     ;
 
 let output = {

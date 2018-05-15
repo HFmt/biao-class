@@ -5,7 +5,7 @@ let helper = require('./util/helper')
   ;
   
 let list= []  // list 是一个 history 存值数组
-  , history_list         // el 是 history 容器
+  , history_list      // history_list 容器
   , input
   , click_history   // 回调函数 触发点击 history 的方法
   , click_delete // 回调函数  触发点击删除 history 的方法
@@ -17,7 +17,6 @@ let output = {
   , add: add
   , show_histoty: show_histoty
   , hide_histoty: hide_histoty
-  , list
 }
 
 
@@ -86,9 +85,7 @@ function render(){
                 input.value = keyword;
                 click_history(keyword, e);
                 hide_histoty();  
-            }
-
-            
+            }     
         });
 
         del_history.addEventListener('click', function(e){
@@ -115,7 +112,6 @@ function render(){
 }
 
 
-
 //  把 list 数组 存储进 localStorage 里面 [用 JSON.stringify() 方法存储]
 function sync_to_sore(){
     store.store_set('asam', list);
@@ -133,7 +129,5 @@ function show_histoty(){
 function hide_histoty(){
     history_list.hidden = true;
 }
-
-
 
 module.exports = output;

@@ -44,7 +44,7 @@ function detect_submit() {
             share.reset_user_list(el.user_list);  
             history.add(el.input.value);
             pagination.hide();
-            // search.search_user(on_search_succeed);
+            search.search_user(on_search_succeed);
     });
 }
 
@@ -76,7 +76,7 @@ history.init({
  
  // 点击 history 触发搜索事件
  function click_history(key) {
-    // search.search_user(on_search_succeed);
+    search.search_user(on_search_succeed);
  }
  
  // 点击 input 搜索框显示 history-list
