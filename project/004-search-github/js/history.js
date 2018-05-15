@@ -25,9 +25,12 @@ function init(config){
     input = config.input;
     click_history = config.click_history;
     click_delete = config.click_delete;
-    if(list = [])
-    return
+    
     sync_to_ladle();
+    sync_to_sore();
+    console.log(list);
+    if(list.length == 0)
+    return
     render();
 }
 

@@ -34,24 +34,30 @@ form {
 }
 
 button, input {
-  font-size: 15px;
+  font-size: 14px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #003366;
   outline: 0;
-  color: #888;
+  color: #3399CC;
   line-height: 1.1;
 }
 
-button:hover{
-  cursor: pointer;
-  color: #000
-}
 
+form input{
+ 
+}
 
 form button {
   width: 20%;
   border-left: 0;
 }
+
+button:hover{
+  cursor: pointer;
+  background: #3399CC;
+  color: #ffff;
+}
+
 
 [hidden] {
   display: none !important;
@@ -93,6 +99,10 @@ form button {
   margin-bottom: 10px;
 }
 
+.user:hover{
+  border: 1px solid #3399CC;
+}
+
 .user > * {
   display: inline-block;
   vertical-align: top;
@@ -128,18 +138,18 @@ form button {
 
 
 
-form input,
-#history-list {
+form input {
   width: 80%;
 }
 
 #history-list{
+  width: 100%;
   position: absolute;
   z-index: 1;
   max-height: 300px;
   overflow: auto;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, .2);
+  border: 1px solid #003366;
   border-top: 0;
   font-size: 14px;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
@@ -200,7 +210,8 @@ form input,
   color: 	#DC143C;
 }
 .active{
-  background: #ccc;
+  background: #003366;
+  color: #3399CC;
 }
 .pagination-fieldset{
   text-align: center;
@@ -208,12 +219,6 @@ form input,
   padding: 0;
   margin: 0;
 }
-
 .pagination-fieldset > *{
   display: inline-block;
-}
-
-
-.pagination-item{
-  margin: 1px;
 }
