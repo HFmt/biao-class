@@ -2,21 +2,22 @@ let find = require('./find_module');
 
 let todo_list = [
     {
-        id: id_current,
+        id: 1,
         name: '买菜',
         completed: false,
     },
     ];
 
-function Todo(id, list){
-    this.id = id;
+
+function Todo(list){
+    this.id = 1;
     this.list = list;
 }
 
 Todo.prototype.add = add;
-Todo.prototype.add = remove;
-Todo.prototype.add = modify;
-Todo.prototype.add = read;
+Todo.prototype.remove = remove;
+Todo.prototype.modify = modify;
+Todo.prototype.read = read;
 
 
 //增
@@ -29,14 +30,14 @@ Todo.prototype.add = read;
     function remove(id){
         if(id < 1)
             return;
-        this.list.splice(find.find_index_by_id_for(this.list, id), 1);
+        this.list.splice(find.find_index_by_id_for(todo.list, id), 1);
     }
 
 //改
     function modify(id, new_row){
         if(id < 1)
             return;
-        let index = find.find_index_by_id_for(this.list, id);
+        let index = find.find_index_by_id_for(todo.list, id);
         let old_row = this.list[index];
         this.list[index] = Object.assign({}, old_row, new_row);
     }
@@ -44,11 +45,13 @@ Todo.prototype.add = read;
 // 查
     function read(id){
         if(id)
-            console.log(find.find_index_by_id_for(this.list, id)) ;
+            console.log(find.find_row_by_id_for(todo.list, id)) ;
         else
             console.log(this.list) ;
     }
 
-let todo = new Todo();
 
-console.log(todo);
+
+let todo = new Todo(todo_list);
+
+todo.read(1);

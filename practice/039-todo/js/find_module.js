@@ -1,4 +1,3 @@
-
 let output = {
     find_row_by_id_forEach: find_row_by_id_forEach
   , find_index_by_id_forEach: find_index_by_id_forEach
@@ -37,7 +36,6 @@ function find_index_by_id_forEach(arr, id){
 // 找到数组对应的值，并返回
 function find_row_by_id_for(arr, id){
     for(let i = 0; i< arr.length; i++){
-        console.log(arr[i].id);
         if(arr[i].id == id)
             return arr[i];
     }
