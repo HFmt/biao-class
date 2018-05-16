@@ -40,12 +40,10 @@ let find = require('./find_module');
             console.log(todo_list) ;
     }
 
-    
     add({
         name: '切菜',
         completed: false,
     });
-    
     // console.log(todo_list);
   
 
