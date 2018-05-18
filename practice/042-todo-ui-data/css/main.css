@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.row{
+    font-size: 0;
+}
+
+.col{
+    font-size: 14px;
+    display: inline-block;
+}
+
+#todo-form input,
+#todo-form button
+{
+    border: 1px solid #000;
+    line-height: 1.1;
+    padding: 8px;
+}
+
+#todo-form input{
+    width: 80%;
+}
+
+#todo-form button{
+    width: 20%;
+}
+
+
+.todo-item > *{
+    display: inline-block;
+}
+
+
+.tool-set{
+    text-align: right;
+}
