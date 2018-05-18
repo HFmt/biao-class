@@ -1,9 +1,10 @@
 *{
     box-sizing: border-box;
+    vertical-align: top;
 }
 
 .container{
-    
+    padding: 10px;
     max-width: 440px;
     margin: 0 auto;
 }
@@ -20,25 +21,86 @@
 #todo-form input,
 #todo-form button
 {
-    border: 1px solid #000;
     line-height: 1.1;
     padding: 8px;
 }
 
 #todo-form input{
     width: 80%;
+    border: 1px solid #3399CC;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+#todo-form input:focus{
+    outline:none;
+    border: 1px solid #003366;
+    border-right: 0;
+    border-bottom: 0;
 }
 
 #todo-form button{
+    border: 1px solid #3399CC;
     width: 20%;
+    color: #003366;
+    background: #3399CC;
+    
+}
+
+#todo-form button:hover{
+    color: #fff;
+    border: 1px solid #003366;
+    background: #003366;
+}
+button:hover{
+    cursor: pointer;
 }
 
 
+
+#todo-list{
+    margin-top: -1px;
+    border: 1px solid #003366;
+    border-top: 0;
+}
+
+#todo-list:hover{
+    border: 1px solid #3399CC;
+    border-top: 0;
+}
+
+.cl_fl::before,
+.cl_fl::after{
+    content:"";
+    clear: both;
+    display: block;
+}
+
+.todo-item:hover{
+    background: #e7e5f9;
+}
+
 .todo-item > *{
     display: inline-block;
+    padding: 4px;
 }
 
 
 .tool-set{
-    text-align: right;
+    float: right;
 }
+
+.tool-set button{
+    border: 0;
+    background: none;
+    color: rgba(0, 0, 0, .5);
+}
+
+.todo-modify:hover{
+    color: #003366;
+}
+
+.todo-delete:hover{
+    color: #DB7093;
+}
+

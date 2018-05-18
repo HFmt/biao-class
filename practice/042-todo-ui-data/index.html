@@ -10,12 +10,12 @@
 <body>
     <div class="container">
         <form action="" id="todo-form" class="row">
-            <input type="hidden" name="id" class="col">
+            <input id="number-input" type="hidden" name="id" class="col">
             <input type="checkbox" name="completed" class="col" style="display: none">
             <input id="todo-input" type="text" name="title" class="col">
-            <button class="col">添加</button>
+            <button id="todo-button" class="col">添加</button>
         </form>
-        <div id="todo-list"></div>
+        <div id="todo-list" class="row"></div>
     </div>
 </body>
 

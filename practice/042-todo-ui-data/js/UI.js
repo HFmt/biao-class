@@ -1,8 +1,10 @@
 window.Ui = Ui_todo;
 
-function Ui_todo(form_selector,input_selector, list_selector){
+function Ui_todo(form_selector,input_selector, number_selector, button_selector, list_selector){
     this.form = document.querySelector(form_selector);
     this.input = document.querySelector(input_selector);
+    this.number = document.querySelector(number_selector);
+    this.button = document.querySelector(button_selector);
     this.list = document.querySelector(list_selector);
     this._api = new Api_todo();
 }
@@ -82,6 +84,7 @@ function delete_list(){
             ui_this.ui_remove(e.target.closest('.todo-item').dataset.id);
         else if(e.target.classList.contains('todo-modify')){
             let todo_row = ui_this._api.read(e.target.closest('.todo-item').dataset.id);
+            ui_this.button.innerHTML = '确认';
             ui_this.set_form_data(ui_this.form, todo_row);
         }
     });
@@ -94,11 +97,15 @@ function detect_submit(e){
         if(ui_this.input.value == '')
             return;
         let todo_row = ui_this.get_form_data(ui_this.form);
-        if(todo_row.id)
-        ui_this._api.modify(todo_row.id, todo_row);
-        else
+        if(todo_row.id){
+            ui_this._api.modify(todo_row.id, todo_row);
+        }
+        else{
             ui_this._api.add(todo_row);
+        }
+        ui_this.button.innerHTML = '添加';
         ui_this.input.value = '';
+        ui_this.number.value = '';
         ui_this.render();
     });
 }
@@ -115,11 +122,11 @@ function render(){
     this._api.read().forEach(function (item){
         ui_this.list.innerHTML +=
             `
-            <div class="todo-item" data-id="${item.id}">
+            <div class="todo-item cl_fl" data-id="${item.id}">
                 <div class="check">
                     <input type="checkbox" name="complete">
                 </div>
-                <div class="detail">
+                <div class="col detail">
                     <div class="title">${item.title}</div>
                 </div>
                 <div class="tool-set">
