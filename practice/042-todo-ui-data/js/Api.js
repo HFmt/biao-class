@@ -1,6 +1,5 @@
 window.Api = Api_todo;
 
-
 function Api_todo(){
     this.id = 1;
     this.list = [
