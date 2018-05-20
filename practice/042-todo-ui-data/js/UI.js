@@ -28,7 +28,6 @@ function get_form_data(todo_form){
                     case 'search':
                     case 'password':
                     case 'number':
-                    case 'file':
                     case 'hidden':
                         data[input.name] = input.value;
                         break;

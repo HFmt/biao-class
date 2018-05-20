@@ -21,7 +21,6 @@ Api_todo.prototype.read = read;
     function add(row){
         row.id = ++this.id;
         this.list.push(row);
-        console.log(this.list)
     }
 
 //删
