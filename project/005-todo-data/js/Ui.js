@@ -133,3 +133,11 @@ function set_todo_data(form_selector, data){
     }
 }
 
+
+function store_set(key, arr){
+    localStorage.setItem(key, JSON.stringify(arr));
+}
+
+function store_get(key){
+    return JSON.parse(localStorage.getItem(key));
+}

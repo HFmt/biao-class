@@ -10,16 +10,13 @@ Todo_api.prototype.add = add;
 Todo_api.prototype.remove = remove;
 Todo_api.prototype.modify = modify;
 Todo_api.prototype.read = read;
-Todo_api.prototype.store_set = store_set;
-Todo_api.prototype.store_get = store_get;
+
 
 
 
 function add(row){
     row.id = ++ this.id;
-    this.store_set('Asam日志', row);
-    console.log(this.store_get('Asam日志'));
-    this.list.push(this.store_get('Asam日志'));
+    this.list.unshift(row);
 }
 
 function remove(id){
@@ -55,14 +52,4 @@ function find_list_by_row(arr, id){
         if(arr[i].id == id)
             return arr[i];
     }
-}
-
-show
-
-function store_set(key, arr){
-    localStorage.setItem(key, JSON.stringify(arr));
-}
-
-function store_get(key){
-    return JSON.parse(localStorage.getItem(key));
 }

@@ -13,11 +13,17 @@
 <script>
     let list = [];
     
-    function add(){
-        store_set('asam', list);
-        list.unshift(1);
+    function add(a){
+        sync_to_sore();
+        list.unshift(a);
+        
+        console.log(list);
     }
 
+
+ add(1)
+ add(1)
+ add(3)
 
     //  把 list 数组 存储进 localStorage 里面 [用 JSON.stringify() 方法存储]
 function sync_to_sore(){
@@ -29,7 +35,7 @@ function sync_to_ladle(){
     list = store_get('asam') || [];
 }
 
-    function store_set(key, arr){
+function store_set(key, arr){
     localStorage.setItem(key, JSON.stringify(arr));
 }
 
