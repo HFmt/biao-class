@@ -9,25 +9,32 @@
 <body>
     
 </body>
+
 <script>
-    let test_arr = [{id:1}, {id:2}, {id:3}, {id:4}];
-    // 找到数组对应的值，并返回
-function find_row_by_id_1(arr, id){
-        for(let i = 0; i< arr.length; i++){
-            if(arr[i].id == id)
-                return arr[i];
-        }
-    }
-
-//找到数组的索引并返回
-function find_index_by_id_1(arr, id){
-    for(let i = 0; i< arr.length; i++){
-        if(arr[i].id == id)
-            console.log(i);
-        }
+    let list = [];
+    
+    function add(){
+        store_set('asam', list);
+        list.unshift(1);
     }
 
 
-    console.log(find_row_by_id_1(test_arr, 1))
+    //  把 list 数组 存储进 localStorage 里面 [用 JSON.stringify() 方法存储]
+function sync_to_sore(){
+    store_set('asam', list);
+}
+
+// 取出 localStorage 里面的 list 数组 [用 JSON.parse() 方法取出]
+function sync_to_ladle(){
+    list = store_get('asam') || [];
+}
+
+    function store_set(key, arr){
+    localStorage.setItem(key, JSON.stringify(arr));
+}
+
+function store_get(key){
+    return JSON.parse(localStorage.getItem(key));
+}
 </script>
 </html>

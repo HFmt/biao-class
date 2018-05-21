@@ -27,15 +27,15 @@ function detect_submit(){
     this.form.addEventListener('submit', function (e){
         e.preventDefault();
         let todo_row = ui_this.get_todo_data(ui_this.form)
-        if(todo_row.id){
+        if(todo_row.id)
             ui_this._api.modify(todo_row.id, todo_row);
-        }
         else
             ui_this._api.add(todo_row);
         ui_this.todo_render();
         ui_this.clear_form_data(ui_this.form);
     });
 }
+
 
 function clear_form_data(form_selector){
     form_selector.querySelector('[type = submit]').innerHTML = '添加';

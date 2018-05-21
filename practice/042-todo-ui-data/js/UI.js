@@ -79,17 +79,18 @@ function init(){
 function delete_list(){
     let ui_this = this;
     this.list.addEventListener('click', function (e){
+        let data_id = e.target.closest('.todo-item').dataset.id;
         if(e.target.classList.contains('todo-delete'))
-            ui_this.ui_remove(e.target.closest('.todo-item').dataset.id);
+            ui_this.ui_remove(data_id);
         else if(e.target.classList.contains('todo-modify')){
-            let todo_row = ui_this._api.read(e.target.closest('.todo-item').dataset.id);
+            let todo_row = ui_this._api.read(data_id);
             ui_this.button.innerHTML = '确认';
             ui_this.set_form_data(ui_this.form, todo_row);
         }
     });
 }
 
-function detect_submit(e){
+function detect_submit(){
     let ui_this = this;
     this.form.addEventListener('submit', function (e){
         e.preventDefault();
