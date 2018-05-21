@@ -26,6 +26,8 @@ function detect_submit(){
     let ui_this = this;
     this.form.addEventListener('submit', function (e){
         e.preventDefault();
+        if(ui_this.input.value == '')
+            return;
         let todo_row = ui_this.get_todo_data(ui_this.form)
         if(todo_row.id)
             ui_this._api.modify(todo_row.id, todo_row);
