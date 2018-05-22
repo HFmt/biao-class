@@ -11,36 +11,19 @@
 </body>
 
 <script>
-    let list = [];
-    
-    function add(a){
-        sync_to_sore();
-        list.unshift(a);
-        
-        console.log(list);
+    function Prent(){
+        this.fname = 'sam';
     }
 
+    Prent.prototype.lname = 'A';
 
- add(1)
- add(1)
- add(3)
+    Child.prototype = Object.create(Prent.prototype);
+    function Child(){
+        this.fname = 'mot';
+    }
+    Child.prototype = Object.create(Prent.prototype);
 
-    //  把 list 数组 存储进 localStorage 里面 [用 JSON.stringify() 方法存储]
-function sync_to_sore(){
-    store_set('asam', list);
-}
-
-// 取出 localStorage 里面的 list 数组 [用 JSON.parse() 方法取出]
-function sync_to_ladle(){
-    list = store_get('asam') || [];
-}
-
-function store_set(key, arr){
-    localStorage.setItem(key, JSON.stringify(arr));
-}
-
-function store_get(key){
-    return JSON.parse(localStorage.getItem(key));
-}
+    let child = new Child();
+    console.log(child);
 </script>
 </html>

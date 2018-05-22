@@ -13,14 +13,16 @@
         <form action="" id="todo-form" class="row">
             <input type="hidden" name="id" class="col">
             <input type="checkbox" name="completed" class="col" style="display: none">
-            <input  ype="text" name="title" class="col" autocomplete="off" value="asam">
+            <input  ype="text" name="title" class="col" autocomplete="off">
             <button type="submit" id="todo-button" class="col">添加</button>
         </form>
         <div id="todo-list" class="row"></div>
     </div>
 </body>
 
-<script src="js/Api.js"></script>
+<script src="js/BaseApi.js"></script>
+<script src="js/GrounpApi.js"></script>
+<script src="js/TaskApi.js"></script>
 <script src="js/UI.js"></script>
 <script src="js/index.js"></script>
 </html>

@@ -3,7 +3,7 @@ window.Ui = Todo_ui;
 function Todo_ui(form_selector, list_selector){
     this.form = document.querySelector(form_selector);
     this.list = document.querySelector(list_selector);
-    this._api = new Api();
+    this._api = new TaskApi();
 }
 
 

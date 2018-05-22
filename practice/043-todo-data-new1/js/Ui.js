@@ -4,7 +4,7 @@ function Todo_ui(form_selector, list_selector){
     this.form = document.querySelector(form_selector);
     this.buttom = document.querySelector(form_selector);
     this.list = document.querySelector(list_selector);
-    this._api = new Api();
+    this._taskApi = new TaskApi();
 }
 
 
@@ -28,10 +28,10 @@ function detect_submit(){
         e.preventDefault();
         let todo_row = ui_this.get_todo_data(ui_this.form)
         if(todo_row.id){
-            ui_this._api.modify(todo_row.id, todo_row);
+            ui_this._taskApi.modify(todo_row.id, todo_row);
         }
         else
-            ui_this._api.add(todo_row);
+            ui_this._taskApi.add(todo_row);
         ui_this.todo_render();
         ui_this.clear_form_data(ui_this.form);
     });
@@ -51,7 +51,7 @@ function detect_list(){
             ui_this.remove_row(data_id);
         }
         else if(e.target.classList.contains('todo-modify')){
-            let todo_row  = ui_this._api.read(data_id);
+            let todo_row  = ui_this._taskApi.read(data_id);
             ui_this.set_todo_data(ui_this.form, todo_row);
             ui_this.form.querySelector('[type = submit]').innerHTML = '确认';
         }
@@ -60,14 +60,14 @@ function detect_list(){
 
 
 function remove_row(id){
-    this._api.remove(id);
+    this._taskApi.remove(id);
     this.todo_render();
 }
 
 function todo_render(){
     let ui_this = this;
     ui_this.list.innerHTML = '';
-    this._api.read().forEach(function (item){
+    this._taskApi.read().forEach(function (item){
         ui_this.list.innerHTML += `
         <div class="todo-item cl_fl" data-id="${item.id}">
                 <div class="check">

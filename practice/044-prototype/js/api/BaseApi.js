@@ -1,15 +1,14 @@
-window.Api = Todo_api;
-
-function Todo_api(){
-    this.id = 0;
-    this.list =[];
+function BaseApi(list, max_id){
+    this.id = max_id || 1;
+    this.list = list;
 }
 
 
-Todo_api.prototype.add = add;
-Todo_api.prototype.remove = remove;
-Todo_api.prototype.modify = modify;
-Todo_api.prototype.read = read;
+
+BaseApi.prototype.$add = add;
+BaseApi.prototype.$remove = remove;
+BaseApi.prototype.$modify = modify;
+BaseApi.prototype.$read = read;
 
 
 
