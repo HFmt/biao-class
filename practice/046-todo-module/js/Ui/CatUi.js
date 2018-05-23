@@ -28,15 +28,22 @@ function init(){
 }
 
 function detect_list(){
+    
     let ui_this = this;
     this.list.addEventListener('click', function(e){
-        let data_id = e.target.closest('.cat-item').dataset.id;
-        if(e.target.classList.contains('task-delete')){
-            ui_this.remove_row(data_id);
+        let cat_item = e.target.closest('.cat-item');
+        let cat_id;
+        if(cat_item)
+            cat_id = cat_item.dataset.id;
+
+        if(e.target.classList.contains('cat-delete')){
+            ui_this.remove_row(cat_id);
         }
-        else if(e.target.classList.contains('task-modify')){
-            let task_row  = ui_this._api.read(data_id);
-            ui_this.set_todo_data(ui_this.form, task_row);
+        else if(e.target.classList.contains('cat-modify')){
+            let cat_row  = ui_this._api.read(cat_id);
+            ui_this.set_todo_data(ui_this.form, cat_row);
+            cat_item.hidden = true;
+            cat_item.insertAdjacentElement('afterend', ui_this.form); // 表单占坑
             ui_this.form.querySelector('[type = submit]').innerHTML = '确认';
         }
     });
@@ -46,7 +53,6 @@ function detect_add_btn(){
     let ui_this = this;
     this.add_btn.addEventListener('click', function (){
         ui_this.show_cat_input();
-        
     });
 }
 
@@ -63,14 +69,13 @@ function detect_submit_list(){
     let ui_this = this;
     this.form.addEventListener('submit', function(e){
         e.preventDefault();
-        console.log(1);
         if(ui_this.form.querySelector('[name = title]').value == '')
             return;
-        let todo_row = ui_this.get_todo_data(ui_this.form)
-        if(todo_row.id)
-            ui_this._api.modify(todo_row.id, todo_row);
+        let cat_row = ui_this.get_todo_data(ui_this.form)
+        if(cat_row.id)
+            ui_this._api.modify(cat_row.id, cat_row);
         else
-            ui_this._api.add(todo_row);
+            ui_this._api.add(cat_row);
         ui_this.cat_render();
         ui_this.clear_form_input(ui_this.form);
     });
