@@ -1,20 +1,20 @@
-window.Ui = Todo_ui;
+window.TaskUi = TaskUi;
 
-function Todo_ui(form_selector, list_selector){
-    this.form = document.querySelector(form_selector);
-    this.list = document.querySelector(list_selector);
+function TaskUi(form_selector, list_selector){
+    this.form = document.querySelector(form_selector || '#todo-form');
+    this.list = document.querySelector(list_selector || '#todo-list');
     this._api = new TaskApi();
 }
 
 
-Todo_ui.prototype.get_todo_data = get_todo_data;
-Todo_ui.prototype.set_todo_data = set_todo_data;
-Todo_ui.prototype.init = init;
-Todo_ui.prototype.detect_submit = detect_submit;
-Todo_ui.prototype.todo_render = todo_render;
-Todo_ui.prototype.detect_list = detect_list;
-Todo_ui.prototype.remove_row = remove_row;
-Todo_ui.prototype.clear_form_input = helper.clear_form_input;
+TaskUi.prototype.get_todo_data = get_todo_data;
+TaskUi.prototype.set_todo_data = set_todo_data;
+TaskUi.prototype.init = init;
+TaskUi.prototype.detect_submit = detect_submit;
+TaskUi.prototype.todo_render = todo_render;
+TaskUi.prototype.detect_list = detect_list;
+TaskUi.prototype.remove_row = remove_row;
+TaskUi.prototype.clear_form_input = helper.clear_form_input;
 
 function init(){
     this.detect_submit();

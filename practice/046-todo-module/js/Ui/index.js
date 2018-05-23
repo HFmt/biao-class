@@ -1,4 +1,6 @@
-let ui = new Ui('#todo-form', '#todo-list');
+let taskUi = new TaskUi();
 
+let catUi = new CatUi();
 
-ui.init();
+taskUi.init();
+catUi.init();

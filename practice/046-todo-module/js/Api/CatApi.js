@@ -1,52 +1,43 @@
-function BaseApi(list, max_id){
-    this.id = max_id || 0;
-    this.list = list;
+let catList = [{
+    title: '默认'
+}];
+
+function CatApi(max_id){
+    this.config = {
+        title: {
+            max_length: 10,
+        }
+    }
+  BaseApi.call(this, catList, max_id);
 }
 
+CatApi.prototype = Object.create(BaseApi.prototype);
 
-
-BaseApi.prototype.$add = add;
-BaseApi.prototype.$remove = remove;
-BaseApi.prototype.$modify = modify;
-BaseApi.prototype.$read = read;
+CatApi.prototype.add = add;
+CatApi.prototype.remove = remove;
+CatApi.prototype.modify = modify;
+CatApi.prototype.read = read;
 
 
 
 function add(row){
-    row.id =  this.id ++;
-    this.list.push(row);
+    if(row.title.length > this.config.title.max_length)
+        throw `title should not greater than ${max_length}`;
+    if(!row.title)
+        return;
+    return this.$add(row);
 }
 
 function remove(id){
-    if(id < 0 )
+    if(id == 1)
         return;
-    this.list.splice(find_list_by_id(this.list, id), 1);
+    return this.$remove(id);
 }
 
 function modify(id, new_row){
-    let item = find_list_by_id(this.list, id);
-    let old_row =this.list[item];
-    this.list[item] = Object.assign({}, old_row, new_row);
+    return this.$modify(id, new_row);
 }
 
 function read(id){
-    if(id)
-        return find_list_by_row(this.list, id);
-    else
-        return this.list;
-}
-
-
-function find_list_by_id(arr, id){
-    for(let i =0; i< arr.length; i++){
-        if(arr[i].id == id)
-            return i;
-    }
-}
-
-function find_list_by_row(arr, id){
-    for(let i =0; i< arr.length; i++){
-        if(arr[i].id == id)
-            return arr[i];
-    }
+    return this.$read(id);
 }

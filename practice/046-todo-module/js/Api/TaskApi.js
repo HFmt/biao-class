@@ -1,7 +1,7 @@
-let test_list = [];
+let taskList = [];
 
 function TaskApi(max_id){
-  BaseApi.call(this, test_list, max_id);
+  BaseApi.call(this, taskList, max_id);
 }
 
 TaskApi.prototype = Object.create(BaseApi.prototype);

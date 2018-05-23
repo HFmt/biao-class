@@ -5,8 +5,9 @@
 
 .container{
     padding: 10px;
-    max-width: 440px;
+    max-width: 640px;
     margin: 0 auto;
+    background: #eee;
 }
 
 .row{
@@ -16,6 +17,20 @@
 .col{
     font-size: 14px;
     display: inline-block;
+}
+
+.sidebar{
+    width: 30%;
+}
+
+.cat-item input:disabled{
+    border: 0;
+    background: #eee;
+}
+
+.main{
+    width: 70%;
+    padding-left: 10px;
 }
 
 #todo-form input,
@@ -104,3 +119,8 @@ button:hover{
     color: #DB7093;
 }
 
+.add-cat button{
+    width: 100%;
+    background: #3399CC;
+    border: 0;
+}
