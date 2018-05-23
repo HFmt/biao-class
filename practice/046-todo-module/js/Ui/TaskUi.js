@@ -1,8 +1,8 @@
 window.TaskUi = TaskUi;
 
 function TaskUi(form_selector, list_selector){
-    this.form = document.querySelector(form_selector || '#todo-form');
-    this.list = document.querySelector(list_selector || '#todo-list');
+    this.form = document.querySelector(form_selector || '#task-form');
+    this.list = document.querySelector(list_selector || '#task-list');
     this._api = new TaskApi();
 }
 
@@ -42,13 +42,13 @@ function detect_submit(){
 function detect_list(){
     let ui_this = this;
     this.list.addEventListener('click', function(e){
-        let data_id = e.target.closest('.todo-item').dataset.id;
-        if(e.target.classList.contains('todo-delete')){
+        let data_id = e.target.closest('.task-item').dataset.id;
+        if(e.target.classList.contains('task-delete')){
             ui_this.remove_row(data_id);
         }
-        else if(e.target.classList.contains('todo-modify')){
-            let todo_row  = ui_this._api.read(data_id);
-            ui_this.set_todo_data(ui_this.form, todo_row);
+        else if(e.target.classList.contains('task-modify')){
+            let task_row  = ui_this._api.read(data_id);
+            ui_this.set_todo_data(ui_this.form, task_row);
             ui_this.form.querySelector('[type = submit]').innerHTML = '确认';
         }
     });
@@ -65,7 +65,7 @@ function todo_render(){
     ui_this.list.innerHTML = '';
     this._api.read().forEach(function (item){
         ui_this.list.innerHTML += `
-        <div class="todo-item cl_fl" data-id="${item.id}">
+        <div class="task-item cl_fl" data-id="${item.id}">
                 <div class="check">
                     <input type="checkbox" name="${item.complete}">
                 </div>
@@ -73,8 +73,8 @@ function todo_render(){
                     <div class="title">${item.title}</div>
                 </div>
                 <div class="tool-set">
-                    <button class="todo-modify">修改</button>
-                    <button class="todo-delete">删除</button>
+                    <button class="task-modify">修改</button>
+                    <button class="task-delete">删除</button>
                 </div>
             </div>
         `

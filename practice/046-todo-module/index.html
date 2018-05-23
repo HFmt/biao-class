@@ -15,18 +15,24 @@
                 <div class="sidebar-title">分组</div>
                 <hr>
                 <div id="cat-list" class="cat-list"></div>
-                <div class="add-cat">
+                <form action="" id="cat-form" hidden>
+                    <input type="hidden" name="id">
+                    <input type="text" name="title" autocomplete="off">
+                    <button type="submit" class="complete">完成</button>
+                    <button type="button" class="cancel">取消</button>
+                </form>
+                <div id="add-cat" class="add-cat">
                     <button>+</button>
                 </div>
             </div>
             <div class="col main">
-                <form action="" id="todo-form" class="row">
+                <form action="" id="task-form" class="row">
                     <input type="hidden" name="id" class="col">
                     <input type="checkbox" name="completed" class="col" style="display: none">
                     <input  ype="text" name="title" class="col" autocomplete="off">
                     <button type="submit" id="todo-button" class="col">添加</button>
                 </form>
-                <div id="todo-list" class="row"></div>
+                <div id="task-list" class="row"></div>
             </div>
         </div>
     </div>
