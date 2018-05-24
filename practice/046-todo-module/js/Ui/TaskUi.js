@@ -62,7 +62,7 @@ function remove_row(id){
 
 function todo_render(){
     let ui_this = this;
-    ui_this.list.innerHTML = '';
+    this.list.innerHTML = '';
     this._api.read().forEach(function (item){
         ui_this.list.innerHTML += `
         <div class="task-item cl_fl" data-id="${item.id}">

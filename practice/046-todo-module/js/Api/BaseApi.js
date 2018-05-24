@@ -38,15 +38,19 @@ function read(id){
 
 
 function find_list_by_id(arr, id){
-    for(let i =0; i< arr.length; i++){
-        if(arr[i].id == id)
-            return i;
-    }
+    let list_id;
+    arr.forEach(function (index){
+        if(index.id == id)
+            return list_id = index.id;
+    });
+    return list_id;
 }
 
 function find_list_by_row(arr, id){
-    for(let i =0; i< arr.length; i++){
-        if(arr[i].id == id)
-            return arr[i];
-    }
+    let list_row;
+    arr.forEach(function (index){
+        if(index.id == id)
+            return list_row = index;
+    });
+    return list_row;
 }
