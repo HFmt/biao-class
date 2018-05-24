@@ -1,7 +1,4 @@
-let taskList =  [{
-    id: 1,
-    title: 'teset',
-}];
+let taskList =  [];
 
 function TaskApi(max_id){
   BaseApi.call(this, taskList, max_id);

@@ -7,14 +7,15 @@ function TaskUi(form_selector, list_selector){
 }
 
 
-TaskUi.prototype.get_todo_data = get_todo_data;
-TaskUi.prototype.set_todo_data = set_todo_data;
+
 TaskUi.prototype.init = init;
 TaskUi.prototype.detect_submit = detect_submit;
 TaskUi.prototype.todo_render = todo_render;
 TaskUi.prototype.detect_list = detect_list;
 TaskUi.prototype.remove_row = remove_row;
 TaskUi.prototype.clear_form_input = helper.clear_form_input;
+TaskUi.prototype.get_todo_data = helper.get_todo_data;
+TaskUi.prototype.set_todo_data = helper.set_todo_data;
 
 function init(){
     this.detect_submit();
@@ -82,50 +83,4 @@ function todo_render(){
     });
 }
 
-function get_todo_data(form_selector){
-    let data = {};
-    let list = form_selector.querySelectorAll('[name]');
-
-    list.forEach(function (input){
-        switch(input.nodeName){
-            case 'INPUT':
-                switch(input.type){
-                    case 'text':
-                    case 'password':
-                    case 'number':
-                    case 'hidden':
-                        data[input.name] = input.value;
-                        break;
-                    case 'checkbox':
-                    case 'radio':
-                        data[input.name] = input.checked;
-                        break;
-                }
-                break;
-            case 'TEXTAREA':
-                data[input.name] = input.value;
-                break;
-            default:
-                alert('No corresponding value');
-        }
-    });
-    return data;
-}
-
-
-function set_todo_data(form_selector, data){
-    for(let key in data){
-        let val = data[key];
-        let input = form_selector.querySelector(`[name =${key}]`);
-        switch(typeof(val)){
-            case 'number':
-            case 'string':
-                input.value = val;
-                break;
-            case 'boolean':
-                input.checked = val;
-                break;
-        }
-    }
-}
 
