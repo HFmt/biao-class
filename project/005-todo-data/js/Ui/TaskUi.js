@@ -82,6 +82,7 @@ function detect_submit(){
             task_this._api.add(task_form);
         task_this.render(task_form.cat_id);
         task_this.clear_form(task_this.form);
+        task_this.form.querySelector('[type = submit]').innerHTML = '添加';
     });
 }
 

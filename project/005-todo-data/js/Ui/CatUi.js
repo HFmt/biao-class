@@ -67,7 +67,6 @@ function detect_list(){
             cat_this.show_form();
             cat_item.hidden = true;
             cat_item.insertAdjacentElement('afterend', cat_this.form); // 表单占坑
-            cat_this.form.querySelector('[type = submit]').innerHTML = '确认';
             cat_this.updating_item = cat_item;
         }
         else{

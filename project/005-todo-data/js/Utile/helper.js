@@ -55,7 +55,6 @@ function set_todo_data(form_selector, data){
 }
 
 function clear_form(form_selector){
-    form_selector.querySelector('[type = submit]').innerHTML = '添加';
     form_selector.querySelector('[name = title]').value = '';
     form_selector.querySelector('[name = id]').value = '';
 }
