@@ -23,9 +23,8 @@
     width: 30%;
 }
 
-.cat-item input:disabled{
-    border: 0;
-    background: #eee;
+.cat-item:hover{
+    background: rgb(241, 225, 225);
 }
 
 .main{
@@ -168,4 +167,8 @@ button:hover{
     padding: 5px;
     color:cornflowerblue;
     opacity: .7;
+}
+
+.cat-active{
+    background: #ccc;
 }

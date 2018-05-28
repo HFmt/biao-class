@@ -29,9 +29,10 @@ CatUi.prototype.remove_row = remove_row;
 CatUi.prototype.show_cat_input = show_cat_input;
 CatUi.prototype.detect_submit_list = detect_submit_list;
 CatUi.prototype.clear_form_input = helper.clear_form_input;
+CatUi.prototype.show_updating_item = show_updating_item;
+CatUi.prototype.set_item_active = set_item_active;
 CatUi.prototype.get_todo_data = helper.get_todo_data;
 CatUi.prototype.set_todo_data = helper.set_todo_data;
-CatUi.prototype.show_updating_item = helper.show_updating_item;
 
 function init(){
     this.detect_submit_list();
@@ -66,6 +67,7 @@ function detect_list(){
         else{
             if(!data_id)
                 return; 
+                cat_this.set_item_active(data_id);
             if(cat_this.config.click_fn){
                 cat_this.config.click_fn(data_id);
             }
@@ -118,9 +120,7 @@ function render(){
     this._api.read().forEach(function (item){
         ui_this.list.innerHTML += `
         <div class="cat-item cl_fl" data-id="${item.id}">
-            <div class="cat-title">
-                <input type="text" value="${item.title}" disabled>
-            </div>
+            <div class="cat-title">${item.title}</div>
             <div class="tool-set">
                 ${
                     item.id == 1? '' : 
@@ -146,4 +146,15 @@ function show_updating_item(){
         this.updating_item.hidden = false;
 }
 
+
+function set_item_active(id){
+    let cat_list = this.list.querySelectorAll('.cat-item');
+    cat_list.forEach(function (item){
+        if(item.dataset.id == id)
+            item.classList.add('cat-active');
+        else
+            item.classList.remove('cat-active')
+    });
+
+}
 

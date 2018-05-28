@@ -55,7 +55,6 @@ function detect_list(){
             ui_this.remove_row(task_id);  
         }
         else if(e.target.classList.contains('task-modify')){
-            console.log(ui_this._api.$find_row_id(task_id));
             let task_row  = ui_this._api.$find_row_id(task_id);
             ui_this.set_todo_data(ui_this.form, task_row);
             ui_this.form.querySelector('[type = submit]').innerHTML = '确认';
