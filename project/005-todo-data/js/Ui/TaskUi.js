@@ -29,7 +29,7 @@ function TaskUi(config){
 TaskUi.prototype.remove_row = remove_row;
 
 //外部
-TaskUi.prototype.clear_form_input = helper.clear_form_input;
+TaskUi.prototype.clear_form = helper.clear_form;
 TaskUi.prototype.get_todo_data = helper.get_todo_data;
 TaskUi.prototype.set_todo_data = helper.set_todo_data;
 
@@ -81,7 +81,7 @@ function detect_submit(){
         else
             task_this._api.add(task_form);
         task_this.render(task_form.cat_id);
-        task_this.clear_form_input(task_this.form);
+        task_this.clear_form(task_this.form);
     });
 }
 
