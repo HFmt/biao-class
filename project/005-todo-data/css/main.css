@@ -5,8 +5,9 @@
 
 .container{
     padding: 10px;
-    max-width: 440px;
+    max-width: 640px;
     margin: 0 auto;
+    background: #eee;
 }
 
 .row{
@@ -18,28 +19,42 @@
     display: inline-block;
 }
 
-#todo-form input,
-#todo-form button
+.sidebar{
+    width: 30%;
+}
+
+.cat-item:hover{
+    background: rgb(241, 225, 225);
+}
+
+.main{
+    width: 70%;
+    padding-left: 10px;
+}
+
+#task-form input,
+#task-form button,
+#task-select
 {
     line-height: 1.1;
     padding: 8px;
 }
 
-#todo-form input{
+#task-form input{
     width: 80%;
     border: 1px solid #3399CC;
     border-right: 0;
     border-bottom: 0;
 }
 
-#todo-form input:focus{
+#task-form input:focus{
     outline:none;
     border: 1px solid #003366;
     border-right: 0;
     border-bottom: 0;
 }
 
-#todo-form button{
+#task-form button{
     border: 1px solid #3399CC;
     width: 20%;
     color: #003366;
@@ -47,24 +62,33 @@
     
 }
 
-#todo-form button:hover{
+#task-select{
+    width: 80%;
+}
+
+#task-select:focus{
+    outline:none;
+}
+
+#task-form button:hover{
     color: #fff;
     border: 1px solid #003366;
     background: #003366;
 }
+
+
+
 button:hover{
     cursor: pointer;
 }
 
-
-
-#todo-list{
+#task-list{
     margin-top: -1px;
     border: 1px solid #003366;
     border-top: 0;
 }
 
-#todo-list:hover{
+#task-list:hover{
     border: 1px solid #3399CC;
     border-top: 0;
 }
@@ -76,11 +100,12 @@ button:hover{
     display: block;
 }
 
-.todo-item:hover{
+.task-item:hover{
     background: #e7e5f9;
 }
 
-.todo-item > *{
+.task-item > *,
+.cat-item > *{
     display: inline-block;
     padding: 4px;
 }
@@ -96,11 +121,63 @@ button:hover{
     color: rgba(0, 0, 0, .5);
 }
 
-.todo-modify:hover{
+.task-modify:hover,
+.cat-modify:hover
+{
     color: #003366;
 }
 
-.todo-delete:hover{
+.task-delete:hover,
+.cat-delete:hover
+{
     color: #DB7093;
 }
 
+.add-cat button{
+    width: 100%;
+    background: #3399CC;
+    border: 0;
+}
+
+#cat-form input{
+    width: 100%;
+}
+
+#cat-form button{
+    background: rgb(225, 240, 248);
+    border: 0;
+}
+
+
+
+.cat-item .cat-title{
+    width: 65%;
+}
+
+.cat-item .cat-title input{
+    width: 100%;
+}
+
+.cat-item .tool-set{
+    width: 35%;
+}
+
+.cat-item .tool-set button{
+    padding: 0;
+    font-size: 0.7rem;
+}
+
+.test{
+    width: 100%;
+}
+
+.empty{
+    text-align: center;
+    padding: 5px;
+    color:cornflowerblue;
+    opacity: .7;
+}
+
+.cat-active{
+    background: #ccc;
+}

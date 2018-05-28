@@ -9,18 +9,41 @@
 </head>
 <body>
     <div class="container">
-        <h2>Asam日志</h2>
-        <form action="" id="todo-form" class="row">
-            <input type="hidden" name="id" class="col">
-            <input type="checkbox" name="completed" class="col" style="display: none">
-            <input  ype="text" name="title" class="col" autocomplete="off">
-            <button type="submit" id="todo-button" class="col">添加</button>
-        </form>
-        <div id="todo-list" class="row"></div>
+        <h2>Asam Todo</h2>
+        <div class="row">
+            <div class="col sidebar">
+                <div class="sidebar-title">分组</div>
+                <hr>
+                <div id="cat-list" class="cat-list"></div>
+                <form action="" id="cat-form" hidden>
+                    <input type="hidden" name="id">
+                    <input type="text" name="title" autocomplete="off">
+                    <button type="submit" class="complete">完成</button>
+                    <button type="button" class="cancel">取消</button>
+                </form>
+                <div id="add-cat" class="add-cat">
+                    <button>+</button>
+                </div>
+            </div>
+            <div class="col main">
+                <form action="" id="task-form" class="row">
+                    <input type="hidden" name="id" >
+                    <input type="checkbox" name="completed" class="col" style="display: none">
+                    <input type="text" id="task-input" name="title"  autocomplete="off">
+                    <button type="submit" id="todo-button" >添加</button>
+                    <select name="cat_id" id="task-select" hidden></select>
+                </form>
+                <div id="task-list"></div>
+            </div>
+        </div>
     </div>
 </body>
 
-<script src="js/Api.js"></script>
-<script src="js/UI.js"></script>
-<script src="js/index.js"></script>
+<script src="js/api/BaseApi.js"></script>
+<script src="js/api/CatApi.js"></script>
+<script src="js/api/TaskApi.js"></script>
+<script src="js/Utile/helper.js"></script>
+<script src="js/ui/TaskUi.js"></script>
+<script src="js/ui/CatUi.js"></script>
+<script src="js/ui/index.js"></script>
 </html>
