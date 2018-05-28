@@ -45,7 +45,9 @@ function detect_list(){
     this.list.addEventListener('click', function(e){
         let data_id = e.target.closest('.task-item').dataset.id;
         if(e.target.classList.contains('task-delete')){
+            console.log(data_id);
             ui_this.remove_row(data_id);
+            
         }
         else if(e.target.classList.contains('task-modify')){
             let task_row  = ui_this._api.read(data_id);

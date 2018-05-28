@@ -13,7 +13,7 @@ BaseApi.prototype.$read = read;
 
 
 function add(row){
-    row.id =  this.id ++;
+    row.id =  this.id++;
     this.list.push(row);
 }
 
@@ -37,20 +37,16 @@ function read(id){
 }
 
 
-function find_list_by_id(arr, id){
-    let list_id;
-    arr.forEach(function (index){
-        if(index.id == id)
-            return list_id = index.id;
-    });
-    return list_id;
-}
-
-function find_list_by_row(arr, id){
-    let list_row;
-    arr.forEach(function (index){
-        if(index.id == id)
-            return list_row = index;
-    });
-    return list_row;
-}
+//找到数组索引
+function find_list_by_id(list, id){
+    return list.findIndex(function (item){
+         return item.id == id;
+     });  
+ }
+ 
+ //找到数组索引的内容
+ function find_list_by_row(list, id){
+    return list.find(function (item){
+         return item.id == id;
+    })
+ }

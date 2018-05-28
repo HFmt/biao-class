@@ -38,6 +38,7 @@ function detect_list(){
 
         if(e.target.classList.contains('cat-delete')){
             ui_this.remove_row(cat_id);
+            console.log(cat_id);
         }
         else if(e.target.classList.contains('cat-modify')){
             let cat_row  = ui_this._api.read(cat_id);

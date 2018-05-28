@@ -4,7 +4,7 @@ function TaskApi(max_id){
   BaseApi.call(this, taskList, max_id);
 }
 
-TaskApi.prototype = Object.create(BaseApi.prototype);
+TaskApi.prototype = Object.create(BaseApi.prototype); 
 
 TaskApi.prototype.add = add;
 TaskApi.prototype.remove = remove;
