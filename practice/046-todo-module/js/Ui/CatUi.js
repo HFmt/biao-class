@@ -1,11 +1,21 @@
 window.CatUi = CatUi;
 
-function CatUi(form_selector, add_btn_selector, input_selector, list_selector){
-    this.form = document.querySelector(form_selector || '#cat-form');
-    this.add_btn = document.querySelector(add_btn_selector || '#add-cat');
-    this.cat_input = document.querySelector(input_selector || '#cat-form');
-    this.list = document.querySelector(list_selector || '#cat-list');
+function CatUi(config){
+    let default_config = {
+        form_selector: '#cat-form',
+        add_btn_selector: '#add-cat',
+        input_selector: '#cat-form',
+        list_selector: '#cat-list',
+        click_fn : null,
+    }
+
+    let cfg = this.config = Object.assign({}, default_config, config);
+    this.form = document.querySelector(cfg.form_selector);
+    this.add_btn = document.querySelector(cfg.add_btn_selector);
+    this.cat_input = document.querySelector(cfg.input_selector);
+    this.list = document.querySelector(cfg.list_selector);
     this._api = new CatApi();
+    this.updating_item = null;
 }
 
 
@@ -13,43 +23,57 @@ CatUi.prototype.get_todo_data = get_todo_data;
 CatUi.prototype.set_todo_data = set_todo_data;
 CatUi.prototype.init = init;
 CatUi.prototype.detect_add_btn = detect_add_btn;
-CatUi.prototype.cat_render = cat_render;
+CatUi.prototype.render = render;
 CatUi.prototype.detect_list = detect_list;
 CatUi.prototype.remove_row = remove_row;
 CatUi.prototype.show_cat_input = show_cat_input;
 CatUi.prototype.detect_submit_list = detect_submit_list;
 CatUi.prototype.clear_form_input = helper.clear_form_input;
+CatUi.prototype.get_todo_data = helper.get_todo_data;
+CatUi.prototype.set_todo_data = helper.set_todo_data;
+CatUi.prototype.show_updating_item = helper.show_updating_item;
 
 function init(){
     this.detect_submit_list();
     this.detect_add_btn();
     this.detect_list();
-    this.cat_render();
+    this.render();
 }
 
 function detect_list(){
     
-    let ui_this = this;
+    let cat_this = this;
     this.list.addEventListener('click', function(e){
         let cat_item = e.target.closest('.cat-item');
-        let cat_id;
+        let data_id;
         if(cat_item)
-            cat_id = cat_item.dataset.id;
+            data_id = parseInt(cat_item.dataset.id);
 
         if(e.target.classList.contains('cat-delete')){
-            ui_this.remove_row(cat_id);
-            console.log(cat_id);
+            cat_this.remove_row(data_id);
         }
         else if(e.target.classList.contains('cat-modify')){
-            let cat_row  = ui_this._api.read(cat_id);
-            ui_this.set_todo_data(ui_this.form, cat_row);
+            if(cat_this.updating_item)
+                cat_this.updating_item.hidden = false;
+            let cat_row  = cat_this._api.$find_row_id(data_id);
+            cat_this.set_todo_data(cat_this.form, cat_row);
+            cat_this.show_cat_input();
             cat_item.hidden = true;
-            cat_item.insertAdjacentElement('afterend', ui_this.form); // 表单占坑
-            ui_this.form.querySelector('[type = submit]').innerHTML = '确认';
+            cat_item.insertAdjacentElement('afterend', cat_this.form); // 表单占坑
+            cat_this.form.querySelector('[type = submit]').innerHTML = '确认';
+            cat_this.updating_item = cat_item;
+        }
+        else{
+            if(!data_id)
+                return; 
+            if(cat_this.config.click_fn){
+                cat_this.config.click_fn(data_id);
+            }
         }
     });
 }
 
+//添加类目
 function detect_add_btn(){
     let ui_this = this;
     this.add_btn.addEventListener('click', function (){
@@ -77,7 +101,7 @@ function detect_submit_list(){
             ui_this._api.modify(cat_row.id, cat_row);
         else
             ui_this._api.add(cat_row);
-        ui_this.cat_render();
+        ui_this.render();
         ui_this.clear_form_input(ui_this.form);
     });
 }
@@ -85,10 +109,10 @@ function detect_submit_list(){
 
 function remove_row(id){
     this._api.remove(id);
-    this.cat_render();
+    this.render();
 }
 
-function cat_render(){
+function render(){
     let ui_this = this;
     this.list.innerHTML = '';
     this._api.read().forEach(function (item){
@@ -99,7 +123,7 @@ function cat_render(){
             </div>
             <div class="tool-set">
                 ${
-                    item.id == 0? '' : 
+                    item.id == 1? '' : 
                     `
                     <button class="cat-modify">修改</button>
                     <button class="cat-delete">删除</button>
@@ -112,50 +136,14 @@ function cat_render(){
     });
 }
 
-function get_todo_data(form_selector){
-    let data = {};
-    let list = form_selector.querySelectorAll('[name]');
-
-    list.forEach(function (input){
-        switch(input.nodeName){
-            case 'INPUT':
-                switch(input.type){
-                    case 'text':
-                    case 'password':
-                    case 'number':
-                    case 'hidden':
-                        data[input.name] = input.value;
-                        break;
-                    case 'checkbox':
-                    case 'radio':
-                        data[input.name] = input.checked;
-                        break;
-                }
-                break;
-            case 'TEXTAREA':
-                data[input.name] = input.value;
-                break;
-            default:
-                alert('No corresponding value');
-        }
-    });
-    return data;
+/**
+ * 显示正在更新的那一条分组
+ * 比如说用户提交了更新表单或取消更新的时候就应该隐藏表单，
+ * 同时显示正在更新的那一条分组，这个方法就是用来恢复显示分组的
+ * */
+function show_updating_item(){
+    if(this.updating_item)
+        this.updating_item.hidden = false;
 }
 
-
-function set_todo_data(form_selector, data){
-    for(let key in data){
-        let val = data[key];
-        let input = form_selector.querySelector(`[name =${key}]`);
-        switch(typeof(val)){
-            case 'number':
-            case 'string':
-                input.value = val;
-                break;
-            case 'boolean':
-                input.checked = val;
-                break;
-        }
-    }
-}
 

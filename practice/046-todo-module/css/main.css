@@ -162,3 +162,10 @@ button:hover{
 .test{
     width: 100%;
 }
+
+.empty{
+    text-align: center;
+    padding: 5px;
+    color:cornflowerblue;
+    opacity: .7;
+}

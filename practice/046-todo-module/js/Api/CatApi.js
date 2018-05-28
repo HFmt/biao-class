@@ -1,7 +1,17 @@
-let catList = [{
-    id: 0,
-    title: '默认',
-}];
+let catList = [
+    {
+        id: 1,
+        title: '默认',
+    },
+    {
+        id: 2,
+        title: '生活',
+    },
+    {
+        id: 3,
+        title: '活着',
+    }
+];
 
 function CatApi(max_id){
     this.config = {
@@ -30,8 +40,6 @@ function add(row){
 }
 
 function remove(id){
-    if(id == 0)
-        return;
     return this.$remove(id);
 }
 
@@ -39,6 +47,6 @@ function modify(id, new_row){
     return this.$modify(id, new_row);
 }
 
-function read(id){
-    return this.$read(id);
+function read(){
+    return this.$read();
 }

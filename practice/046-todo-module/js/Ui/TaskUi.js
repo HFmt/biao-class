@@ -10,7 +10,7 @@ function TaskUi(form_selector, list_selector){
 
 TaskUi.prototype.init = init;
 TaskUi.prototype.detect_submit = detect_submit;
-TaskUi.prototype.todo_render = todo_render;
+TaskUi.prototype.render = render;
 TaskUi.prototype.detect_list = detect_list;
 TaskUi.prototype.remove_row = remove_row;
 TaskUi.prototype.clear_form_input = helper.clear_form_input;
@@ -18,8 +18,10 @@ TaskUi.prototype.get_todo_data = helper.get_todo_data;
 TaskUi.prototype.set_todo_data = helper.set_todo_data;
 
 function init(){
+    
     this.detect_submit();
     this.detect_list();
+    this.render();
 }
 
 function detect_submit(){
@@ -33,7 +35,7 @@ function detect_submit(){
             ui_this._api.modify(todo_row.id, todo_row);
         else
             ui_this._api.add(todo_row);
-        ui_this.todo_render();
+        ui_this.render();
         ui_this.clear_form_input(ui_this.form);
     });
 }
@@ -43,14 +45,18 @@ function detect_submit(){
 function detect_list(){
     let ui_this = this;
     this.list.addEventListener('click', function(e){
-        let data_id = e.target.closest('.task-item').dataset.id;
+        let task_item = e.target.closest('.task-item');
+        let task_id;
+        if(task_item)
+            task_id = parseInt(task_item.dataset.id);
+
         if(e.target.classList.contains('task-delete')){
-            console.log(data_id);
-            ui_this.remove_row(data_id);
-            
+            console.log(task_id);
+            ui_this.remove_row(task_id);  
         }
         else if(e.target.classList.contains('task-modify')){
-            let task_row  = ui_this._api.read(data_id);
+            console.log(ui_this._api.$find_row_id(task_id));
+            let task_row  = ui_this._api.$find_row_id(task_id);
             ui_this.set_todo_data(ui_this.form, task_row);
             ui_this.form.querySelector('[type = submit]').innerHTML = '确认';
         }
@@ -60,13 +66,20 @@ function detect_list(){
 
 function remove_row(id){
     this._api.remove(id);
-    this.todo_render();
+    this.render();
 }
 
-function todo_render(){
+function render(cat_id){
     let ui_this = this;
+    let task_list = cat_id ? this._api.read_by_cat(cat_id): this._api.read();
+
+    if(!task_list.length){
+        this.list.innerHTML = `<div class="empty">暂无数据</div>`;
+        return;
+    }
+
     this.list.innerHTML = '';
-    this._api.read().forEach(function (item){
+    task_list.forEach(function (item){
         ui_this.list.innerHTML += `
         <div class="task-item cl_fl" data-id="${item.id}">
                 <div class="check">

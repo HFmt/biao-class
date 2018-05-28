@@ -9,12 +9,13 @@ BaseApi.prototype.$add = add;
 BaseApi.prototype.$remove = remove;
 BaseApi.prototype.$modify = modify;
 BaseApi.prototype.$read = read;
+BaseApi.prototype.$find_row_id = find_row_id;
 
 
 
 function add(row){
     row.id =  this.id++;
-    this.list.push(row);
+    this.list.unshift(row);
 }
 
 function remove(id){
@@ -29,11 +30,8 @@ function modify(id, new_row){
     this.list[item] = Object.assign({}, old_row, new_row);
 }
 
-function read(id){
-    if(id)
-        return find_list_by_row(this.list, id);
-    else
-        return this.list;
+function read(){
+    return this.list;
 }
 
 
@@ -48,5 +46,10 @@ function find_list_by_id(list, id){
  function find_list_by_row(list, id){
     return list.find(function (item){
          return item.id == id;
-    })
+    });
+ }
+
+
+ function find_row_id(id){
+    return find_list_by_row(this.list, id);
  }
