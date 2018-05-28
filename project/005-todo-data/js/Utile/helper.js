@@ -1,8 +1,7 @@
 window.helper = {
     get_todo_data: get_todo_data,
     set_todo_data: set_todo_data,
-    clear_form_input: clear_form_input
-
+    clear_form: clear_form
 }
 
 function get_todo_data(form_selector){
@@ -55,7 +54,7 @@ function set_todo_data(form_selector, data){
     }
 }
 
-function clear_form_input(form_selector){
+function clear_form(form_selector){
     form_selector.querySelector('[type = submit]').innerHTML = '添加';
     form_selector.querySelector('[name = title]').value = '';
     form_selector.querySelector('[name = id]').value = '';

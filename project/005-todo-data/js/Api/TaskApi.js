@@ -8,7 +8,7 @@ let taskList =  [
     {
     id: 102,
     title: '拉屎',
-    completed: false,
+    completed: true,
     cat_id: 1
     },
     {
@@ -37,6 +37,7 @@ TaskApi.prototype.modify = modify;
 TaskApi.prototype.read = read;
 TaskApi.prototype.read_by_cat = read_by_cat;
 TaskApi.prototype.remove_cat_row = remove_cat_row;
+TaskApi.prototype.set_completed = set_completed;
 
 
 
@@ -74,4 +75,11 @@ function remove_cat_row(cat_id){
     this.list = this.list.filter(function (item){
         return item.cat_id != cat_id;
     });
+}
+
+function set_completed (id, completed) {
+    let row = this.$find_row_id(id);
+    if (!row)
+      return false;
+    row.completed = completed;
 }
