@@ -1,12 +1,14 @@
 window.TaskUi = TaskUi;
 
 function TaskUi(config){
+    this._model_name = 'task';
     let default_config = {
         form_selector: '#task-form',
         list_selector: '#task-list',
         input_selector: '#task-input',
         select_selector:'#task-select',
         on_init: null,
+        on_click: null,
         input_focus: null,
         input_blur: null
     }
@@ -63,12 +65,12 @@ function detect_submit(){
         e.preventDefault();
         if(task_this.form.querySelector('[name = title]').value == '')
             return;
-        let todo_row = task_this.get_todo_data(task_this.form)
-        if(todo_row.id)
-            task_this._api.modify(todo_row.id, todo_row);
+        let task_form = task_this.get_todo_data(task_this.form);
+        if(task_form.id)
+            task_this._api.modify(task_form.id, task_form);
         else
-            task_this._api.add(todo_row);
-        task_this.render();
+            task_this._api.add(task_form);
+        task_this.render(task_form.cat_id);
         task_this.clear_form_input(task_this.form);
     });
 }
@@ -76,23 +78,31 @@ function detect_submit(){
 
 
 function detect_list(){
-    let ui_this = this;
+    let task_this = this;
     this.list.addEventListener('click', function(e){
         let delete_click = e.target.classList.contains('task-delete')
         , modify_click = e.target.classList.contains('task-modify')
+        , checker_click = e.target.classList.contains('checker')
         ;
         let task_item = e.target.closest('.task-item');
-        let task_id;
-        if(task_item)
+        
+        let task_id
+          ;
+        if(task_item){
             task_id = parseInt(task_item.dataset.id);
+        }
 
         if(delete_click){
-            ui_this.remove_row(task_id);  
+            task_this.remove_row(task_id);  
+            task_this.render(e.target.dataset.id);
         }
         else if(modify_click){
-            let task_row  = ui_this._api.$find_row_id(task_id);
-            ui_this.set_todo_data(ui_this.form, task_row);
-            ui_this.form.querySelector('[type = submit]').innerHTML = '确认';
+            let task_row  = task_this._api.$find_row_id(task_id);
+            task_this.set_todo_data(task_this.form, task_row);
+            task_this.form.querySelector('[type = submit]').innerHTML = '确认';
+        }
+        else if(checker_click){
+            console.log(e.target.checked);
         }
     });
 }
@@ -114,17 +124,18 @@ function render(cat_id){
 
     this.list.innerHTML = '';
     task_list.forEach(function (item){
-        ui_this.list.innerHTML += `
-        <div class="task-item cl_fl" data-id="${item.id}">
+        ui_this.list.innerHTML += 
+        `
+            <div class="task-item cl_fl" data-id="${item.id}">
                 <div class="check">
-                    <input type="checkbox" name="${item.complete}">
+                    <input class="checker" type="checkbox" name="${item.completed}">
                 </div>
                 <div class="col detail">
                     <div class="title">${item.title}</div>
                 </div>
                 <div class="tool-set">
                     <button class="task-modify">修改</button>
-                    <button class="task-delete">删除</button>
+                    <button class="task-delete" data-id="${item.cat_id}">删除</button>
                 </div>
             </div>
         `

@@ -10,12 +10,15 @@ BaseApi.prototype.$remove = remove;
 BaseApi.prototype.$modify = modify;
 BaseApi.prototype.$read = read;
 BaseApi.prototype.$find_row_id = find_row_id;
+BaseApi.prototype.$sync_to = sync_to;
+BaseApi.prototype.$sync_from = sync_from;
 
 
 
 function add(row){
     row.id =  this.id++;
     this.list.unshift(row);
+
 }
 
 function remove(id){
@@ -52,4 +55,12 @@ function find_list_by_id(list, id){
 
  function find_row_id(id){
     return find_list_by_row(this.list, id);
+ }
+
+ function sync_to(model){
+    store.set(model+'-list', this.list); 
+ }  
+
+ function sync_from(model){
+    return store.get(model+'-list');
  }

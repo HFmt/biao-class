@@ -13,6 +13,9 @@ var taskUi = new TaskUi({
     input_blur: function (){
         // taskUi.select.hidden = true;
     },
+    on_click: function() {
+        catUi._api.$find_row_id()
+    }
 });
 
 var catUi = new CatUi({

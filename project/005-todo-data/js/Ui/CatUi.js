@@ -1,6 +1,7 @@
 window.CatUi = CatUi;
 
 function CatUi(config){
+    this._model_name = 'cat';
     let default_config = {
         form_selector: '#cat-form',
         add_btn_selector: '#add-cat',
@@ -43,7 +44,6 @@ function init(){
 }
 
 function detect_list(){
-    
     let cat_this = this;
     this.list.addEventListener('click', function(e){
         let delete_click = e.target.classList.contains('cat-delete')
