@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="title" id="" value="Asam"><br>
+        <label>
+            <input type="checkbox" name="completed" id="">completed
+        </label><br>
+        <input type="password" name="password" id="" value="123"><br>
+        <textarea name="textarea" id="" cols="30" rows="10" >aa</textarea><br>
+        <button type="submit">Add task</button>
+    </form>
+
+    <div id="todo-list"></div>
+</body>
+<script>
+    ;(function (){
+        'use strict';
+
+        let row ={};
+
+        let name = document.querySelector('[name=title]');
+        let completed = document.querySelector('[name=completed]');
+        
+        row.id = 1;
+        row.name = name.value;
+        row.completed = completed.value;
+
+        function get_from_data(form_selector){
+            let data = {};
+            let form = document.querySelector(form_selector);
+            let list = form.querySelectorAll('[name]');
+            list.forEach(function (input){
+                // if(input.nodeName == 'INPUT')
+                //     data[input.name] = input.value;
+                // else if(input.nodeName == 'TEXTAREA')
+                //     data[input.name] = input.value;
+
+
+                switch(input.nodeName){
+                    case 'INPUT' :
+                        switch(input.type){
+                            case 'text':
+                            case 'search':
+                            case 'password':
+                            case 'number':
+                            case 'file':
+                                data[input.name] = input.value;
+                                break;
+                            case 'radio':
+                            case 'checkbox':
+                                data[input.name] = input.checked;
+                                break;
+                        }
+                        break;
+                    case 'TEXTAREA':
+                        data[input.name] = input.value;
+                        break;
+                    default:
+                        alert('No corresponding value');
+                }
+            });
+            return data;
+        }
+        console.log(get_from_data('form'));
+    })();
+
+    
+</script>
+</html>

@@ -24,11 +24,8 @@ window.onload = function () {
     let oMnext = document.querySelector('#Mnext');
 
 
-    let marr = ['Alan Walker - New Heart.mp3', 
-                'Dan Farber - Fresh Off The Grill.mp3', 
-                'OMFG - Yeah.mp3',
+    let marr = [
                 '花粥 - 略略略.flac',
-                'Oorora - Tenko.mp3',
                 '花粥 - 一腔诗意喂了狗.flac',
         ];
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Todo(name){
+        this.id = 1;
+        this.name = name;
+        this.list = ['asam'];
+
+        this.add = function (){
+            console.log(this.id);
+        };
+    }
+
+    Todo.prototype.add = function (){
+            console.log(this.id);
+    };
+
+    let todo = new Todo('Asam');
+    
+    console.log(todo.name);
+    todo.add()
+</script>
+</html>

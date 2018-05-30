@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>github-search</title>
+    <link rel="stylesheet" href="css/lacalstorage.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+
+<body>
+<div class="container">
+    <h1>GitHub用户搜索</h1>
+    <form id="search-form">
+        <input id="search-input" type="text" autofocus autocomplete="off" placeholder="请输入用户名">
+        <button id="search-button" type="submit">搜索</button>
+    </form>
+    <div id="history-list" hidden></div>
+    <div id="amount"></div>
+    <div id="user-list"></div>
+    <div class="tac" id="placeholder" hidden>谋了 - . -</div>
+    <div id="pagination-container">
+        <div id="first-page" class="col"><button>首页</button></div>
+        <div  class="col" id="pagination">
+        </div>
+        <div id="last-page" class="col"><button>尾页</button></div>
+    </div>
+</div>
+<div class="toolbar">
+    <button id="top">Top</button>
+</div>
+</body>
+<script src="js/localstorage.js"></script>
+<script src="js/main.js"></script>
+
+</html>
