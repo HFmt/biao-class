@@ -160,7 +160,7 @@ function render(){
             <div class="cat-title">${item.title}</div>
             <div class="tool-set">
                 ${
-                    item.id == 0? '' : 
+                    item.id == 1? '' : 
                     `
                     <button class="cat-modify">修改</button>
                     <button class="cat-delete">删除</button>
