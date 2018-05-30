@@ -2,7 +2,6 @@ let BaseApi = require('./baseApi');
 
 module.exports = TaskApi;
 
-
 let taskList =  [
     {
         id: 1,
@@ -29,7 +28,6 @@ TaskApi.prototype.read = read;
 TaskApi.prototype.read_by_cat = read_by_cat;
 TaskApi.prototype.remove_cat_row = remove_cat_row;
 TaskApi.prototype.set_completed = set_completed;
-
 
 
 function add(row){

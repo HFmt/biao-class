@@ -27,7 +27,6 @@ CatUi.prototype.clear_form = helper.clear_form;
 CatUi.prototype.get_todo_data = helper.get_todo_data;
 CatUi.prototype.set_todo_data = helper.set_todo_data;
 
-
 CatUi.prototype.init = init;
 CatUi.prototype.detect_add_btn = detect_add_btn;
 CatUi.prototype.detect_click_form = detect_click_form;
@@ -184,7 +183,6 @@ function show_updating_item(){
     if(this.updating_item)
         this.updating_item.hidden = false;
 }
-
 
 function set_item_active(id){
     let cat_list = this.list.querySelectorAll('.cat-item');
