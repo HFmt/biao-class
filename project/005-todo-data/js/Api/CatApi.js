@@ -1,23 +1,21 @@
 let catList = [
     {
         title: '默认',
-        id: 0,
+        id: 1,
     }
 ];
 
 function CatApi(max_id){
     this._model_name = 'cat';
+    this.max_id = max_id || 2;
     this.config = {
         title: {
             max_length: 10,
         }
     }
     this.list= catList || [];
-    BaseApi.call(this,catList, max_id);
-    this.$load_list(this.list);
-    
-    
-
+    console.log('cat',this.max_id);
+    BaseApi.call(this,catList, this.max_id);
 }
 
 CatApi.prototype = Object.create(BaseApi.prototype);
@@ -47,9 +45,4 @@ function modify(id, new_row){
 
 function read(){
     return this.$read();
-}
-
-
-function set_select(){
-    
 }

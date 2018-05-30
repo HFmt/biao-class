@@ -1,10 +1,18 @@
-let taskList =  [];
+let taskList =  [
+    {
+        id: 1,
+        title: '1',
+        completed: true,
+        cat_id: 1
+    }
+];
 
 function TaskApi(max_id){
     this._model_name = 'task';
+    this.max_id = max_id || 2;
     this.list = taskList || [];
-    BaseApi.call(this, taskList, max_id);
-    this.$load_list();
+    console.log('task',this.max_id);
+    BaseApi.call(this, this.list, this.max_id);
 }
 
 TaskApi.prototype = Object.create(BaseApi.prototype); 
