@@ -1,7 +1,6 @@
 function BaseApi(list, max_id){
     this.max_id = max_id || 1;
     this.list = list;
-    this.load_list();
 }
 
 BaseApi.prototype.$add = add;
@@ -11,11 +10,14 @@ BaseApi.prototype.$read = read;
 BaseApi.prototype.$find_row_id = find_row_id;
 BaseApi.prototype.$sync_to = sync_to;
 BaseApi.prototype.$sync_from = sync_from;
+BaseApi.prototype.$load_list = load_list;
 
 //把 localStorage 的值取出 赋值给 this.list
-BaseApi.prototype.load_list = function () {
-   return this.list = this.$sync_from() || [];
+function load_list(default_list) {
+    default_list = default_list || [];
+    return this.list = this.$sync_from() || default_list;
 };
+
 
 function add(row){
     row.id =  this.max_id++;
@@ -67,5 +69,4 @@ function find_list_by_id(list, id){
 
  function sync_from(){
     return store.get(this._model_name+'-list');
-    return store.get(this._model_name+'-max_id');
  }

@@ -12,8 +12,12 @@ function CatApi(max_id){
             max_length: 10,
         }
     }
-    this.list = catList || [] ;
-    BaseApi.call(this, this.list, max_id);
+    this.list= catList || [];
+    BaseApi.call(this,catList, max_id);
+    this.$load_list(this.list);
+    
+    
+
 }
 
 CatApi.prototype = Object.create(BaseApi.prototype);

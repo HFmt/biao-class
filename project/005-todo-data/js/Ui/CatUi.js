@@ -136,6 +136,7 @@ function detect_submit_list(){
         if(cat_this.config.on_add){
             cat_this.config.on_add();
         }
+        
     });
 }
 
@@ -155,7 +156,7 @@ function render(){
             <div class="cat-title">${item.title}</div>
             <div class="tool-set">
                 ${
-                    item.id == 1? '' : 
+                    item.id == 0? '' : 
                     `
                     <button class="cat-modify">修改</button>
                     <button class="cat-delete">删除</button>
@@ -166,6 +167,7 @@ function render(){
         `
         ;
     });
+    cat_this._api.$sync_to();
 }
 
 /**

@@ -3,7 +3,8 @@ let taskList =  [];
 function TaskApi(max_id){
     this._model_name = 'task';
     this.list = taskList || [];
-    BaseApi.call(this, this.list, max_id);
+    BaseApi.call(this, taskList, max_id);
+    this.$load_list();
 }
 
 TaskApi.prototype = Object.create(BaseApi.prototype); 
