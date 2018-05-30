@@ -4,8 +4,6 @@ function BaseApi(list, max_id){
     this.load_list();
 }
 
-
-
 BaseApi.prototype.$add = add;
 BaseApi.prototype.$remove = remove;
 BaseApi.prototype.$modify = modify;
@@ -13,12 +11,11 @@ BaseApi.prototype.$read = read;
 BaseApi.prototype.$find_row_id = find_row_id;
 BaseApi.prototype.$sync_to = sync_to;
 BaseApi.prototype.$sync_from = sync_from;
+
+//把 localStorage 的值取出 赋值给 this.list
 BaseApi.prototype.load_list = function () {
    return this.list = this.$sync_from() || [];
 };
-
-
-
 
 function add(row){
     row.id =  this.max_id++;
@@ -44,7 +41,6 @@ function modify(id, new_row){
 function read(){
     return this.list;
 }
-
 
 //找到数组索引
 function find_list_by_id(list, id){
