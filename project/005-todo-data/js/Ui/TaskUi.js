@@ -1,4 +1,7 @@
-window.TaskUi = TaskUi;
+let TaskApi = require('../api/taskApi');
+let helper = require('../utile/helper');
+
+module.exports = TaskUi;
 
 function TaskUi(config){
     this._model_name = 'task';
@@ -12,7 +15,8 @@ function TaskUi(config){
         on_init: null,
         on_click: null,
         input_focus: null,
-        input_blur: null
+        input_blur: null,
+        add_succeed: null
     }
     let cfg = this.config = Object.assign({}, default_config, config);
     this.form = document.querySelector(cfg.form_selector);
@@ -80,6 +84,10 @@ function detect_submit(){
             task_this._api.modify(task_form.id, task_form);
         else
             task_this._api.add(task_form);
+        if(task_this.config.input_blur)
+            task_this.config.input_blur();
+        if(task_this.config.add_succeed)
+            task_this.config.add_succeed(task_form.cat_id);
         task_this.render(task_form.cat_id);
         task_this.clear_form(task_this.form);
         task_this.form.querySelector('[type = submit]').innerHTML = '添加';

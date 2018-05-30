@@ -1,3 +1,6 @@
+let TaskUi = require('./ui/taskUi');
+let CatUi = require('./ui/catUi');
+
 let taskUi = new TaskUi({
     on_init: render_cat_option,
     input_focus: function (){
@@ -8,6 +11,9 @@ let taskUi = new TaskUi({
     },
     on_click: function() {
         catUi._api.$find_row_id()
+    },
+    add_succeed:function (id) {
+        catUi.set_item_active(id);
     }
 });
 

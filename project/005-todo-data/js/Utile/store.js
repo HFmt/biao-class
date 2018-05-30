@@ -1,9 +1,8 @@
 
-window.store = {
+module.exports = {
   set: set,
   get: get,
 }
-
 
         /*往冰箱存*/
   function set(key, arr) {

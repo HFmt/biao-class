@@ -1,3 +1,8 @@
+
+let store = require('../utile/store');
+
+module.exports = BaseApi;
+
 function BaseApi(list, max_id){
     this.max_id = max_id;
     this.list = list;

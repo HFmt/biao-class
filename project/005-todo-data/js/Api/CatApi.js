@@ -1,3 +1,7 @@
+let BaseApi = require('./baseApi');
+
+module.exports = CatApi;
+
 let catList = [
     {
         title: '默认',

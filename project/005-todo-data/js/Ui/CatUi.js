@@ -1,4 +1,7 @@
-window.CatUi = CatUi;
+let CatApi = require('../api/catApi');
+let helper = require('../utile/helper');
+
+module.exports = CatUi;
 
 function CatUi(config){
     this._model_name = 'cat';
