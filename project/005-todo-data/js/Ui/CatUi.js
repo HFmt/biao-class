@@ -8,6 +8,7 @@ function CatUi(config){
         list_selector: '#cat-list',
         click_fn : null,
         delete_fn: null,
+        on_add: null
     }
 
     let cfg = this.config = Object.assign({}, default_config, config);
@@ -18,11 +19,15 @@ function CatUi(config){
     this.updating_item = null;
 }
 
+// 外部原型
 CatUi.prototype.clear_form = helper.clear_form;
 CatUi.prototype.get_todo_data = helper.get_todo_data;
 CatUi.prototype.set_todo_data = helper.set_todo_data;
+
+
 CatUi.prototype.init = init;
 CatUi.prototype.detect_add_btn = detect_add_btn;
+CatUi.prototype.detect_click_form = detect_click_form;
 CatUi.prototype.render = render;
 CatUi.prototype.detect_list = detect_list;
 CatUi.prototype.remove_row = remove_row;
@@ -36,10 +41,21 @@ CatUi.prototype.reset_cat_form_location = reset_cat_form_location;
 
 function init(){
     this.detect_submit_list();
+    this.detect_click_form();
     this.detect_add_btn();
     this.detect_list();
     this.render();
 }
+
+/*当分类表单被点击时做什么*/
+function detect_click_form () {
+   let cat_this = this;
+   this.form.addEventListener('click', function (e) {
+        if(e.target.classList.contains('cancel')){
+            cat_this.hide_form();
+        }
+   });
+  }
 
 function detect_list(){
     let cat_this = this;
@@ -117,6 +133,9 @@ function detect_submit_list(){
         cat_this.clear_form(cat_this.form);
         cat_this.render();
         cat_this.hide_form();
+        if(cat_this.config.on_add){
+            cat_this.config.on_add();
+        }
     });
 }
 

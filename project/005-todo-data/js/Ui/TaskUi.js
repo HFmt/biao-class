@@ -112,7 +112,6 @@ function detect_list(){
         }
         else if(checker_click){
             task_this._api.set_completed(task_id, e.target.checked);
-            console.log(e.target.closest('.check').dataset.id);
             task_this.render(e.target.closest('.check').dataset.id);
         }
     });
@@ -126,25 +125,25 @@ function remove_row(id){
 function render(cat_id){
     let task_this = this;
     let task_list = cat_id ? this._api.read_by_cat(cat_id): this._api.read();
+    let holder = `<div class="empty">空</div>`;
     this.incomplete_list.innerHTML =this.completed_list.innerHTML = '';
-
     task_list.forEach(function (item){
         if(item.completed){
             task_this.completed_list.innerHTML += 
-            _row_html(item);
+            _insert_row(item);
         }
         else{
             task_this.incomplete_list.innerHTML += 
-            _row_html(item);
+            _insert_row(item);
         }
         });
     if (!this.incomplete_list.innerHTML)
-        this.incomplete_list.innerHTML = `<div class="empty">没有未完成的计划</div>`;
+        this.incomplete_list.innerHTML = holder;
     if (!this.completed_list.innerHTML)
-        this.completed_list.innerHTML = `<div class="empty">没有已完成的计划</div>`;
+        this.completed_list.innerHTML = holder;
 }
 
-function _row_html(row){
+function _insert_row(row){
     return `
     <div class="task-item cl_fl" data-id="${row.id}">
         <div class="check"  data-id="${row.cat_id}">
@@ -158,7 +157,7 @@ function _row_html(row){
             <button class="task-delete">删除</button>
         </div>
     </div>
-`
+`;
 }
 
 

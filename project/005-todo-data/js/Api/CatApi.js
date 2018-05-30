@@ -1,25 +1,19 @@
 let catList = [
     {
-        id: 1,
         title: '默认',
-    },
-    {
-        id: 2,
-        title: '生活',
-    },
-    {
-        id: 3,
-        title: '活着',
+        id: 0,
     }
 ];
 
 function CatApi(max_id){
+    this._model_name = 'cat';
     this.config = {
         title: {
             max_length: 10,
         }
     }
-  BaseApi.call(this, catList, max_id);
+    this.list = catList || [] ;
+    BaseApi.call(this, this.list, max_id);
 }
 
 CatApi.prototype = Object.create(BaseApi.prototype);

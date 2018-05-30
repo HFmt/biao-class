@@ -1,32 +1,9 @@
-let taskList =  [
-    {
-    id: 101,
-    title: '起床',
-    completed: false,
-    cat_id: 1
-    },
-    {
-    id: 102,
-    title: '如厕',
-    completed: true,
-    cat_id: 1
-    },
-    {
-    id: 103,
-    title: '跑步',
-    completed: false,
-    cat_id: 2
-    },
-    {
-    id: 104,
-    title: '跳绳',
-    completed: false,
-    cat_id: 2
-    },
-];
+let taskList =  [];
 
 function TaskApi(max_id){
-  BaseApi.call(this, taskList, max_id);
+    this._model_name = 'task';
+    this.list = taskList || [];
+    BaseApi.call(this, this.list, max_id);
 }
 
 TaskApi.prototype = Object.create(BaseApi.prototype); 
@@ -74,6 +51,7 @@ function read_by_cat(cat_id){
 function remove_cat_row(cat_id){
     this.list = this.list.filter(function (item){
         return item.cat_id != cat_id;
+        this.$sync_to();
     });
 }
 
@@ -82,4 +60,5 @@ function set_completed (id, completed) {
     if (!row)
       return false;
     row.completed = completed;
+    this.$sync_to();
 }

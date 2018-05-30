@@ -7,32 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
 </body>
 
 <script>
-function Test(){
-    arr = [1,1,2];
+
+var liList = document.querySelectorAll('li'); // 共5个li
+for( let i=0; i<liList.length; i++){
+  liList[i].onclick = function(){
+    console.log(i);
+  }
 }
-
- Test.prototype.method3 = function(){  
-            //直接定义结果数组  
-            let arr[this.arr[0]];  
-            for(var i = 1; i < this.length; i++){    //从数组第二项开始循环遍历此数组  
-                //对元素进行判断：  
-                //如果数组当前元素在此数组中第一次出现的位置不是i  
-                //那么我们可以判断第i项元素是重复的，否则直接存入结果数组  
-                if(this.indexOf(this[i]) == i){  
-                    arr.push(this[i]);  
-                }  
-            }  
-            return arr;  
-          
-        }  
-
-let test = new Test()
-
-console.log(test.method3);
-
 </script>
 </html>
