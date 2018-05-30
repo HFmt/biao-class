@@ -11,10 +11,10 @@ function TaskApi(max_id){
     this._model_name = 'task';
     this.max_id = max_id || 2;
     this.list = taskList || [];
-    console.log('task',this.max_id);
     BaseApi.call(this, this.list, this.max_id);
 }
 
+//继承父级原型
 TaskApi.prototype = Object.create(BaseApi.prototype); 
 
 TaskApi.prototype.add = add;

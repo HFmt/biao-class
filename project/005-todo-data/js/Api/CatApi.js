@@ -14,10 +14,10 @@ function CatApi(max_id){
         }
     }
     this.list= catList || [];
-    console.log('cat',this.max_id);
     BaseApi.call(this,catList, this.max_id);
 }
 
+//继承父级原型
 CatApi.prototype = Object.create(BaseApi.prototype);
 
 CatApi.prototype.add = add;

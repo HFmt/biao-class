@@ -36,7 +36,7 @@ CatUi.prototype.hide_form = hide_form;
 CatUi.prototype.detect_submit_list = detect_submit_list;
 CatUi.prototype.show_updating_item = show_updating_item;
 CatUi.prototype.set_item_active = set_item_active;
-CatUi.prototype.reset_cat_form_location = reset_cat_form_location;
+CatUi.prototype.reset_form_location = reset_form_location;
 
 
 function init(){
@@ -53,6 +53,8 @@ function detect_click_form () {
    this.form.addEventListener('click', function (e) {
         if(e.target.classList.contains('cancel')){
             cat_this.hide_form();
+            cat_this.show_updating_item();
+            cat_this.reset_form_location();
         }
    });
   }
@@ -70,7 +72,7 @@ function detect_list(){
 
         if(delete_click){
             if(!confirm('确认删除？'))
-            return;
+                return;
             cat_this.remove_row(data_id);
             if(cat_this.config.delete_fn)
                 cat_this.config.delete_fn(data_id);
@@ -112,8 +114,8 @@ function hide_form(){
     this.form.hidden = true;
 }
 
-//插入表单
-function reset_cat_form_location () {
+//在 list 元素下外部插入表单,并清空表单数据
+function reset_form_location () {
     this.list.insertAdjacentElement('afterend', this.form);
     this.clear_form(this.form); // 清空表单
   }
@@ -148,7 +150,7 @@ function remove_row(id){
 
 function render(){
     let cat_this = this;
-    this.reset_cat_form_location();
+    this.reset_form_location();
     this.list.innerHTML = '';
     this._api.read().forEach(function (item){
         cat_this.list.innerHTML += `
