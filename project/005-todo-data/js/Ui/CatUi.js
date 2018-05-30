@@ -11,7 +11,7 @@ function CatUi(config){
         list_selector: '#cat-list',
         click_fn : null,
         delete_fn: null,
-        on_add: null
+        add_fn: null
     }
 
     let cfg = this.config = Object.assign({}, default_config, config);
@@ -137,8 +137,8 @@ function detect_submit_list(){
         cat_this.clear_form(cat_this.form);
         cat_this.render();
         cat_this.hide_form();
-        if(cat_this.config.on_add){
-            cat_this.config.on_add();
+        if(cat_this.config.add_fn){
+            cat_this.config.add_fn();
         }
         
     });

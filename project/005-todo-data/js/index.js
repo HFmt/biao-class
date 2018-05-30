@@ -2,30 +2,28 @@ let TaskUi = require('./ui/taskUi');
 let CatUi = require('./ui/catUi');
 
 let taskUi = new TaskUi({
-    on_init: render_cat_option,
+    init_fn: render_cat_option,
     input_focus: function (){
         taskUi.select.hidden = false;
     },
     input_blur: function (){
         // taskUi.select.hidden = true;
     },
-    on_click: function() {
-        catUi._api.$find_row_id()
-    },
-    add_succeed:function (id) {
+    add_succeed_fn:function (id) {
         catUi.set_item_active(id);
     }
 });
 
 let catUi = new CatUi({
     click_fn: function(id){
+        render_cat_option_value(id);
         taskUi.render(id);
     },
     delete_fn: function(id){
         taskUi._api.remove_cat_row(id);
-        taskUi.render(1);
+        taskUi.render();
     },
-    on_add: render_cat_option,
+    add_fn: render_cat_option,
 }  
 );
 
@@ -39,8 +37,21 @@ function render_cat_option(){
     catUi._api.read().forEach(function (item){
         taskUi.select.innerHTML +=
         `
-        <option value="${item.id}">${item.title}</option>
+        <option class="cat-option" value="${item.id}">${item.title}</option>
         `;
+    });
+    taskUi.select.addEventListener('change', function (e){
+        let cat_id = parseInt(e.target.value);
+        catUi.set_item_active(cat_id);
+        taskUi.render(cat_id);
+    });
+}
+
+function render_cat_option_value(cat_id) {
+    let option_assemble = taskUi.select.querySelectorAll('option');
+    option_assemble.forEach(function (item) {
+        if(item.value == cat_id)
+        item.selected = true;
     });
 }
 
