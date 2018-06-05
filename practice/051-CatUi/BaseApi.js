@@ -1,7 +1,7 @@
 
 function BaseApi(max_id){
     this.id = max_id || 1;
-    this.list = [];
+    this.list = []
 }
 
 BaseApi.prototype.$add = add;
@@ -14,14 +14,13 @@ function add(row){
     row.id = this.id ++;
     this.list.push(row);
 }
-
 function remove(id){
    this.list.splice(find_todo_id(this.list, id), 1);
 }
 
 function update(new_row, id){
     let item = find_todo_id(this.list, id);
-    let old_row =this.list[item];
+    old_row =this.list[item];
     this.list[item] = Object.assign({}, old_row, new_row);
 }
 function read(id){
@@ -43,5 +42,5 @@ function find_todo_id(list, id){
 function find_todo_row(list, id){
    return list.find(function (item){
         return item.id == id;
-   });
+   })
 }

@@ -1,27 +1,27 @@
+let BaseApi = require('./baseApi');
+
+module.exports = CatApi;
+
 let catList = [
     {
-        id: 1,
         title: '默认',
-    },
-    {
-        id: 2,
-        title: '生活',
-    },
-    {
-        id: 3,
-        title: '活着',
+        id: 1,
     }
 ];
 
 function CatApi(max_id){
+    this._model_name = 'cat';
+    this.max_id = max_id || 2;
     this.config = {
         title: {
             max_length: 10,
         }
     }
-  BaseApi.call(this, catList, max_id);
+    this.list= catList || [];
+    BaseApi.call(this,catList, this.max_id);
 }
 
+//继承父级原型
 CatApi.prototype = Object.create(BaseApi.prototype);
 
 CatApi.prototype.add = add;
@@ -49,9 +49,4 @@ function modify(id, new_row){
 
 function read(){
     return this.$read();
-}
-
-
-function set_select(){
-    
 }

@@ -1,0 +1,61 @@
+const ok   = true;
+const data = {
+    list : {
+      article: [
+        {
+          'id'      : 1,
+          'title'   : '叫我王花花',
+          'content' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\n',
+        },
+        {
+          'id'      : 2,
+          'title'   : '叫我李拴蛋',
+          'content' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\n',
+        },
+        {
+          'id'      : 3,
+          'title'   : '叫我刘备备',
+          'content' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse odio sed vitae! Architecto odio placeat quasi. Accusamus asperiores aspernatur delectus dolorum, ea enim ex expedita facere fugiat, molestias perferendis?\n',
+        },
+      ],
+      tag: [
+        {
+          'id'   : 1,
+          'name' : 'HTML',
+        },
+        {
+          'id'   : 2,
+          'name' : '生活',
+        },
+        {
+          'id'   : 3,
+          'name' : 'CSS',
+        },
+      ],
+    },
+  }
+
+function get (url, succeed, error) {
+  let modle = url.split('/')[2];
+  if(ok)
+    if(succeed)
+      succeed(data.list[modle]);
+    else {
+      if (error)
+        error({
+          ok: false,
+          message : 'invalid page',
+        });
+    }
+}
+
+function post() {
+  
+}
+
+const output = {
+  get,
+  post,
+}
+
+export default output;

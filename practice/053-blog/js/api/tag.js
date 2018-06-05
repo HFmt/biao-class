@@ -1,0 +1,1 @@
+import artlcle from "./artlcle"; 

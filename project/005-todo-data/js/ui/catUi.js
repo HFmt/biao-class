@@ -1,3 +1,7 @@
+let CatApi = require('../api/catApi');
+let helper = require('../utile/helper');
+
+module.exports = CatUi;
 
 function CatUi(config){
     this._model_name = 'cat';
@@ -7,6 +11,7 @@ function CatUi(config){
         list_selector: '#cat-list',
         click_fn : null,
         delete_fn: null,
+        add_fn: null
     }
 
     let cfg = this.config = Object.assign({}, default_config, config);
@@ -17,11 +22,14 @@ function CatUi(config){
     this.updating_item = null;
 }
 
+// 外部原型
 CatUi.prototype.clear_form = helper.clear_form;
 CatUi.prototype.get_todo_data = helper.get_todo_data;
 CatUi.prototype.set_todo_data = helper.set_todo_data;
+
 CatUi.prototype.init = init;
 CatUi.prototype.detect_add_btn = detect_add_btn;
+CatUi.prototype.detect_click_form = detect_click_form;
 CatUi.prototype.render = render;
 CatUi.prototype.detect_list = detect_list;
 CatUi.prototype.remove_row = remove_row;
@@ -30,15 +38,28 @@ CatUi.prototype.hide_form = hide_form;
 CatUi.prototype.detect_submit_list = detect_submit_list;
 CatUi.prototype.show_updating_item = show_updating_item;
 CatUi.prototype.set_item_active = set_item_active;
-CatUi.prototype.reset_cat_form_location = reset_cat_form_location;
+CatUi.prototype.reset_form_location = reset_form_location;
 
 
 function init(){
     this.detect_submit_list();
+    this.detect_click_form();
     this.detect_add_btn();
     this.detect_list();
     this.render();
 }
+
+/*当分类表单被点击时做什么*/
+function detect_click_form () {
+   let cat_this = this;
+   this.form.addEventListener('click', function (e) {
+        if(e.target.classList.contains('cancel')){
+            cat_this.hide_form();
+            cat_this.show_updating_item();
+            cat_this.reset_form_location();
+        }
+   });
+  }
 
 function detect_list(){
     let cat_this = this;
@@ -53,7 +74,7 @@ function detect_list(){
 
         if(delete_click){
             if(!confirm('确认删除？'))
-            return;
+                return;
             cat_this.remove_row(data_id);
             if(cat_this.config.delete_fn)
                 cat_this.config.delete_fn(data_id);
@@ -95,8 +116,8 @@ function hide_form(){
     this.form.hidden = true;
 }
 
-//插入表单
-function reset_cat_form_location () {
+//在 list 元素下外部插入表单,并清空表单数据
+function reset_form_location () {
     this.list.insertAdjacentElement('afterend', this.form);
     this.clear_form(this.form); // 清空表单
   }
@@ -116,6 +137,10 @@ function detect_submit_list(){
         cat_this.clear_form(cat_this.form);
         cat_this.render();
         cat_this.hide_form();
+        if(cat_this.config.add_fn){
+            cat_this.config.add_fn();
+        }
+        
     });
 }
 
@@ -127,7 +152,7 @@ function remove_row(id){
 
 function render(){
     let cat_this = this;
-    this.reset_cat_form_location();
+    this.reset_form_location();
     this.list.innerHTML = '';
     this._api.read().forEach(function (item){
         cat_this.list.innerHTML += `
@@ -146,6 +171,7 @@ function render(){
         `
         ;
     });
+    cat_this._api.$sync_to();
 }
 
 /**
@@ -157,7 +183,6 @@ function show_updating_item(){
     if(this.updating_item)
         this.updating_item.hidden = false;
 }
-
 
 function set_item_active(id){
     let cat_list = this.list.querySelectorAll('.cat-item');

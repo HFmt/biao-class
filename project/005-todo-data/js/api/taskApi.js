@@ -1,34 +1,24 @@
+let BaseApi = require('./baseApi');
+
+module.exports = TaskApi;
+
 let taskList =  [
     {
-    id: 101,
-    title: '起床',
-    completed: false,
-    cat_id: 1
-    },
-    {
-    id: 102,
-    title: '如厕',
-    completed: true,
-    cat_id: 1
-    },
-    {
-    id: 103,
-    title: '跑步',
-    completed: false,
-    cat_id: 2
-    },
-    {
-    id: 104,
-    title: '跳绳',
-    completed: false,
-    cat_id: 2
-    },
+        id: 1,
+        title: '起床',
+        completed: true,
+        cat_id: 1
+    }
 ];
 
 function TaskApi(max_id){
-  BaseApi.call(this, taskList, max_id);
+    this._model_name = 'task';
+    this.max_id = max_id || 2;
+    this.list = taskList || [];
+    BaseApi.call(this, this.list, this.max_id);
 }
 
+//继承父级原型
 TaskApi.prototype = Object.create(BaseApi.prototype); 
 
 TaskApi.prototype.add = add;
@@ -38,7 +28,6 @@ TaskApi.prototype.read = read;
 TaskApi.prototype.read_by_cat = read_by_cat;
 TaskApi.prototype.remove_cat_row = remove_cat_row;
 TaskApi.prototype.set_completed = set_completed;
-
 
 
 function add(row){
@@ -74,6 +63,7 @@ function read_by_cat(cat_id){
 function remove_cat_row(cat_id){
     this.list = this.list.filter(function (item){
         return item.cat_id != cat_id;
+        this.$sync_to();
     });
 }
 
@@ -82,4 +72,5 @@ function set_completed (id, completed) {
     if (!row)
       return false;
     row.completed = completed;
+    this.$sync_to();
 }

@@ -1,4 +1,7 @@
-window.TaskUi = TaskUi;
+let TaskApi = require('../api/taskApi');
+let helper = require('../utile/helper');
+
+module.exports = TaskUi;
 
 function TaskUi(config){
     this._model_name = 'task';
@@ -9,10 +12,10 @@ function TaskUi(config){
         incomplete_list_selector: '.incomplete',
         input_selector: '#task-input',
         select_selector:'#task-select',
-        on_init: null,
-        on_click: null,
+        init_fn: null,
         input_focus: null,
-        input_blur: null
+        input_blur: null,
+        add_succeed_fn: null
     }
     let cfg = this.config = Object.assign({}, default_config, config);
     this.form = document.querySelector(cfg.form_selector);
@@ -36,7 +39,7 @@ TaskUi.prototype.set_todo_data = helper.set_todo_data;
 TaskUi.prototype.init = init;
 TaskUi.prototype.render = render;
 
-
+//事件
 TaskUi.prototype.detect_submit = detect_submit;
 TaskUi.prototype.detect_list = detect_list;
 TaskUi.prototype.detect_input_focus = detect_input_focus;
@@ -47,10 +50,10 @@ function init(){
     this.render(1);
     this.detect_submit();
     this.detect_list();
-    if(this.config.on_init)
-        this.config.on_init();
+    if(this.config.init_fn)
+        this.config.init_fn();
     this.detect_input_focus();
-    this.detect_input_blur()
+    this.detect_input_blur();
 }
 
 function detect_input_focus(){
@@ -69,6 +72,7 @@ function detect_input_blur(){
     });
 }
 
+
 function detect_submit(){
     let task_this = this;
     this.form.addEventListener('submit', function (e){
@@ -80,6 +84,10 @@ function detect_submit(){
             task_this._api.modify(task_form.id, task_form);
         else
             task_this._api.add(task_form);
+        if(task_this.config.input_blur)
+            task_this.config.input_blur();
+        if(task_this.config.add_succeed_fn)
+            task_this.config.add_succeed_fn(task_form.cat_id);
         task_this.render(task_form.cat_id);
         task_this.clear_form(task_this.form);
         task_this.form.querySelector('[type = submit]').innerHTML = '添加';

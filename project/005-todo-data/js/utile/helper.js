@@ -1,4 +1,4 @@
-window.helper = {
+module.exports = {
     get_todo_data: get_todo_data,
     set_todo_data: set_todo_data,
     clear_form: clear_form
