@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+<<<<<<< HEAD
     //获取当前选择的值
     <select id="sltLB" name="sltLB" onchange='btnChange(this[selectedIndex].value);'>
         <option value="1" selected="selected">全校</option>
@@ -59,4 +60,22 @@ function objGet(obj, keys) {
     templator();
 
   </script>
+=======
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</body>
+
+<script>
+
+var liList = document.querySelectorAll('li'); // 共5个li
+for( let i=0; i<liList.length; i++){
+  liList[i].onclick = function(){
+    console.log(i);
+  }
+}
+</script>
+>>>>>>> 7be19244439918543c74dcca75c31568a24aafb4
 </html>

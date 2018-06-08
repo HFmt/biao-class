@@ -11,7 +11,11 @@ let taskUi = new TaskUi({
     },
     add_succeed_fn:function (id) {
         catUi.set_item_active(id);
+<<<<<<< HEAD
     }9
+=======
+    }
+>>>>>>> 7be19244439918543c74dcca75c31568a24aafb4
 });
 
 let catUi = new CatUi({
@@ -27,6 +31,10 @@ let catUi = new CatUi({
 }  
 );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7be19244439918543c74dcca75c31568a24aafb4
 function render_cat_option(){
     taskUi.select.innerHTML = '';
 
