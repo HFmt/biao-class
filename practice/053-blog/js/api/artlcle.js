@@ -11,7 +11,6 @@ function init() {
 
     read (page) {
         send.get('/api/article/read', data => {
-          console.log(data);
         });
     }
 

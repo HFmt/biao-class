@@ -5,12 +5,14 @@ let config = {
     routes : {
         home: {
             path: '/home/a/b',
-            el: '#home'
+            el: '#home',
+            template: '../tmp/home' 
         },
 
         about: {
             path: '/about',
-            el: '#about'
+            el: '#about',
+            template: '../tmp/about' 
         },
 
         artlcle: {

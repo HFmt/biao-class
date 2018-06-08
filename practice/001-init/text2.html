@@ -16,16 +16,47 @@
 </body>
 
 <script>
+function objGet(obj, keys) {
+    let tmp = Object.assign({}, obj);
 
-    //下拉框选择改变事件
-    function btnChange(values) {
-    //如果选中的是学生，显示第二个下拉框
-    if (values == "3") {
-    document.getElementById('sltXS').style.display = '';
+    let arr = keys.split('.');
+
+    arr.forEach( key => {
+       tmp = tmp[key];
+       if(tmp = null || typeof(tmp) !='object' || tmp.constructor)
+        return;
+    });
+    return tmp;
+}
+
+    let tpl = `叫{{name}},今年{{age}},小弟{{child.name}},今年{{child.age}}`;
+
+    let data = {
+        name: 'Asam',
+        age: 23,
+        child: {
+            name: 'fmt',
+            age: 21
+        }
     }
-    else {
-    document.getElementById('sltXS').style.display = 'none';
+
+    function templator() {
+        let re = /{{([^}}])}}/g,
+            result = tpl,
+            match;
+
+        while(match = re.exce(tpl)){
+            let curlyBlock = match[0];
+            let key = match[1];
+            let value = objGet(data, key);
+
+            result = result.replace(curlyBlock, objGet(data, value));
+        }
+        console.log(result);
     }
-  }
+
+
+    templator();
+
   </script>
 </html>
