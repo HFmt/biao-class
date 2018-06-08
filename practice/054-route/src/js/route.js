@@ -1,5 +1,4 @@
 
-
 let instance;
 
 class Route{
@@ -13,12 +12,11 @@ class Route{
 
     detectHashChange() {
         window.addEventListener('hashchange', () => {
-
             //将当前浏览器 hash 记录在 this.current.hash, 方便后续调用
             this.current.hash = location.hash;
 
             let routesName = this.parseCurrentHash();
-
+            console.log(routesName)
             this.goRoutePath(routesName);
         });
     }
@@ -28,10 +26,16 @@ class Route{
         return this.parseHash(this.current.hash);
     }
 
-    
+    //  去除多余的符号: #/xxx => xxx
     parseHash(currentHash) {
-        //  #/xxx => xxx
-        return 'home';
+        // return currentHash.split('#')[1];
+        currentHash = trim(currentHash, '#/');
+
+        for(let key in this.state.routes){
+            let item = this.state.routes[key];
+            if (item.path == currentHash)
+                return key;
+        }
     }
 
     goRoutePath(routesName) {
@@ -61,12 +65,14 @@ class Route{
 
     // 通过路由渲染 tpl
     renderTpl(route) {
+        
         this.getTpl(route.tplUrl, (tpl) => {
             document.getElementById(route.el).innerHTML = tpl;
         });
     }
 
     getTpl(url, onSucceed){
+        
         let http = new XMLHttpRequest();
         http.open('get', url);
         http.send();
@@ -87,16 +93,16 @@ let data = {
     routes: {
         home: {
             path: '#/home',
-            el: '#home',
-            tplUrl: '../tmp/home.html'
+            el: 'home',
+            tplUrl: 'src/tpl/home.html'
         },
         about: {
             path: '#/about',
-            el: '#about',
-            tplUrl: '../tmp/about.html'
+            el: 'about',
+            tplUrl: 'src/tpl/about.html'
         },
     },
-    
+
     //访问前后阶段可以执行自定义函数(全局钩子，可以在单路由作局部钩子)
     hook: {
         before: function () {
@@ -107,5 +113,22 @@ let data = {
         }
     }
 }
+
+function trim(str, capList) {
+    let arr = capList.split('');
+
+    arr.forEach(function (cap) {
+        if(str.starsWith(cap)){
+            str = str.substr(1);
+            str = trim(str, cap);
+        }
+
+        if(str.endWith(cap)){
+            str = str.substr(str.length);
+            str = trim(str, cap)
+        }
+    })
+}
+
 
 init(data);
