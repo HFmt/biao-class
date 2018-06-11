@@ -7,7 +7,17 @@ class Route{
 
         this.state = Object.assign({}, config);
 
+        this.initRouteTpl();
+
         this.detectHashChange();
+    }
+
+    // 直接加载
+    initRouteTpl() {
+        // if(!location.hash)
+        //     return;
+        let routesName = this.parseHash(location.hash);
+        this.goRoutePath(routesName);
     }
 
     detectHashChange() {
@@ -16,7 +26,6 @@ class Route{
             this.current.hash = location.hash;
 
             let routesName = this.parseCurrentHash();
-            console.log(routesName)
             this.goRoutePath(routesName);
         });
     }
@@ -27,13 +36,13 @@ class Route{
     }
 
     //  去除多余的符号: #/xxx => xxx
-    parseHash(currentHash) {
-        // return currentHash.split('#')[1];
-        currentHash = trim(currentHash, '#/');
-
+    parseHash(hash) {
+        hash = trim(hash, '#/');
+        let re = new RegExp('^#?\/?'+ hash + '\/?$');
+        // return (hash);
         for(let key in this.state.routes){
             let item = this.state.routes[key];
-            if (item.path == currentHash)
+            if (re.test(item.path))
                 return key;
         }
     }
@@ -83,12 +92,12 @@ class Route{
     }
 }
 
-function init(config) {
+const init = (config) => {
     if(!instance)
         instance = new Route(config);
 }
 
-let data = {
+const data = {
     //路由
     routes: {
         home: {
@@ -114,20 +123,22 @@ let data = {
     }
 }
 
-function trim(str, capList) {
+const trim = (str, capList) => {
     let arr = capList.split('');
 
-    arr.forEach(function (cap) {
-        if(str.starsWith(cap)){
-            str = str.substr(1);
+    arr.forEach( (cap) => {
+        if(str.startsWith(cap)) {
+            str = str.substring(1);
             str = trim(str, cap);
         }
 
-        if(str.endWith(cap)){
-            str = str.substr(str.length);
-            str = trim(str, cap)
+        if(str.endsWith(cap)){
+            str = str.substring(0, str.length-1);
+            str = trim(str, cap);
         }
-    })
+    });
+
+    return str;
 }
 
 
