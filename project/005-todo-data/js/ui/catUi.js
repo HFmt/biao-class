@@ -78,8 +78,11 @@ function detect_list(){
                 return;
             cat_this.remove_row(data_id);
             cat_this._api.read().forEach( function (item, index) {
-                return Previous_id = cat_this.set_item_active(cat_this._api.read()[0].id);      
+                cat_this.set_item_active(cat_this._api.read()[0].id);      
+                return Previous_id = cat_this._api.read()[0].id;
             });
+            console.log('Previous_id:', Previous_id);
+            
             if (cat_this.config.delete_fn) {
                 cat_this.config.delete_fn(data_id, Previous_id);
             }

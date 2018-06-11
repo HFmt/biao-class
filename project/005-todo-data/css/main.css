@@ -58,11 +58,11 @@ hr{
 #task-select
 {
     line-height: 1.1;
-    padding: 8px;
+    padding: 10px;
 }
 
 #task-form input{
-    width: 80%;
+    width: 60%;
     border: 1px solid #3399CC;
     border-right: 0;
     border-bottom: 0;
@@ -84,7 +84,8 @@ hr{
 }
 
 #task-select{
-    width: 80%;
+    width: 20%;
+    padding-bottom: 7px;
 }
 
 #task-select:focus{

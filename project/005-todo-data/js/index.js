@@ -21,7 +21,6 @@ let catUi = new CatUi({
     },
     delete_fn: function (cat_id, Previous_id){
         taskUi._api.remove_cat_row(cat_id);
-        // catUi.render();
         taskUi.render(Previous_id);
         render_cat_option();
     },
@@ -37,7 +36,6 @@ function render_cat_option(){
     if(!catUi._api.read())
         return;
     catUi._api.read().forEach(function (item){
-        console.log('item.title:', item.title);
         taskUi.select.innerHTML +=
         `
         <option class="cat-option" value="${item.id}">${item.title}</option>
