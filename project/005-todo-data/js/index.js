@@ -11,11 +11,7 @@ let taskUi = new TaskUi({
     },
     add_succeed_fn:function (id) {
         catUi.set_item_active(id);
-<<<<<<< HEAD
-    }9
-=======
     }
->>>>>>> 7be19244439918543c74dcca75c31568a24aafb4
 });
 
 let catUi = new CatUi({
@@ -23,42 +19,45 @@ let catUi = new CatUi({
         render_cat_option_value(id);
         taskUi.render(id);
     },
-    delete_fn: function(id){
-        taskUi._api.remove_cat_row(id);
-        taskUi.render();
+    delete_fn: function (cat_id, Previous_id){
+        taskUi._api.remove_cat_row(cat_id);
+        // catUi.render();
+        taskUi.render(Previous_id);
+        render_cat_option();
     },
-    add_fn: render_cat_option,
+    add_fn: function (cat_id) {
+        taskUi.render(cat_id);
+        render_cat_option();        
+    } 
 }  
 );
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7be19244439918543c74dcca75c31568a24aafb4
 function render_cat_option(){
     taskUi.select.innerHTML = '';
-
     if(!catUi._api.read())
         return;
-
     catUi._api.read().forEach(function (item){
+        console.log('item.title:', item.title);
         taskUi.select.innerHTML +=
         `
         <option class="cat-option" value="${item.id}">${item.title}</option>
-        `;
+        `
+        ; 
     });
+    
     taskUi.select.addEventListener('change', function (e){
         let cat_id = parseInt(e.target.value);
         catUi.set_item_active(cat_id);
-        taskUi.render(cat_id);
+        taskUi.render(cat_id);       
     });
 }
 
 function render_cat_option_value(cat_id) {
     let option_assemble = taskUi.select.querySelectorAll('option');
     option_assemble.forEach(function (item) {
-        if(item.value == cat_id)
-        item.selected = true;
+        if(item.value == cat_id){
+            item.selected = true;
+        }
     });
 }
 
