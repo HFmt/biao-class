@@ -16,7 +16,10 @@ class Route{
     initRouteTpl() {
         // if(!location.hash)
         //     return;
+        
         let routesName = this.parseHash(location.hash);
+        if(!routesName)
+            routesName = this.state.default;
         this.goRoutePath(routesName);
     }
 
@@ -24,7 +27,6 @@ class Route{
         window.addEventListener('hashchange', () => {
             //将当前浏览器 hash 记录在 this.current.hash, 方便后续调用
             this.current.hash = location.hash;
-
             let routesName = this.parseCurrentHash();
             this.goRoutePath(routesName);
         });
@@ -39,7 +41,6 @@ class Route{
     parseHash(hash) {
         hash = trim(hash, '#/');
         let re = new RegExp('^#?\/?'+ hash + '\/?$');
-        // return (hash);
         for(let key in this.state.routes){
             let item = this.state.routes[key];
             if (re.test(item.path))
@@ -74,9 +75,16 @@ class Route{
 
     // 通过路由渲染 tpl
     renderTpl(route) {
-        
+
+        //判断是否缓存
+        if(route._tpl){
+            document.getElementById(route.el).innerHTML = route._tpl;
+            return;
+        }
         this.getTpl(route.tplUrl, (tpl) => {
-            document.getElementById(route.el).innerHTML = tpl;
+
+            //缓存 tpl
+            route._tpl = document.getElementById(route.el).innerHTML = tpl;
         });
     }
 
@@ -98,6 +106,7 @@ const init = (config) => {
 }
 
 const data = {
+    default: 'about',
     //路由
     routes: {
         home: {

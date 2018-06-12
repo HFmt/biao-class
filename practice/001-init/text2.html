@@ -1,81 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<<<<<<< HEAD
-    //获取当前选择的值
-    <select id="sltLB" name="sltLB" onchange='btnChange(this[selectedIndex].value);'>
-        <option value="1" selected="selected">全校</option>
-        <option value="2">教师</option>
-        <option value="3">学生</option>
-      </select>
-</body>
 
-<script>
-function objGet(obj, keys) {
-    let tmp = Object.assign({}, obj);
-
-    let arr = keys.split('.');
-
-    arr.forEach( key => {
-       tmp = tmp[key];
-       if(tmp = null || typeof(tmp) !='object' || tmp.constructor)
-        return;
-    });
-    return tmp;
+<style>
+    .posirelative {
+    position: relative;
 }
-
-    let tpl = `叫{{name}},今年{{age}},小弟{{child.name}},今年{{child.age}}`;
-
-    let data = {
-        name: 'Asam',
-        age: 23,
-        child: {
-            name: 'fmt',
-            age: 21
-        }
-    }
-
-    function templator() {
-        let re = /{{([^}}])}}/g,
-            result = tpl,
-            match;
-
-        while(match = re.exce(tpl)){
-            let curlyBlock = match[0];
-            let key = match[1];
-            let value = objGet(data, key);
-
-            result = result.replace(curlyBlock, objGet(data, value));
-        }
-        console.log(result);
-    }
-
-
-    templator();
-
-  </script>
-=======
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</body>
-
-<script>
-
-var liList = document.querySelectorAll('li'); // 共5个li
-for( let i=0; i<liList.length; i++){
-  liList[i].onclick = function(){
-    console.log(i);
-  }
+.select-out-div {
+    width: 160px;
+    overflow: hidden;
 }
-</script>
->>>>>>> 7be19244439918543c74dcca75c31568a24aafb4
-</html>
+select.m-wrap {
+
+    background-color: #ffffff;
+    background-image: none !important;
+    filter: none !important;
+    border: 1px solid #e5e5e5;
+    outline: none;
+    height: 25px !important;
+    line-height: 25px;
+}
+.select-hide-span {
+    height: 25px;
+    position: absolute;
+    top: 0;
+    border-right: 1px solid #e5e5e5;
+    right: 0;
+    width: 20px!important;
+    z-index: 999;
+}
+.select-show-b {
+    border-color: #888 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px 0 4px;
+    margin-left: -4px;
+    margin-top: 10px;
+    position: absolute;
+}
+</style>
+
+<span class="setleft wid80">
+    <span class="fyhbx">*</span>入库类型 :</span>
+<div class=" posirelative select-out-div">
+    <select class="m-wrap  " style="width: 180px; padding: 2px 0;">
+        <option value="0">采购</option>
+        <option value="1">返货</option>
+        <option value="2">移库入货</option>
+    </select>
+    <span class="select-hide-span">
+        <b class="select-show-b"></b>
+    </span>
+</div>
