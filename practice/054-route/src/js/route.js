@@ -75,17 +75,24 @@ class Route{
 
     // 通过路由渲染 tpl
     renderTpl(route) {
-
+        let element = document.getElementById(route.el);
         //判断是否缓存
         if(route._tpl){
-            document.getElementById(route.el).innerHTML = route._tpl;
+            element.innerHTML = route._tpl;
             return;
         }
         this.getTpl(route.tplUrl, (tpl) => {
 
             //缓存 tpl
-            route._tpl = document.getElementById(route.el).innerHTML = tpl;
+            route._tpl = tpl;
+
+            this.compile(route)
         });
+    }
+
+    compile(route) {
+        let element = document.getElementById(route.el);
+        element.innerHTML = parseElement(route._tpl, route.data);
     }
 
     getTpl(url, onSucceed){
@@ -98,7 +105,32 @@ class Route{
             onSucceed(http.responseText);
         });
     }
+
+    setData(routeName, keys, val) {
+        let layers = keys.split('.');
+
+        let data = this.state.route[routeName].data;
+        if(!data)
+            data = this.state.route[routeName].data = {};
+
+            for(let i = 0; i<layers.length; i++) {
+                let key = layers[i];
+                let isLast = i+1 == layers.length;
+
+                let nest = data;
+
+                if(isLast){
+                    nest[key] = val;
+                } else {
+                    if(!nest[key])
+                        nest[key] = {};
+                    nest = nest[key];
+                }
+            }
+    }
 }
+
+
 
 const init = (config) => {
     if(!instance)
@@ -112,7 +144,16 @@ const data = {
         home: {
             path: '#/home',
             el: 'home',
-            tplUrl: 'src/tpl/home.html'
+            tplUrl: 'src/tpl/home.html',
+            data: {
+                cart: {
+
+                },
+                articleList: {
+                   title: 'asam',
+                   like: 'banner'
+               }
+            }
         },
         about: {
             path: '#/about',
