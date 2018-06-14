@@ -3,7 +3,7 @@ let root = new Vue({
     el: '.root',
     data: {
         current: null,
-        memoList: []
+        memoList: [],
     },
     methods: {
         memoItem(item) {
@@ -14,12 +14,12 @@ let root = new Vue({
             this.memoList.push(this.current);
         },
         remove(list,item) {
-            this.memoList.splice(this.findItem(list, item),1);
+            this.memoList.splice(this.findItem(list, item), 1);
+            this.current = this.memoList;
         },
-        findItem(item, id) {
+        findItem(item, title) {
             return item.findIndex(function (key) {
-                
-                return key.id == id;
+                return key.title == title;
             });
         },
         syncTO(memoList) {
@@ -28,17 +28,14 @@ let root = new Vue({
         syncForm() {
             this.memoList = JSON.parse(localStorage.getItem('memoList')) || [
                 {
-                    id: 1,
                     title: 'title a',
                     content: 'asam a'
                 },
                 {   
-                    id: 2,
                     title: 'title b',
                     content: 'asam b'
                 },
                 {   
-                    id: 3,
                     title: 'title c',
                     content: 'asam c'
                 }
@@ -57,27 +54,3 @@ let root = new Vue({
         this.syncForm()
     }
 });
-
-let test = new Vue({
-    el: '.test',
-    data: {
-        name: 'sam',
-        child:{
-            child: {
-                name:'fmt'
-            }
-        }
-    },
-    watch: {
-        name(n, o) {
-            console.log('n:', n);
-        },
-        child: {
-            deep: true,
-            handler(n) {
-                console.log('n:', n.child.name);
-                
-            }
-        }
-    }
-})

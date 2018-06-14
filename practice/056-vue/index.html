@@ -15,7 +15,10 @@
     <div class="root">
         <div class="row">
             <div class="col sidebar">
-                <div @click="memoItem(item)" v-for="item in memoList"  class="sidebar-item">{{item.title}} <button @click="remove(memoList, item.id)">删除</button></div>
+                <div @click="memoItem(item)" v-for="item in memoList"  class="sidebar-item">
+                    {{item.title}} 
+                    <button @click.stop="remove(memoList, item.title)">删除</button>
+                </div>
                 <button @click="add()">+</button>
             </div>
             <div class="col main">
