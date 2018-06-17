@@ -15,7 +15,7 @@ const parse = (tpl, data) => {
 
         result = result.replace(variable, parseement);
     }
-    console.log('result:', result);
+    return result;
     
 }
 

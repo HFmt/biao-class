@@ -39,24 +39,12 @@
     </ol>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<script src="js/http.js"></script>
 <script src="js/index.js"></script>
 
 <script>
-    var app5 = new Vue({
-        el: '#app-5',
-        data: {
-            message: 'Hello Vue.js!'
-        },
-        methods: {
-            reverseMessage: function () {
-                this.message = this.message.split('').reverse().join('')
-            }
-        }
-    });
-
-    // 定义名为 todo-item 的新组件
-        Vue.component('todo-item', {
-            template: '<li>这是个待办项</li>'
-        })
+    
+    
 </script>
 </html>

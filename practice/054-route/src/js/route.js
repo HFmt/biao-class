@@ -64,8 +64,12 @@ class Route{
     //删除之前渲染的 tpl
     removePreviousTpl(el) {
         let element = document.getElementById(el);
+        console.log('el:', el);
+        
+        // if (location.hash == el)
         if (!element)
             return
+        element.hidden = true;
         element.innerHTML = '';
     }
 
@@ -75,10 +79,13 @@ class Route{
 
     // 通过路由渲染 tpl
     renderTpl(route) {
-        let element = document.getElementById(route.el);
+        let element = document.getElementById(route.el);        
         //判断是否缓存
-        if(route._tpl){
-            element.innerHTML = route._tpl;
+        if(element)
+            element.hidden = false;
+        if (route._tpl){
+            this.compile(route)
+            // element.innerHTML = route._tpl;
             return;
         }
         this.getTpl(route.tplUrl, (tpl) => {
@@ -109,24 +116,25 @@ class Route{
     setData(routeName, keys, val) {
         let layers = keys.split('.');
 
-        let data = this.state.route[routeName].data;
+        let data = this.state.routes[routeName].data;
+
         if(!data)
-            data = this.state.route[routeName].data = {};
+            data = this.state.routes[routeName].data = {};
 
-            for(let i = 0; i<layers.length; i++) {
-                let key = layers[i];
-                let isLast = i+1 == layers.length;
+        for(let i = 0; i<layers.length; i++) {
+            let key = layers[i];
+            let isLast = i+1 == layers.length;            
+            let nest = data;
 
-                let nest = data;
-
-                if(isLast){
-                    nest[key] = val;
-                } else {
-                    if(!nest[key])
-                        nest[key] = {};
-                    nest = nest[key];
-                }
+            if(isLast){
+                nest[key] = val;
+            } else {
+                if(!nest[key])
+                    nest[key] = {};
+                nest = nest[key];
             }
+        }
+        this.compile(this.state.routes[routeName]);
     }
 }
 
@@ -146,20 +154,18 @@ const data = {
             el: 'home',
             tplUrl: 'src/tpl/home.html',
             data: {
-                cart: {
-
-                },
-                articleList: {
-                   title: 'asam',
-                   like: 'banner'
-               }
+                name: 'asam'
             }
         },
         about: {
             path: '#/about',
             el: 'about',
-            tplUrl: 'src/tpl/about.html'
-        },
+            tplUrl: 'src/tpl/about.html',
+            data: {
+                name: '徐锦樟',
+                age: 0,
+            }
+        }
     },
 
     //访问前后阶段可以执行自定义函数(全局钩子，可以在单路由作局部钩子)
@@ -177,13 +183,13 @@ const trim = (str, capList) => {
     let arr = capList.split('');
 
     arr.forEach( (cap) => {
-        if(str.startsWith(cap)) {
+        if(str.startsWith(cap)) {            
             str = str.substring(1);
             str = trim(str, cap);
         }
-
+        
         if(str.endsWith(cap)){
-            str = str.substring(0, str.length-1);
+            str = str.substring(1, str.length + 1);
             str = trim(str, cap);
         }
     });
@@ -193,3 +199,13 @@ const trim = (str, capList) => {
 
 
 init(data);
+
+let count = 1;
+
+(function () {
+    instance.removePreviousTpl('about');
+    setInterval(() => {
+        instance.setData('about', 'age', count);
+        count++;
+    },1000);
+})();

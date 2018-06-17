@@ -13,14 +13,9 @@ let root = new Vue({
             this.current = {title: 'new', content: '请输入'};
             this.memoList.push(this.current);
         },
-        remove(list,item) {
-            this.memoList.splice(this.findItem(list, item), 1);
+        remove(index) {
+            this.memoList.splice(index, 1);
             this.current = this.memoList;
-        },
-        findItem(item, title) {
-            return item.findIndex(function (key) {
-                return key.title == title;
-            });
         },
         syncTO(memoList) {
             localStorage.setItem('memoList', JSON.stringify(memoList));
