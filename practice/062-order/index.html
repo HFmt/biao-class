@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>vue-route</title>
+    <title>order</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
-    <div id="root">
-        <div>
-            <router-link to="/">首页</router-link>
-            <router-link to="/article/areate">添加</router-link>
-        </div>
-        <router-view></router-view>
-    </div>
-
 <body>
+    <div id="root">
+        <router-link to="/">home</router-link>
+        <router-link to="/admin">admin</router-link>
 
+    <router-view></router-view>
+    </div>
 </body>
 <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
 <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
 <script src="js/http.js"></script>
 <script src="js/index.js"></script>
-
 </html>
