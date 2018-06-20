@@ -46,6 +46,8 @@ const AdminPage = {
             error: [],
             current: {},
             list: [],
+            keyword: '',
+            timer: null,
             showForm: false,
             showAction: true
         }
@@ -70,7 +72,6 @@ const AdminPage = {
                             this.list.push(res.data.data);
                     }
                 });
-            console.log('this.showAction:', this.showAction);
 
             this.showAction = true;
         },
@@ -79,7 +80,7 @@ const AdminPage = {
             if (!confirm('确认删除？'))
                 return;
 
-            http.post('table/delete', { id: id })
+            http.post(`${this.model}/delet`, { id: id })
                 .then(res => {
                     if (res.data.success) {
                         util.deleteElementById(this.list, id);
@@ -90,6 +91,17 @@ const AdminPage = {
             this.showForm = true;
             this.showAction = false;
             this.current = item;
+        },
+        search(e) {
+            if(e)
+                e.preventDefault();        
+
+            let param = { or: { name: this.keyword}}
+
+            http.post(`${this.model}/search`, param)
+                .then( res => {
+                    this.list = res.data.data
+                });
         },
         validate(item) {
             item = item || this.current;
@@ -116,6 +128,21 @@ const AdminPage = {
 
             // if(validCapacity !== true)
             //     this.error.push(validCapacity);
+        },
+        read() {
+            http.post(`${this.model}/read`)
+                .then(res => {
+                    this.list = res.data.data;
+                });
+        },
+      
+    },
+    watch: {
+        keyword() {
+            clearTimeout(this.timer);
+            this.timer = setTimeout(() => {
+                this.search();
+            }, 400);
         }
     }
 }
@@ -140,10 +167,16 @@ const Admin = Vue.component('admin', {
     </div>
     `
 });
-const AdminDish = Vue.component('adminDish', {
-   template:`
+const AdminDish = Vue.component('adminsh', {
+   template:`Di
      <div>
        <h2>菜品设置</h2>
+        <div>
+            <form @submit="search($event)">
+                <input type="search" v-model="keyword" placeholder="搜索"/>
+                <button type="submit" hidden>搜索</button>
+            </form>
+        </div>
        <button @click.stop="showForm = !showForm">
             <span v-if="showForm">取消</span>添加菜品
        </button>
@@ -172,7 +205,7 @@ const AdminDish = Vue.component('adminDish', {
                 <span v-else>确认</span>
             </button>
        </form>
-
+        
        <table>
             <thead>
                 <tr>
@@ -234,10 +267,7 @@ const AdminDish = Vue.component('adminDish', {
         },
     },
     mounted() {
-        http.post('dish/read')
-            .then( res => {
-                this.list = res.data.data;
-            });
+        this.read();
     },
     mixins: [AdminPage]
 });
@@ -246,6 +276,12 @@ const AdminTable = Vue.component('adminTable', {
     template:`
      <div>
        <h2>桌型选择</h2>
+       <div>
+            <form @submit="search($event)">
+                <input type="search" v-model="keyword" placeholder="搜索"/>
+                <button type="submit" hidden>搜索</button>
+            </form>
+        </div>
        <button @click.stop="showForm = !showForm">
             <span v-if="showForm">取消</span>添加桌号
        </button>
@@ -312,10 +348,7 @@ const AdminTable = Vue.component('adminTable', {
         }
     },
     mounted() {
-        http.post('table/read')
-            .then( res => {
-                this.list = res.data.data;
-            });
+        this.read();
     },
     mixins: [AdminPage]
 });
