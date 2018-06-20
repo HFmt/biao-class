@@ -16,4 +16,4 @@ window.http = {
     sgin: function (app_key, data) {
         return btoa(app_key + data);
     }
-};
+}

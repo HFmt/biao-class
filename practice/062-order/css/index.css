@@ -11,3 +11,8 @@
     display: inline-block;
     width: 60%;
 }
+
+tr img {
+    width: 70px;
+    height: 40px;
+}
