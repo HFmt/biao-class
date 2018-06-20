@@ -51,7 +51,7 @@ const AdminPage = {
         }
     },
     methods: {
-        onSubmit(e) {
+        create(e) {
             e.preventDefault();
 
             if (!this.validate()) {
@@ -62,7 +62,7 @@ const AdminPage = {
 
             let action = isUpdate ? 'update' : 'create';
 
-            http.post(`table/${action}`, this.current)
+            http.post(`${this.model}/${action}`, this.current)
                 .then(res => {
                     if (res.data.success) {
                         this.current = {};
@@ -87,8 +87,6 @@ const AdminPage = {
                 });
         },
         update(item) {
-            console.log('this.showAction:', this.showAction);
-
             this.showForm = true;
             this.showAction = false;
             this.current = item;
@@ -149,7 +147,7 @@ const AdminDish = Vue.component('adminDish', {
        <button @click.stop="showForm = !showForm">
             <span v-if="showForm">取消</span>添加菜品
        </button>
-       <form v-if="showForm" @submit="onSubmit($event)">
+       <form v-if="showForm" @submit="create($event)">
             <div v-if="error.length">
                 <div v-for="item in error">{{item}}</div>
             </div>
@@ -199,6 +197,7 @@ const AdminDish = Vue.component('adminDish', {
     `,
     data() {
         return {
+            model: 'dish',
             validateProp: ['Name', 'Price', 'CoverUrl'],
         }
     },
@@ -250,7 +249,7 @@ const AdminTable = Vue.component('adminTable', {
        <button @click.stop="showForm = !showForm">
             <span v-if="showForm">取消</span>添加桌号
        </button>
-       <form v-if="showForm" @submit="onSubmit($event)">
+       <form v-if="showForm" @submit="create($event)">
             <div v-if="error.length">
                 <div v-for="item in error">{{item}}</div>
             </div>
@@ -288,12 +287,8 @@ const AdminTable = Vue.component('adminTable', {
     `,
     data() {
         return {
+            model: 'table',
             validateProp: ['Name', 'Capacity'],
-            error: [],
-            current: {},
-            list: [],
-            showForm: false,
-            showAction: false
         }
     },
     methods: {
