@@ -1,5 +1,4 @@
 
-
 /**
  * http.post('MODEL/CREATE', {
     name: 'table',
@@ -42,32 +41,6 @@ http.post('MODEL/CREATE', {
     ],
 });
  */
-// http.post('MODEL/CREATE', {
-//     name: 'order',
-//     structure: [
-//         {
-//             tableId: 'name',
-//             type: 'string',
-//             nullable: false,
-//         },
-//         {
-//             name: 'price',
-//             type: 'float',
-//             nullable: false,
-//         },
-//         {
-//             name: 'description',
-//             type: 'text',
-//             nullable: true,
-//         },
-//         {
-//             name: 'cover_url',
-//             type: 'string',
-//             nullable: true,
-//         },
-//     ],
-// });
-
 
 
 
@@ -124,13 +97,13 @@ const AdminPage = {
             this.current = item;
         },
         search(e) {
-            if(e)
-                e.preventDefault();        
+            if (e)
+                e.preventDefault();
 
-            let param = { or: { name: this.keyword}}
+            let param = { or: { name: this.keyword } }
 
             http.post(`${this.model}/search`, param)
-                .then( res => {
+                .then(res => {
                     this.list = res.data.data
                 });
         },
@@ -166,7 +139,7 @@ const AdminPage = {
                     this.list = res.data.data;
                 });
         },
-    
+
     },
     watch: {
         keyword() {
@@ -179,164 +152,51 @@ const AdminPage = {
 }
 
 const Home = Vue.component('home', {
-    template:
-     `
-        <div>
-        <h1>欢迎来到背背山吃饭大学</h1>
-        <p>下单</p>
-        <div>
-            <div v-for="dish in dishList" class="row dish">
-                <div class="row col-3">
-                    <img :src="dish.cover_url || defaulCoverUrl"/>
-                </div>
-                <div class="col-6">
-                    <div class="name">{{dish.name}}</div>
-                    <div class="price">{{dish.price}}元</div>
-                    <div class="description">{{dish.description || '-'}}</div>
-                </div>
-                <div class="col-3">
-                    <div class="row">
-                        <button class="col-4">-</button>
-                        <input class="col-4" type="number" v-model="dish.$count">
-                        <button class="col-4">+</button>
-                    </div>
-                </div>
+   template:
+   `
+    <div>
+        <h2>欢迎来到ASAM食堂</h2>
+        <div class="row" v-for="dish in dishList">
+            <div class="row col-3">
+                <img :src="dish.cover_url || defaulCoverUrl" alt=""/>
+            </div>
+            <div class="col-6">
+                <div>{{dish.name}}</div>
+                <div>{{dish.price}}</div>
+                <div>{{dish.description}}</div>
+            </div>
+            <div class="row col-3">
+                <button>-</button>
+                <input type="Number" v-model="dish.$count"/>
+                <button>-</button>
             </div>
         </div>
-        <button @click="submitOrder">提交</button>
-        </div>
-    `,
-
-data() {
-    return {
-        dishList: [],
-        dishModel: 'dish',
-        tableModel: 'table',
-        orderModel: 'order',
-        defaulCoverUrl: 'http://biaoyansu.com/img/biaoyansu_logo.svg',
-        order: {
-            //   table_id  : 'xxx',
-            //   dish_info : [
-            //     { dish_id : 1, count : 2 },
-            //     { dish_id : 2, count : 1 },
-            //   ],
-            //   memo: '少放辣'
-        },
-    }
-},
-    methods: {
-        readDish() {
-            http.post(`${this.dishModel}/read`)
-                .then( res => {
-                    this.dishList = res.data.data;
-                    this.resetOrder();
-                });
-        },
-        submitOrder() {
-
-            this.prepareOrderInfo();
-            console.log('this.order:', this.order);
-            
-            
-
-            
-            this.mainOrderId().then( id => {
-                if(id)
-                    this.order.parentId = id;
-                
-                http.post('order/create', this.order);
-            })
-            
-        },
-
-        mainOrderId() {
-            http.post(`${this.orderModel}/first`, {
-                where: {
-                    and: {
-                        tableId: this.order.tableId,
-                        status: 'created',
-                        parentId: null
-                    }
-                }
-            }).then(res => {
-                if (!res.data.data)
-                    return false;
-                return res.data.data.id;
-            });
-        },
-        resetOrder() {
-            this.order = {};
-            this.dishList.forEach( dish =>{
-                dish.$count = 0;
-            });
-        },
-        prepareOrderInfo() {
-
-            this.order.dishInfo = [];
-
-            this.dishList.forEach(dish => {
-                let count = dish.$count;
-
-                if (!count)
-                    return;
-                
-
-                this.order.dishInfo.push({
-                    dishId: dish.id,
-                    count: parseInt(count)
-                });
-            });
-            return this.order.dishInfo;
-            
-        },
-
-        askTable() {
-            let tableName = prompt('预定桌号');
-        }
-    },
-    mounted() {
-        this.readDish();
-        this.order.tableId = this.$route.query.tableId;
-    }
-});
-
-const Login = Vue.component('login', {
-    template:
-        `
-    <div>
-        <h2>登入</h2>
-        <form @submit="onSubmit($event  )">
-        <div>
-            <label htmlFor="">用户名</label>
-            <input type="text"/>
-        </div>
-        <div>
-            <label htmlFor="">密码</label>
-            <input type="number"/>
-        </div>
-        <div>
-            <button type="submit">登入</button>
-        </div>
-        </form>
     </div>
-
-    `,
-    data() {
-
-    },
-    methods: {
-        onSubmit(e) {
-            e.preventDefault();
-            console.log('1:', 1);
-            
-        
-        },
-    }
+   `,
+   data() {
+       return {
+           dishList: [],
+           order: {},
+           defaulCoverUrl: 'http://biaoyansu.com/img/biaoyansu_logo.svg',
+       }
+   },
+   methods: {
+        readDish() {
+            http.post('dish/read')
+                .then( res => {
+                    return this.dishList = res.data.data;
+                });
+        }
+   },
+   mounted() {
+       this.readDish();
+       this.order.tableId = this.$route.query.tableId;       
+   }
 });
 
 const Admin = Vue.component('admin', {
     template:
-    `
+        `
     <div class="row">
         <div class="col-3">
             <router-link to="/admin/table">桌号管理</router-link>
@@ -347,11 +207,9 @@ const Admin = Vue.component('admin', {
     </div>
     `
 });
-
-
 const AdminDish = Vue.component('adminsh', {
-template:
-`
+    template:
+        `
     <div>
     <h2>菜品设置</h2>
         <div>
@@ -425,19 +283,19 @@ template:
         validateName(name) {
             name = name || this.current.name;
             const MaxLength = 14;
-            if(!name)
+            if (!name)
                 return '菜名为必填项';
             if (name.length >= MaxLength)
                 return `菜名最长为${MaxLength}个字符`;
             return true;
-        }, 
+        },
         validatePrice(price) {
             price = price || this.current.price;
-            const Number  = 1;
+            const Number = 1;
             if (!price)
                 return '价格为必填项';
             if (price < Number)
-                return `价格不能低于${{Number}}元`;
+                return `价格不能低于${{ Number }}元`;
             return true;
         },
 
@@ -445,11 +303,11 @@ template:
             cover_url = cover_url || this.current.cover_url;
             let re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
-            if(!cover_url)
+            if (!cover_url)
                 return true;
-            if(!re.test(cover_url))
+            if (!re.test(cover_url))
                 return "图片地址不合法";
-            
+
             return true;
         },
     },
@@ -461,7 +319,7 @@ template:
 
 const AdminTable = Vue.component('adminTable', {
     template:
-    `
+        `
     <div>
     <h2>桌型选择</h2>
     <div>
@@ -520,19 +378,19 @@ const AdminTable = Vue.component('adminTable', {
         validateName(name) {
             name = name || this.current.name;
             const MaxLength = 14;
-            if(!name)
+            if (!name)
                 return '需要选择桌号';
             if (name.length >= MaxLength)
                 return `此项最大长度为${MaxLength}`;
             return true;
-        }, 
+        },
         validateCapacity(capacity) {
             capacity = capacity || this.current.capacity;
-            const Number  = 1;
-            if(!capacity)
+            const Number = 1;
+            if (!capacity)
                 return '人数为必填项';
-            if(capacity < Number)
-                return `人数不能少于${{Number}}个人`;
+            if (capacity < Number)
+                return `人数不能少于${{ Number }}个人`;
             return true;
         }
     },
@@ -555,32 +413,29 @@ const AdminOrder = Vue.component('adminOrder', {
     }
 });
 
-const router = new VueRouter({
-    routes: [
-        { path: '/', component: Home },
-        { path: '/login', component: Login },
-        {
-            path: '/admin', component: Admin,
-            children: [
-                {
-                    path: 'dish',
-                    component: AdminDish
-                },
-                {
-                    path: 'table',
-                    component: AdminTable
-                },
-                {
-                    path: 'order',
-                    component: AdminOrder
-                }
-            ]
-        },
-    ]
-})
-
 new Vue({
     el: '#root',
-    router: router
+    router: new VueRouter({
+        routes: [
+            { path: '/', component: Home },
+            {
+                path: '/admin', component: Admin,
+                children: [
+                    {
+                        path: 'dish',
+                        component: AdminDish
+                    },
+                    {
+                        path: 'table',
+                        component: AdminTable
+                    },
+                    {
+                        path: 'order',
+                        component: AdminOrder
+                    }
+                ]
+            },
+        ]
+    })
 });
 

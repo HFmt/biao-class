@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>order</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="src/css/index.css">
 </head>
 <body>
-    <div id="root">
-        <router-link to="/">home</router-link>
-        <router-link to="/admin">admin</router-link>
-    <router-view></router-view>
+    <div class="container">
+        <div id="root">
+            <div class="navbar-header">
+                <router-link to="/" class="navbar-brand">HOME</router-link>
+                <router-link to="/login" class="navbar-brand">LOGIN</router-link>
+                <router-link to="/admin" class="navbar-brand">ADMIN</router-link>
+            </div>
+        <router-view></router-view>
+        </div>
     </div>
 </body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
 <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
 <script src="src/js/http.js"></script>
-<script src="src/js/util.js"></script>
+<script src="src/js/uitl/util.js"></script>
 <script src="src/js/index.js"></script>
-<script>
-</script>
+<!-- <script src="src/js/index-test.js"></script> -->
 </html>

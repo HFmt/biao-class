@@ -1,18 +1,21 @@
-*{
-    box-sizing: border-box;
-}
 
-.col-3{
-    display: inline-block;
-    width: 30%;
-}
-
-.col-9{
-    display: inline-block;
-    width: 60%;
+img{
+    width: 100%;
+    max-height: 100px;
 }
 
 tr img {
     width: 70px;
     height: 40px;
+}
+
+table , td, th{
+    text-align: center;
+    padding: 4px;
+}
+
+.dish {
+    border: 1px solid #ccc;
+    margin: 4px 0;
+    text-align: center;
 }
