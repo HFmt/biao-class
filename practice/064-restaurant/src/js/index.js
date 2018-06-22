@@ -1,18 +1,9 @@
 
- http.post('MODEL/CREATE_PROPERTY', {
-    model     : 'table',
-    property  : 'cat_id',
-    structure : {
-      type     : 'integer',
-      nullable : true,
-    },
-  });
-
 const AdminPage = {
     data() {
         return {
             list: [],
-            current: {}
+            current: {},
         }
     },
     methods: {
@@ -21,7 +12,7 @@ const AdminPage = {
 
             let isUpdate = this.current.id;
 
-            let actino = isUpdate ? 'updata' : 'create';
+            let actino = isUpdate ? 'update' : 'create';
 
             http.post(`${this.model}/${actino}`, this.current)
                 .then(res => {
@@ -30,6 +21,7 @@ const AdminPage = {
                     if (!isUpdate)
                         this.list.unshift(res.data.data)
                 });
+            this.current = {};
         },
         remove(id) {
 
@@ -95,13 +87,13 @@ const UserOrder = Vue.component('userOrder', {
                             <th>菜名</th>
                             <th>价格</th>
                             <th>介绍</th>
-                            <th>编辑</th>
+                            <th>数量</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr  v-for="dish in list">
                             <td>
-                                <img v-if="dish.cover_url" :src="dish.cover_url" :alt="dish.name"/>
+                                <img v-if="dish.coverUrl" :src="dish.coverUrl" :alt="dish.name"/>
                                 <span v-else>暂无封面</span>
                             </td>
                             <td>{{dish.name}}</td>
@@ -162,7 +154,7 @@ const UserTable = Vue.component('userTable', {
             </div>
         </div>
     `,
-   
+
     data() {
         return {
             model: 'table'
@@ -188,6 +180,7 @@ const Admin = Vue.component('admin', {
     </div>
     `
 });
+
 const AdminDish = Vue.component('adminDish', {
     template:
         `
@@ -209,9 +202,11 @@ const AdminDish = Vue.component('adminDish', {
                     </div>
                     <div>
                         <label>菜品图片</label>
-                        <input v-model="current.cover_url" type="text"/>
+                        <input v-model="current.coverUrl" type="text"/>
                     </div>
-                    <button type="submit">添加</button>
+                    <div>
+                        <button type="submit">添加</button>
+                    </div>
                 </form>
             </div>
             <div>
@@ -231,7 +226,7 @@ const AdminDish = Vue.component('adminDish', {
                             <td>{{dish.price}}元</td>
                             <td>{{dish.description || '---'}}</td>
                             <td>
-                                <img v-if="dish.cover_url" :src="dish.cover_url" :alt="dish.name"/>
+                                <img v-if="dish.coverUrl" :src="dish.coverUrl" :alt="dish.name"/>
                                 <span v-else>暂无封面</span>
                             </td>
                             <td>
@@ -250,13 +245,14 @@ const AdminDish = Vue.component('adminDish', {
         }
     },
     methods: {
-        
+
     },
     mounted() {
         this.read();
     },
     mixins: [AdminPage]
 });
+
 const Admintable = Vue.component('admiTbale', {
     template:
         `
@@ -272,6 +268,10 @@ const Admintable = Vue.component('admiTbale', {
                         <label>人数</label>
                         <input v-model="current.capacity" type="number"/>
                     </div>
+                    <div>
+                        <label>详情</label>
+                        <input v-model="current.description" type="text"/>
+                    </div>
                     <button type="submit">添加</button>
                 </form>
             </div>
@@ -281,6 +281,7 @@ const Admintable = Vue.component('admiTbale', {
                         <tr>
                             <th>桌号</th>
                             <th>人数</th>
+                            <th>详情</th>
                             <th>编辑</th>
                         </tr>
                     </thead>
@@ -288,7 +289,8 @@ const Admintable = Vue.component('admiTbale', {
                         <tr  v-for="table in list">
                             <td>{{table.name}}</td>
                             <td>{{table.capacity}}</td>
-                            <td>.
+                            <td>{{table.description}}</td>
+                            <td>
                                 <button @click.stop="updata(table)">更改</button>
                                 <button @click.stop="remove(table.id)">删除</button>
                             </td>
@@ -309,6 +311,7 @@ const Admintable = Vue.component('admiTbale', {
     mixins: [AdminPage]
 
 });
+
 const AdminOrders = Vue.component('adminOrders', {
     template:
         `
@@ -323,7 +326,8 @@ const AdminOrders = Vue.component('adminOrders', {
 const router = new VueRouter({
     routes: [
         { path: '/home', component: Home },
-        { path: '/user', component: User ,
+        {
+            path: '/user', component: User,
             children: [
                 { path: 'order', component: UserOrder },
                 { path: 'table', component: UserTable },

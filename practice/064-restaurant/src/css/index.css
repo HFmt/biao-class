@@ -1,0 +1,21 @@
+
+img{
+    width: 100%;
+    max-height: 100px;
+}
+
+tr img {
+    width: 70px;
+    height: 40px;
+}
+
+table , td, th{
+    text-align: center;
+    padding: 4px;
+}
+
+.dish {
+    border: 1px solid #ccc;
+    margin: 4px 0;
+    text-align: center;
+}
