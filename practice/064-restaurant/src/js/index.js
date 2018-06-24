@@ -4,11 +4,15 @@ const AdminPage = {
         return {
             list: [],
             current: {},
+            errorList: []
         }
     },
     methods: {
         create(e) {
             e.preventDefault();
+
+            if (!this.validate())
+                return;
 
             let isUpdate = this.current.id;
 
@@ -40,6 +44,20 @@ const AdminPage = {
                     this.list = res.data.data;
                 });
         },
+        validate(obj) {
+            obj = obj || this.current;
+
+            this.errorList = [];
+
+            this.validateProp.forEach(prop => {
+                let result = this['validate' + prop]();
+
+                if(result === true)
+                    return true;
+                this.errorList.push(result);
+            });
+            return !this.errorList.length;
+        }
     },
 }
 
@@ -64,7 +82,20 @@ const User = Vue.component('user', {
     template:
         `
         <div>
-            <h2>请登入</h2>   
+            <h2>用户登入</h2>
+            <div>
+            <form @submit="" action="">
+                <div>
+                    <label>账号</label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <label>密码</label>
+                    <input type="password"/>
+                </div>
+                <button type="submit">登入</button>
+            </form>
+        </div> 
               <div>
                 <router-link to="/user/table">预定桌位</router-link> 
                 <router-link to="/user/order">在线下单</router-link> 
@@ -91,7 +122,7 @@ const UserOrder = Vue.component('userOrder', {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  v-for="dish in list">
+                        <tr  v-for="dish in dishList">
                             <td>
                                 <img v-if="dish.coverUrl" :src="dish.coverUrl" :alt="dish.name"/>
                                 <span v-else>暂无封面</span>
@@ -101,28 +132,63 @@ const UserOrder = Vue.component('userOrder', {
                             <td>{{dish.description || '---'}}</td>
                             <td>
                                 <button>-</button>
-                                <input type="number" />
+                                <input type="number" v-model="dish.$count"/>
                                 <button>+</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <button>提交订单</button>
+                <button @click= "onSubmit">提交订单</button>
             </div>
         </div>
     `,
     data() {
         return {
-            model: 'dish'
+            dishList: [],
+            order: {}
         }
     },
     methods: {
+        dishRead() {
+            http.post('dish/read') 
+                .then( res => {
+                    this.dishList = res.data.data;
+                    console.log('this.dishList:', this.dishList);
+                    
+                });
+        }
+        ,
+        onSubmit() {
+            this.prepareOrderInfo()            ;
+            console.log('this.order:', this.order);
+            
 
+
+        },
+        prepareOrderInfo() {
+
+            this.order.dishInfo = [];
+            
+            this.dishList.forEach( dish => {
+                console.log('dish:', dish);
+                
+                let count = dish.$count;
+
+                if(!count)
+                    return;
+                
+                this.order.dishInfo.push( {
+                    dishId: dish.id,
+                    count: parseInt(count)
+                });
+            });
+            return this.order.dishInfo;
+        }
     },
     mounted() {
-        this.read();
+        this.dishRead();
+        this.order.tableId = this.$route.query.tableId;
     },
-    mixins: [AdminPage]
 });
 
 const UserTable = Vue.component('userTable', {
@@ -170,13 +236,30 @@ const UserTable = Vue.component('userTable', {
 const Admin = Vue.component('admin', {
     template:
         `
-    <div class="row">
+    <div>
+        <h2>管理员登入</h2>
+        <div>
+            <form @submit="" action="">
+                <div>
+                    <label>账号</label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <label>密码</label>
+                    <input type="password"/>
+                </div>
+                <button type="submit">登入</button>
+            </form>
+        </div>
+        <div class="row">
+        
         <div class="col-3">
             <router-link to="/admin/table">桌号管理</router-link>
             <router-link to="/admin/dish">菜品管理</router-link>
             <router-link to="/admin/orders">订单管理</router-link>
         </div>
         <router-view class="col-9"></router-view>
+        </div>
     </div>
     `
 });
@@ -185,7 +268,11 @@ const AdminDish = Vue.component('adminDish', {
     template:
         `
         <div>
-           <h2>菜品管理</h2>
+            <h2>菜品管理</h2>
+            <div>
+                <h5>提示:</h5>
+                <div v-for="error in errorList">{{error}}</div>
+            </div>
             <div>
                 <form @submit="create($event)">
                     <div>
@@ -197,11 +284,11 @@ const AdminDish = Vue.component('adminDish', {
                         <input v-model="current.price" type="number"/>
                     </div>
                     <div>
-                        <label>菜品介绍</label>
+                        <label>介绍</label>
                         <input v-model="current.description" type="text"/>
                     </div>
                     <div>
-                        <label>菜品图片</label>
+                        <label>图片</label>
                         <input v-model="current.coverUrl" type="text"/>
                     </div>
                     <div>
@@ -241,11 +328,44 @@ const AdminDish = Vue.component('adminDish', {
     `,
     data() {
         return {
-            model: 'dish'
+            model: 'dish',
+            validateProp: ['Name', 'Price', 'CoverUrl'],
         }
     },
     methods: {
+        validateName(name) {
+            name = name || this.current.name;
 
+            const maxLength = 14;
+
+            if(!name)
+                return '菜名为必填项';
+            if(name.length > maxLength)
+                return `菜名不能超过${maxLength}个字符`;
+            return true;
+        },
+        validatePrice(price) {
+            price = price || this.current.price;
+
+            const number = 0;
+
+            if (!price)
+                return '价格为必填项';
+            if (price < number)
+                return `价格不能低于${number}元`;
+            return true;
+        },
+        validateCoverUrl(coverUrl) {
+            coverUrl = coverUrl || this.current.coverUrl;
+            let re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,192}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+
+            if (!coverUrl)
+                return true;
+            if (!re.test(coverUrl))
+                return "图片地址不合法";
+
+            return true;
+        },
     },
     mounted() {
         this.read();
@@ -253,11 +373,15 @@ const AdminDish = Vue.component('adminDish', {
     mixins: [AdminPage]
 });
 
-const Admintable = Vue.component('admiTbale', {
+const AdminTable = Vue.component('admiTbale', {
     template:
         `
        <div>
            <h2>桌号管理</h2>
+           <div>
+                <h5>提示:</h5>
+                <div v-for="error in errorList">{{error}}</div>
+            </div>
             <div>
                 <form @submit="create($event)">
                     <div>
@@ -302,8 +426,33 @@ const Admintable = Vue.component('admiTbale', {
     `,
     data() {
         return {
-            model: 'table'
+            model: 'table',
+            validateProp: ['Name', 'Capacity']
         }
+    },
+    methods: {
+        validateName(name) {
+            name = name || this.current.name;
+
+            const maxLength = 14;
+
+            if (!name)
+                return '桌号为必填项';
+            if (name.length > maxLength)
+                return `桌名不能超过${maxLength}个字符`;
+            return true;
+        },
+        validateCapacity(capacity) {
+            capacity = capacity || this.current.capacity;
+
+            const number = 1;
+
+            if (!capacity)
+                return '人数为必填项';
+            if (capacity < number)
+                return `人数不能低于${number}人`;
+            return true;
+        },
     },
     mounted() {
         this.read();
@@ -318,9 +467,20 @@ const AdminOrders = Vue.component('adminOrders', {
         <div>
             <h2>订单管理</h2>
         </div>
-    `
+    `,
+    data() {
+        return {
+            model: 'order'
+        }
+    },
+    methods: {
+    
+    },
+    modules() {
+        this.read();
+    },
+    mixins: [AdminPage]
 });
-
 
 
 const router = new VueRouter({
@@ -337,7 +497,7 @@ const router = new VueRouter({
             path: '/admin', component: Admin,
             children: [
                 { path: 'dish', component: AdminDish },
-                { path: 'table', component: Admintable },
+                { path: 'table', component: AdminTable },
                 { path: 'orders', component: AdminOrders },
             ]
         },
@@ -348,3 +508,4 @@ new Vue({
     el: '#root',
     router: router
 });
+
