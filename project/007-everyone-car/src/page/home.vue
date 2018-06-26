@@ -87,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div class="vehicle">
                 <div class="vehicle-nav">
                     <div class="col-lg-2">
                         <a href="#">特价好车</a>
@@ -110,28 +110,28 @@
                 </div>
                 <div class="vehicle-list">
                     <div class="col-lg-3 row-mrg">                     
-                        <div class="test">
+                        <div class="">
                             <a href="#" class="row">
                                 <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp" alt="">
                             </a>
                         </div>   
                     </div>     
                     <div class="col-lg-3 row-mrg">                     
-                        <div class="test">
+                        <div class="">
                             <a href="#" class="row">
                                 <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp" alt="">
                             </a>
                         </div>   
                     </div>     
                     <div class="col-lg-3 row-mrg">                     
-                        <div class="test">
+                        <div class="">
                             <a href="#" class="row">
                                 <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp" alt="">
                             </a>
                         </div>   
                     </div>     
                     <div class="col-lg-3 row-mrg">                     
-                        <div class="test">
+                        <div class="">
                             <a href="#" class="row">
                                 <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp" alt="">
                             </a>
@@ -150,7 +150,7 @@
 }
 
 
-.vehicle-list .row-mrg .test {
+.vehicle-list .row-mrg > * {
     margin: 15px 15px 0 0px;
 }
 

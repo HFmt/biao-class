@@ -1,16 +1,18 @@
 <template>
   <div id="root">
-    <home/>
+    <!-- <home/> -->
+    <detail/>
   </div>
 </template>
 
 <script>
 import home from './page/home.vue';
+import detail from './page/detail.vue';
 
 export default {
   name: 'root',
   components: {
-    home
+    home,detail
   }
 };
 </script>

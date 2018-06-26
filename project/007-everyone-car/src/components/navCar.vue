@@ -1,6 +1,6 @@
 <template>
     <div class="main-nav">
-      <div class="container">
+      <div class="container cf">
           <div class="fl">
             <a href="#" class="logo"></a>
             <a href="#" class="nav-item">item</a>
