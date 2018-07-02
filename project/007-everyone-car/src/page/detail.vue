@@ -420,12 +420,55 @@
         </div>
         <div class="detail-report-card">
             <div class="container">
-                <div class="title-a">
-                <div class="title">
-                    <h2> 人人车检测报告</h2>
-                    <div class="desc">249项专业检测视频介绍</div>
+                <div class="title-area">
+                    <div class="title">
+                        <h2> 人人车检测报告</h2>
+                        <div class="desc">249项专业检测视频介绍</div>
+                    </div>
                 </div>
-            </div>
+                <div class="content">
+                    <div>
+                        <span>检测时间：2018-06-24</span>
+                        <span>检测城市：西安</span>
+                        <span>检测对象：五菱汽车-五菱宏光 2010款 1.2L 标准型</span>
+                    </div>
+                    <div class="desc-table">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>车身颜色</th>
+                                    <td>蓝色</td>
+                                    <th>年检到期时间</th>
+                                    <td>2019-10</td>
+                                    <th>交强险到期时间</th>
+                                    <td>2018-10</td>
+                                    <th>商业险到期时间</th>
+                                    <td>2018-10</td>
+                                </tr>
+                                <tr>
+                                    <th>上牌日期</th>
+                                    <td>2013-10-12</td>
+                                    <th>出厂日期</th>
+                                    <td>2013-07-01</td>
+                                    <th>归属地</th>
+                                    <td>西安</td>
+                                    <th>过户次数</th>
+                                    <td>0次</td>
+                                </tr>
+                                <tr>
+                                    <th>有无购车发票</th>
+                                    <td>有</td>
+                                    <th>是否4S店保养</th>
+                                    <td>否</td>
+                                    <th>有无改装</th>
+                                    <td>无</td>
+                                    <th>车辆购置税完税证明</th>
+                                    <td>有</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -519,6 +562,20 @@
 
 .album .thumbnail-wrapper .card {
     padding: 10px;
+}
+
+.detail-report-card .desc-table table{
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #eee;
+    margin: 0 auto;
+}
+
+.detail-report-card .desc-table table tr,
+.detail-report-card .desc-table table th,
+.detail-report-card .desc-table table td {
+    padding: 10px;
+    border: 1px solid #eee;
 }
 
 

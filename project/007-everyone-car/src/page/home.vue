@@ -1,4 +1,5 @@
 
+
 <template>
     <div>
         <navCar/>
@@ -145,17 +146,6 @@
 
 
 <style scoped>
-.vehicle-list {
-    margin-right: -15px;
-}
-
-
-.vehicle-list .row-mrg > * {
-    margin: 15px 15px 0 0px;
-}
-
-
-
 
 
 
@@ -248,6 +238,7 @@
 
 
 <script>
+  import '../css/wehicle-list.css';
   import navCar from '../components/navCar.vue';
 
   export default {

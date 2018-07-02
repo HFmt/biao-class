@@ -1,0 +1,7 @@
+.vehicle-list {
+    margin-right: -15px;
+}
+
+.vehicle-list .row-mrg>* {
+    margin: 15px 15px 0 0px;
+}

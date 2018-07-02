@@ -482,7 +482,6 @@ const AdminOrders = Vue.component('adminOrders', {
     mixins: [AdminPage]
 });
 
-
 const router = new VueRouter({
     routes: [
         { path: '/home', component: Home },

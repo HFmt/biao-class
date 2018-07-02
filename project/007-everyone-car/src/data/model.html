@@ -1,0 +1,24 @@
+<script src="../../node_modules/axios/dist/axios.js"></script>
+<script src="../lib/api.js"></script>
+
+
+<script>
+    let model = {
+        name: 'model',
+        structure: {        //型号
+            name: {
+                type: 'string',
+                nullable: false
+            },
+            brandId: {      //品牌id
+                type: 'integer',
+                nullable: false,
+                positive: true
+            }
+        }
+    }
+
+
+    // api('MODEL/CREATE', model)
+</script>
+

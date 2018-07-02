@@ -1,18 +1,15 @@
 <template>
   <div id="root">
-    <!-- <home/> -->
-    <detail/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import home from './page/home.vue';
-import detail from './page/detail.vue';
 
 export default {
   name: 'root',
   components: {
-    home,detail
+
   }
 };
 </script>

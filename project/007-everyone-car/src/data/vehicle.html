@@ -1,0 +1,85 @@
+<script src="../../node_modules/axios/dist/axios.js"></script>
+<script src="../lib/api.js"></script>
+
+<script>
+    // import api from "../lib/api";
+
+let vehicle = {
+        name: 'vehicle',
+        structure: {
+            price: {                //价格
+                type: 'float',
+                nullable: true,
+            },
+            title: {                //标题
+                type: 'string',
+                nullable: true,
+            },
+            publishReason: {        //卖车原因
+                type: 'string',
+                nullable: true
+            },
+            consumedDishtance: {     //当前里程
+                type: 'float',
+                nullable: true
+            },
+            local: {                //是否是当地车票
+                type: 'integer',
+                nullable: true
+            },
+            locationlId: {          //所在地
+                type: 'integer',
+                nullable: true
+            },
+            exchangeTimes: {        //过户次数
+                type: 'integer',
+                nullable: true
+            },
+            birthDay: {             //初次上牌时间
+                type: 'dateTime',
+                nullable: true
+            },
+            condition: {            //车况
+                type: 'float',
+                nullable: true,
+                positive: true
+            },
+            deadline: {             //预计出售时间
+                type: 'dateTime',
+                nullable: true,
+                positive: true
+            },
+            description: {          //描述
+                type: 'text',
+                nullable: true,
+            },
+            onSale: {               //是否特价
+                type: 'integer',
+                nullable: true,
+            },
+            brandId: {               //品牌
+                type: 'string',
+                nullable: true,
+            },
+            designId: {             //车型
+                type: 'string',
+                nullable: true
+            },
+            modelId: {              //车系
+                type: 'string',
+                nullable: true
+            },
+            publisherId: {            //发布人
+                type: 'integer',
+                nullable: true,
+                positive: true
+            },
+            // publishDate: {          //发布日期
+            //     type: 'dateTime',
+            //     nullable: true,
+            //     positive: true
+            // },
+        }
+}
+// api('MODEL/READ', vehicle);
+</script>

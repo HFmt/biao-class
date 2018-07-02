@@ -20,7 +20,7 @@ img {
 
 input,
 button {
-    border: 1px solid #eee;
+    border: 1px solid #cbcbcb;
     line-height: 1.1;
     padding: 14px;
 }
@@ -57,7 +57,7 @@ button {
     vertical-align: top;
     font-size: 1rem;
     min-height: 40px;
-    border: 1px solid #000;
+    /* border: 1px solid #ccc; */
 }
 
 .col-lg-1 {
@@ -124,4 +124,26 @@ button {
 
 .fr {
     float: right;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.middle {
+    text-align: center;
+}
+
+.active{
+    background: #000;
+    border-left: 3px solid #2196f3;
+    color: #fff;
+}
+
+.btn-sm {
+    
 }
