@@ -1,28 +1,33 @@
 <template>
     <div>
-        <navCar/>
+        <GlobalNav/>
 
         <div class="header-wrapper">
             <div class="container">
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="slider">
-                        <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                    </div>
-                    <div class="row thumbnail-list">
-                        <div class="col-lg-3">
-                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
+                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400"
+                                 alt="">
                         </div>
-                        <div class="col-lg-3">
-                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
+                        <div class="row thumbnail-list">
+                            <div class="col-lg-3">
+                                <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400"
+                                     alt="">
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400"
+                                     alt="">
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400"
+                                     alt="">
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400"
+                                     alt="">
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                        </div>
-                        <div class="col-lg-3">
-                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                        </div>
-                    </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -54,22 +59,22 @@
                         <div class="short-props">
                             <table>
                                 <thead>
-                                    <tr>
-                                        <th>2013年10月</th>
-                                        <th>9.99万公里</th>
-                                        <th>国四</th>
-                                        <th>1.2L</th>
-                                        <th>陕A</th>
-                                    </tr>
+                                <tr>
+                                    <th>2013年10月</th>
+                                    <th>9.99万公里</th>
+                                    <th>国四</th>
+                                    <th>1.2L</th>
+                                    <th>陕A</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>上牌时间</td>
-                                        <td>公里数</td>
-                                        <td><a href="#">外迁查询</a></td>
-                                        <td>排量</td>
-                                        <td>上牌城市</td>
-                                    </tr>
+                                <tr>
+                                    <td>上牌时间</td>
+                                    <td>公里数</td>
+                                    <td><a href="#">外迁查询</a></td>
+                                    <td>排量</td>
+                                    <td>上牌城市</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -101,11 +106,11 @@
 
 
 <script>
-  import navCar from '../components/navCar.vue';
+    import GlobalNav from '../components/globalNav.vue';
 
-  export default {
-      components: {
-          navCar
-      }
-  }
+    export default {
+        components: {
+            GlobalNav
+        }
+    }
 </script>

@@ -3,27 +3,26 @@
 
 
 <script>
-    let model = {
-        name: 'model',
-        structure: {        //车型
-            name: {
+    let series = {
+        name: 'series',
+        structure: {
+            name: {             //车系
                 type: 'string',
                 nullable: false
             },
-            brand_id: {      //品牌id
+            brand_id: {         //品牌
                 type: 'integer',
                 nullable: true,
-                positive: false
+                positive: true
             },
-            model_id: {      //品牌id
+            model_id: {         //车型
                 type: 'integer',
                 nullable: true,
-                positive: false
+                positive: true
             }
         }
-    }
+    };
 
 
-    // api('MODEL/CREATE', model)
+// api('MODEL/CREATE', series);
 </script>
-

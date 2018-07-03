@@ -1,0 +1,82 @@
+.admin-conent {
+    padding: 0 35px;
+}
+
+.vehicle-list table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+
+.vehicle-list table tr {
+    border-bottom: 1px solid #ebeef5;
+}
+
+.vehicle-list table tr th,
+.vehicle-list table tr td {
+    padding: 10px 0;
+}
+
+.vehicle-list table .tb-actived {
+    font-size: 1.2rem;
+    color: #606266;
+}
+
+.vehicle-list table tr td {
+    font-size: 1.1rem;
+}
+
+.vehicle-list table .tb-active:hover {
+    background: #f5f7fa;
+}
+
+.vehicle-list table tr .pick {
+    text-align: center;
+}
+
+.vehicle-list table tr button {
+    font-size: 12px;
+    padding: 7px 15px;
+}
+
+.operating-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .2);
+}
+
+.operating-wrapper form {
+    position: absolute;
+    top: 10%;
+    right: 40%;
+    width: 20%;
+    background: #f5f5f5;
+    padding: 40px;
+}
+
+.operating-wrapper input,
+.operating-wrapper button {
+    width: 100%;
+    margin: 5px 0 12px 0;
+}
+
+.input-control label {
+    display: block;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination>* {
+    margin-right: 10px;
+}
+
+
+.page {
+    background: #f44336;
+}

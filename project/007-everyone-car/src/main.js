@@ -8,7 +8,6 @@ import Vue from 'vue';
 import Root from './root.vue';
 
 
-
 import Home from './page/home.vue';
 import Login from './page/login.vue';
 import SignUp from './page/signUp.vue';
@@ -18,55 +17,76 @@ import Detail from './page/detail.vue';
 import AdminBase from './page/admin/base.vue';
 import AdminUser from './page/admin/user.vue';
 import AdminVehicle from './page/admin/vehicle.vue';
+import AdminBrand from './page/admin/brand.vue';
+import AdminModel from './page/admin/model.vue';
+import AdminSeries from './page/admin/series.vue';
+
+import AdminLocation from './page/admin/location.vue';
 
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
 const RouterConfig = {
-  routes: [
-    {
-      path: '/',
-      component: Home
-    },
-    {
-      path: '/login',
-      component: Login
-    },
-    {
-      path: '/signUp',
-      component: SignUp
-    },
-    {
-      path: '/searchResult',
-      component: SearchResult
-    },
-    {
-      path: '/detail',
-      component: Detail
-    },
-    {
-      path: '/admin',
-      component: AdminBase,
-      children: [
+    routes: [
         {
-          path: 'user',
-          component: AdminUser
+            path: '/',
+            component: Home
         },
         {
-          path: 'vehicle',
-          component: AdminVehicle
-        }
-      ]
-    },
-  ]
+            path: '/login',
+            component: Login
+        },
+        {
+            path: '/signUp',
+            component: SignUp
+        },
+        {
+            path: '/searchResult',
+            component: SearchResult
+        },
+        {
+            path: '/detail',
+            component: Detail
+        },
+        {
+            path: '/admin',
+            component: AdminBase,
+            children: [
+                {
+                    path: 'user',
+                    component: AdminUser
+                },
+                {
+                    path: 'vehicle',
+                    component: AdminVehicle
+                },
+                {
+                    path: 'location',
+                    component: AdminLocation
+                },
+                {
+                    path: 'brand',
+                    component: AdminBrand
+                },
+                {
+                    path: 'model',
+                    component: AdminModel
+                },
+                {
+                    path: 'series',
+                    component: AdminSeries
+                },
+            ]
+        },
+    ]
 }
 
 const router = new VueRouter(
-  RouterConfig
+    RouterConfig
 )
 
 new Vue({
-  render: h => h(Root),
-  router: router
+    render: h => h(Root),
+    router: router
 }).$mount('#root');

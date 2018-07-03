@@ -147,3 +147,13 @@ button {
 .btn-sm {
     
 }
+
+.delete {
+    border: 0;
+    background: #f44336;
+}
+
+.modify {
+    border: 0;
+    background: #03a9f4;
+}

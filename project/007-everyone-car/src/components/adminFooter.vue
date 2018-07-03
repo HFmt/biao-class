@@ -3,8 +3,8 @@
 </style>
 
 <template>
-    <div>
-        <h2>A</h2>
+    <div class="container">
+        <h2>AdminFooter</h2>
     </div>
 </template>
 

@@ -1,0 +1,105 @@
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.js"></script>
+
+<script>
+let http = {
+    post: function (url, data) {
+        data = data || {};
+
+        data.app_key = '88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9';
+        data.timestamp = (new Date).getTime();
+        data.signature = this.sgin(data.app_key, data.timestamp);
+
+        return axios.post('http://mock.biaoyansu.com/api/' + url, data)
+            .then(function (res) {
+                return res;
+            });
+    },
+
+    sgin: function (app_key, data) {
+        return btoa(app_key + data);
+    }
+}
+// 88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9
+
+let locations = {
+    name: 'location',
+    structure: {
+        name: {
+            type: 'string',
+            nullable: true
+        },
+        type: {
+            type: 'string',
+            nullable: true
+        },
+        parent_id: {
+            type: 'integer',
+            positive: true,
+            bullable: true
+        }
+    }
+}
+
+let series = {
+    name: 'series',
+    structure: {
+        name: {             //车系
+            type: 'string',
+            nullable: false
+        },
+        brand_id: {         //品牌
+            type: 'integer',
+            nullable: true,
+            positive: true
+        },
+        model_id: {         //车型
+            type: 'integer',
+            nullable: true,
+            positive: true
+        }
+    }
+};
+
+let model = {
+    name: 'model',
+    structure: {        //车型
+        name: {
+            type: 'string',
+            nullable: false
+        },
+        brand_id: {      //品牌id
+            type: 'integer',
+            nullable: true,
+            positive: false
+        }
+    }
+}
+
+let brand = {
+    name: 'brand',
+    structure: {
+        name: {     //品牌名
+            type: 'string',
+            nullable: false
+        },
+
+    }
+};
+
+
+// http.post('MODEL/CREATE', series);
+//
+// http.post('MODEL/DELETE', {name: 'series'});
+http.post('MODEL/CREATE', series);
+//
+
+// http.post('location/read', {
+//     where: {
+//         and: {
+//             id: 1,
+//             type: 'country'
+//         }
+//     }
+//
+// });
+</script>

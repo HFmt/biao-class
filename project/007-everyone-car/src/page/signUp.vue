@@ -1,6 +1,6 @@
 <template>
     <div>
-        <navCar/>
+        <GlobalNav/>
         <div class="test">
             <div class="header">
                 <div class="container">
@@ -13,7 +13,7 @@
                                     <input type="text" name="name" placeholder="不可更改">
                                 </div>
                                 <div>
-                                    <label for="username">用户名</label> 
+                                    <label for="username">用户名</label>
                                     <div class="error">
                                         <span>格式有误</span>
                                     </div>
@@ -28,13 +28,13 @@
                                     <input type="password" name="confirm-passward">
                                 </div>
                                 <button type="submit">提交</button>
-                                </form>
+                            </form>
                             <div class="text-right">
                                 <span>已有账号？</span>
                                 <a class="login-or-signup" href="">登入</a>
-                            </div> 
+                            </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,25 +44,25 @@
 
 <style scoped>
 
-.header {
-    /* background: #eee; */
-}
+    .header {
 
-.locate .form-wrapper {
-    width: 40%;
-    margin: 40px auto;
-}
+    }
+
+    .locate .form-wrapper {
+        width: 40%;
+        margin: 40px auto;
+    }
 
 </style>
 
 
 <script>
     import '../css/auth.css';
-    import navCar from '../components/navCar.vue';
+    import GlobalNav from '../components/globalNav.vue';
 
     export default {
-      components: {
-          navCar
-      }
+        components: {
+            GlobalNav
+        }
     }
 </script>

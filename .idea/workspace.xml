@@ -2,15 +2,45 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/practice/064-restaurant/src/js/index.js" line="481" />
+    <bookmark url="file://$PROJECT_DIR$/project/007-everyone-car/src/http.html" line="11" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js" line="24" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5730b05b-1dff-49ea-9c40-9dc788de4e86" name="Default" comment="">
+    <list default="true" id="5730b05b-1dff-49ea-9c40-9dc788de4e86" name="Default" comment="K">
+      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/location.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/directive/bgRed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/location.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/model.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice/000-test/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/practice/000-test/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/064-restaurant/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/practice/064-restaurant/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Api/BaseApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Api/BaseApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Ui/CatUi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Ui/CatUi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Ui/TaskUi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Ui/TaskUi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/root.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/root.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminSidebarNav.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropNav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/navCar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/pagination.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/pagination.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/settingNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/settingNav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/brand.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/brand.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/design.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/series.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/model.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/model.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/base.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/base.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/user.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/vehicle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/vehicle.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/tgc.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/tgc.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,25 +51,83 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="detail.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue">
+      <file leaf-file-name="brand.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/brand.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+            <state relative-caret-position="1406">
+              <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue">
+      <file leaf-file-name="adminPage.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/mixins/adminPage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+            <state relative-caret-position="931">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
+              <folding>
+                <element signature="e#33#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="model.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/model.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1064">
+              <caret line="56" column="32" selection-start-line="56" selection-start-column="32" selection-end-line="56" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="series.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="110" column="10" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dropDown.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="703">
+              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="950">
+              <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searchResult.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3553">
+              <caret line="187" column="9" selection-start-line="185" selection-start-column="8" selection-end-line="187" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>login</find>
+      <find>style</find>
+      <find>class</find>
+      <find>limit</find>
+      <find>modelRead</find>
+      <find>Id</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,8 +140,38 @@
         <option value="$PROJECT_DIR$/practice/064-restaurant/src/js/http.js" />
         <option value="$PROJECT_DIR$/practice/064-restaurant/index.html" />
         <option value="$PROJECT_DIR$/practice/064-restaurant/src/js/index.js" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/adminFooter.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/tgc.vue" />
         <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue" />
         <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/settingNav.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/dropNav.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/globalNav.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/user.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/address.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/package.json" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/data/design.html" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/pagination.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/region.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/main.js" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/location.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/model.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/adminSidebar.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/brand.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/directive/bgRed.js" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/lib/api.js" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/data/model.html" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/data/series.html" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/data/brand.html" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/http.html" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/mixins/adminPage.vue" />
+        <option value="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue" />
       </list>
     </option>
   </component>
@@ -70,6 +188,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/practice/066-iview/node_modules" />
     <handled-path value="$PROJECT_DIR$/project/007-everyone-car/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
@@ -81,6 +200,7 @@
       <path value="$PROJECT_DIR$/practice/065-card/node_modules/ms/package.json" />
       <path value="$PROJECT_DIR$/practice/065-card/node_modules/vue-router/package.json" />
       <path value="$PROJECT_DIR$/practice/065-card/node_modules/vue/package.json" />
+      <path value="$PROJECT_DIR$/practice/066-iview/package.json" />
       <path value="$PROJECT_DIR$/project/007-everyone-car/package.json" />
     </packageJsonPaths>
   </component>
@@ -89,11 +209,101 @@
     <option name="width" value="1060" />
     <option name="height" value="1057" />
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="directive" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mixins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biao-class" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biao-class" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="007-everyone-car" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
@@ -111,8 +321,16 @@
     <property name="node.js.selected.package.eslint" value="" />
     <property name="node.js.selected.package.jscs" value="" />
     <property name="node.js.selected.package.standard" value="" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="settings.editor.splitter.proportion" value="0.23316061" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\warp\wz\html\biao-class\project\007-everyone-car\src\data" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\warp\wz\html\biao-class\project\007-everyone-car\src\data" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -189,25 +407,42 @@
       <workItem from="1529848255216" duration="748000" />
       <workItem from="1529911821804" duration="153000" />
       <workItem from="1529990134169" duration="957000" />
+      <workItem from="1530548161196" duration="794000" />
+      <workItem from="1530549009024" duration="1295000" />
+      <workItem from="1530579726986" duration="982000" />
+      <workItem from="1530580748673" duration="4249000" />
+      <workItem from="1530585199978" duration="1030000" />
+      <workItem from="1530588832509" duration="271000" />
+      <workItem from="1530589137989" duration="25557000" />
+      <workItem from="1530624851613" duration="146000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11652000" />
+    <option name="totallyTimeSpent" value="45976000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17027864" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16666667" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3294979" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.18778281" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.18778281" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3294979" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.19456068" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" x="0" y="428" width="1920" height="193" id="Terminal" order="8" visible="true" weight="0.26987448" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -216,16 +451,16 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3294979" />
       <window_info anchor="right" id="Maven Projects" order="3" />
     </layout>
   </component>
@@ -242,171 +477,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/page/home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/practice/064-restaurant/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/practice/064-restaurant/src/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6118">
-          <caret line="266" column="45" selection-start-line="266" selection-start-column="45" selection-end-line="266" selection-end-column="45" />
-          <folding>
-            <element signature="e#19#1577#0" />
-            <element signature="e#32#139#0" />
-            <element signature="e#49#133#0" />
-            <element signature="e#154#1574#0" />
-            <element signature="e#174#702#0" />
-            <element signature="e#463#659#0" />
-            <element signature="e#723#944#0" />
-            <element signature="e#809#932#0" />
-            <element signature="e#967#1011#0" />
-            <element signature="e#1028#1181#0" />
-            <element signature="e#1103#1169#0" />
-            <element signature="e#1205#1568#0" />
-            <element signature="e#1327#1513#0" />
-            <element signature="e#1617#1923#0" />
-            <element signature="e#1962#2657#0" />
-            <element signature="e#2706#5182#0" />
-            <element signature="e#4045#4127#0" />
-            <element signature="e#4062#4121#0" />
-            <element signature="e#4142#5075#0" />
-            <element signature="e#4163#4400#0" />
-            <element signature="e#4231#4388#0" />
-            <element signature="e#4430#4557#0" />
-            <element signature="e#4586#5069#0" />
-            <element signature="e#4683#5017#0" />
-            <element signature="e#4902#5001#0" />
-            <element signature="e#5091#5179#0" />
-            <element signature="e#5231#6240#0" />
-            <element signature="e#6107#6168#0" />
-            <element signature="e#6124#6162#0" />
-            <element signature="e#6184#6212#0" />
-            <element signature="e#6281#7078#0" />
-            <element signature="e#7127#10559#0" />
-            <element signature="e#9403#9521#0" />
-            <element signature="e#9420#9515#0" />
-            <element signature="e#9536#10488#0" />
-            <element signature="e#9565#9826#0" />
-            <element signature="e#9857#10106#0" />
-            <element signature="e#10143#10481#0" />
-            <element signature="e#10504#10532#0" />
-            <element signature="e#10609#13194#0" />
-            <element signature="e#12398#12507#0" />
-            <element signature="e#12415#12501#0" />
-            <element signature="e#12522#13122#0" />
-            <element signature="e#12551#12814#0" />
-            <element signature="e#12851#13115#0" />
-            <element signature="e#13138#13166#0" />
-            <element signature="e#13247#13505#0" />
-            <element signature="e#13346#13407#0" />
-            <element signature="e#13363#13401#0" />
-            <element signature="e#13422#13434#0" />
-            <element signature="e#13450#13478#0" />
-            <element signature="e#13539#14102#0" />
-            <element signature="e#13553#14100#0" />
-            <element signature="e#13607#13814#0" />
-            <element signature="e#13675#13804#0" />
-            <element signature="e#13824#14093#0" />
-            <element signature="e#13894#14083#0" />
-            <element signature="e#14114#14153#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/practice/064-restaurant/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/practice/064-restaurant/src/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11684">
-          <caret line="508" column="18" lean-forward="true" selection-start-line="508" selection-start-column="18" selection-end-line="508" selection-end-column="18" />
-          <folding>
-            <element signature="e#19#1577#0" />
-            <element signature="e#32#139#0" />
-            <element signature="e#49#133#0" />
-            <element signature="e#154#1574#0" />
-            <element signature="e#174#702#0" />
-            <element signature="e#463#659#0" />
-            <element signature="e#723#944#0" />
-            <element signature="e#809#932#0" />
-            <element signature="e#967#1011#0" />
-            <element signature="e#1028#1181#0" />
-            <element signature="e#1103#1169#0" />
-            <element signature="e#1205#1568#0" />
-            <element signature="e#1327#1513#0" />
-            <element signature="e#1617#1923#0" />
-            <element signature="e#1962#2657#0" />
-            <element signature="e#2706#5182#0" />
-            <element signature="e#4045#4127#0" />
-            <element signature="e#4062#4121#0" />
-            <element signature="e#4142#5075#0" />
-            <element signature="e#4163#4400#0" />
-            <element signature="e#4231#4388#0" />
-            <element signature="e#4430#4557#0" />
-            <element signature="e#4586#5069#0" />
-            <element signature="e#4683#5017#0" />
-            <element signature="e#4902#5001#0" />
-            <element signature="e#5091#5179#0" />
-            <element signature="e#5231#6240#0" />
-            <element signature="e#6107#6168#0" />
-            <element signature="e#6124#6162#0" />
-            <element signature="e#6184#6212#0" />
-            <element signature="e#6281#7078#0" />
-            <element signature="e#7127#10559#0" />
-            <element signature="e#9403#9521#0" />
-            <element signature="e#9420#9515#0" />
-            <element signature="e#9536#10488#0" />
-            <element signature="e#9565#9826#0" />
-            <element signature="e#9857#10106#0" />
-            <element signature="e#10143#10481#0" />
-            <element signature="e#10504#10532#0" />
-            <element signature="e#10609#13194#0" />
-            <element signature="e#12398#12507#0" />
-            <element signature="e#12415#12501#0" />
-            <element signature="e#12522#13122#0" />
-            <element signature="e#12551#12814#0" />
-            <element signature="e#12851#13115#0" />
-            <element signature="e#13138#13166#0" />
-            <element signature="e#13247#13505#0" />
-            <element signature="e#13346#13407#0" />
-            <element signature="e#13363#13401#0" />
-            <element signature="e#13422#13434#0" />
-            <element signature="e#13450#13478#0" />
-            <element signature="e#13539#14102#0" />
-            <element signature="e#13553#14100#0" />
-            <element signature="e#13607#13814#0" />
-            <element signature="e#13675#13804#0" />
-            <element signature="e#13824#14093#0" />
-            <element signature="e#13894#14083#0" />
-            <element signature="e#14114#14153#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/practice/064-restaurant/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -812,30 +886,236 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/page/home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/index.html" />
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/page/home.vue" />
     <entry file="file://$PROJECT_DIR$/project/007-everyone-car/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue">
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+        <state>
+          <caret selection-end-line="67" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/tgc.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="116" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="603" selection-end-line="613" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
-          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+          <caret line="35" column="60" selection-end-line="254" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/settingNav.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="8" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/adminFooter.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/dropNav.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/线上视频/location.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/data/location.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="182" selection-start-column="178" selection-end-column="182" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/base.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/user.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="81" column="36" lean-forward="true" selection-start-line="81" selection-start-column="36" selection-end-line="81" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/globalNav.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/pagination.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-114">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/adminSidebar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="58" column="34" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/location.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/directive.vue" />
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/bgRed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="21" column="73" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/lib/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3553">
+          <caret line="187" column="9" selection-start-line="185" selection-start-column="8" selection-end-line="187" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/brand.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1406">
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/data/model.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/data/brand.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/data/series.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/http.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="93" column="2" lean-forward="true" selection-start-line="93" selection-start-column="2" selection-end-line="93" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/mixins/adminPage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="931">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#33#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/model.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1064">
+          <caret line="56" column="32" selection-start-line="56" selection-start-column="32" selection-end-line="56" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="110" column="10" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
         </state>
       </provider>
     </entry>

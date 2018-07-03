@@ -3,12 +3,20 @@
 
 
 <script>
-    let vehicle = {
+    let user = {
         name: 'user',
         structure: {
             username: {
                 type: 'string',
                 nullable: false
+            },
+            nickname: {
+                type: 'string',
+                nullable: false
+            },
+            realName : {               // 真实姓名
+                type     : 'string',
+                nullable : true,
             },
             password: {
                 type: 'string',
@@ -16,4 +24,6 @@
             }
         }
     }
+
+ api('MODEL/READ', user);
 </script>
