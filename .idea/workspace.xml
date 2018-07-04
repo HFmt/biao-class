@@ -3,44 +3,13 @@
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/practice/064-restaurant/src/js/index.js" line="481" />
     <bookmark url="file://$PROJECT_DIR$/project/007-everyone-car/src/http.html" line="11" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js" line="24" />
+    <bookmark url="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js" line="27" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5730b05b-1dff-49ea-9c40-9dc788de4e86" name="Default" comment="K">
-      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/location.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/directive/bgRed.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/location.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/model.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice/064-restaurant/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/practice/064-restaurant/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Api/BaseApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Api/BaseApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Ui/CatUi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Ui/CatUi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Ui/TaskUi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Ui/TaskUi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminSidebarNav.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/navCar.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/pagination.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/pagination.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/settingNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/settingNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/brand.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/brand.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/design.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/series.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/model.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/model.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/data/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/data/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/base.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/base.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/user.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/vehicle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/vehicle.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/tgc.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/tgc.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,11 +32,8 @@
       <file leaf-file-name="adminPage.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/mixins/adminPage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="931">
+            <state relative-caret-position="1007">
               <caret line="53" selection-start-line="53" selection-end-line="53" />
-              <folding>
-                <element signature="e#33#59#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -84,8 +50,8 @@
       <file leaf-file-name="series.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="110" column="10" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
+            <state relative-caret-position="475">
+              <caret line="120" column="2" lean-forward="true" selection-start-line="120" selection-start-column="2" selection-end-line="120" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -102,8 +68,8 @@
       <file leaf-file-name="validator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="950">
-              <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
+            <state relative-caret-position="1007">
+              <caret line="53" column="58" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -111,7 +77,7 @@
       <file leaf-file-name="searchResult.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3553">
+            <state relative-caret-position="3515">
               <caret line="187" column="9" selection-start-line="185" selection-start-column="8" selection-end-line="187" selection-end-column="9" />
             </state>
           </provider>
@@ -217,6 +183,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -303,7 +270,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
@@ -415,11 +381,12 @@
       <workItem from="1530588832509" duration="271000" />
       <workItem from="1530589137989" duration="25557000" />
       <workItem from="1530624851613" duration="146000" />
+      <workItem from="1530640889620" duration="11000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45976000" />
+    <option name="totallyTimeSpent" value="45987000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1041,7 +1008,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3553">
+        <state relative-caret-position="3515">
           <caret line="187" column="9" selection-start-line="185" selection-start-column="8" selection-end-line="187" selection-end-column="9" />
         </state>
       </provider>
@@ -1083,8 +1050,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/directive/validator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="950">
-          <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
+        <state relative-caret-position="1007">
+          <caret line="53" column="58" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -1097,11 +1064,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/mixins/adminPage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
+        <state relative-caret-position="1007">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#33#59#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1114,8 +1078,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="110" column="10" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
+        <state relative-caret-position="475">
+          <caret line="120" column="2" lean-forward="true" selection-start-line="120" selection-start-column="2" selection-end-line="120" selection-end-column="2" />
         </state>
       </provider>
     </entry>

@@ -37,6 +37,7 @@
             </div>
             <div class="fr">
                 <router-link to="login" href="#" class="login nav-item">登入</router-link>
+                <router-link to="signUp" href="#" class="login nav-item">注册</router-link>
                 <span class="hotline">400-440-4440</span>
             </div>
         </div>
