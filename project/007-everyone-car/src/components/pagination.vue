@@ -26,7 +26,7 @@
     export default {
         props: {
             limit: {
-                default: 5
+                default: null
             },
             onChange: {
                 default() {
@@ -66,6 +66,9 @@
         },
         computed: {
             lastPage() {
+                console.log('this.totalCount:', this.totalCount);
+                console.log('this.limit:', this.limit);
+                
                 return Math.ceil(this.totalCount / this.limit);
             },
             isFirstPage() {
@@ -73,7 +76,7 @@
                 return this.currentPage == 1;
             },
             isLastPage() {
-
+                
                 return this.currentPage == this.lastPage;
             },
         }

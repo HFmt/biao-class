@@ -22,7 +22,12 @@
                         <form @submit="cRoR($event)" action="">
                             <div class="input-control">
                                 <label for="">用户名</label>
-                                    <input type="text" v-model="current.username">
+                                <div id="user-error"></div>
+                                    <input type="text"
+                                           v-validator="'required|min_length:4|max_length:14'"
+                                           error-el="#user-error"
+                                           error-lang='zh'
+                                           v-model="current.username">
                             </div>
                             <div class="input-control">
                                 <label for="">密码</label>

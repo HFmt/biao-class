@@ -1,6 +1,5 @@
 import Vue from 'vue';
-
-
+import api from '../lib/api'
 
 const parseRule = str => {
     let rules = {};
@@ -18,7 +17,35 @@ const parseRule = str => {
 };
 
 const valid = {
-    username(val,lang) {
+    numeric(val, lang) {
+        const langConf = {
+            zh: '只能输入数字'
+        };
+        let result = parseFloat(val) == val;
+        if (!result)
+            throw langConf[lang];
+        return result;
+    },
+    max(val, lang, max) {
+        const langConf = {
+            zh: '最大值为' + max
+        };
+        let result = this.numeric(val) && parseFloat(val) < max;
+        if (!result) {
+            throw langConf[lang];
+        }
+        return result;
+    },
+    positive(val, lang) {
+        const langConf = {
+            zh: '不能为负数'
+        };
+        let result = this.numeric(val) && parseFloat(val) >= 0;
+        if (!result)
+            throw langConf[lang];
+        return true;
+    },
+    username(val, lang) {
         const langConf = {
             zh: '不能包含特殊字符'
         };
@@ -29,7 +56,7 @@ const valid = {
             throw langConf[lang];
         return result;
     },
-    required(val ,lang) {
+    required(val, lang) {
         const langConf = {
             zh: '不能为空'
         };
@@ -51,7 +78,7 @@ const valid = {
     },
     maxLength(val, lang, max) {
         const langConf = {
-            zh: '不能少于' + max + '个字符'
+            zh: '不能大于' + max + '个字符'
         };
 
         let result = val.length <= parseInt(max);
@@ -59,18 +86,26 @@ const valid = {
             throw langConf[lang];
         return result;
     },
+    not_exist(val, lang, model, property, except) {
+        return new Promise((s, j) => {
+            if (!val || val == except)
+                s();
+
+            return api(`${model}/first`, { where: { and: { [property]: val } } })
+                .then(res => {
+                    return res.data ? j('用户名已存在') : s(true);
+                });
+        });
+    },
 };
 
-
 const disableSubmit = elSubmit => {
-    elSubmit.setAttribute('disabled', 'disable');
+    elSubmit.setAttribute('disabled', 'disabled');
 };
 
 const enableSubmit = elSubmit => {
     elSubmit.removeAttribute('disabled')
 };
-
-
 
 const initFormState = (elForm, lang) => {
     let elSubmit = elForm.querySelector('[type = submit]');
@@ -79,7 +114,7 @@ const initFormState = (elForm, lang) => {
         el_submit: elSubmit,
         input_list: []
     }
-}
+};
 
 const trackInput = (elForm, inputList) => {
     elForm.$state.input_list.push(inputList);
@@ -87,64 +122,83 @@ const trackInput = (elForm, inputList) => {
 
 const validatorForm = (inputList, elSubmit) => {
     let invalid = false;
-
-    inputList.forEach( input => {
-        if(input.getAttribute('invalid' == 'true'))
+    inputList.forEach(input => {
+        if (input.getAttribute('invalid') === 'true') {
             invalid = true;
+        }
     });
 
-    if(invalid)
+    if (invalid) {
         disableSubmit(elSubmit);
-    else
+    }
+    else {
         enableSubmit(elSubmit);
+    }
 };
 
-const go = (elForm, el, rules, elError) => {
-    let invalid =false;
+const go = (elForm, el, rules, elError, ) => {
     let errorMsg = '';
-    let elval = el.value;
+    let invalid = false;
 
+    let elval = el.value;
+    let lang = elForm.$state.lang;
+
+    if (!elval && !rules.required)
+        return;
     for (let item in rules) {
-        let args = rules[item];
-        let validator = valid[item];
+        let arg = rules[item];
+        let validator = valid[item].bind(valid);
 
         try {
-            invalid = true;
-            validator(elval, elForm.$state.lang, args);
+            validator(elval, lang, arg);
         } catch (e) {
+            invalid = true;
             errorMsg += `<div class="error">${e}</div>`
         }
     }
-    if (invalid)
+
+    if (invalid) {
         el.setAttribute('invalid', 'true');
-    else
+    }
+    else {
         el.setAttribute('invalid', 'false')
-
-    if (el.getAttribute('dirty') == 'true'){
-
-        elError.innerHTML = errorMsg;
     }
 
+    if (el.getAttribute('dirty') == 'true') {
+        elError.innerHTML = errorMsg;
+    }
     validatorForm(elForm.$state.input_list, elForm.$state.el_submit);
+
+
+
+    // 如果有非空验证就先执行非空验证
+    if (rules.required) {
+        try {
+            valid.required(elval, lang);
+        } catch (e) {
+            invalid = true;
+            errorMsg += `<div class="error">${e}</div>`;
+            return;
+        }
+    }
 };
 
 export default Vue.directive('validator', {
     inserted: (el, binding) => {
 
         let lang = null;
-
         let rule = binding.value;
         let rules = null;
         let elForm = el.closest('form');
-        let elSubmit = elForm.querySelector('[type = submit]');
+        // let elSubmit = elForm.querySelector('[type = submit]');
         let select = el.getAttribute('error-el');
         let elError = document.querySelector(select);
+
         if (typeof rule === 'string')
             rules = parseRule(rule);
 
-        if(!elForm.$state){
+        if (!elForm.$state) {
             lang = el.getAttribute('error-lang') || 'zh';
-            console.log(lang)
             initFormState(elForm, lang);
         }
 
@@ -160,5 +214,5 @@ export default Vue.directive('validator', {
             el.setAttribute('dirty', 'true');
         });
     }
-})
+});
 

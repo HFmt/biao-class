@@ -1,3 +1,86 @@
+
+<style scoped>
+.merchandise {
+    text-align: center;
+    display: block;
+    padding: 5px;
+}
+
+.slider,
+.query-area,
+.vehicle-nav {
+    margin-top: 20px;
+}
+
+.huge-font {
+    color: #ff5722;
+    font-size: 5rem;
+    font-weight: 900;
+    padding-bottom: 15px;
+}
+
+.row-padding {
+    padding: 15px 25px;
+}
+
+.buy-wrapper {
+    border-right: 1px solid #eee;
+}
+
+.buy-wrapper input {
+    border-right: 0;
+}
+
+.tag {
+    padding-right: 15px;
+}
+
+.sell-wrapper input,
+.sell-wrapper button,
+.sell-wrapper .choice {
+    margin-top: 18px;
+}
+
+.sell-wrapper input,
+.sell-wrapper button {
+    width: 100%;
+    padding: 15.2px;
+}
+
+.buy-wrapper .thumber {
+    padding-right: 40px;
+}
+
+.sell-wrapper .thumber {
+    padding-left: 40px;
+}
+
+.vehicle-nav span {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 20px;
+    color: #000;
+    border: 1px solid #eee;
+    border-right: 0;
+}
+
+.vehicle-nav span:last-child {
+    border-right: 1px solid #eee;
+}
+
+.vehicle-nav span:hover {
+    background: #000;
+    color: #fff;
+}
+
+.vehicle-nav .more:hover {
+    color: #ff5722;
+    background: #fff;
+}
+</style>
+
 <template>
     <div>
         <GlobalNav/>
@@ -15,40 +98,14 @@
                     </div>
                     <div class="col-lg-10">
                         <div class="row-padding">
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
+                            <router-link v-for="(item, index) in brandList" :key="index" class="tag" to="/searchResult">
+                                {{item.name}}
+                            </router-link>
                         </div>
                         <div class="row-padding">
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                        </div>
-                        <div class="row-padding">
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
-                            <a href="#" class="tag">item</a>
+                             <router-link v-for="(item, index) in modelList" :key="index" class="tag" to="/searchResult">
+                                {{item.name}}
+                            </router-link>
                         </div>
                         <div class="col-lg-6 row-padding">
                             <form action="">
@@ -89,64 +146,39 @@
             <div class="vehicle">
                 <div class="vehicle-nav">
                     <div class="col-lg-2">
-                        <router-link to="searchResult" href="#">特价好车</router-link>
+                        <span @click="readCard('onSale')">特价好车</span>
                     </div>
-
                     <div class="col-lg-2">
-                        <router-link to="searchResult" href="#">特价好车</router-link>
+                        <span @click="readCard('underFives')">五万以下</span>
                     </div>
-
                     <div class="col-lg-2">
-                        <router-link to="searchResult" href="#">特价好车</router-link>
+                        <span @click="readCard('betweenFivesToTen')">五至十万</span>
                     </div>
-
                     <div class="col-lg-2">
-                        <router-link to="searchResult" href="#">特价好车</router-link>
+                        <span @click="readCard('betweenTenToTwenty')">十至二十万</span>
                     </div>
-
                     <div class="col-lg-2">
-                        <router-link to="searchResult" href="#">特价好车</router-link>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <router-link to="searchResult" href="#">特价好车</router-link>
+                        <span @click="readCard('SUV')">SUV</span>
                     </div>
 
                 </div>
                 <div class="vehicle-list">
-                    <div class="col-lg-3 row-mrg">
+                    <div v-for="(item, index) in cardList" :key="index" class="col-lg-3 row-mrg">
                         <div class="">
-                            <router-link to="/detail" href="#" class="row">
-                                <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp"
-                                     alt="">
+                            <router-link to="/detail" href="#">
+                                <img :src="item.preview? item.preview[0].url : '//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp'" alt="">
+                                <div class="detail">
+                                    <div class="title">{{item.title}}</div>
+                                    <div class="desc">2015年02月 / 3.07万公里</div>
+                                    <div class="others">
+                                        <span class="price">{{item.price}}万</span>
+                                        <span>首付3.5万</span>
+                                        <a class="btn btn-primary buy">购买</a>
+                                    </div>
+                                </div>
                             </router-link>
                         </div>
                     </div>
-                    <div class="col-lg-3 row-mrg">
-                        <div class="">
-                            <router-link to="/detail" href="#" class="row">
-                                <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp"
-                                     alt="">
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 row-mrg">
-                        <div class="">
-                            <router-link to="/detail" href="#" class="row">
-                                <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp"
-                                     alt="">
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 row-mrg">
-                        <div class="">
-                            <router-link to="/detail" href="#" class="row">
-                                <img src="//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp"
-                                     alt="">
-                            </router-link>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -154,101 +186,95 @@
 </template>
 
 
-<style scoped>
-
-
-    .merchandise {
-        text-align: center;
-        display: block;
-        padding: 5px;
-    }
-
-    .slider,
-    .query-area,
-    .vehicle-nav {
-        margin-top: 20px;
-    }
-
-    .huge-font {
-        color: #ff5722;
-        font-size: 5rem;
-        font-weight: 900;
-        padding-bottom: 15px;
-    }
-
-    .row-padding {
-        padding: 15px 25px;
-    }
-
-    .buy-wrapper {
-        border-right: 1px solid #eee;
-    }
-
-    .buy-wrapper input {
-
-        border-right: 0;
-    }
-
-    .tag {
-        padding-right: 15px;
-    }
-
-    .sell-wrapper input,
-    .sell-wrapper button,
-    .sell-wrapper .choice {
-        margin-top: 18px;
-    }
-
-    .sell-wrapper input,
-    .sell-wrapper button {
-        width: 100%;
-        padding: 15.2px;
-    }
-
-    .buy-wrapper .thumber {
-        padding-right: 40px;
-    }
-
-    .sell-wrapper .thumber {
-        padding-left: 40px;
-    }
-
-    .vehicle-nav a {
-        display: block;
-        text-align: center;
-        font-size: 1.2rem;
-        padding: 20px;
-        color: #000;
-        border: 1px solid #eee;
-        border-right: 0;
-    }
-
-    .vehicle-nav a:last-child {
-        border-right: 1px solid #eee;
-    }
-
-    .vehicle-nav a:hover {
-        background: #000;
-        color: #fff;
-    }
-
-    .vehicle-nav .more:hover {
-        color: #ff5722;
-        background: #fff;
-    }
-
-
-</style>
 
 
 <script>
-    import '../css/wehicle-list.css';
-    import GlobalNav from '../components/globalNav.vue';
+import api from "../lib/api.js";
+import "../css/wehicle-list.css";
+import GlobalNav from "../components/globalNav.vue";
 
-    export default {
-        components: {
-            GlobalNav
+export default {
+    components: {
+        GlobalNav
+    },
+    data() {
+        return {
+            brandList: [],
+            modelList: [],
+            cardList: [],
+            model: {}
+        };
+    },
+
+    methods: {
+        read(model) {
+            api(`${model}/read`).then(res => {
+                this[`${model}List`] = res.data;
+            });
+        },
+        findModel(name) {
+            api("model/read", { name: name }).then(res => {
+                this.model[name] = res.data[3];
+            });
+        },
+        readCard(type) {
+            let condition = {};
+
+            switch (type) {
+                case "onSale":
+                    condition = {
+                        where: {
+                            and: {
+                                on_sale: true
+                            }
+                        }
+                    };
+                    break;
+                case "underFives":
+                    condition = {
+                        where: {
+                            and: [["price", "<", 5]]
+                        }
+                    };
+                    break;
+                case "betweenFivesToTen":
+                    condition = {
+                        where: {
+                            and: [["price", ">", 5], ["price", "<", 10]]
+                        }
+                    };
+                    break;
+                case "betweenTenToTwenty":
+                    condition = {
+                        where: {
+                            and: [["price", ">", 10], ["price", "<", 20]]
+                        }
+                    };
+                    break;
+                case "SUV":
+                    condition = {
+                        where: {
+                            and: {
+                                model_id: this.model.SUV.id
+                            }
+                        }
+                    };
+                    break;
+                default:
+                    break;
+            }
+
+            api("vehicle/read", condition).then(res => {
+                this.cardList = res.data;
+            });
         }
-    };
+    },
+    mounted() {
+        this.findModel("SUV");
+        this.readCard("onSale");
+        this.read("brand");
+        this.read("model");
+    }
+};
 </script>
 

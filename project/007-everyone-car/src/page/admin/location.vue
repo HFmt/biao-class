@@ -1,88 +1,101 @@
-<style>
+<style scoped>
+.location {
+    max-width: 200px;
+}
 
+.location .step {
+    display: inline-block;
+    width: 33.333333333%;
+    max-height: 100px;
+    overflow: auto;
+}
 
+.location .item {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.location .item.active {
+    background: #fd521d;
+    color: #fff;
+}
 </style>
 
 <template>
-    <div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="admin-conent">
-                    <div class="title">
-                        <h2>车系管理</h2>
-                    </div>
-                    <div class="add-vihecle">
-                        <button @click="showForm = true">添加地区</button>
-                    </div>
-                    <form @submit="search($event)"  action="">
-                        <input type="search" v-model="keyword" placeholder="搜索地/市">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                    <div v-if="showForm" class="operating-wrapper">
-                        <form @submit="cRoR($event)" action="">
-                            <div class="input-control">
-                                <label for="">省</label>
-                                <input type="text" v-model="current.name">
-                            </div>
-                            <div class="input-control">
-                                <label for="">所属品牌</label>
-                                <input type="text" v-model="current.brandId">
-                            </div>
-                            <div class="input-control">
-                                <div class="btn-group">
-                                    <button type="submit">
-                                        <span v-if="showBtn">确认</span>
-                                        <span v-else>添加</span>
-                                    </button>
-                                    <button @click.stop="showForm = false; showBtn = false" type="button">取消</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="vehicle-list">
-                        <table>
-                            <thead>
-                            <tr class="tb-actived">
-                                <th class="pick"> <input type="checkbox" name="" id=""> </th>
-                                <th>车系</th>
-                                <th>所属品牌</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="tb-active" v-for="(row,index) in list" :key="index">
-                                <td class="pick"><input type="checkbox"> </td>
-                                <td>{{row.name}}</td>
-                                <td>{{row.brandId}}</td>
-                                <td class="vehicle-edit">
-                                    <button @click="modify(row)" class="modify">修改</button>
-                                    <button @click="remove(row.id)" class="delete">删除</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <Pagination :limit="limit" :totalCount="total" :onChange="changPage"/>
-                </div>
+    <div class="location">
+        <div class="step">
+            <div :class="{'active': item.id == current.stateList, item:true}" @click="select(item, 'stateList')" v-for="(item, index) in location.stateList" :key="index">
+                {{item.name}}
+            </div>
+        </div>
+        <div class="step">
+            <div :class="{'active': item.id == current.cityList, item:true}" @click="select(item, 'cityList')" v-for="(item, index) in location.cityList" :key="index">
+                {{item.name}}
+            </div>
+        </div>
+        <div class="step">
+            <div :class="{'active': item.id == current.countyList, item:true}" @click="select(item, 'countyList')" v-for="(item, index) in location.countyList" :key="index">
+                {{item.name}}
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import AdminPage from '../../mixins/adminPage.vue'
+const chinaId = 1;
+import api from "../../lib/api";
 
-    export default {
-        created() {
-            this.model = 'series';
-        },
-        data() {
-            return {
-                model: 'series',
-                searchable: ['name', 'brandId']
+export default {
+    data() {
+        return {
+            location: {
+                stateList: [],
+                cityList: [],
+                countyList: []
+            },
+            current: {
+                stateList: null,
+                cityList: null,
+                countyList: null
             }
+        };
+    },
+    methods: {
+        read(parentId, type) {
+            api("location/read", {
+                where: {
+                    and: {
+                        parent_id: parentId
+                    }
+                }
+            }).then(res => {
+                this.location[type] = res.data;
+            });
         },
-        mixins: [AdminPage]
-    }
-</script>
+        select(parent, type) {
+            let childType
+            this.current[type] = parent.id;
+            
+            switch (type) {
+                case 'stateList':
+                    childType = 'cityList';
+                    break;
+                case 'cityList':
+                    childType = 'countyList';
+                    break;
+            
+                default:
+                    break;
+            }
 
+            this.read(parent.id, childType);
+        }
+    },
+    mounted() {
+        this.read(chinaId, "stateList");
+    }
+};
+</script>

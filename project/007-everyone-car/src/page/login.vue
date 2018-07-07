@@ -27,7 +27,7 @@
                                         error-lang='zh'
                                         type="text" name="username"
                                         placeholder="用户名" autocomplete="off">
-
+                                <input v-test="''" type="text">
                                 <input type="password" name="password" placeholder="密码">
                                 <button type="submit">确认</button>
                             </form>
@@ -47,7 +47,6 @@
 <script>
     import '../css/auth.css';
     import '../directive/validator';
-    /* background: #eee; */
     import GlobalNav from '../components/globalNav.vue';
 
     export default {

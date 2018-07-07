@@ -86,12 +86,94 @@ let brand = {
     }
 };
 
+let vehicle = {
+    name: 'vehicle',
+    force: true,
+    structure: {
+        price: {                //价格
+            type: 'float',
+            nullable: true,
+        },
+        title: {                //标题
+            type: 'string',
+            nullable: true,
+        },
+        publish_reason: {        //卖车原因
+            type: 'string',
+            nullable: true
+        },
+        consumed_dishtance: {     //当前里程
+            type: 'float',
+            nullable: true
+        },
+        local: {                //是否是当地车票
+            type: 'integer',
+            nullable: true
+        },
+        locationl_id: {          //所在地
+            type: 'integer',
+            nullable: true
+        },
+        exchange_times: {        //过户次数
+            type: 'integer',
+            nullable: true
+        },
+        birth_day: {             //初次上牌时间
+            type: 'dateTime',
+            nullable: true
+        },
+        condition: {            //车况
+            type: 'float',
+            nullable: true,
+        },
+        deadline: {             //预计出售时间
+            type: 'dateTime',
+            nullable: true,
+        },
+        description: {          //描述
+            type: 'text',
+            nullable: true,
+        },
+        on_sale: {               //是否特价
+            type: 'integer',
+            nullable: true,
+        },
+        brand_id: {               //品牌
+            type: 'string',
+            nullable: true,
+        },
+        model_id: {             //车型
+            type: 'string',
+            nullable: true
+        },
+        series_id: {              //车系
+            type: 'string',
+            nullable: true
+        },
+        publisher_id: {            //发布人
+            type: 'integer',
+            nullable: true,
+        },
+        // publishDate: {          //发布日期
+        //     type: 'dateTime',
+        //     nullable: true,
+        //     positive: true
+        // },
+    }
+}
 
 // http.post('MODEL/CREATE', series);
 //
-// http.post('MODEL/DELETE', {name: 'series'});
-http.post('MODEL/CREATE', series);
-//
+// http.post('MODEL/DELETE', {name: 'vehicle'});
+// http.post('MODEL/CREATE', vehicle);
+
+http.post('MODEL/CREATE_PROPERTY', {
+    model: 'vehicle',
+    property: 'preview',
+    structure: {
+        type: 'json'
+    }
+})
 
 // http.post('location/read', {
 //     where: {
@@ -102,4 +184,19 @@ http.post('MODEL/CREATE', series);
 //     }
 //
 // });
+</script>
+
+
+<script>
+    export default {
+        methods: {
+            findModel() {
+                api('model/search', {
+                    or: {
+                        name: name
+                    }
+                })
+            }
+        }
+    }
 </script>

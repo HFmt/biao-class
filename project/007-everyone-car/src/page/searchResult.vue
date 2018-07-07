@@ -42,19 +42,7 @@
                     </div>
                     <div class="col-lg-10 range">
                         <a href="#">不限</a>
-                        <a href="#">大众</a>
-                        <a href="#">福特</a>
-                        <a href="#">别克</a>
-                        <a href="#">奔驰</a>
-                        <a href="#">宝马</a>
-                        <a href="#">雪佛兰</a>
-                        <a href="#">保时捷</a>
-                        <a href="#">玛莎拉蒂</a>
-                        <a href="#">起亚</a>
-                        <a href="#">丰田</a>
-                        <a href="#">奥迪</a>
-                        <a href="#">不限</a>
-                        <a href="#">不限</a>
+                        <span v-for="(item, index) in brandList" :key="index">{{item.name}}</span>                        
                     </div>
                     <div class="col-lg-1 prop">
                         <div class="all-type">全部</div>
@@ -66,21 +54,7 @@
                     </div>
                     <div class="col-lg-10 range">
                         <a href="#">不限</a>
-                        <a href="#">大众</a>
-                        <a href="#">福特</a>
-                        <a href="#">别克</a>
-                        <a href="#">奔驰</a>
-                        <a href="#">宝马</a>
-                        <a href="#">雪佛兰</a>
-                        <a href="#">保时捷</a>
-                        <a href="#">玛莎拉蒂</a>
-                        <a href="#">起亚</a>
-                        <a href="#">丰田</a>
-                        <a href="#">奥迪</a>
-                        <a href="#">不限</a>
-                        <a href="#">不限</a>
-                        <a href="#">不限</a>
-
+                        <span v-for="(item, index) in modelList" :key="index">{{item.name}}</span>                        
                     </div>
                     <div class="col-lg-1 prop">
                         <div class="all-type">全部</div>
@@ -116,10 +90,10 @@
 
                     </div>
                     <div class="col-lg-10 range">
-                        <DropDown :list="tmp" :onSelect="select" />
-                        <DropDown :list="tmp" :onSelect="select" />
-                        <DropDown :list="tmp" :onSelect="select" />
-                        <DropDown :list="tmp" :onSelect="select" />
+                        <DropDown class="col-3" displayKey="车型" />
+                        <DropDown class="col-3" displayKey="车龄" />
+                        <DropDown class="col-3" displayKey="排量" />
+                        <DropDown class="col-3" displayKey="里程" />
                     </div>
                     <div class="col-lg-1">
                         <div class="all-type prop">全部</div>
@@ -163,6 +137,7 @@
 </template>
 
 <script>
+import api from '../lib/api.js'
 import "../css/wehicle-list.css";
 import GlobalNav from "../components/globalNav.vue";
 import DropDown from "../components/dropDown.vue";
@@ -174,18 +149,23 @@ export default {
     },
     data() {
         return {
-            tmp: [
-                { name: "王花花", value: 1 },
-                { name: "李拴蛋", value: 2 },
-                { name: "赵可爽", value: 3 },
-                { name: "刘备备", value: 4 }
-            ]
+            brandList: [],
+            modelList: []
         };
     },
     methods: {
         select(row) {
             console.log("row:", row);
+        },
+        read(model) {
+            api(`${model}/read`).then(res => {
+                this[`${model}List`] = res.data;
+            });
         }
+    },
+    mounted() {
+        this.read("brand");
+        this.read("model");
     }
 };
 </script>
