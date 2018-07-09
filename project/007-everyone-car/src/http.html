@@ -1,202 +1,202 @@
 <script src="https://cdn.bootcss.com/axios/0.18.0/axios.js"></script>
 
 <script>
-let http = {
-    post: function (url, data) {
-        data = data || {};
+    let http = {
+        post: function (url, data) {
+            data = data || {};
 
-        data.app_key = '88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9';
-        data.timestamp = (new Date).getTime();
-        data.signature = this.sgin(data.app_key, data.timestamp);
+            data.app_key = '88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9';
+            data.timestamp = (new Date).getTime();
+            data.signature = this.sgin(data.app_key, data.timestamp);
 
-        return axios.post('http://mock.biaoyansu.com/api/' + url, data)
-            .then(function (res) {
-                return res;
-            });
-    },
-
-    sgin: function (app_key, data) {
-        return btoa(app_key + data);
-    }
-}
-// 88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9
-
-let locations = {
-    name: 'location',
-    structure: {
-        name: {
-            type: 'string',
-            nullable: true
+            return axios.post('http://mock.biaoyansu.com/api/' + url, data)
+                .then(function (res) {
+                    return res;
+                });
         },
-        type: {
-            type: 'string',
-            nullable: true
-        },
-        parent_id: {
-            type: 'integer',
-            positive: true,
-            bullable: true
+
+        sgin: function (app_key, data) {
+            return btoa(app_key + data);
         }
     }
-}
+    // 88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9
 
-let series = {
-    name: 'series',
-    structure: {
-        name: {             //车系
-            type: 'string',
-            nullable: false
-        },
-        brand_id: {         //品牌
-            type: 'integer',
-            nullable: true,
-            positive: true
-        },
-        model_id: {         //车型
-            type: 'integer',
-            nullable: true,
-            positive: true
+    let locations = {
+        name: 'location',
+        structure: {
+            name: {
+                type: 'string',
+                nullable: true
+            },
+            type: {
+                type: 'string',
+                nullable: true
+            },
+            parent_id: {
+                type: 'integer',
+                positive: true,
+                bullable: true
+            }
         }
     }
-};
 
-let model = {
-    name: 'model',
-    structure: {        //车型
-        name: {
-            type: 'string',
-            nullable: false
-        },
-        brand_id: {      //品牌id
-            type: 'integer',
-            nullable: true,
-            positive: false
+    let series = {
+        name: 'series',
+        structure: {
+            name: { //车系
+                type: 'string',
+                nullable: false
+            },
+            brand_id: { //品牌
+                type: 'integer',
+                nullable: true,
+                positive: true
+            },
+            model_id: { //车型
+                type: 'integer',
+                nullable: true,
+                positive: true
+            }
+        }
+    };
+
+    let model = {
+        name: 'model',
+        structure: { //车型
+            name: {
+                type: 'string',
+                nullable: false
+            },
+            brand_id: { //品牌id
+                type: 'integer',
+                nullable: true,
+                positive: false
+            }
         }
     }
-}
 
-let brand = {
-    name: 'brand',
-    structure: {
-        name: {     //品牌名
-            type: 'string',
-            nullable: false
-        },
+    let brand = {
+        name: 'brand',
+        structure: {
+            name: { //品牌名
+                type: 'string',
+                nullable: false
+            },
 
+        }
+    };
+
+    let vehicle = {
+        name: 'vehicle',
+        force: true,
+        structure: {
+            price: { //价格
+                type: 'float',
+                nullable: true,
+            },
+            title: { //标题
+                type: 'string',
+                nullable: true,
+            },
+            publish_reason: { //卖车原因
+                type: 'string',
+                nullable: true
+            },
+            consumed_dishtance: { //当前里程
+                type: 'float',
+                nullable: true
+            },
+            local: { //是否是当地车票
+                type: 'integer',
+                nullable: true
+            },
+            locationl_id: { //所在地
+                type: 'integer',
+                nullable: true
+            },
+            exchange_times: { //过户次数
+                type: 'integer',
+                nullable: true
+            },
+            birth_day: { //初次上牌时间
+                type: 'dateTime',
+                nullable: true
+            },
+            condition: { //车况
+                type: 'float',
+                nullable: true,
+            },
+            deadline: { //预计出售时间
+                type: 'dateTime',
+                nullable: true,
+            },
+            description: { //描述
+                type: 'text',
+                nullable: true,
+            },
+            on_sale: { //是否特价
+                type: 'integer',
+                nullable: true,
+            },
+            brand_id: { //品牌
+                type: 'string',
+                nullable: true,
+            },
+            model_id: { //车型
+                type: 'string',
+                nullable: true
+            },
+            series_id: { //车系
+                type: 'string',
+                nullable: true
+            },
+            publisher_id: { //发布人
+                type: 'integer',
+                nullable: true,
+            },
+            // publishDate: {          //发布日期
+            //     type: 'dateTime',
+            //     nullable: true,
+            //     positive: true
+            // },
+        }
     }
-};
 
-let vehicle = {
-    name: 'vehicle',
-    force: true,
-    structure: {
-        price: {                //价格
-            type: 'float',
-            nullable: true,
-        },
-        title: {                //标题
-            type: 'string',
-            nullable: true,
-        },
-        publish_reason: {        //卖车原因
-            type: 'string',
-            nullable: true
-        },
-        consumed_dishtance: {     //当前里程
-            type: 'float',
-            nullable: true
-        },
-        local: {                //是否是当地车票
-            type: 'integer',
-            nullable: true
-        },
-        locationl_id: {          //所在地
-            type: 'integer',
-            nullable: true
-        },
-        exchange_times: {        //过户次数
-            type: 'integer',
-            nullable: true
-        },
-        birth_day: {             //初次上牌时间
-            type: 'dateTime',
-            nullable: true
-        },
-        condition: {            //车况
-            type: 'float',
-            nullable: true,
-        },
-        deadline: {             //预计出售时间
-            type: 'dateTime',
-            nullable: true,
-        },
-        description: {          //描述
-            type: 'text',
-            nullable: true,
-        },
-        on_sale: {               //是否特价
-            type: 'integer',
-            nullable: true,
-        },
-        brand_id: {               //品牌
-            type: 'string',
-            nullable: true,
-        },
-        model_id: {             //车型
-            type: 'string',
-            nullable: true
-        },
-        series_id: {              //车系
-            type: 'string',
-            nullable: true
-        },
-        publisher_id: {            //发布人
-            type: 'integer',
-            nullable: true,
-        },
-        // publishDate: {          //发布日期
-        //     type: 'dateTime',
-        //     nullable: true,
-        //     positive: true
-        // },
-    }
-}
+    // http.post('MODEL/CREATE', series);
+    //
+    // http.post('MODEL/DELETE', {name: 'vehicle'});
+    // http.post('MODEL/CREATE', vehicle);
 
-// http.post('MODEL/CREATE', series);
-//
-// http.post('MODEL/DELETE', {name: 'vehicle'});
-// http.post('MODEL/CREATE', vehicle);
+    // http.post('MODEL/CREATE_PROPERTY', {
+    //     model: 'vehicle',
+    //     property: 'preview',
+    //     structure: {
+    //         type: 'json'
+    //     }
+    // });
 
-http.post('MODEL/CREATE_PROPERTY', {
-    model: 'vehicle',
-    property: 'preview',
-    structure: {
-        type: 'json'
-    }
-})
 
-// http.post('location/read', {
-//     where: {
-//         and: {
-//             id: 1,
-//             type: 'country'
-//         }
-//     }
-//
-// });
+    http.post('MODEL/UPDATE_PROPERTY', {
+        model: 'vehicle',
+        property: 'deadline',
+        structure: {
+            type: 'date',
+            nullable: true,
+        }
+    })
+
+    // http.post('location/read', {
+    //     where: {
+    //         and: {
+    //             id: 1,
+    //             type: 'country'
+    //         }
+    //     }
+    //
+    // });
 </script>
 
 
 <script>
-    export default {
-        methods: {
-            findModel() {
-                api('model/search', {
-                    or: {
-                        name: name
-                    }
-                })
-            }
-        }
-    }
+
 </script>

@@ -66,9 +66,6 @@
         },
         computed: {
             lastPage() {
-                console.log('this.totalCount:', this.totalCount);
-                console.log('this.limit:', this.limit);
-                
                 return Math.ceil(this.totalCount / this.limit);
             },
             isFirstPage() {

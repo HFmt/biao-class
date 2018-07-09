@@ -72,7 +72,7 @@
                             </div>
                             <div class="input-control">
                                 <label for="">预计出售日期</label>
-                                <input type="text" v-model="current.deadline">
+                                <input type="date" v-model="current.deadline">
                             </div>
                             <div class="input-control">
                                 <div class="btn-group">
@@ -109,6 +109,7 @@
                                     <td>{{row.$brand ? row.$brand.name : '-'}}</td>
                                     <td>{{row.$series ? row.$series.name : '-'}}</td>
                                     <td>{{row.$model ? row.$model.name : '-'}}</td>
+                                    <td>当前里程</td>
                                     <td>{{row.price}}万</td>
                                     <td>{{row.publisherId}}</td>
                                     <td>{{row.deadline}}</td>
@@ -162,7 +163,7 @@ export default {
         },
         brandRead() {
             api("brand/read").then(res => {
-                this.brandList = res.data;
+                this.brandList = res.data;                
             });
         },
         seriesRead(brandId) {

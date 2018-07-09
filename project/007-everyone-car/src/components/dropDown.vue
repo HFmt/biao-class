@@ -15,7 +15,6 @@
     z-index: 1;
     cursor: pointer;
     margin-top: -12px;
-    border:1px solid #cbcbcb;
 }
 
 .menu > * {
@@ -30,10 +29,10 @@
 
 <template>
     <div @mouseleave="showMenu = false" class="drop-down">
-        <input @mouseenter="showMenu = true" class="selected" type="text" placeholder="请选择" v-model="selected[displayKey]" />
+        <input @mouseenter="showMenu = true" class="selected" type="text" :placeholder="defaultSelect" v-model="selected[displayKey]" />
         <div v-if="showMenu" class="menu">
-            <div @click="select(row)" v-for="(row, index) in list" :key="index" class="select-list">
-                {{row[displayKey]}}
+            <div @click="select(item)" v-for="(item, index) in list" :key="index" class="select-list">
+                {{item[displayKey]}}
             </div>
         </div>
     </div>
@@ -41,13 +40,21 @@
 
 
 <script>
+import api from "../lib/api";
+
 export default {
     props: {
-        defaultSelect: "",
-        list: {},
-        onSelect: {},
+        defaultSelect: {
+            default: "请选择"
+        },
         displayKey: {
             default: "name"
+        },
+        list: {
+            default: "list"
+        },
+        onSelect: {
+            default: ''
         }
     },
     data() {
@@ -59,40 +66,13 @@ export default {
     methods: {
         select(row) {
             this.selected = row;
-            if (this.onSelect) this.onSelect(row);
-        },
-        search(e) {
-            e.preventDefault();
-            let kwd = this.keyword;
+            if (this.onSelect) {
 
-            let param = {
-                or: {}
-            };
-
-            this.searchable.forEach(prop => {
-                param.or[prop] = this.keyword;
-            });
-
-            api(`${this.model}/search`, param).then(res => {
-                this.list = res.data;
-            });
+                this.onSelect(row);
+                console.log('1:', 1);
+                
+            }
         }
-    },
-    watch: {
-         keyword () {
-             console.log('1:', 1);
-             
-        if (this.api)
-          this.search();
-        else
-          this.filter();
-      },
-      default : {
-        deep : true,
-        handler () {
-          this.set_default();
-        },
-      },
     }
 };
 </script>

@@ -103,7 +103,7 @@
                             </router-link>
                         </div>
                         <div class="row-padding">
-                             <router-link v-for="(item, index) in modelList" :key="index" class="tag" to="/searchResult">
+                            <router-link v-for="(item, index) in modelList" :key="index" class="tag" to="/searchResult">
                                 {{item.name}}
                             </router-link>
                         </div>
@@ -160,13 +160,15 @@
                     <div class="col-lg-2">
                         <span @click="readCard('SUV')">SUV</span>
                     </div>
-
+                    <div class="col-lg-2">
+                        <span @click="readCard('deadline')">急售车辆</span>
+                    </div>
                 </div>
                 <div class="vehicle-list">
                     <div v-for="(item, index) in cardList" :key="index" class="col-lg-3 row-mrg">
                         <div class="">
                             <router-link to="/detail" href="#">
-                                <img :src="item.preview? item.preview[0].url : '//img2.rrcimg.com/o_1cgr90a8e330993051447853708856301.jpg?imageView2/2/interlace/1/w/290/h/192/format/webp'" alt="">
+                                <img :src="getVehicleCardList(item)" alt="">
                                 <div class="detail">
                                     <div class="title">{{item.title}}</div>
                                     <div class="desc">2015年02月 / 3.07万公里</div>
@@ -191,11 +193,18 @@
 <script>
 import api from "../lib/api.js";
 import "../css/wehicle-list.css";
+import VehicleCardList from "../mixins/vehicleCardList.vue";
 import GlobalNav from "../components/globalNav.vue";
 
 export default {
     components: {
         GlobalNav
+    },
+    mounted() {
+        this.read("brand");
+        this.read("model");
+        this.findModel("SUV");
+        this.readCard("onSale");
     },
     data() {
         return {
@@ -213,8 +222,14 @@ export default {
             });
         },
         findModel(name) {
+            let modelType = null;
             api("model/read", { name: name }).then(res => {
-                this.model[name] = res.data[3];
+                res.data.forEach(item => {
+                    if (item.name == "SUV") {
+                        modelType = item;
+                    }
+                });
+                this.model[name] = modelType;
             });
         },
         readCard(type) {
@@ -260,21 +275,27 @@ export default {
                         }
                     };
                     break;
+                case "deadline":
+                    let date = new Date();
+                    date.setDate(date.getDate() + 3);
+
+                    date = date.toISOString().split("T")[0];
+                    console.log("date:", date);
+                    condition = {
+                        query: `where("deadline" <= "${date}")`
+                    };
+                    break;
                 default:
                     break;
             }
 
             api("vehicle/read", condition).then(res => {
                 this.cardList = res.data;
+                console.log("1:", 1);
             });
         }
     },
-    mounted() {
-        this.findModel("SUV");
-        this.readCard("onSale");
-        this.read("brand");
-        this.read("model");
-    }
+    mixins: [VehicleCardList]
 };
 </script>
 

@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Test</title>
- <style>
-     * {
-         box-sizing: border-box;
-     }
-     .container {
-         width: 1366px;
-         font-size: 0;
-         margin: 0 auto;
-     }
-    div{
-        border: 1px solid #000;
-        display: inline-block;
-        font-size: 14px;
-        width: 25%;
-        background: #ccc;
-        min-height: 200px;
-        margin-left: 10px;
-    }
- </style>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+    <style>
+        div {
+            padding: 20px;
+            background: #f5f5f5;
+        }
+    </style>
+
 </head>
+
 <body>
-<div class="container">
-    <div>a</div>
-    <div>b</div>
-    <div>c</div>
-    <div>d</div>
-</div>
+    <div id="app1">
+        <div>
+            <span :title="massage">延迟提示框</span>
+        </div>
+        </todo-list>
+    </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let app1 = new Vue({
+        el: '#app1',
+        data() {
+            return {
+                massage: '提示时间' + new Date().toLocaleString()
+            }
+        }
+    })
+</script>
+
+</html>
+</script>
 
 </html>
