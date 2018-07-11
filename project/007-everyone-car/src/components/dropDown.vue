@@ -11,10 +11,13 @@
 .menu {
     position: absolute;
     width: 100%;
-    background: #f5f5f5;
+    height: 250px;
+    background: #ccc;
     z-index: 1;
     cursor: pointer;
     margin-top: -12px;
+    overflow: auto;
+
 }
 
 .menu > * {
@@ -30,7 +33,7 @@
 <template>
     <div @mouseleave="showMenu = false" class="drop-down">
         <input @mouseenter="showMenu = true" class="selected" type="text" :placeholder="defaultSelect" v-model="selected[displayKey]" />
-        <div v-if="showMenu" class="menu">
+        <div v-if="showMenu && list.length" class="menu">
             <div @click="select(item)" v-for="(item, index) in list" :key="index" class="select-list">
                 {{item[displayKey]}}
             </div>
@@ -67,10 +70,7 @@ export default {
         select(row) {
             this.selected = row;
             if (this.onSelect) {
-
-                this.onSelect(row);
-                console.log('1:', 1);
-                
+                this.onSelect(row);                
             }
         }
     }

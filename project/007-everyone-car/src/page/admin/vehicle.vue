@@ -122,7 +122,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <Pagination :limit="5" :totalCount="total" :onChange="changPage" />
+                    <Pagination :limit="limit" :totalCount="total" :onChange="changPage" />
                 </div>
             </div>
         </div>
