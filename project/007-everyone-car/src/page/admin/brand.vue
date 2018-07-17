@@ -18,7 +18,7 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <div v-if="showForm" class="operating-wrapper">
+                    <div v-if="showForm" @click.self="showForm = false; showBtn = false" class="operating-wrapper">
                         <form @submit="cRoR($event)" action="">
                             <div class="input-control">
                                 <label for="">品牌名称</label>
@@ -26,11 +26,15 @@
                             </div>
                             <div class="input-control">
                                 <div class="btn-group">
-                                    <button type="submit">
-                                        <span v-if="showBtn">确认</span>
-                                        <span v-else>添加</span>
-                                    </button>
-                                    <button @click.stop="showForm = false; showBtn = false" type="button">取消</button>
+                                    <div class="col-lg-6">
+                                        <button class="submit" type="submit">
+                                            <span v-if="showBtn">确认</span>
+                                            <span v-else>添加</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class="cancle" @click.stop="showForm = false; showBtn = false" type="button">取消</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

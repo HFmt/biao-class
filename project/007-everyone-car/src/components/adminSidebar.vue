@@ -56,6 +56,7 @@
                     <router-link to="/admin/model" class="" href="#">车型管理</router-link>
                     <router-link to="/admin/series" class="" href="#">车系管理</router-link>
                     <router-link to="/admin/vehicle" class="" href="#">上架管理</router-link>
+                    <router-link to="/admin/report" class="" href="#">检测管理</router-link>
                     <a href="#">交易管理</a>
                 </div>
             </div>

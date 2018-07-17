@@ -3,7 +3,6 @@
 }
 
 .locate h2 {
-    text-align: center;
     padding-bottom: 10px;
     letter-spacing:4px;
     color: #ff5722;
@@ -24,7 +23,6 @@
 
 .locate button {
     background: #ff5722;
-    font-size: 1.1rem;
     letter-spacing:5px
 }
 
@@ -34,9 +32,43 @@
 
 .error {
     color: #cd0000;
-    padding-top: 10px;
 }
 
 .login-or-signup {
     color: #ff6666;
+}
+
+.regtop {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+
+.auth-active {
+    color: #f44336;
+}
+
+.top-wrpper {
+    padding: 10px 20px;
+}
+
+.top-way > * {
+    text-align: center;
+    display: inline-block;
+    width: 50%;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+.top-way > *:hover {
+    color: #f44336;
+}
+
+.verification input {
+    width: 55%;
+    border-right: 0;
+}
+
+.verification button {
+    width: 45%;
 }

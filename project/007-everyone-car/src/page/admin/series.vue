@@ -18,25 +18,29 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <div v-if="showForm" class="operating-wrapper">
+                    <div v-if="showForm" @click.self="showForm = false; showBtn = false" class="operating-wrapper">
                         <form @submit="cRoR($event)" action="">
                             <div class="input-control">
                                 <label for="">车系</label>
                                 <input type="text" v-model="current.name">
                             </div>
-                            <div class="col input-control">
+                            <div class="col-lg-6 input-control">
                                 <DropDown :list="brandList" :onSelect="setBrandId" defaultSelect="品牌" />
                             </div>
-                            <div class="col input-control">
+                            <div class="col-lg-6 input-control">
                                 <DropDown :list="modelList" :onSelect="setModelId" defaultSelect="车型" />
                             </div>
                             <div class="input-control">
                                 <div class="btn-group">
-                                    <button type="submit">
-                                        <span v-if="showBtn">确认</span>
-                                        <span v-else>添加</span>
-                                    </button>
-                                    <button @click.stop="showForm = false; showBtn = false" type="button">取消</button>
+                                    <div class="col-lg-6">
+                                        <button class="submit" type="submit">
+                                            <span v-if="showBtn">确认</span>
+                                            <span v-else>添加</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class="cancle" @click.stop="showForm = false; showBtn = false" type="button">取消</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

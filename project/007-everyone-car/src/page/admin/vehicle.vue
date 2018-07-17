@@ -1,16 +1,16 @@
-<style>
-
-.input-grounp .parts{
+<style scoped>
+.input-grounp .parts {
     width: 20%;
 }
-.input-grounp .parts-url{
+.input-grounp .parts-url {
     width: 70%;
 }
-.input-grounp button{
+.input-grounp button {
     width: 10%;
 }
-
-
+.input-control .date-input {
+    padding: 9px;
+}
 </style>
 
 
@@ -31,7 +31,7 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <div v-if="showForm" class="operating-wrapper">
+                    <div v-if="showForm" @click.self="showForm = false; showBtn = false" class="operating-wrapper">
                         <form @submit="cRoR($event)" action="">
                             <div class="input-control">
                                 <label for="">标题</label>
@@ -40,7 +40,9 @@
                             </div>
                             <div class="col-lg-4 input-control">
                                 <label for="">品牌</label>
-                                <DropDown :list="brandList" :onSelect="setBrandId" defaultSelect="品牌" />
+                                <DropDown 
+                                :api="'brand.name'"
+                                :list="brandList" :onSelect="setBrandId" defaultSelect="品牌" />
                             </div>
                             <div class="col-lg-4 input-control">
                                 <label for="">车系</label>
@@ -50,11 +52,6 @@
                                 <label for="">车型</label>
                                 <DropDown :list="modelList" :onSelect="setModelId" defaultSelect="车型" />
                             </div>
-                            <div class="input-control">
-                                <label for="">当前里程</label>
-                                <div id="consumed_dishtance-error"></div>
-                                <input type="number" v-validator="'positive'" error-el="#consumed_dishtance-error" error-lang='zh' v-model="current.consumed_dishtance">
-                            </div>
                             <div class="input-contro">
                                 <label for="">封面地址</label>
                                 <div class="input-grounp" v-for="(item, index) in current.preview" :key="index">
@@ -62,25 +59,34 @@
                                     <input class="parts-url" type="text" placeholder="图片地址" v-model="item.url">
                                     <button @click="current.preview.splice(index, 1)" type="button">-</button>
                                 </div>
-                                <button @click="current.preview.push({})" type="button">+</button>
+                                <button class="col-lg-12" @click="current.preview.push({})" type="button">+</button>
                             </div>
-                            <div class="input-control">
+                            <div class="col-lg-4 input-control">
+                                <label for="">当前里程</label>
+                                <div id="consumed_dishtance-error"></div>
+                                <input type="number" v-validator="'positive'" error-el="#consumed_dishtance-error" error-lang='zh' v-model="current.consumed_dishtance">
+                            </div>
+                            <div class="col-lg-4 input-control">
                                 <label for="">价格</label>
                                 <div id="price-error">
                                 </div>
                                 <input type="number" v-validator="'positive'" error-el="#price-error" error-lang='zh' v-model="current.price">
                             </div>
-                            <div class="input-control">
+                            <div class="col-lg-4 input-control">
                                 <label for="">预计出售日期</label>
-                                <input type="date" v-model="current.deadline">
+                                <input class="date-input" type="date" v-model="current.deadline">
                             </div>
                             <div class="input-control">
                                 <div class="btn-group">
-                                    <button class="submit" type="submit">
-                                        <span  v-if="showBtn">确认</span>
-                                        <span  v-else>添加</span>
-                                    </button>
-                                    <button class="cancle" @click.stop="showForm = false; showBtn = false" type="button">取消</button>
+                                    <div class="col-lg-6">
+                                        <button class="submit" type="submit">
+                                            <span v-if="showBtn">确认</span>
+                                            <span v-else>添加</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class="cancle" @click.stop="showForm = false; showBtn = false" type="button">取消</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -159,11 +165,11 @@ export default {
     methods: {
         addInformation() {
             this.showForm = true;
-            this.current.preview =  [{}];
+            this.current.preview = [{}];
         },
         brandRead() {
             api("brand/read").then(res => {
-                this.brandList = res.data;                
+                this.brandList = res.data;
             });
         },
         seriesRead(brandId) {

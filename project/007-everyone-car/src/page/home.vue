@@ -79,6 +79,7 @@
     color: #ff5722;
     background: #fff;
 }
+
 </style>
 
 <template>
@@ -98,12 +99,12 @@
                     </div>
                     <div class="col-lg-10">
                         <div class="row-padding">
-                            <router-link v-for="(item, index) in brandList" :key="index" class="tag" to="/searchResult">
+                            <router-link :to="'/searchReesult?brand_id=' + item.id" v-for="(item, index) in list.brand" :key="index" class="tag">
                                 {{item.name}}
                             </router-link>
                         </div>
                         <div class="row-padding">
-                            <router-link v-for="(item, index) in modelList" :key="index" class="tag" to="/searchResult">
+                            <router-link :to="'/searchReesult?model_id=' + item.id" v-for="(item, index) in list.model" :key="index" class="tag">
                                 {{item.name}}
                             </router-link>
                         </div>
@@ -167,7 +168,7 @@
                 <div class="vehicle-list">
                     <div v-for="(item, index) in cardList" :key="index" class="col-lg-3 row-mrg">
                         <div class="">
-                            <router-link to="/detail" href="#">
+                            <router-link :to="'/detail/' + item.id">
                                 <img :src="getVehicleCardList(item)" alt="">
                                 <div class="detail">
                                     <div class="title">{{item.title}}</div>
@@ -193,13 +194,15 @@
 <script>
 import api from "../lib/api.js";
 import "../css/wehicle-list.css";
-import VehicleCardList from "../mixins/vehicleCardList.vue";
+import VehicleCardImg from "../mixins/vehicleCardImg.vue";
+import VehicleReader from "../mixins/vehicleReader.vue";
 import GlobalNav from "../components/globalNav.vue";
 
 export default {
     components: {
         GlobalNav
     },
+    mixins: [VehicleCardImg, VehicleReader],
     mounted() {
         this.read("brand");
         this.read("model");
@@ -208,19 +211,15 @@ export default {
     },
     data() {
         return {
-            brandList: [],
-            modelList: [],
+            list: {
+
+            },
             cardList: [],
             model: {}
         };
     },
 
     methods: {
-        read(model) {
-            api(`${model}/read`).then(res => {
-                this[`${model}List`] = res.data;
-            });
-        },
         findModel(name) {
             let modelType = null;
             api("model/read", { name: name }).then(res => {
@@ -291,12 +290,9 @@ export default {
 
             api("vehicle/read", condition).then(res => {
                 this.cardList = res.data;
-                console.log("1:", 1);
             });
         }
-    },
-
-    mixins: [VehicleCardList]
+    }
 };
 </script>
 

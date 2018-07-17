@@ -22,6 +22,7 @@ const valid = {
             zh: '只能输入数字'
         };
         let result = parseFloat(val) == val;
+
         if (!result)
             throw langConf[lang];
         return result;
@@ -86,12 +87,41 @@ const valid = {
             throw langConf[lang];
         return result;
     },
+    cellphone(val, lang) {
+        const langConf = {
+            zh: '不合法的手机号码',
+            em: 'Invalid phone number'
+        };
+
+        if (!this.numeric(val, lang) || !this.length(val, lang, 11)){
+            throw langConf[lang];
+        }
+        return true;
+    },
+    length(val, lang, len) {
+
+        const langConf = {
+            zh: '不合法的长度，长度需等于' + len + '位',
+            en: 'Invalid field length, length should equals to ' + len,
+        };
+        val = val.toString();
+        if (val.length != len)
+            throw langConf[lang];
+
+        return true;
+    },
     not_exist(val, lang, model, property, except) {
         return new Promise((s, j) => {
             if (!val || val == except)
                 s();
 
-            return api(`${model}/first`, { where: { and: { [property]: val } } })
+            return api(`${model}/first`, {
+                    where: {
+                        and: {
+                            [property]: val
+                        }
+                    }
+                })
                 .then(res => {
                     return res.data ? j('用户名已存在') : s(true);
                 });
@@ -130,8 +160,7 @@ const validatorForm = (inputList, elSubmit) => {
 
     if (invalid) {
         disableSubmit(elSubmit);
-    }
-    else {
+    } else {
         enableSubmit(elSubmit);
     }
 };
@@ -153,14 +182,13 @@ const go = (elForm, el, rules, elError, ) => {
             validator(elval, lang, arg);
         } catch (e) {
             invalid = true;
-            errorMsg += `<div class="error">${e}</div>`
+            errorMsg += `<div class="error">${e}</div>`;
         }
     }
 
     if (invalid) {
         el.setAttribute('invalid', 'true');
-    }
-    else {
+    } else {
         el.setAttribute('invalid', 'false')
     }
 
@@ -215,4 +243,3 @@ export default Vue.directive('validator', {
         });
     }
 });
-

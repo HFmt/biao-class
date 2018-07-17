@@ -20,6 +20,7 @@ import AdminVehicle from './page/admin/vehicle.vue';
 import AdminBrand from './page/admin/brand.vue';
 import AdminModel from './page/admin/model.vue';
 import AdminSeries from './page/admin/series.vue';
+import AdminReport from './page/admin/report.vue';
 
 import AdminLocation from './page/admin/location.vue';
 
@@ -46,7 +47,7 @@ const RouterConfig = {
             component: SearchResult
         },
         {
-            path: '/detail',
+            path: '/detail/:id',
             component: Detail
         },
         {
@@ -76,6 +77,10 @@ const RouterConfig = {
                 {
                     path: 'series',
                     component: AdminSeries
+                },
+                {
+                    path: 'report',
+                    component: AdminReport
                 },
             ]
         },

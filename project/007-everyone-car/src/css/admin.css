@@ -83,12 +83,6 @@
     background: #f44336;
 }
 
-.btn-group button.submit,
-.btn-group button.cancle {
-    width: 50%;
-    color: #fff;
-}
-
 .btn-group button.submit {
     background: #03a9f4;
 }

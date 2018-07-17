@@ -1,20 +1,12 @@
-<style>
-
-</style>
-
-<template>
-
-</template>
-
 <script>
     import api from "../lib/api.js";
 
     export default {
         methods: {
-            read(type) {
-                api(`${type}/read`, {key_by: name})
+            read(model) {
+                api(model + '/read', {key_by: 'name'})
                     .then(res => {
-                        this.$set(this.list, type, res.data)
+                        this.$set(this.list, model, res.data)
                     });
             }
         }
