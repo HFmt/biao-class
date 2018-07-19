@@ -147,7 +147,7 @@
                             <div class="col-lg-8 thumbnail-list">
                                 <div class="row">
                                     <div @click="selectedPreview = index" v-for="(item, index) in detailList.preview" :key="index" class="col-lg-4 thumbnail">
-                                        <span  class="pointer">
+                                        <span class="pointer">
                                             <img :src="item.url" alt="item.name">
                                         </span>
                                     </div>
@@ -247,8 +247,9 @@
         <div class="detail-report">
             <div class="container">
                 <div class="title-area">
-                    <h2 class="title">人人车检测报告</h2>
-                    <div class="ps-test">249项专业检测：114项国家标准检测，135项人人车专项检测</div>
+                    <h2 class="title">车辆检测报告</h2>
+                    <ReportPanel title="排除重大事故" :modelList="report" :structure="reportStructure" cat="major_accident"/>
+                    <ReportPanel title="泡水火烧检测" :modelList="report" :structure="reportStructure" cat="soaking_and_roasting"/>
                 </div>
                 <div class="row content">
                     <div class="col-lg-3 content-left">
@@ -374,76 +375,9 @@
                             <div class="card-desc">外观-右前:车身框架无变形，无重大撞击事故</div>
                         </div>
                     </div>
-
                 </div>
                 <div class="album">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <h3 class="title">车身外观</h3>
-                            <div class="row thumbnail-wrapper">
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <h3 class="title">车身外观</h3>
-                            <div class="row thumbnail-wrapper">
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 ">
-                                    <div class="card">
-                                        <a href="#" class="row car-thumbnails">
-                                            <img src="https://img2.rrcimg.com/o_1cgnk6i7u516811469724876473244971.jpg?imageView/4/w/600/h/400" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-lg-4">
                             <h3 class="title">车身外观</h3>
                             <div class="row thumbnail-wrapper">
@@ -520,94 +454,63 @@
                 </div>
             </div>
         </div>
-        <div class="detail-report-card">
-            <div class="container">
-                <div class="title-area">
-                    <div class="title">
-                        <h2> 人人车检测报告</h2>
-                        <div class="desc">249项专业检测视频介绍</div>
-                    </div>
-                </div>
-                <div class="content">
-                    <div>
-                        <span>检测时间：2018-06-24</span>
-                        <span>检测城市：西安</span>
-                        <span>检测对象：五菱汽车-五菱宏光 2010款 1.2L 标准型</span>
-                    </div>
-                    <div class="desc-table">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>车身颜色</th>
-                                    <td>蓝色</td>
-                                    <th>年检到期时间</th>
-                                    <td>2019-10</td>
-                                    <th>交强险到期时间</th>
-                                    <td>2018-10</td>
-                                    <th>商业险到期时间</th>
-                                    <td>2018-10</td>
-                                </tr>
-                                <tr>
-                                    <th>上牌日期</th>
-                                    <td>2013-10-12</td>
-                                    <th>出厂日期</th>
-                                    <td>2013-07-01</td>
-                                    <th>归属地</th>
-                                    <td>西安</td>
-                                    <th>过户次数</th>
-                                    <td>0次</td>
-                                </tr>
-                                <tr>
-                                    <th>有无购车发票</th>
-                                    <td>有</td>
-                                    <th>是否4S店保养</th>
-                                    <td>否</td>
-                                    <th>有无改装</th>
-                                    <td>无</td>
-                                    <th>车辆购置税完税证明</th>
-                                    <td>有</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
 
 
-
 <script>
 import api from "../lib/api.js";
+import ReportPanel from "../components/reportPanel.vue";
 import SearchBar from "../components/searchBar.vue";
 import GlobalNav from "../components/globalNav.vue";
 
 export default {
     components: {
         SearchBar,
-        GlobalNav
+        GlobalNav,
+        ReportPanel
     },
     mounted() {
         let id = this.getId();
-        console.log(id);
+
         this.find(id);
+        this.findpReportByVehicle(id);
+        this.getReportStructure();
     },
     data() {
         return {
+            conf: {},
             detailList: {},
+            report: {},
+            reportStructure: {},
             selectedPreview: 0
         };
     },
     methods: {
         find(id) {
             api("vehicle/find", { id: id }).then(res => {
-                this.detailList = res.data;                
+                this.detailList = res.data;
             });
         },
         getId() {
             return this.$route.params.id;
+        },
+        findpReportByVehicle(vid) {
+            api("report/first", {
+                where: {
+                    vehicle_id: vid
+                }
+            }).then(res => {
+                this.report = res.data;
+                console.log(this.report);
+            });
+        },
+        getReportStructure() {
+            api("MODEL/FIND", { name: "report" }).then(res => {
+                this.reportStructure = res.data.structure;
+            });
+            console.log(this.reportStructure);
         }
     }
 };

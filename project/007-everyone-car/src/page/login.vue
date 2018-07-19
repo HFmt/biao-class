@@ -116,7 +116,6 @@ export default {
                 delete item.password;
 
                 session.login(item);
-                alert("yo");
                 this.$router.push("/");
             });
         }
