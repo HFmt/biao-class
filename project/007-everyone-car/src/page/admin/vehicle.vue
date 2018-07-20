@@ -145,6 +145,7 @@ export default {
     created() {
         this.model = "vehicle";
     },
+
     data() {
         return {
             current: {

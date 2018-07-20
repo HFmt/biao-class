@@ -99,6 +99,18 @@
     margin: 0 auto;
 }
 
+.btn-group .order {
+    background: #fd6c34;
+}
+
+.btn-group .bargain {
+    background: #22ac38;
+}
+
+.btn-group button:hover {
+    background: #03a9f4;
+}
+
 .detail-report-card .desc-table table tr,
 .detail-report-card .desc-table table th,
 .detail-report-card .desc-table table td {
@@ -221,13 +233,24 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row">
-                            <button class="col-lg-3">预约看车</button>
-                            <button class="col-lg-3">砍价</button>
-                            <div class="col-lg-3">
-                                <span>免费咨询</span>
-                                <div>400-440-444</div>
+                        <div v-if="!appointed" class="row">
+                            <div class="btn-group" v-if="showAppo">
+                                    <button @click="order" class="col-lg-4 order" >预约看车</button>                           
+                                    <button class="col-lg-4 bargain">砍价</button>                               
+                                    <button class="col-lg-4">免费咨询</button>
                             </div>
+                            <form @submit.prevent="submitAppo()" v-else class="col" action="">
+                                <div class="input-control">
+                                    <label for="">预约时间</label>
+                                    <input type="date" v-model="appo.appointed_at">
+                                </div>
+                                <button type="submit">预约</button>
+                                <button @click.stop="showAppo = !showAppo" type="button">取消</button>
+                            </form>
+                        </div>
+                        <div v-else>
+                            <button disabled>已预约</button>
+                            <p>预约时间：{{appointed.appointed_at}}</p>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
@@ -248,8 +271,14 @@
             <div class="container">
                 <div class="title-area">
                     <h2 class="title">车辆检测报告</h2>
-                    <ReportPanel title="排除重大事故" :modelList="report" :structure="reportStructure" cat="major_accident"/>
-                    <ReportPanel title="泡水火烧检测" :modelList="report" :structure="reportStructure" cat="soaking_and_roasting"/>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ReportPanel title="排除重大事故" :modelList="report" :structure="reportStructure" cat="major_accident" />
+                        </div>
+                        <div class="col-lg-6">
+                            <ReportPanel title="泡水火烧检测" :modelList="report" :structure="reportStructure" cat="soaking_and_roasting" />
+                        </div>
+                    </div>
                 </div>
                 <div class="row content">
                     <div class="col-lg-3 content-left">
@@ -461,6 +490,7 @@
 
 <script>
 import api from "../lib/api.js";
+import session from "../lib/session.js";
 import ReportPanel from "../components/reportPanel.vue";
 import SearchBar from "../components/searchBar.vue";
 import GlobalNav from "../components/globalNav.vue";
@@ -476,15 +506,21 @@ export default {
 
         this.find(id);
         this.findpReportByVehicle(id);
+        this.prepareAppoItem();
+        this.hasAppointed();
         this.getReportStructure();
     },
     data() {
         return {
             conf: {},
+            appo: {},
+            appointed: {},
             detailList: {},
             report: {},
             reportStructure: {},
-            selectedPreview: 0
+            selectedPreview: 0,
+            appointedAppo: true,
+            showAppo: true
         };
     },
     methods: {
@@ -496,6 +532,45 @@ export default {
         getId() {
             return this.$route.params.id;
         },
+        order() {
+            let item = this.appo;
+            if (!item.user_id) {
+                alert("请先登入");
+                this.$router.push("/login");
+                return;
+            }
+            showAppo = !showAppo;
+        },
+        submitAppo() {
+            let item = this.appo;
+            if (!item.user_id) {
+                this.appointed = null;
+                return;
+            }
+            api("appo/create", item).then(res => {
+                this.hasAppointed();
+            });
+        },
+        prepareAppoItem() {
+            this.appo.vehicle_id = this.getId();
+
+            this.appo.user_id = session.uinfo() && session.uinfo().id;
+        },
+        hasAppointed() {
+            let item = this.appo;
+
+            if (!item.user_id) {
+                this.appointed = null;
+                return;
+            }
+            let query = `where("vehicle_id" = ${
+                item.vehicle_id
+            } and "user_id" = ${item.user_id})`;
+
+            api("appo/read", { query }).then(res => {
+                this.appointed = res.data[0];
+            });
+        },
         findpReportByVehicle(vid) {
             api("report/first", {
                 where: {
@@ -503,14 +578,12 @@ export default {
                 }
             }).then(res => {
                 this.report = res.data;
-                console.log(this.report);
             });
         },
         getReportStructure() {
             api("MODEL/FIND", { name: "report" }).then(res => {
                 this.reportStructure = res.data.structure;
             });
-            console.log(this.reportStructure);
         }
     }
 };

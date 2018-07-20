@@ -7,31 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5730b05b-1dff-49ea-9c40-9dc788de4e86" name="Default" comment="K">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Api/BaseApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Api/BaseApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Ui/CatUi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Ui/CatUi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/005-todo-data/js/Ui/TaskUi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/005-todo-data/js/Ui/TaskUi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminSidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/adminSidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/dropDown.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/components/globalNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/components/globalNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/css/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/css/auth.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/css/wehicle-list.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/css/wehicle-list.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/http.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/http.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/mixins/vehicleCardList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/mixins/vehicleReader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/mixins/vehicleReader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/brand.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/brand.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/model.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/model.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/series.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/vehicle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/admin/vehicle.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/searchResult.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/project/007-everyone-car/src/page/signUp.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,8 +23,8 @@
       <file leaf-file-name="detail.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="430" column="55" lean-forward="true" selection-start-line="430" selection-start-column="55" selection-end-line="430" selection-end-column="55" />
+            <state relative-caret-position="3123">
+              <caret line="607" column="10" lean-forward="true" selection-start-line="607" selection-start-column="10" selection-end-line="607" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -309,11 +287,12 @@
       <workItem from="1531278829655" duration="122000" />
       <workItem from="1531546680356" duration="38000" />
       <workItem from="1531547108080" duration="92000" />
+      <workItem from="1531817687317" duration="103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47010000" />
+    <option name="totallyTimeSpent" value="47113000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -999,8 +978,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/007-everyone-car/src/page/detail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="430" column="55" lean-forward="true" selection-start-line="430" selection-start-column="55" selection-end-line="430" selection-end-column="55" />
+        <state relative-caret-position="3123">
+          <caret line="607" column="10" lean-forward="true" selection-start-line="607" selection-start-column="10" selection-end-line="607" selection-end-column="10" />
         </state>
       </provider>
     </entry>

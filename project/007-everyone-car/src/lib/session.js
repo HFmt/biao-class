@@ -6,9 +6,7 @@ export default {
         localStorage.setItem("uinfo", JSON.stringify(item));
     },
     logout(url) {
-        localStorage.removeItem('uinfo');
-        console.log('1:', 1);
-        
+        localStorage.removeItem('uinfo');        
         location.href= url || '/';
     }
 }

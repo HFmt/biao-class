@@ -11,6 +11,7 @@ import Root from './root.vue';
 import Home from './page/home.vue';
 import Login from './page/login.vue';
 import SignUp from './page/signUp.vue';
+import Publish from './page/publish.vue';
 import SearchResult from './page/searchResult.vue';
 import Detail from './page/detail.vue';
 
@@ -41,6 +42,10 @@ const RouterConfig = {
         {
             path: '/signUp',
             component: SignUp
+        },
+        {
+            path: '/publish',
+            component: Publish
         },
         {
             path: '/searchResult',

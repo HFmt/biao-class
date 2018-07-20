@@ -32,7 +32,7 @@
 <template>
     <div @mouseleave="showMenu = false" class="drop-down">
         <input @keyup="showMenu=true"
-                @focus="showMenu=true"
+                @click="showMenu=true"
          class="selected" type="text" :placeholder="defaultSelect" v-model="keyword" />
         <div v-if="showMenu && result.length" class="menu">
             <div @click="select(item)" v-for="(item, index) in result" :key="index" class="select-list">
@@ -59,7 +59,7 @@ export default {
             default: "name"
         },
         list: {
-            default: "list" // {Array} 如果不需要异步搜索，就需要传入静态数据，通常是数组：[{name: whh, id: 1}, ...]
+            default: "list"     // {Array} 如果不需要异步搜索，就需要传入静态数据，通常是数组：[{name: whh, id: 1}, ...]
         },
         onSelect: {
             default: ""
@@ -81,11 +81,12 @@ export default {
         };
     },
     mounted() {
-        list && (this.result = Object.assign([], this.list)); // 如果传了静态数据，就应该将静态数据拷一份，否则就会导致越搜索越少
         this.setDefault(); // 如果传了props.default，就应该默认选中那一项
         this.apiConf = this.parseApi(); // 如果props.api是字符串，就应该将其解析为更好处理的对象类型
         let list = this.lsit;
+        console.log('this.lsit:', this.lsit);
         
+        list && (this.result = Object.assign([], this.list)); // 如果传了静态数据，就应该将静态数据拷一份，否则就会导致越搜索越少        
     },
     methods: {
         /**
@@ -103,8 +104,6 @@ export default {
             let model = apiProp[0]; //brand
             let property = apiProp[1]; //name
             property = property.split(",");
-            console.log('model:', model);
-            console.log('property:', property);
             
             return {
                 model,
@@ -136,8 +135,9 @@ export default {
          * 相当于静态数据的search
          */
         filter() {
+            
             this.result = Object.assign([], this.list);
-            this.result = this.result.filter(item => {
+            this.result = this.result.filter(item => {                
                 return item[this.displayKey].indexOf(this.keyword) !== -1;
             });
         },
@@ -174,6 +174,12 @@ export default {
         /**
          * 当关键词改变时，如果是动态数据就搜索，否则就过滤已有的静态数据
          */
+        list: {
+            deep: true,
+            handler(n) {
+                this.result = n;
+            }
+        },
         keyword() {
             if (this.api) {
                 this.search();

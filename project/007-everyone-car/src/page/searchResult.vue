@@ -158,7 +158,7 @@
 <script>
 import api from "../lib/api";
 import DropDown from "../components/dropDown";
-import VehicleReader from "../mixins/vehicleReader";
+import ReaderName from "../mixins/readerName";
 import VehicleCardImg from "../mixins/vehicleCardImg";
 import jsonFormat from "../lib/jsonFormat";
 import GlobalNav from "../components/globalNav";
@@ -170,12 +170,12 @@ export default {
         DropDown,
         SearchBar
     },
-    mixins: [VehicleCardImg, VehicleReader],
+    mixins: [VehicleCardImg, ReaderName],
     mounted() {
         this.prepareSearchParam();
         this.search();
-        this.read("brand");
-        this.read("model");
+        this.readName("brand");
+        this.readName("model");
         
     },
     data() {

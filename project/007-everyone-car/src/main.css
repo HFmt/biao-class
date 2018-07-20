@@ -63,7 +63,7 @@ button {
     vertical-align: top;
     font-size: 1rem;
     /* min-height: 40px; */
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
 }
 
 .col-lg-1 {
@@ -140,8 +140,14 @@ button {
     text-align: left;
 }
 
-.middle {
+.text-center {
     text-align: center;
+}
+
+
+
+.title {
+    padding: 15px;
 }
 
 .active{
@@ -150,9 +156,6 @@ button {
     color: #fff;
 }
 
-.btn-sm {
-    
-}
 
 .delete {
     border: 0;
@@ -167,4 +170,5 @@ button {
 .pointer {
     cursor: pointer;
 }
+
 

@@ -3,7 +3,7 @@
 
     export default {
         methods: {
-            read(model) {
+            readName(model) {
                 api(model + '/read', {key_by: 'name'})
                     .then(res => {
                         this.$set(this.list, model, res.data)

@@ -36,6 +36,7 @@ const valid = {
             throw langConf[lang];
         }
         return result;
+
     },
     positive(val, lang) {
         const langConf = {

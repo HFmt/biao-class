@@ -193,19 +193,19 @@
 
 <script>
 import api from "../lib/api.js";
-import "../css/wehicle-list.css";
+import "../css/vehicle-list.css";
 import VehicleCardImg from "../mixins/vehicleCardImg.vue";
-import VehicleReader from "../mixins/vehicleReader.vue";
+import ReaderName from "../mixins/readerName.vue";
 import GlobalNav from "../components/globalNav.vue";
 
 export default {
     components: {
         GlobalNav
     },
-    mixins: [VehicleCardImg, VehicleReader],
+    mixins: [VehicleCardImg, ReaderName],
     mounted() {
-        this.read("brand");
-        this.read("model");
+        this.readName("brand");
+        this.readName("model");
         this.findModel("SUV");
         this.readCard("onSale");
     },

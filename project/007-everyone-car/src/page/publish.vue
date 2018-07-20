@@ -15,26 +15,17 @@
                 <div class="container">
                     <div class="locate">
                         <div class="form-wrapper">
-                            <div class="row regtop">
-                                <div class="top-wrpper">
-                                    <div class="col-lg-8">
-                                        <div class="top-way">
-                                            <h3 :class="{'auth-active': typeBox == 'phone'}" @click="phoneboxShow()">手机注册</h3>
-                                            <h3 :class="{'auth-active': typeBox == 'mail'}" @click="emailboxShow()">邮箱注册</h3>
-                                        </div>
-                                    </div>
-                                    <div class=" col-lg-4">
-                                        <div class="text-right">
-                                            <span>已有账号？</span>
-                                            <router-link to="/login" class="login-or-signup" href="">登入</router-link>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="regtop">
+                                <h2 class="text-center">发布二手车</h2>
                             </div>
                             <form @submit.prevent="submit()">
                                 <div>
-                                    <label for="name">用户名</label>
-                                    <input type="text" name="name" placeholder="" autocomplete="off" v-model="current.username">
+                                    <label for="brand">品牌</label>
+                                    <DropDown :api="'brand.name'" :list="selectList.brand" onSelect="setBrandId" defaultSelect="品牌"/>
+                                </div>
+                                <div>
+                                    <label for="model">车型</label>
+                                    <DropDown :api="'model.name'" :list="selectList.model" onSelect="setBrandId" defaultSelect="车型"/>
                                 </div>
                                 <div v-if="typeBox=='phone'">
                                     <div>
@@ -68,15 +59,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div>
-                                    <label for="">密码</label>
-                                    <input type="password" name="password" placeholder="不少于4个字符" v-model="current.password">
-                                </div>
-                                <div>
-                                    <label for="">确认密码</label>
-                                    <input type="password" name="confirm-password" v-model="current.confirmPassward">
-                                </div>
-                                <button type="submit">注册</button>
+                                <button type="submit">确认发布</button>
                             </form>
                         </div>
                     </div>
@@ -93,17 +76,31 @@
 import "../css/auth.css";
 import "../directive/validator";
 import api from "../lib/api";
+import DropDown from "../components/dropDown"
 import VehicleGetCode from "../mixins/vehicleGetCode";
-import GlobalNav from "../components/globalNav.vue";
+import ReaderAll from "../mixins/readerAll";
+import GlobalNav from "../components/globalNav";
 
 export default {
     components: {
-        GlobalNav
+        GlobalNav,
+        DropDown
+    },
+    mixins: [VehicleGetCode, ReaderAll],
+    mounted() {
+        this.readAll('brand');
+        this.readAll('model');
     },
     data() {
-        return {};
+        return {
+            current: {},
+            selectList: {},
+        };
     },
     methods: {
+        setBrandId(item) {
+            this.$set(this.current, "brand_id", item.id);
+        },
         submit() {
             if (this.current.phoneCode !== this.phoneCode) {
                 return;
@@ -123,6 +120,5 @@ export default {
             });
         }
     },
-    mixins: [VehicleGetCode]
 };
 </script>

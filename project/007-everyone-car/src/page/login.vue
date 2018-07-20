@@ -71,7 +71,6 @@
 
 
 <script>
-import "../directive/test";
 import "../css/auth.css";
 import "../directive/validator";
 import api from "../lib/api";
