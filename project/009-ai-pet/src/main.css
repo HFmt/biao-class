@@ -1,0 +1,84 @@
+li {
+    display: inline-block;
+}
+
+img {
+    max-width: 100%;
+}
+
+input, 
+button {
+    line-height: 1.1;
+    padding: 14px;
+    border: 0;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+}
+
+
+
+.row {
+    font-size: 0;
+    display: block;
+}
+
+[class*="col-"],
+.col {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1rem;
+    /* border: 1px solid #ccc; */
+    /* min-height: 20px; */
+}
+
+.col-lg-1 {
+    width: 8.33333333%;
+}
+
+.col-lg-2 {
+    width: 16.66666666%;
+}
+
+.col-lg-3 {
+    width: 25%;
+}
+
+.col-lg-4 {
+    width: 33.33333333%;
+}
+
+.col-lg-5 {
+    width: 41.66666666%;
+}
+
+.col-lg-6 {
+    width: 50%;
+}
+
+.col-lg-7 {
+    width: 58.33333333%;
+}
+
+.col-lg-8 {
+    width: 66.66666666%;
+}
+
+.col-lg-9 {
+    width: 75%;
+}
+
+.col-lg-10 {
+    width: 83.333333335%;
+}
+
+.col-lg-11 {
+    width: 91.66666666%;
+}
+
+.col-lg-12 {
+    width: 100%;
+}
