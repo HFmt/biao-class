@@ -1,0 +1,18 @@
+<script src="../node_modules/axios/dist/axios.js"></script>
+<script src="./api.js"></script>
+<script>
+    const breed = {
+        key: 'breed',
+        structure: {
+            name: {
+                type: 'string'
+            },
+            category_id: {
+                type: 'integer',
+                positive: true
+            },
+        },
+    };
+// api('MODEL/DELETE', {key: 'breed'})
+ api('MODEL/CREATE', breed);
+</script>

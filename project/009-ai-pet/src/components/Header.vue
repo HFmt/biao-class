@@ -1,9 +1,46 @@
 <style scoped>
-/* 头部搜索 */
-.search .login {
+
+/* 头部综合区域 */
+
+.bot {
+    margin: 25px 0;
 }
-.search .login a {
-    padding: 18px 13px;
+
+.logo, .search, .login {
+    vertical-align: middle;
+}
+
+.search form {
+    border: 1px solid #eee;
+}
+
+.search input,
+.search button,
+.select-wrap {
+    border: 0;
+    padding: 14px;
+    font-size: 1.2rem;
+}
+
+.search input,
+.select-wrap {
+    border-right: 1px solid #eee;
+}
+
+.search input,
+.search button {
+    outline: none;
+}
+
+.search button {
+    color: #fff;
+    background: #fda30e;
+}
+
+
+.bot .login a {
+    font-size: 1.6rem;
+    padding: 1px;
     display: block;
     color: #fda30e;
 }
@@ -50,8 +87,8 @@
     transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.menu-link a::after{
-     content: "";
+.menu-link a::after {
+    content: "";
     position: absolute;
     background: #fda30e;
     height: 4px;
@@ -64,7 +101,6 @@
 .nav-cart {
     text-align: center;
     background: #fda30e;
-    
 }
 
 .nav-cart p {
@@ -79,25 +115,31 @@
 
 <template>
     <div class="header">
-        <div class="search">
+        <div class="bot">
             <div class="container row">
-                <div class="logo col-lg-3">
+                <div class="col-lg-3 logo tac">
+                    <h2>我是LOGO啊</h2>
                 </div>
-                <div class="search-bar col-lg-6">
-                    <form action="">
-                        <input type="search">
-                        <button type="submit">
+                <div class="col-lg-6 search">
+                    <form class="row">
+                        <input class="col-lg-6" type="search">
+                        <div class="col-lg-4 select-wrap">
+                            <span>a</span>
+                        </div>
+                        <button class="col-lg-2" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
                 </div>
-                <ul class="login col-lg-3">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                </ul>
+                <div class="col-lg-3 login tac">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="nav">
@@ -105,10 +147,13 @@
                 <div class="nav-left col-lg-9">
                     <ul class="navbar">
                         <li @click="defname = defname" :class="{'menu-link': defname == 'home'}">
-                            <router-link class="hb" to="/" href="#">首页y</router-link>
+                            <router-link class="hb" to="/" href="#">首页</router-link>
                         </li>
                         <li @click="defname = defname" :class="{'menu-link': defname == 'detail'}">
                             <router-link to="/detail" href="#">详情页</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/admin/user" href="#">管理页</router-link>
                         </li>
                         <li>
                             <a href="#">猫咪用品</a>
@@ -142,16 +187,14 @@
 </template>
 
 <script>
-
 export default {
     props: {
         defname: {
-            default:'home'
+            default: "home"
         },
         data() {
-            return {
-            }
+            return {};
         }
     }
-}
+};
 </script>

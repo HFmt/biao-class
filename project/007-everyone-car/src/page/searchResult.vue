@@ -158,7 +158,7 @@
 <script>
 import api from "../lib/api";
 import DropDown from "../components/dropDown";
-import ReaderName from "../mixins/readerName";
+import   from "../mixins/readerName";
 import VehicleCardImg from "../mixins/vehicleCardImg";
 import jsonFormat from "../lib/jsonFormat";
 import GlobalNav from "../components/globalNav";

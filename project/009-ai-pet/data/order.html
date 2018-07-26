@@ -1,0 +1,33 @@
+<script src="../node_modules/axios/dist/axios.js"></script>
+<script src="./api.js"></script>
+<script>
+    const order = {
+        key: 'order',
+        structure: {
+            sum: {
+                type: 'float'
+            },
+            oid: {
+                type: 'string'
+            },
+            cover_url: {
+                type: 'string'
+            },
+            product_info: {
+                type: 'json'
+            },
+            pay_by: {
+                type: 'string'
+            },
+            memo: {
+                type: 'text'
+            },
+            user_id: {
+                type: 'integer',
+                positive: true
+            },
+        },
+    };
+
+ api('MODEL/CREATE', order);
+</script>

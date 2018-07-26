@@ -1,16 +1,14 @@
-import axios from 'axios';
 
-
-const key = '88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9';
+const key = '05be1f06273ca2f0d658aa81a96d2fd7c4f037f35d2fd62959aebad688998ee2';
 
 const baseApi = "http://mock.biaoyansu.com/api/1/";
 
 
-function sign(key, timestamp) {
+const sign = (key, timestamp) => {
     return btoa(key + timestamp);
 }
 
-export default function api(url, params) {
+const api = (url, params) => {
 
     let timestamp = (new Date).getTime();
     let signature = sign(key, timestamp);
@@ -31,3 +29,5 @@ export default function api(url, params) {
             return res.data;
         });
 }
+
+window.api = api;

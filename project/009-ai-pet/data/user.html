@@ -1,0 +1,48 @@
+<script src="../node_modules/axios/dist/axios.js"></script>
+<script src="./api.js"></script>
+<script>
+    const user = {
+        key: 'user',
+        structure: {    
+            username: {
+                type: 'string'
+            },
+            email: {
+                type: 'string'
+            },
+            phone: {
+                type: 'string'
+            },
+            password: {
+                type: 'string'
+            },
+            location: {
+                type: 'integer',
+                positive: true
+            },
+        },
+    };
+    // api('MODEL/DELETE', {key: 'user'});
+    // api('MODEL/CREATE', user);
+//  api('MODEL/ATTACH_MOCK', {
+//         key: 'user',
+//         mock: {
+//             username: {
+//                 mocker: 'name'
+//             },
+//             email: {
+//                 mocker: 'email',
+//             },
+//             phone: {
+//                 mocker: 'phoneNumber',
+//             },
+//             password: {
+//                 mocker: 'password',
+//             },
+//         },
+//     });
+    api('user/seed', {
+                force: true, // 清空所有数据后创建 
+                amount: 0, // 创建数据量，每次创建最大500条，可分多次创建 });
+    })
+</script>

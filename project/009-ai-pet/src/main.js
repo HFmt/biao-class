@@ -12,6 +12,12 @@ import App from './App.vue'
 import Home from "./page/Home"
 import Detail from "./page/Detail"
 
+
+import AdminBase from "./page/admin/Base"
+import User from "./page/admin/User"
+
+
+
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false
@@ -26,6 +32,16 @@ const RouterConfig = {
     {
       path: '/detail',
       component: Detail
+    },
+    {
+      path: '/admin',
+      component: AdminBase,
+      children : [
+        {
+          path: 'user',
+          component: User
+        },
+      ]
     },
   ]
 }

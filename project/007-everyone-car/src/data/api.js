@@ -4,7 +4,7 @@
 const AppKey = '88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9';
 // 459d8f8f5e2d2c3efe3d21ed6466cdb65440fbc86ba6d04da41c8f807a031d0c
 // 88b2fa8844a680b943e623bb7b04b7758ccbce01aae37e36b16ac889ca3b91f9
-const BaseApi = "http://mock.biaoyansu.com/api/";
+const BaseApi = "http://mock.biaoyansu.com/api/1/";
 
 
 function sign(appKey, timestamp){

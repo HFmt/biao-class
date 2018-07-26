@@ -1,0 +1,10 @@
+.active {
+    border-left: 3px solid #2196f3;
+    background: #131421;
+    color: #fff;
+}
+
+.admin-container {
+    max-width: 1600px;
+    margin: 0 auto;
+}
