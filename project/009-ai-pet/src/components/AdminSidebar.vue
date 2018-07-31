@@ -14,7 +14,19 @@
                     <router-link to="/admin/user" href="#">用户信息管理</router-link>
                 </li>
                 <li>
-                    <a href="#">用户权限管理</a>
+                    <a href="#">用户权限</a>
+                </li>
+            </ul>
+            <h3 @click="petMen=!petMen" class="setting" :class="{'active': petMen}">宠物管理</h3>
+            <ul v-if="petMen" class="menu-wrapper">
+                <li>
+                    <router-link to="/admin/category" href="#">宠物类别</router-link>
+                </li>
+                <li>
+                    <router-link to="/admin/pet" href="#">宠物信息</router-link>
+                </li>
+                <li>
+                    <router-link to="/admin/order" href="#">订单信息</router-link>
                 </li>
             </ul>
         </div>
@@ -32,7 +44,7 @@ export default {
     data() {
         return {
             userMenu: false,
-            vehicleMenu: false,
+            petMen: false,
             regionMenu: false
         };
     }

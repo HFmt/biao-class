@@ -21,7 +21,7 @@
                 <button>添加用户信息</button>
             </div>
             <div class="info-wrap">
-                <form @submit.prevent="createInfo('user')">
+                <form @submit.prevent="createInfo()">
                     <div>
                         <label for="">用户名</label>
                         <input type="text" v-model="current.username">
@@ -75,8 +75,8 @@
                                 大陆
                             </td>
                             <td>
-                                <span>删除</span>
-                                <span>修改</span>
+                                <span @click="removeItem(item.id)">删除</span>
+                                <span @click="modify(item)">修改</span>
                             </td>
                         </tr>
                     </tbody>
@@ -88,11 +88,15 @@
 
 <script>
 import AdminPage from "../../mixsin/AdminPage"
-import ReadAll from "../../mixsin/ReadAll"
 export default {
-    mixins: [AdminPage, ReadAll],
+    data() {
+        return {
+            model: 'user'
+        }
+    },
+    mixins: [AdminPage],
     mounted() {                
-        this.readAll('user');
+        this.readInfo();
     },
     methods: {
 

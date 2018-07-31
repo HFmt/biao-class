@@ -23,7 +23,6 @@
     color: #848484;
 }
 
-
 /* 主页商品列表 */
 
 .product-title > * {
@@ -57,7 +56,7 @@
 .product-info .product-name {
     color: #fda30e;
     font-size: 1.1rem;
-} 
+}
 
 .info-price {
     margin: 15px 0;
@@ -73,62 +72,32 @@
     margin-left: 10px;
 }
 
-.hvr-outline {
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 8px 20px;
-    background: #fda30e;
-    backface-visibility: hidden;
-}
-
-.hvr-outline::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border: #fda30e solid 4px;
-    transition-duration: 0.3s;
-    transition-property: top, right, bottom, left;
-}
-
-.hvr-outline:hover::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    bottom: -8px;
-    left: -8px;
-    border: #fda30e solid 4px;
-    transition-duration: 0.3s;
-    transition-property: top, right, bottom, left;
-}
-
 /* 公共样式 */
 
-.slide, .new-arrivals,  .promotion {
+.slide,
+.new-arrivals,
+.promotion {
     margin-bottom: 90px;
 }
 
-.new-arrivals .title-area, 
+.new-arrivals .title-area,
 .product-title {
     margin-bottom: 30px;
 }
-
-
 </style>
 
 
 <template>
     <div>
-        <Header defname="home" />
+        <Header defName="home" />
         <div class="main">
             <div class="slide">
                 <div class="container">
-                    <img src="http://placekitten.com/1920/1080" alt="">
+                    <ul v-for="(item, index) in itemList.pet.promotion" :key="index" class="slide-group row">
+                        <li>
+                            <a href="#" class="row"><img :src="item.cover_url" alt=""></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="content">
@@ -185,76 +154,23 @@
                         <img src="http://placekitten.com/528/686" alt="">
                     </div>
                 </div>
-                <div class="product-wrap tac">
+                <div v-for="(category, index) in itemList.category" :key="index" class="product-wrap">
                     <div class="container">
-                        <ul class="product-title">
-                            <li>喵星人</li>
-                            <li>汪星人</li>
-                            <li>宠物用品</li>
+                        <ul class="product-title tac">
+                            <li>{{category.name}}</li>
                         </ul>
                         <div class="tabs-content">
                             <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="product-list">
+                                <div v-for="(item, index) in category.petList" :key="index" class="col-lg-3">
+                                    <div class="product-list tac">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <img src="http://placekitten.com/255/291" alt="">
+                                                <img :src="item.cover_url" alt="">
                                             </div>
                                             <div class="product-info">
-                                                <span class="product-name">萌萌的橘猫</span>
+                                                <span class="product-name">{{item.title}}</span>
                                                 <div class="info-price">
-                                                    <span>￥1000</span>
-                                                    <del>$1700</del>
-                                                </div>
-                                                <span class="hvr-outline">添加到购物车</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product-list">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <img src="http://placekitten.com/255/291" alt="">
-                                            </div>
-                                            <div class="product-info">
-                                                <span class="product-name">萌萌的橘猫</span>
-                                                <div class="info-price">
-                                                    <span>￥1200</span>
-                                                    <del>$1700</del>
-                                                </div>
-                                                <span class="hvr-outline">添加到购物车</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product-list">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <img src="http://placekitten.com/255/291" alt="">
-                                            </div>
-                                            <div class="product-info">
-                                                <span class="product-name">萌萌的橘猫</span>
-                                                <div class="info-price">
-                                                    <span>￥1000</span>
-                                                    <del>$1700</del>
-                                                </div>
-                                                <span class="hvr-outline">添加到购物车</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product-list">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <img src="http://placekitten.com/255/291" alt="">
-                                            </div>
-                                            <div class="product-info">
-                                                <span class="product-name">萌萌的橘猫</span>
-                                                <div class="info-price">
-                                                    <span>￥1000</span>
+                                                    <span>￥{{item.price}}</span>
                                                     <del>$1700</del>
                                                 </div>
                                                 <span class="hvr-outline">添加到购物车</span>
@@ -273,11 +189,47 @@
 
 
 <script>
+import api from "../lib/api";
+import ReadInfo from "../mixsin/ReadInfo";
 import Header from "../components/Header";
 
 export default {
     components: {
         Header
+    },
+    mixins: [ReadInfo],
+    data() {
+        return {
+            allList: {},
+            itemList: {
+                pet: [],
+                category: []
+            },
+        };
+    },
+    mounted() {
+        this.gReadInfo("pet");
+        this.readItem("pet", "promotion", {
+            where: { promotion: true }            
+        });
+        this.readItem("category", {
+            where: { promoting: true }
+        });
+    },
+    methods: {
+        readItem(model, condition) {
+            api.api(`${model}/read`, condition).then(res => {
+                this.itemList[model] = res.data
+                this.readPetPromoting();    
+            });
+        },
+        readPetPromoting() {
+            this.itemList.category.forEach( category => {                
+                api.api(`pet/read`, {where: {category_id: category.id}}).then(res => {
+                    this.$set(category, 'petList', res.data);
+                })
+            })  
+        }
     }
 };
 </script>

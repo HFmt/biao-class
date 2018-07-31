@@ -1,0 +1,74 @@
+<script src="../node_modules/axios/dist/axios.js"></script>
+
+<script src="./api.js"></script>
+<script>
+    const pet = {
+        name: 'pet',
+        structure: {
+            title: {
+                type: 'string'
+            },
+            color: {
+                type: 'string'
+            },
+            cover_url: {
+                type: 'string'
+            },
+            description: {
+                type: 'text'
+            },
+            origin: {
+                type: 'json'
+            },
+            price: {
+                type: 'float'
+            },
+            character: {
+                type: 'string'
+            },
+            birthday: {
+                type: 'date'
+            },
+            sex: {
+                type: 'boolean'
+            },
+            neuter: {
+                type: 'boolean'
+            },
+            vaccinated: {
+                type: 'boolean'
+            },
+            disease: {
+                type: 'boolean'
+            },
+            pure_breed: {
+                type: 'boolean'
+            },
+            breed_id: {
+                type: 'integer',
+                positive: true
+            },
+            category_id: {
+                type: 'integer',
+                positive: true
+            },
+            promotion: {
+                type: 'boolean',
+            }
+        }
+    }
+
+
+    // api('MODEL/DELETE', {key: 'pet'})
+    // api('MODEL/CREATE', pet)
+    // api('PROPERTY/CREATE', {
+    //     model: 'pet',
+    //     key: 'promotion',
+    //     structure: {
+            
+    //     }
+    // });
+    api('MODEL/FIND', {
+        key: 'pet'
+    })
+</script>

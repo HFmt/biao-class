@@ -1,14 +1,21 @@
 <script src="../node_modules/axios/dist/axios.js"></script>
 <script src="./api.js"></script>
 <script>
- const category = {
+    const category = {
         key: 'category',
         structure: {
             name: {
                 type: 'string'
             },
+            promoting: {
+                type: 'boolean'
+            }
         },
     };
 
- api('MODEL/CREATE', category);
+    // api('MODEL/CREATE', category);
+    api('MODEL/FIND', {key: 'category'})
+    // api('MODEL/DELETE', {
+    //     key: 'category'
+    // });
 </script>

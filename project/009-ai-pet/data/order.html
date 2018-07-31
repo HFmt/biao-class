@@ -4,7 +4,7 @@
     const order = {
         key: 'order',
         structure: {
-            sum: {
+            total_price: {
                 type: 'float'
             },
             oid: {
@@ -13,7 +13,7 @@
             cover_url: {
                 type: 'string'
             },
-            product_info: {
+            pet_info: {
                 type: 'json'
             },
             pay_by: {
@@ -28,6 +28,6 @@
             },
         },
     };
-
- api('MODEL/CREATE', order);
+    // api('MODEL/DELETE', {key: 'order'})
+    api('MODEL/CREATE', order);
 </script>

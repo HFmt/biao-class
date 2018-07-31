@@ -1,5 +1,12 @@
+
+/* 标签默认样式 */
+
 li {
     display: inline-block;
+}
+
+ul.li-db li {
+    display: block;
 }
 
 img {
@@ -11,11 +18,19 @@ button {
     line-height: 1.1;
 }
 
+button {
+    cursor: pointer;
+}
+
+/* 大容器 */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     /* border: 1px solid #000; */
 }
+
+/* 文字排版 */
 
 .tac {
     text-align: center
@@ -28,6 +43,107 @@ button {
 .tar {
     text-align: right;
 }
+
+
+/* 动态按钮 */
+
+.hvr-outline {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 8px 20px;
+    background: #fda30e;
+    color: #fff;
+    backface-visibility: hidden;
+}
+
+.hvr-outline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: #fda30e solid 4px;
+    transition-duration: 0.3s;
+    transition-property: top, right, bottom, left;
+}
+
+.hvr-outline:hover::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+    border: #fda30e solid 4px;
+    transition-duration: 0.3s;
+    transition-property: top, right, bottom, left;
+}
+
+/* 鼠标手势 */
+
+.cp {
+    cursor: pointer;
+}
+
+.cp-all > * {
+    cursor: pointer;    
+}
+
+
+
+/* 登入层及表单 */
+
+.modal-wrap {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.modal-wrap .modal-content {
+    position: absolute;
+    width: 50%;
+    top: 20%;
+    left: 25%;
+    background: #f5f5f5;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+.modal-wrap .modal-header {
+    padding: 15px 15px 0;
+}
+
+.modal-wrap .modal-sgin-in,
+.modal-wrap .modal-sgin-up {
+    padding: 10px 25px 25px;
+}
+
+.modal-wrap .title {
+    margin-bottom: 20px;
+}
+
+.modal-wrap .input-group {
+    padding-bottom: 15px;
+}
+
+.modal-wrap label {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.modal-wrap input,
+.modal-wrap button {
+    padding: 10px;
+    margin: 7px 0 10px;
+}
+
+/* 栅格系统 */
 
 .row {
     font-size: 0;
