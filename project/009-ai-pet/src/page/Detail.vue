@@ -62,21 +62,21 @@
                         <div class="col-lg-6">
                             <div class="row single-lt">
                                 <div class="col-lg-9 single-lt-lt">
-                                    <img src="http://placekitten.com/403/472" alt="">
+                                    <img :src="petInfo.pet.cover_url" alt="">
                                 </div>
                                 <div class="col-lg-3 single-lt-rt">
                                     <ul>
                                         <li>
-                                            <img src="http://placekitten.com/150/105" alt="">
+                                            <img :src="petInfo.pet.cover_url" alt="">
                                         </li>
                                         <li>
-                                            <img src="http://placekitten.com/150/105" alt="">
+                                            <img :src="petInfo.pet.cover_url" alt="">
                                         </li>
                                         <li>
-                                            <img src="http://placekitten.com/150/105" alt="">
+                                            <img :src="petInfo.pet.cover_url" alt="">
                                         </li>
                                         <li>
-                                            <img src="http://placekitten.com/150/105" alt="">
+                                            <img :src="petInfo.pet.cover_url" alt="">
                                         </li>
                                     </ul>
                                 </div>
@@ -84,15 +84,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="single-rt">
-                                <h3 class="title">何家营土产田园猫</h3>
+                                <h3 class="title">{{petInfo.pet.title}}</h3>
                                 <div class="price">
-                                    <span>￥1200</span>
+                                    <span>￥{{petInfo.pet.price}}</span>
                                     <del>￥1700</del>
                                 </div>
                                 <div class="desc">
                                     <ul class="row">
                                         <li class="col-lg-6">
-                                            <span>品种：</span>
+                                            <span>品种：{{petInfo.pet.$breed && petInfo.pet.$breed.name}}</span>
                                             田园猫
                                         </li>
                                         <li class="col-lg-6">
@@ -111,11 +111,13 @@
                                             <span>疫苗情况：</span>
                                             三联
                                         </li>
+                                        <li>
+                                            <span></span>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <span class="hvr-outline">添加到购物车</span>
-
+                                    <span @click="addCartItem(petInfo.pet.id)" class="hvr-outline">添加到购物车</span>
                                 </div>
                             </div>
                         </div>
@@ -129,28 +131,40 @@
 <script>
 import api from "../lib/api";
 import Header from "../components/Header";
+import FindItem from "../mixsin/FindItem";
+import toolCart from "../hub/toolCart";
 export default {
+    mixins: [FindItem],
     components: {
         Header
     },
     data() {
         return {
             current: {},
-            product: {}
+            petInfo: {
+                pet: {}
+            },
+            with: [
+                {
+                    relation: "has_one",
+                    model: "category"
+                }
+            ]
         };
     },
     mounted() {
-        this.findInfo();
-        console.log(this.product);
+        this.findItem("pet", {
+            id: this.getId(),
+            with: this.with
+        });                
     },
 
     methods: {
-        findInfo(id) {
-            // api.api('pet/find')
-            //     .then(res => {
-            //         this.product = res.data;
-            //     })
-        }
+        getId() {
+            return this.$route.params.id;
+        },
+
+        addCartItem: toolCart.add
     }
 };
 </script>

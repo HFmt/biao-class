@@ -23,83 +23,87 @@
                 <button @click="showModal()">添加宠物信息</button>
             </div>
             <div v-if="modal" @click.self="hiddenModal()" class="modal-wrap">
-                <div class="info-wrap">
-                    <div class="modal-header tar">
-                        <span @click="hiddenModal()" class="cancel cp">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <form @submit.prevent="createInfo()">
-                        <div class="col-lg-4 input-group">
-                            <label for="">标题</label>
-                            <input class="col-lg-12" type="text" v-model="current.title">
+                <div class="modal-content">
+                    <div class="info-wrap">
+                        <div class="modal-header tar">
+                            <span @click="hiddenModal()" class="cancel cp">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </span>
                         </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">分类</label>
-                            <DropDown api="category.name" :list="allList.category" :onSelect="setCategorylId" defaultSelect="宠物分类"/>
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">颜色</label>
-                            <input class="col-lg-12" type="text" v-model="current.color">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">封面链接</label>
-                            <input class="col-lg-12" type="text" v-model="current.cover_url">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">描述</label>
-                            <input class="col-lg-12" type="text" v-model="current.description">
-                        </div>
+                        <div class="modal-body">
+                            <form @submit.prevent="createInfo()">
+                                <div class="col-lg-4 input-group">
+                                    <label for="">标题</label>
+                                    <input class="col-lg-12" type="text" v-model="current.title">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">分类</label>
+                                    <DropDown api="category.name" :list="allList.category" :onSelect="setCategorylId" defaultSelect="宠物分类" />
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">颜色</label>
+                                    <input class="col-lg-12" type="text" v-model="current.color">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">封面链接</label>
+                                    <input class="col-lg-12" type="text" v-model="current.cover_url">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">描述</label>
+                                    <input class="col-lg-12" type="text" v-model="current.description">
+                                </div>
 
-                        <div class="col-lg-4 input-group">
-                            <label for="">价格</label>
-                            <input class="col-lg-12" type="text" v-model="current.price">
+                                <div class="col-lg-4 input-group">
+                                    <label for="">价格</label>
+                                    <input class="col-lg-12" type="text" v-model="current.price">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">性格</label>
+                                    <input class="col-lg-12" type="text" v-model="current.character">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">出生地</label>
+                                    <input class="col-lg-12" type="text" v-model="current.origin">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">出生日期</label>
+                                    <input class="col-lg-12" type="date" v-model="current.birthday">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">推广</label>
+                                    <input class="col-lg-12" type="checkbox" v-model="current.promotion">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">绝育</label>
+                                    <input class="col-lg-12" type="checkbox" v-model="current.neuter">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">传染病</label>
+                                    <input class="col-lg-12" type="checkbox" v-model="current.disease">
+                                </div>
+                                <div class="col-lg-4 input-group">
+                                    <label for="">纯种</label>
+                                    <input class="col-lg-12" type="checkbox" v-model="current.pure_breed">
+                                </div>
+                                <div class="btn-wrap row">
+                                    <div class="btn-group col-lg-6">
+                                        <button class="col-lg-12" type="submit">确认添加</button>
+                                    </div>
+                                    <div class="btn-group col-lg-6">
+                                        <button @click="hiddenModal()" class="col-lg-12" type="button">取消</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">性格</label>
-                            <input class="col-lg-12" type="text" v-model="current.character">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">出生地</label>
-                            <input class="col-lg-12" type="text" v-model="current.origin">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">出生日期</label>
-                            <input class="col-lg-12" type="date" v-model="current.birthday">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">推广</label>
-                            <input class="col-lg-12" type="checkbox" v-model="current.promotion">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">绝育</label>
-                            <input class="col-lg-12" type="checkbox" v-model="current.neuter">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">传染病</label>
-                            <input class="col-lg-12" type="checkbox" v-model="current.disease">
-                        </div>
-                        <div class="col-lg-4 input-group">
-                            <label for="">纯种</label>
-                            <input class="col-lg-12" type="checkbox" v-model="current.pure_breed">
-                        </div>
-                        <div class="btn-wrap row">
-                            <div class="btn-group col-lg-6">
-                                <button class="col-lg-12" type="submit">确认添加</button>
-                            </div>
-                            <div class="btn-group col-lg-6">
-                                <button @click="hiddenModal()" class="col-lg-12" type="button">取消</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="user-list taf">
                 <table class="tac">
                     <thead>
                         <tr>
-                            <th>标题</th>
                             <th>分类</th>
+                            <th>标题</th>
                             <th>轮播</th>
                             <th>颜色</th>
                             <th>封面链接</th>
@@ -120,10 +124,10 @@
                     <tbody>
                         <tr v-for="(item, index) in allList.pet" :key="index">
                             <td>
-                                {{item.title}}
+                                {{item.$category && item.$category.name || '-'}}
                             </td>
                             <td>
-                                {{item.$category && item.$category.name || '-'}}
+                                {{item.title}}
                             </td>
                             <td>
                                 {{item.promotion ? '是' : '否'}}
@@ -188,7 +192,8 @@ export default {
             model: "pet",
             with: [
                 {
-                    type: 'has_one', model: 'category'
+                    relation: "has_one",
+                    model: "category"
                 }
             ]
         };

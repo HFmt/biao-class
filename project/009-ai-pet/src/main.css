@@ -119,8 +119,7 @@ button {
     padding: 15px 15px 0;
 }
 
-.modal-wrap .modal-sgin-in,
-.modal-wrap .modal-sgin-up {
+.modal-wrap .modal-body {
     padding: 10px 25px 25px;
 }
 
@@ -128,8 +127,10 @@ button {
     margin-bottom: 20px;
 }
 
-.modal-wrap .input-group {
-    padding-bottom: 15px;
+.modal-wrap .input-group,
+.modal-wrap .btn-group
+ {
+    padding: 10px;
 }
 
 .modal-wrap label {

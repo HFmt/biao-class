@@ -39,7 +39,7 @@ const RouterConfig = {
       component: Search
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       component: Detail
     },
     {

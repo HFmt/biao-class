@@ -77,6 +77,7 @@
     transform: scale3d(0, 1, 1);
     transform-origin: center left;
     transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: 0.4s;
 }
 
 .nav li a:hover::before {
@@ -144,6 +145,9 @@
                 <div class="col-lg-3 sgin">
                     <ul v-if="uinfo">
                         <li>
+                            <a href="#">{{uinfo && uinfo.username || uinfo.phone || uinfo.mail}}</a>
+                        </li>
+                        <li>
                             <a @click="signOut()" href="#">
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </a>
@@ -170,9 +174,6 @@
                     <ul class="navbar">
                         <li @click="defName = defName" :class="{'menu-link': defName == 'home'}">
                             <router-link class="hb" to="/" href="#">首页</router-link>
-                        </li>
-                        <li @click="defName = defName" :class="{'menu-link': defName == 'detail'}">
-                            <router-link to="/detail" href="#">详情页</router-link>
                         </li>
                         <li @click="defName = defName" :class="{'menu-link': defName == 'search'}">
                             <router-link to="/search" href="#">搜索页</router-link>
@@ -212,7 +213,7 @@
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </span>
                 </div>
-                <div v-if="sginIn" class="modal-sgin-in">
+                <div v-if="sginIn" class="modal-body">
                     <div class="title tac">
                         <h2>用户登入</h2>
                     </div>
@@ -234,7 +235,7 @@
                         <span @click="showSginUp()">注册</span>
                     </p>
                 </div>
-                <div v-if="sginUp" class="modal-sgin-up">
+                <div v-if="sginUp" class="modal-body">
                     <div class="title tac">
                         <h2>用户注册</h2>
                     </div>
@@ -301,7 +302,7 @@ export default {
         };
     },
     mounted() {
-        // 记录登入状态
+        // 登入状态
         session.uinfo();
     },
     methods: {
@@ -336,8 +337,9 @@ export default {
                     delete item.password;
 
                     session.signIn(item);
-                    alert("登入成功");
+
                     this.hiddenModal();
+                    this.uinfo = session.uinfo();
                 });
         },
         //用户注册
@@ -361,10 +363,13 @@ export default {
                 this.$set(this.current, "username", this.current[this.typeBox]);
 
             api.api("user/create", this.current).then(res => {
-                alert("注册成功");
                 this.hiddenModal();
+                this.signUped();
             });
         },
+
+        //用户注册后
+        signUped: session.signUped,
 
         //用户登出
         signOut: session.signOut,
@@ -383,6 +388,6 @@ export default {
         hiddenModal() {
             this.modal = false;
         }
-    },
+    }
 };
 </script>

@@ -4,16 +4,18 @@ import api from './api';
 export default {
     uinfo() {
         return JSON.parse(localStorage.getItem('uinfo'));
+        
     },
 
-    signIn(item, url) {
+    signIn(item) {
         this.replaceUnifo(item);
-        location.href = url || '/';
+        // location.href = url || '/';
     },
 
     replaceUnifo(item) {
         delete item.password;
         localStorage.setItem('uinfo', JSON.stringify(item));
+        this.uinfo();
     },
 
     signOut(url) {

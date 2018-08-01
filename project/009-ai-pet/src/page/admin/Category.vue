@@ -9,50 +9,6 @@
     border: 1px solid #000;
 }
 
-/* 添加数据表单 */
-
-.input-group,
-.btn-group {
-    padding: 10px;
-}
-
-.input-group label {
-    display: block;
-}
-
-.input-group input,
-.btn-group button {
-    padding: 10px;
-    margin: 5px 0 10px;
-    border: 1px solid #cdcdcd;
-}
-
-.modal-wrap {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.01);
-}
-
-.modal-wrap .info-wrap {
-    position: absolute;
-    width: 70%;
-    top: 10%;
-    left: 15%;
-    background: #f5f5f5;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-}
-
-.modal-wrap form {
-    padding: 15px;
-}
-
-.modal-wrap .modal-header {
-    padding: 15px 15px 0;
-}
 </style>
 
 <template>
@@ -65,7 +21,7 @@
                 <button @click="modal = true">添加类别信息</button>
             </div>
             <div v-if="modal" @click.self="hiddenModal()" class="modal-wrap">
-                <div class="info-wrap">
+                <div class="modal-content info-wrap">
                     <div class="modal-header tar">
                         <span @click="hiddenModal()" class="cancel cp">
                             <i class="fa fa-times" aria-hidden="true"></i>

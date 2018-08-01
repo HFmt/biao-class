@@ -163,11 +163,11 @@
                             <div class="row">
                                 <div v-for="(item, index) in category.petList" :key="index" class="col-lg-3">
                                     <div class="product-list tac">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
+                                        <router-link :to="`detail/${item.id}`" class="row product-item">
+                                            <div class="row product-thumb">
                                                 <img :src="item.cover_url" alt="">
                                             </div>
-                                            <div class="product-info">
+                                            <div class="col product-info">
                                                 <span class="product-name">{{item.title}}</span>
                                                 <div class="info-price">
                                                     <span>￥{{item.price}}</span>
@@ -175,7 +175,7 @@
                                                 </div>
                                                 <span class="hvr-outline">添加到购物车</span>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                 </div>
                             </div>
@@ -229,6 +229,10 @@ export default {
                     this.$set(category, 'petList', res.data);
                 })
             })  
+        },
+
+        addToCard() {
+
         }
     }
 };

@@ -62,18 +62,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr v-for="(item, index) in list.cart" :key="index">
                                 <td>
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    {{item.pet_id}}
+                                </td>
+                                <td>
+                                    
+                                </td>
                                 <td></td>
                                 <td></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                {{list}}
                 <div class="col-lg-9"></div>
                 <div class="col-lg-3  submit-order">
                     <div class="title tac">
@@ -97,7 +102,7 @@
                             <span>￥3</span>
                         </li>
                     </ul>
-                    <span class="hvr-outline col-lg-12 tac">提交订单</span>
+                    <span @click="test()" class="hvr-outline col-lg-12 tac">提交订单</span>
                 </div>
             </div>
         </div>
@@ -105,8 +110,10 @@
 </template>
 
 <script>
+import api from "../lib/api"
 import ReadInfo from "../mixsin/ReadInfo";
 import Header from "../components/Header";
+import toolCart from "../hub/toolCart";
 
 export default {
     components: {
@@ -116,20 +123,23 @@ export default {
 
     data() {
         return {
-            allList: {}
+            list:  toolCart.cartlist()
         };
     },
     mounted() {
-        // this.readInfo('order');
+        console.log('this.list:', this.list);
+        
+        
     },
     computed: {
-        total() {
-            if (!this.product.price) this.product.price = 0;
-            if (!this.current.count) this.current.count = 1;
-            return this.product.price * this.current.count;
-        }
+
     },
-    methods: {}
+    methods: {
+        test () {
+        console.log('this.list:', this.list);
+
+        }
+    }
 };
 </script>
 
