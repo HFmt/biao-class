@@ -62,21 +62,21 @@
                         <div class="col-lg-6">
                             <div class="row single-lt">
                                 <div class="col-lg-9 single-lt-lt">
-                                    <img :src="petInfo.pet.cover_url" alt="">
+                                    <img :src="itemList.pet.cover_url" alt="">
                                 </div>
                                 <div class="col-lg-3 single-lt-rt">
                                     <ul>
                                         <li>
-                                            <img :src="petInfo.pet.cover_url" alt="">
+                                            <img :src="itemList.pet.cover_url" alt="">
                                         </li>
                                         <li>
-                                            <img :src="petInfo.pet.cover_url" alt="">
+                                            <img :src="itemList.pet.cover_url" alt="">
                                         </li>
                                         <li>
-                                            <img :src="petInfo.pet.cover_url" alt="">
+                                            <img :src="itemList.pet.cover_url" alt="">
                                         </li>
                                         <li>
-                                            <img :src="petInfo.pet.cover_url" alt="">
+                                            <img :src="itemList.pet.cover_url" alt="">
                                         </li>
                                     </ul>
                                 </div>
@@ -84,16 +84,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="single-rt">
-                                <h3 class="title">{{petInfo.pet.title}}</h3>
+                                <h3 class="title">{{itemList.pet.title}}</h3>
                                 <div class="price">
-                                    <span>￥{{petInfo.pet.price}}</span>
+                                    <span>￥{{itemList.pet.price}}</span>
                                     <del>￥1700</del>
                                 </div>
                                 <div class="desc">
                                     <ul class="row">
                                         <li class="col-lg-6">
-                                            <span>品种：{{petInfo.pet.$breed && petInfo.pet.$breed.name}}</span>
-                                            田园猫
+                                            <span>品种：田园猫</span>
                                         </li>
                                         <li class="col-lg-6">
                                             <span>性别：</span>
@@ -116,8 +115,9 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div>
-                                    <span @click="addCartItem(petInfo.pet.id)" class="hvr-outline">添加到购物车</span>
+                                <div class="hvr-btn-group">
+                                    <span @click="addItemCart(itemList.pet.id)" class="hvr-btn">添加到购物车</span>
+                                    <span class="hvr-btn">立即购买</span>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@ export default {
     data() {
         return {
             current: {},
-            petInfo: {
+            itemList: {
                 pet: {}
             },
             with: [
@@ -164,7 +164,7 @@ export default {
             return this.$route.params.id;
         },
 
-        addCartItem: toolCart.add
+        addItemCart: toolCart.add
     }
 };
 </script>

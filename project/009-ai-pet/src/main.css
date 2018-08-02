@@ -47,7 +47,14 @@ button {
 
 /* 动态按钮 */
 
-.hvr-outline {
+.hvr-btn-group span,
+.hvr-btn-group a,
+.hvr-btn-group button
+ {
+    margin: 5px;
+}
+
+.hvr-btn {
     cursor: pointer;
     position: relative;
     display: inline-block;
@@ -58,7 +65,7 @@ button {
     backface-visibility: hidden;
 }
 
-.hvr-outline::before {
+.hvr-btn::before {
     content: "";
     position: absolute;
     top: 0;
@@ -70,7 +77,7 @@ button {
     transition-property: top, right, bottom, left;
 }
 
-.hvr-outline:hover::before {
+.hvr-btn:hover::before {
     content: "";
     position: absolute;
     top: -8px;

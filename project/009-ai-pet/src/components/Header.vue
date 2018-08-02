@@ -113,7 +113,7 @@
 }
 
 .nav-cart a {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 4px;
 }
 
@@ -176,13 +176,10 @@
                             <router-link class="hb" to="/" href="#">首页</router-link>
                         </li>
                         <li @click="defName = defName" :class="{'menu-link': defName == 'search'}">
-                            <router-link to="/search" href="#">搜索页</router-link>
-                        </li>
-                        <li @click="defName = defName" :class="{'menu-link': defName == 'cart'}">
-                            <router-link to="/cart" href="#">购物车</router-link>
+                            <router-link to="/search" href="#">喵星人专区</router-link>
                         </li>
                         <li @click="defName = defName" :class="{'menu-link': defName == 'order'}">
-                            <router-link to="/userOrder" href="#">订单页</router-link>
+                            <router-link to="/userOrder" href="#">我的订单</router-link>
                         </li>
                         <li @click="defName = defName" :class="{'menu-link': defName == 'admin'}">
                             <router-link to="/admin/user" href="#">管理页</router-link>
@@ -192,15 +189,13 @@
                 <div class="nav-right col-lg-3">
                     <div class="nav-cart">
                         <p>
-                            <a href="#">
+                            <router-link to="/cart" href="#">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                <span>$0.00</span>
-                            </a>
+                                <span>￥0.00</span>
+                            </router-link>
                         </p>
                         <p>
-                            <a href="#">
-                                <span>Empty Cart</span>
-                            </a>
+                            <span class="cp">清空购物车</span>
                         </p>
                     </div>
                 </div>

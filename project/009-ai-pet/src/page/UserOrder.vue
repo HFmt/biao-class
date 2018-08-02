@@ -1,26 +1,4 @@
-<style>
-.order-list {
-    margin-top: 40px;
-}
-
-.title-wrap {
-    background: #fda30e;
-    padding: 10px 5px;
-    color: #fff;
-}
-
-.order-list table {
-    width: 100%;
-}
-
-.order-list table img {
-    max-height: 40px;
-}
-
-.order-list table th,
-.order-list table td {
-     border: 1px solid #000;
-}
+<style scoped>
 </style>
 
 <template>
@@ -30,10 +8,18 @@
             <div class="container">
                 <div class="title-wrap">
                     <ul>
-                        <li class="col-lg-1"><span class="cp">2018-7-27</span></li>
-                        <li class="col-lg-6"><span class="cp">订单号: 189492043926891119</span></li>
-                        <li class="col-lg-3"><span class="cp">和我联系</span> </li>
-                        <li class="col-lg-2 tar"><span class="cp">删除订单</span></li>
+                        <li class="col-lg-1">
+                            <span class="cp">2018-7-27</span>
+                        </li>
+                        <li class="col-lg-6">
+                            <span class="cp">订单号: 189492043926891119</span>
+                        </li>
+                        <li class="col-lg-3">
+                            <span class="cp">和我联系</span>
+                        </li>
+                        <li class="col-lg-2 tar">
+                            <span class="cp">删除订单</span>
+                        </li>
                     </ul>
                 </div>
                 <table class="tac">
@@ -73,6 +59,7 @@
 </template>
 
 <script>
+import "../css/user.css"
 import Header from "../components/Header";
 
 export default {

@@ -44,7 +44,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <input @click="toggleAll(list.cart)" type="checkbox" name="" id="" v-model="checkedAll"> 全选
+                                    <input @click="toggleAll" type="checkbox" name="" id="" v-model="checkedAll"> 全选
                                 </th>
                                 <th>删除</th>
                                 <th>产品</th>
@@ -91,11 +91,11 @@
                     </div>
                     <ul class="li-db">
                         <li>
-                            <span>已选商品：{{total.totalCount}}件</span>
+                            <span>已选商品：一件</span>
                         </li>
                         <li>
                             <span>总价：</span>
-                            <span>￥{{total.totalPrice}}</span>
+                            <span>￥{{totalPrice}}</span>
                         </li>
                     </ul>
                     <span class="hvr-btn col-lg-12 tac">结算</span>
@@ -121,21 +121,20 @@ export default {
     data() {
         return {
             list: toolCart.cartlist(),
+            check: toolCart.cartCheck(),
             checkedAll: false
         };
     },
-    mounted() {
-
-    },
+    mounted() {},
     computed: {
-        total() {
+        totalPrice() {
             let cartList = this.list.cart;
             let totalPrice = 0;
             let totalCount = 0;
 
             for (let id in cartList) {
                 let item = cartList[id];
-                
+
                 if (!item._checked) {
                     continue;
                 }
@@ -143,21 +142,33 @@ export default {
                 totalPrice += item.$pet.price * item.count;
             }
 
-            return { totalCount, totalPrice};
+            return {totalPrice, totalCount};
+        },
+        totalCount() {
+            let cartList = this.list.cart;
+            let totalCount = 0;
+            for (let id in cartList) {
+                let item = cartList[id];
+                if (item._checked) {
+                    ;
+                }
+            console.log("totalCount:", totalCount);
+            }
+            return totalCount;
         }
     },
     methods: {
         removeCartItem: toolCart.remove,
-        toggleAll() {
-            let cartList = this.list.cart;
-            for(let id in cartList) {
-                let item = cartList[id]
-                this.$set(item, '_checked', !this.checkedAll)
-            }
-        },
+        // toggleAll: toolCart.toggleAll,
 
         addOrder() {},
-
+        toggleAll() {
+            let cartList = this.list.cart;
+            for (let id in cartList) {
+                let item = cartList[id];
+                this.$set(item, "_checked", !this.checkedAll);
+            }
+        }
     }
 };
 </script>

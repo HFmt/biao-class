@@ -144,7 +144,7 @@
                     <div class="row">
                         <div v-for="(item, index) in allList.pet" :key="index" class="col-lg-3">
                             <div class="product-list tac">
-                                <div class="product-item">
+                                <router-link :to="`detail/${item.id}`" class="product-item">
                                     <div class="product-thumb">
                                         <img :src="item.cover_url" alt="">
                                     </div>
@@ -154,9 +154,9 @@
                                             <span>￥{{item.price}}</span>
                                             <del>$1700</del>
                                         </div>
-                                        <span class="hvr-outline">添加到购物车</span>
+                                        <span @click="addItemCart(item.id)" class="hvr-btn  " >添加到购物车</span>
                                     </div>
-                                </div>
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -169,6 +169,7 @@
 <script>
 import Header from "../components/Header";
 import ReadInfo from "../mixsin/ReadInfo";
+import toolCart from "../hub/toolCart";
 export default {
     components: {
         Header
@@ -183,6 +184,10 @@ export default {
         this.gReadInfo("pet", {
             where: {category_id: 1}
         });
+    },
+    methods: {
+        addItemCart: toolCart.add
+
     }
 };
 </script>

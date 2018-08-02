@@ -2,50 +2,53 @@ import Vue from "vue";
 
 import api from "../lib/api";
 
-const list = {
-    cart: {
 
-    }
+const list = {
+    cart: []
 };
 
-
-
-let read = () => {
-    api.api('cart/read', {
-        key_by: 'id',
-        with: 'has_one:pet'
-    }).then(res => {        
-
-        Vue.set(list, 'cart', res.data);
-
-        console.log('list.cart:', list.cart);
-        
-    })
-}
-
-let add = (petId, count) => {
-    count = count || 1;
-    api.api('cart/create', {
-        pet_id: petId,
-    }).then(res => {
-        read();        
-    })
-}
-
-let cartlist = () => {
+const cartlist = () => {
     return list;
 }
 
+
+
+const read = () => {
+    api.api('cart/read', {
+        key_by: 'id',
+        with: 'has_one:pet'
+    }).then(res => {
+        Vue.set(list, 'cart', res.data);
+    })
+}
+
+const add = (petId, count) => {
+    count = count || 1;
+    api.api('cart/create', {
+        pet_id: petId,
+        count
+    }).then(res => {
+        read();
+    })
+}
+
+const remove = (id) => {
+
+    api.api('cart/delete', {
+        id
+    }).then(res => {
+        read();
+    })
+}
+
+
+
 export default {
 
+    cartlist,
     read,
     add,
-    cartlist
-
-
-
-    // remove() {},
-    // update() {},
+    remove
 }
 
 const init = () => {

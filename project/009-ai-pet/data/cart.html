@@ -4,14 +4,18 @@
     const cart = {
         key: 'cart',
         structure: {
-            title_id: {
-                type: 'integer'
-            },
             user_id: {
+                positive: true,
                 type: 'integer',
             },
             pet_id: {
+                positive: true,
                 type: 'integer',
+            },
+            count: {
+                type: 'integer',
+                positive: true,
+                default: 1
             }
         },
     };

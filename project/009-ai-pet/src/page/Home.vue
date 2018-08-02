@@ -23,9 +23,12 @@
     color: #848484;
 }
 
+.pet-wrap .btn-group span {
+    margin: 5px;
+}
 /* 主页商品列表 */
 
-.product-title > * {
+.pet-title > * {
     cursor: pointer;
     font-size: 1.2rem;
     padding: 0 20px 20px 20px;
@@ -34,26 +37,26 @@
     border-bottom: 4px solid #ccc;
 }
 
-.product-title > *:hover {
+.pet-title > *:hover {
     color: #000;
     border-bottom: 4px solid #fda30e;
 }
 
-.product-list {
+.pet-list {
     position: relative;
     margin: 10px;
     box-shadow: 0px 0px 15px #d6d6d6;
 }
 
-.product-item {
+.pet-item {
     padding: 15px 10px 20px 10px;
 }
 
-.product-thumb img {
+.pet-thumb img {
     padding: 20px 38px 20px;
 }
 
-.product-info .product-name {
+.pet-info .pet-name {
     color: #fda30e;
     font-size: 1.1rem;
 }
@@ -81,7 +84,7 @@
 }
 
 .new-arrivals .title-area,
-.product-title {
+.pet-title {
     margin-bottom: 30px;
 }
 </style>
@@ -154,26 +157,28 @@
                         <img src="http://placekitten.com/528/686" alt="">
                     </div>
                 </div>
-                <div v-for="(category, index) in itemList.category" :key="index" class="product-wrap">
+                <div v-for="(category, index) in itemList.category" :key="index" class="pet-wrap">
                     <div class="container">
-                        <ul class="product-title tac">
+                        <ul class="pet-title tac">
                             <li>{{category.name}}</li>
                         </ul>
                         <div class="tabs-content">
                             <div class="row">
                                 <div v-for="(item, index) in category.petList" :key="index" class="col-lg-3">
-                                    <div class="product-list tac">
-                                        <router-link :to="`detail/${item.id}`" class="row product-item">
-                                            <div class="row product-thumb">
+                                    <div class="pet-list tac">
+                                        <router-link :to="`detail/${item.id}`" class="row pet-item">
+                                            <div class="row pet-thumb">
                                                 <img :src="item.cover_url" alt="">
                                             </div>
-                                            <div class="col product-info">
-                                                <span class="product-name">{{item.title}}</span>
+                                            <div class="col pet-info">
+                                                <span class="pet-name">{{item.title}}</span>
                                                 <div class="info-price">
                                                     <span>￥{{item.price}}</span>
                                                     <del>$1700</del>
                                                 </div>
-                                                <span class="hvr-outline">添加到购物车</span>
+                                                <div class="btn-group">
+                                                    <span @click="addItemCart(item.id)" class="hvr-btn">添加到购物车</span>
+                                                </div>
                                             </div>
                                         </router-link>
                                     </div>
@@ -192,6 +197,7 @@
 import api from "../lib/api";
 import ReadInfo from "../mixsin/ReadInfo";
 import Header from "../components/Header";
+import toolCart from "../hub/toolCart";
 
 export default {
     components: {
@@ -204,13 +210,13 @@ export default {
             itemList: {
                 pet: [],
                 category: []
-            },
+            }
         };
     },
     mounted() {
         this.gReadInfo("pet");
         this.readItem("pet", "promotion", {
-            where: { promotion: true }            
+            where: { promotion: true }
         });
         this.readItem("category", {
             where: { promoting: true }
@@ -219,21 +225,21 @@ export default {
     methods: {
         readItem(model, condition) {
             api.api(`${model}/read`, condition).then(res => {
-                this.itemList[model] = res.data
-                this.readPetPromoting();    
+                this.itemList[model] = res.data;
+                this.readPetPromoting();
             });
         },
         readPetPromoting() {
-            this.itemList.category.forEach( category => {                
-                api.api(`pet/read`, {where: {category_id: category.id}}).then(res => {
-                    this.$set(category, 'petList', res.data);
-                })
-            })  
+            this.itemList.category.forEach(category => {
+                api
+                    .api(`pet/read`, { where: { category_id: category.id } })
+                    .then(res => {
+                        this.$set(category, "petList", res.data);
+                    });
+            });
         },
 
-        addToCard() {
-
-        }
+        addItemCart: toolCart.add
     }
 };
 </script>
