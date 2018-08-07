@@ -33,8 +33,8 @@
                             <input class="col-lg-12" type="text" v-model="current.name">
                         </div>
                         <div class="col-lg-12 input-group">
-                            <label for="">首页推广</label>
-                            <input class="col-lg-12" type="checkbox" v-model="current.promoting">
+                            <input class="input-checked" type="checkbox" v-model="current.promoting">
+                            <label class="col" for="">首页推广</label>
                         </div>
                         <div class="btn-wrap row">
                             <div class="btn-group col-lg-6">

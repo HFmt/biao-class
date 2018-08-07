@@ -138,11 +138,18 @@ button {
 .modal-wrap .btn-group
  {
     padding: 10px;
+       
 }
 
+
+
 .modal-wrap label {
-    display: block;
     font-size: 0.9rem;
+}
+
+.modal-wrap input.input-checked {
+    margin-top: 0px;
+    margin-right: 4px;
 }
 
 .modal-wrap input,
@@ -150,6 +157,7 @@ button {
     padding: 10px;
     margin: 7px 0 10px;
 }
+
 
 /* 栅格系统 */
 

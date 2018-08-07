@@ -51,15 +51,17 @@
 }
 
 /* 筛选区域 */
-.filter-wrap li,
-.filter-wrap .title,
-.filter-wrap .show-all {
-    margin-top: 20px;
-}
 
-.filter-wrap li {
+.filter-wrap li,
+.sort-wrap li {
     margin: 20px 20px;
 }
+
+.filter-wrap .filter > * {
+    padding: 20px;
+    vertical-align: middle;
+}
+
 </style>
 
 <template>
@@ -77,7 +79,10 @@
                         </div>
                         <div class="col-lg-10">
                             <ul class="cp-all">
-                                <li v-for="(item, index) in allList.breed" :key="index">
+                                <li @click="removeQuery('breed_id')">
+                                    <span>全部</span>
+                                </li>
+                                <li v-for="(item, index) in allList.breed" :key="index" @click="setQueryWhere('breed_id', item.id)">
                                     <span>{{item.name}}</span>
                                 </li>
                             </ul>
@@ -132,7 +137,17 @@
                     </div>
                 </div>
                 <div class="sort-wrap">
-
+                    <ul class="cp-all">
+                        <li>默认排序</li>
+                        <li @click="toggleSort('price')">
+                            <span >价格</span>
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        </li>
+                        <li @click="toggleSort('id')">
+                            <span >上架时间</span>
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        </li>
+                    </ul>
                 </div>
                 <div class="tabs-content">
                     <div class="row">
@@ -200,9 +215,13 @@ export default {
         addItemCart: toolCart.add,
         parseRouteQuery() {
             let query = jsonFormat.parse(this.$route.query);
-            if (!query.sort_by) query.sort_by = ["id", "down"];
-            if (typeof query.sort_by == "string")
+            if (!query.sort_by) {
+                query.sort_by = ["id", "down"];
+            }
+
+            if (typeof query.sort_by == "string") {
                 query.sort_by = query.sort_by.split(",");
+            }
 
             return query;
         },
@@ -220,24 +239,47 @@ export default {
 
             this.$router.replace({ query: _new });
         },
+        // 删除筛选条件
         removeQuery(itemType) {
             let query = this.parseRouteQuery();
             delete query[itemType];
+
+            this.$router.replace({ query });
         },
+        // 筛选搜索
         searchInfo() {
             let param = this.searchParam;
-            let category_query = ` "category_id" = ${this.categoryId}`;
-            let breed_query = null;
-            param.breed_id && (breed_query = `"breed_id" = ${param.breed_id}`)
+            let category_query = `"category_id" = ${this.categoryId}`;
+            let breed_query = "";
 
-            let query = `where(${category_query} and ${breed_query})`;
-            console.log('query:', query);
-            
-            this.gReadInfo("pet", {query, sort_by: param.sort_by});
+            param.breed_id &&
+                (breed_query = `and "breed_id" = ${param.breed_id}`);
+
+            let query = `where(${category_query} ${breed_query})`;
+            console.log("query:", query);
+
+            this.gReadInfo("pet", { query, sort_by: param.sort_by });
 
             this.gReadInfo("breed", {
-                query: where(category_query)
+                query: `where(${category_query})`
             });
+        },
+        // 宠物列表排序
+        toggleSort(property) {
+            let query = this.parseRouteQuery();
+
+            let sort_prop = query.sort_by[0];
+            let direction = query.sort_by[1];
+
+            if (sort_prop == property) {
+                query.sort_by[1] = direction == "up" ? "down" : "up";
+            } else {
+                query.sort_by[0] = property;
+                query.sort_by[1] = "down";
+            }
+
+            query.sort_by = query.sort_by.toString();
+            this.$router.replace({ query });
         },
         getCategoryId() {
             let category = this.$route.params.category;
@@ -261,6 +303,7 @@ export default {
         "$route.query": {
             deep: true,
             handler() {
+                this.prepareSearchParam();
                 this.getCategoryId();
                 this.searchInfo();
             }
