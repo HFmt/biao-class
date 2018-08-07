@@ -175,8 +175,11 @@
                         <li @click="defName = defName" :class="{'menu-link': defName == 'home'}">
                             <router-link class="hb" to="/" href="#">首页</router-link>
                         </li>
-                        <li @click="defName = defName" :class="{'menu-link': defName == 'search'}">
-                            <router-link to="/search" href="#">喵星人专区</router-link>
+                        <li @click="defName = defName" :class="{'menu-link': defName == 'searchCat'}">
+                            <router-link to="/search/cat" href="#">喵星人专区</router-link>
+                        </li>
+                        <li @click="defName = defName" :class="{'menu-link': defName == 'searchDog'}">
+                            <router-link to="/search/dog" href="#">汪星人专区</router-link>
                         </li>
                         <li @click="defName = defName" :class="{'menu-link': defName == 'order'}">
                             <router-link to="/userOrder" href="#">我的订单</router-link>

@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-lg-4 input-group">
                                     <label for="">分类</label>
-                                    <DropDown api="category.name" :list="allList.category" :onSelect="setCategorylId" defaultSelect="宠物分类" />
+                                    <DropDown api="category.name"  :onSelect="setCategorylId" defaultSelect="宠物分类" />
                                 </div>
                                 <div class="col-lg-4 input-group">
                                     <label for="">颜色</label>

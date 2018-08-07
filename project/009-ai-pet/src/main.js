@@ -21,6 +21,7 @@ import User from "./page/admin/User"
 import Pet from "./page/admin/Pet"
 import Order from "./page/admin/Order"
 import Category from "./page/admin/Category"
+import Breed from "./page/admin/Breed"
 
 
 
@@ -35,7 +36,7 @@ const RouterConfig = {
       component: Home
     },
     {
-      path: '/search',
+      path: '/search/:category',
       component: Search
     },
     {
@@ -68,6 +69,10 @@ const RouterConfig = {
         {
           path: 'category',
           component: Category
+        },
+        {
+          path: 'breed',
+          component: Breed
         },
       ]
     },

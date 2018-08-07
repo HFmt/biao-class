@@ -95,7 +95,7 @@
         <Header defName="home" />
         <div class="main">
             <div class="slide">
-                <div class="container">
+                <div class="container"> 
                     <ul v-for="(item, index) in itemList.pet.promotion" :key="index" class="slide-group row">
                         <li>
                             <a href="#" class="row"><img :src="item.cover_url" alt=""></a>

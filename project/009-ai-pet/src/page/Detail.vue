@@ -133,6 +133,7 @@ import api from "../lib/api";
 import Header from "../components/Header";
 import FindItem from "../mixsin/FindItem";
 import toolCart from "../hub/toolCart";
+import ReadInfo from "../mixsin/ReadInfo"
 export default {
     mixins: [FindItem],
     components: {
@@ -156,7 +157,7 @@ export default {
         this.findItem("pet", {
             id: this.getId(),
             with: this.with
-        });                
+        });     
     },
 
     methods: {

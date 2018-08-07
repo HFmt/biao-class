@@ -1,6 +1,5 @@
 
 <style scoped>
-
 .main {
     padding: 80px 0;
 }
@@ -8,7 +7,6 @@
 .title {
     color: #fda30e;
     /* padding-bottom: 20px; */
-
 }
 
 .page-head {
@@ -53,49 +51,42 @@
 }
 
 /* 筛选区域 */
-.select-wrap li,
-.select-wrap .title,
-.select-wrap .show-all {
+.filter-wrap li,
+.filter-wrap .title,
+.filter-wrap .show-all {
     margin-top: 20px;
 }
 
-.select-wrap li {
-    margin:20px 20px;
+.filter-wrap li {
+    margin: 20px 20px;
 }
 </style>
 
 <template>
     <div>
-        <Header defName="search" />
+        <Header :defName="defName" />
         <div class="page-head tac">
-            <h1 class="title">喵星人专区</h1>
+            <h1 class="title">{{titleName}}星人专区</h1>
         </div>
         <div class="main">
             <div class="container">
-                <div class="select-wrap">
-                    <div class="row">
+                <div class="filter-wrap">
+                    <div class="row filter">
                         <div class="col-lg-1 title tac">
                             <span>品种</span>
                         </div>
                         <div class="col-lg-10">
                             <ul class="cp-all">
-                                <li>全部</li>
-                                <li>橘猫</li>
-                                <li>田园猫</li>
-                                <li>缅因猫</li>
-                                <li>布偶猫</li>
-                                <li>加菲猫</li>
-                                <li>暹罗猫</li>
-                                <li>无毛猫</li>
-                                <li>英短</li>
-                                <li>波斯猫</li>
+                                <li v-for="(item, index) in allList.breed" :key="index">
+                                    <span>{{item.name}}</span>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-lg-1 show-all tac cp">
                             <span>更多</span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row filter">
                         <div class="col-lg-1 title tac">
                             <span>年龄</span>
                         </div>
@@ -110,7 +101,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row filter">
                         <div class="col-lg-1 title tac">
                             <span>疫苗</span>
                         </div>
@@ -124,7 +115,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row filter">
                         <div class="col-lg-1 title tac">
                             <span>价格</span>
                         </div>
@@ -140,6 +131,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="sort-wrap">
+
+                </div>
                 <div class="tabs-content">
                     <div class="row">
                         <div v-for="(item, index) in allList.pet" :key="index" class="col-lg-3">
@@ -154,7 +148,7 @@
                                             <span>￥{{item.price}}</span>
                                             <del>$1700</del>
                                         </div>
-                                        <span @click="addItemCart(item.id)" class="hvr-btn  " >添加到购物车</span>
+                                        <span @click="addItemCart(item.id)" class="hvr-btn  ">添加到购物车</span>
                                     </div>
                                 </router-link>
                             </div>
@@ -170,6 +164,7 @@
 import Header from "../components/Header";
 import ReadInfo from "../mixsin/ReadInfo";
 import toolCart from "../hub/toolCart";
+import jsonFormat from "../lib/jsonFormat";
 export default {
     components: {
         Header
@@ -177,17 +172,99 @@ export default {
     mixins: [ReadInfo],
     data() {
         return {
-            allList: {}
+            titleName: null,
+            defName: null,
+            categoryId: null,
+            searchParam: {},
+            allList: {},
+            with: [
+                {
+                    relation: "has_one",
+                    model: "category"
+                }
+            ]
         };
     },
     mounted() {
+        this.getCategoryId();
+
         this.gReadInfo("pet", {
-            where: {category_id: 1}
+            where: { category_id: this.categoryId }
+        });
+
+        this.gReadInfo("breed", {
+            where: { category_id: this.categoryId }
         });
     },
     methods: {
-        addItemCart: toolCart.add
+        addItemCart: toolCart.add,
+        parseRouteQuery() {
+            let query = jsonFormat.parse(this.$route.query);
+            if (!query.sort_by) query.sort_by = ["id", "down"];
+            if (typeof query.sort_by == "string")
+                query.sort_by = query.sort_by.split(",");
 
+            return query;
+        },
+        prepareSearchParam() {
+            let query = this.parseRouteQuery();
+            this.searchParam = query;
+        },
+        setQueryWhere(itemType, itemId) {
+            let condition = {};
+
+            condition[itemType] = itemId;
+
+            let _old = this.searchParam;
+            let _new = Object.assign({}, _old, condition);
+
+            this.$router.replace({ query: _new });
+        },
+        removeQuery(itemType) {
+            let query = this.parseRouteQuery();
+            delete query[itemType];
+        },
+        searchInfo() {
+            let param = this.searchParam;
+            let category_query = ` "category_id" = ${this.categoryId}`;
+            let breed_query = null;
+            param.breed_id && (breed_query = `"breed_id" = ${param.breed_id}`)
+
+            let query = `where(${category_query} and ${breed_query})`;
+            console.log('query:', query);
+            
+            this.gReadInfo("pet", {query, sort_by: param.sort_by});
+
+            this.gReadInfo("breed", {
+                query: where(category_query)
+            });
+        },
+        getCategoryId() {
+            let category = this.$route.params.category;
+            switch (category) {
+                case "cat":
+                    this.defName = "searchCat";
+                    this.titleName = "喵";
+                    this.categoryId = 1;
+                    break;
+                case "dog":
+                    this.defName = "searchDog";
+                    this.titleName = "汪";
+                    this.categoryId = 2;
+                    break;
+                default:
+                    break;
+            }
+        }
+    },
+    watch: {
+        "$route.query": {
+            deep: true,
+            handler() {
+                this.getCategoryId();
+                this.searchInfo();
+            }
+        }
     }
 };
 </script>

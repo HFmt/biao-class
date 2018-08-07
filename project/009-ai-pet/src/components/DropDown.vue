@@ -48,6 +48,9 @@ import api from "../lib/api";
 
 export default {
     props: {
+        immediate: {
+            default: true
+        },
         api: {},
         defaultSelect: {
             default: "请选择"
@@ -83,7 +86,7 @@ export default {
         this.apiConf = this.parseApi(); // 如果props.api是字符串，就应该将其解析为更好处理的对象类型
         let list = this.lsit;        
         list && (this.result = Object.assign([], this.list)); // 如果传了静态数据，就应该将静态数据拷一份，否则就会导致越搜索越少        
-        
+        this.immediate && this.search();
     },
     methods: {
         /**

@@ -20,7 +20,10 @@
             <h3 @click="petMen=!petMen" class="setting" :class="{'active': petMen}">宠物管理</h3>
             <ul v-if="petMen" class="menu-wrapper">
                 <li>
-                    <router-link to="/admin/category" href="#">宠物类别</router-link>
+                    <router-link to="/admin/category" href="#">类别</router-link>
+                </li>
+                <li>
+                    <router-link to="/admin/breed" href="#">品种</router-link>
                 </li>
                 <li>
                     <router-link to="/admin/pet" href="#">宠物信息</router-link>
