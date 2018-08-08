@@ -95,29 +95,49 @@
     overflow: hidden;
 }
 
-/* .slide-wrap, */
-.slide-control {
+.slide-item,
+.left-control,
+.right-control {
     position: absolute;
-    height: 100%;
-    top: 0;
-}
 
-.slide-control .left-control,
-.slide-control .right-control {
-    position: absolute;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.slide-item {
+    padding: 20px;
+    bottom: 0;
+    font-size: 1.4rem;
+}
+
+.slide-item > * {
+    margin: 10px;
+}
+.left-control:hover,
+.right-control:hover,
+.slide-item > *:hover {
+    color: #fda30e;
+}
+
+.left-control,
+.right-control {
+    background: rgba(0, 0, 0, 0.02);
+    height: 100%;
+    top: 0;
     font-size: 4rem;
 }
 
-.slide-control .left-control {
+.left-control {
     left: 0;
 }
 
-.slide-control .right-control {
+.right-control {
     right: 0;
+}
+
+.slide-active {
+    color: #fda30e;
 }
 </style>
 
@@ -128,17 +148,23 @@
         <div class="main">
             <div class="slide">
                 <!-- 轮播左右控制按钮 -->
-                <ul class="col-lg-12 slide-control cp-all">
-                    <li class="col-lg-2 left-control  tac">
-                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                    </li>
-                    <li class="col-lg-2 right-control  tac">
-                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <div @click="autoPlayPrev()" class="col-lg-2 left-control tac cp">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </div>
+                <div @click="autoPlayNext()" class="col-lg-2 right-control tac cp">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </div>
+                <!-- 轮播数量按钮 -->
+                <ul class="col-lg-12 slide-item cp-all">
+                    <li v-for="(item, index) in itemList.pet" :key="index" @click="autoPlayChange(index)" :class="{'slide-active': index == currentIndex}">
+                        <i v-if="index == currentIndex" class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                        <i v-else class="fa fa-circle-o" aria-hidden="true"></i>
                     </li>
                 </ul>
                 <ul class="col-lg-2"></ul>
+                <!-- 主轮播 -->
                 <ul class="col-lg-8 slide-wrap">
-                    <li v-for="(item, index) in itemList.pet" :key="index" v-if="index == currentIndex" @mouseenter="autoPlayStop()" @mouseleave="autoPlayGo">
+                    <li v-for="(item, index) in itemList.pet" :key="index" v-if="index === currentIndex" @mouseenter="autoPlayStop()" @mouseleave="autoPlayGo">
                         <router-link :to="'/detail/' + item.id" class="row">
                             <img :src="item.cover_url" alt="">
                         </router-link>
@@ -275,14 +301,23 @@ export default {
     methods: {
         // 轮播按钮控制
         autoPlayPrev() {
-            this.currentIndex - 1;
+            this.autoPlayStop();
+            this.currentIndex -= 1;
             if (this.currentIndex < 0)
                 this.currentIndex = this.itemList.pet.length - 1;
+            this.autoPlayGo();
         },
         autoPlayNext() {
-            this.currentIndex + 1;
+            this.autoPlayStop();
+            this.currentIndex += 1;
             if (this.currentIndex > this.itemList.pet.length - 1)
                 this.currentIndex = 0;
+            this.autoPlayGo();
+        },
+        autoPlayChange(index) {
+            this.autoPlayStop();
+            this.currentIndex = index;
+            this.autoPlayGo();
         },
         // 轮播自动播放
         autoPlayGo() {
