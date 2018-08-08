@@ -184,6 +184,9 @@
                         <li @click="defName = defName" :class="{'menu-link': defName == 'order'}">
                             <router-link to="/userOrder" href="#">我的订单</router-link>
                         </li>
+                        <li @click="defName = defName" :class="{'menu-link': defName == 'order'}">
+                            <router-link to="/setting" href="#">设置</router-link>
+                        </li>
                         <li @click="defName = defName" :class="{'menu-link': defName == 'admin'}">
                             <router-link to="/admin/user" href="#">管理页</router-link>
                         </li>

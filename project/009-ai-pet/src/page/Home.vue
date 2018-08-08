@@ -1,6 +1,6 @@
 <style scoped>
 .slide {
-    background: rgba(0, 0, 0, 0.1);
+    /* background: rgba(0, 0, 0, 0.1); */
 }
 
 .grids .gd {
@@ -87,6 +87,38 @@
 .pet-title {
     margin-bottom: 30px;
 }
+
+/* 轮播样式 */
+.slide {
+    position: relative;
+    height: 666px;
+    overflow: hidden;
+}
+
+/* .slide-wrap, */
+.slide-control {
+    position: absolute;
+    height: 100%;
+    top: 0;
+}
+
+.slide-control .left-control,
+.slide-control .right-control {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+}
+
+.slide-control .left-control {
+    left: 0;
+}
+
+.slide-control .right-control {
+    right: 0;
+}
 </style>
 
 
@@ -95,13 +127,24 @@
         <Header defName="home" />
         <div class="main">
             <div class="slide">
-                <div class="container"> 
-                    <ul v-for="(item, index) in itemList.pet.promotion" :key="index" class="slide-group row">
-                        <li>
-                            <a href="#" class="row"><img :src="item.cover_url" alt=""></a>
-                        </li>
-                    </ul>
-                </div>
+                <!-- 轮播左右控制按钮 -->
+                <ul class="col-lg-12 slide-control cp-all">
+                    <li class="col-lg-2 left-control  tac">
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    </li>
+                    <li class="col-lg-2 right-control  tac">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    </li>
+                </ul>
+                <ul class="col-lg-2"></ul>
+                <ul class="col-lg-8 slide-wrap">
+                    <li v-for="(item, index) in itemList.pet" :key="index" v-if="index == currentIndex" @mouseenter="autoPlayStop()" @mouseleave="autoPlayGo">
+                        <router-link :to="'/detail/' + item.id" class="row">
+                            <img :src="item.cover_url" alt="">
+                        </router-link>
+                    </li>
+                </ul>
+                <ul class="col-lg-2"></ul>
             </div>
             <div class="content">
                 <div class="new-arrivals tac">
@@ -210,12 +253,19 @@ export default {
             itemList: {
                 pet: [],
                 category: []
-            }
+            },
+            currentIndex: 0,
+            timer: null
         };
+    },
+    created() {
+        this.$nextTick(() => {
+            this.autoPlayGo();
+        });
     },
     mounted() {
         this.gReadInfo("pet");
-        this.readItem("pet", "promotion", {
+        this.readItem("pet", {
             where: { promotion: true }
         });
         this.readItem("category", {
@@ -223,9 +273,36 @@ export default {
         });
     },
     methods: {
+        // 轮播按钮控制
+        autoPlayPrev() {
+            this.currentIndex - 1;
+            if (this.currentIndex < 0)
+                this.currentIndex = this.itemList.pet.length - 1;
+        },
+        autoPlayNext() {
+            this.currentIndex + 1;
+            if (this.currentIndex > this.itemList.pet.length - 1)
+                this.currentIndex = 0;
+        },
+        // 轮播自动播放
+        autoPlayGo() {
+            this.timer = setInterval(() => {
+                this.autoPlay();
+            }, 2000);
+        },
+        autoPlayStop() {
+            clearInterval(this.timer);
+            this.timer = null;
+        },
+        autoPlay() {
+            this.currentIndex++;
+            if (this.currentIndex > this.itemList.pet.length - 1)
+                this.currentIndex = 0;
+        },
         readItem(model, condition) {
             api.api(`${model}/read`, condition).then(res => {
                 this.itemList[model] = res.data;
+
                 this.readPetPromoting();
             });
         },

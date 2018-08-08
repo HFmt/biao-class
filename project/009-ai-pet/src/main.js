@@ -6,6 +6,7 @@ import "./main.css"
 import Vue from 'vue'
 import VueRouter from "vue-router"
 
+
 import App from './App.vue'
 
 
@@ -14,6 +15,7 @@ import Search from "./page/Search"
 import Detail from "./page/Detail"
 import Cart from "./page/Cart"
 import UserOrder from "./page/UserOrder"
+import Setting from "./page/Setting"
 
 
 import AdminBase from "./page/admin/Base"
@@ -33,7 +35,8 @@ Vue.config.productionTip = false
 const RouterConfig = {
   routes: [{
       path: '/',
-      component: Home
+      component: Home,
+      meta: {title: '首页-pet'}
     },
     {
       path: '/search/:category',
@@ -50,6 +53,10 @@ const RouterConfig = {
     {
       path: '/userOrder',
       component: UserOrder
+    },
+    {
+      path: '/setting',
+      component: Setting
     },
     {
       path: '/admin',
