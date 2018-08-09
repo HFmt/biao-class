@@ -158,7 +158,7 @@
 <script>
 import api from "../lib/api";
 import DropDown from "../components/dropDown";
-import   from "../mixins/readerName";
+import ReaderName  from "../mixins/readerName";
 import VehicleCardImg from "../mixins/vehicleCardImg";
 import jsonFormat from "../lib/jsonFormat";
 import GlobalNav from "../components/globalNav";
@@ -201,7 +201,6 @@ export default {
             let _new = Object.assign({}, _old, condition)
 
             this.$router.replace({query: _new});
-            console.log('_new:', _new);
             
         },  
         prepareSearchParam() {
@@ -236,7 +235,6 @@ export default {
             }
 
             query.sort_by = query.sort_by.toString();
-            console.log(query.sort_by)
             this.$router.replace({query});
             
         },
@@ -249,7 +247,8 @@ export default {
             p.brand_id && (brand_query = `and "brand_id" = ${p.brand_id}`);
             p.model_id && (brand_query = `and "model_id" = ${p.model_id}`);
             let query = `where("title" contains "${p.keyword || ''}"  ${brand_query} ${model_query})`;
-
+            console.log('query:', query);
+            
             api("vehicle/read", {query: query, sort_by: p.sort_by}).then(res => {
                 
                 this.cardList = res.data;

@@ -74,7 +74,7 @@ function find_list_by_id(list, id){
 
  function sync_from(){
     return  {
-        list: store.get(this._model_name+'-list'),
-        max_id: store.get(this._model_name+'-max_id')
+        list: store.get(this._model_name+'-list', this.list),
+        max_id: store.set(this._model_name+'-max_id', this.max_id)
     }
  }

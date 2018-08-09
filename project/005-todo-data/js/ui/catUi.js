@@ -68,8 +68,7 @@ function detect_list(){
           , modify_click = e.target.classList.contains('cat-modify')
           ;
         let cat_item = e.target.closest('.cat-item');
-        let data_id,
-            Previous_id;
+        let data_id;
         if(cat_item)
             data_id = parseInt(cat_item.dataset.id);
 
@@ -77,15 +76,8 @@ function detect_list(){
             if(!confirm('确认删除？'))
                 return;
             cat_this.remove_row(data_id);
-            cat_this._api.read().forEach( function (item, index) {
-                cat_this.set_item_active(cat_this._api.read()[0].id);      
-                return Previous_id = cat_this._api.read()[0].id;
-            });
-            console.log('Previous_id:', Previous_id);
-            
-            if (cat_this.config.delete_fn) {
-                cat_this.config.delete_fn(data_id, Previous_id);
-            }
+            if(cat_this.config.delete_fn)
+                cat_this.config.delete_fn(data_id);
         }
         else if(modify_click){
             if(cat_this.updating_item)
@@ -102,7 +94,7 @@ function detect_list(){
                 return; 
                 cat_this.set_item_active(data_id);
             if(cat_this.config.click_fn){
-                cat_this.config.click_fn(data_id);                
+                cat_this.config.click_fn(data_id);
             }
         }
     });
@@ -145,9 +137,10 @@ function detect_submit_list(){
         cat_this.clear_form(cat_this.form);
         cat_this.render();
         cat_this.hide_form();
-        cat_this.set_item_active(cat_row.id)
-        if(cat_this.config.add_fn)
-            cat_this.config.add_fn(cat_row.id);
+        if(cat_this.config.add_fn){
+            cat_this.config.add_fn();
+        }
+        
     });
 }
 

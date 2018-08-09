@@ -17,7 +17,7 @@
   - git init （初始化仓库）
   - git add . （将仓库所有的修改存入暂存区）
   - git commit -m "开始的开始" （打点保存，名为开始的开始）
-  - git remote add origin https://github.com/HFmt/biao-class.git (添加远程仓库) 账号密码模式
+  - git remote add origin https://github.com/jlzm/biao-class.git (添加远程仓库) 账号密码模式
                           git remote add origin git@github.com:user_name/user_repo.git ssh key 模式
   - git push -u origin master  (把本地代码推到'origin'[github])
 
@@ -27,6 +27,8 @@
   - git push -u origin master (把本地代码推到'origin'[github])
 
    - 更改仓库地址
-     - git remote set-url origin https://github.com/HFmt/biao-class
+     - git remote set-url origin https://github.com/jlzm/biao-class
 
      - git remote show origin (查看绑定的仓库地址)
+
+     git add . ; git commit -m '项目同步'  ; git push -u github master ; git push -u gitee master

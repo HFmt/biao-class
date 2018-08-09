@@ -130,13 +130,6 @@ function remove_row(id){
     this.render();
 }
 
-function w(params,d) {
-    console.log('1:', 1);
-    console.log('d:', d);
-    
-    
-}
-
 function render(cat_id){
     let task_this = this;
     let task_list = cat_id ? this._api.read_by_cat(cat_id): this._api.read();
