@@ -169,6 +169,11 @@
                             <a href="#">{{uinfo && uinfo.username || uinfo.phone || uinfo.mail}}</a>
                         </li>
                         <li>
+                            <router-link to="/setting" href="#">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                            </router-link>
+                        </li>
+                        <li>
                             <a @click="signOut()" href="#">
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </a>
@@ -205,7 +210,7 @@
                         <li @click="defName = defName" :class="{'menu-link': defName == 'order'}">
                             <router-link to="/userOrder" href="#">我的订单</router-link>
                         </li>
-                        <li @click="defName = defName" :class="{'menu-link': defName == 'order'}">
+                        <li @click="defName = defName" :class="{'menu-link': defName == 'setting'}">
                             <router-link to="/setting" href="#">设置</router-link>
                         </li>
                         <li @click="defName = defName" :class="{'menu-link': defName == 'admin'}">
@@ -303,16 +308,14 @@
 import api from "../lib/api";
 import GetCode from "../mixsin/GetCode";
 import session from "../lib/session";
-import signInRoot from '../hub/signInRoot';
+import signInRoot from "../hub/signInRoot";
 export default {
     props: {
         defName: {
             default: "home"
         }
     },
-    created() {
-
-    },
+    created() {},
     mixins: [GetCode],
     data() {
         return {
@@ -403,15 +406,11 @@ export default {
             this.modalList.modal = true;
             this.modalList.signIn = true;
             this.signUp = false;
-            console.log('this.signIn:', this.signIn.signIn);
-
         },
         showSginUp() {
             this.modalList.modal = true;
             this.signUp = true;
             this.modalList.signIn = false;
-            console.log('this.signIn:', this.signIn.signIn);
-
         },
         hiddenModal() {
             this.modalList.modal = false;
