@@ -52,43 +52,67 @@ const RouterConfig = {
         path: '/',
         component: Home,
         meta: {
-          title: '首页-pet'
+          title: '首页'
         }
       },
       {
         path: '/search/:category',
         component: Search,
+        meta: {
+          title: '搜索页'
+        }
       },
       {
         path: '/detail/:id',
-        component: Detail
+        component: Detail,
+        meta: {
+          title: '详情页'
+        }
       },
       {
         path: '/cart',
-        component: Cart
+        component: Cart,
+        meta: {
+          title: '我的购物车'
+        }
       },
       {
         path: '/userOrder',
-        component: UserOrder
+        component: UserOrder,
+        meta: {
+          title: '我的订单'
+        }
       },
       {
         path: '/setting',
-        component: Setting
+        component: Setting,
+        meta: {
+          title: '设置'
+        }
       },
       {
         path: '/setting',
         component: Setting,
         children: [{
             path: 'user',
-            component: User
+            component: User,
+             meta: {
+               title: '设置'
+             }
           },
           {
             path: 'pet',
-            component: Pet
+            component: Pet,
+            meta: {
+              title: '设置'
+            }
           },
           {
             path: 'order',
-            component: Order
+            component: Order,
+            meta: {
+              title: '设置'
+            }
           },
         ]
         },
@@ -97,23 +121,38 @@ const RouterConfig = {
           component: AdminBase,
           children: [{
               path: 'user',
-              component: User
+              component: User,
+              meta: {
+                title: '管理页'
+              }
             },
             {
               path: 'pet',
-              component: Pet
+              component: Pet,
+              meta: {
+                title: '管理页-宠物信息'
+              }
             },
             {
               path: 'order',
-              component: Order
+              component: Order,
+              meta: {
+                title: '管理页-用户订单'
+              }
             },
             {
               path: 'category',
-              component: Category
+              component: Category,
+              meta: {
+                title: '管理页-宠物分类'
+              }
             },
             {
               path: 'breed',
-              component: Breed
+              component: Breed,
+              meta: {
+                title: '管理页-宠物品种'
+              }
             },
           ]
         },
