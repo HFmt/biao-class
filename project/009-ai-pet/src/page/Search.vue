@@ -54,18 +54,21 @@
 
 .filter-wrap li,
 .sort-wrap li {
-    margin: 5px 20px;
+    margin: 0 20px 15px;
 }
 
 .filter-wrap .filter > * {
-    padding: 20px;
-    vertical-align: middle;
+    padding: 15px;
+    /* vertical-align: middle; */
 }
 
 .filter-wrap li:hover,
 .sort-wrap li:hover {
     color: #fda30e;
-}
+} 
+
+
+
 
 </style>
 

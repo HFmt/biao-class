@@ -2,10 +2,10 @@ import "normalize.css";
 import "font-awesome/css/font-awesome.css";
 import "./main.css";
 
-import VueRouter from 'vue-router';
 
 import Vue from 'vue';
 import Root from './root.vue';
+import VueRouter from 'vue-router';
 
 
 import Home from './page/home.vue';
@@ -30,14 +30,17 @@ Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
 const RouterConfig = {
-    routes: [
-        {
+    routes: [{
             path: '/',
-            component: Home
+            component: Home,
+            meta: {
+                title: '首页 - 洋洋车'
+            }
+
         },
         {
             path: '/login',
-            component: Login
+            component: Login,
         },
         {
             path: '/signUp',
@@ -58,8 +61,7 @@ const RouterConfig = {
         {
             path: '/admin',
             component: AdminBase,
-            children: [
-                {
+            children: [{
                     path: 'user',
                     component: AdminUser
                 },
@@ -92,9 +94,15 @@ const RouterConfig = {
     ]
 }
 
+
+
 const router = new VueRouter(
     RouterConfig
-)
+);
+
+// router.beforeEach((to) => {
+//     document.title = to.meta.title;
+// });
 
 new Vue({
     render: h => h(Root),

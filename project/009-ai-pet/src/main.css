@@ -13,9 +13,18 @@ img {
     max-width: 100%;
 }
 
+a {
+    color: #000;
+}
+
+input {
+    outline:none;
+}
+
 input, 
 button {
     line-height: 1.1;
+    border: 1px solid #ccc;
 }
 
 button {
@@ -42,6 +51,11 @@ button {
 
 .tar {
     text-align: right;
+}
+
+/* 背景 */
+.bgc-primary {
+   
 }
 
 
@@ -154,7 +168,7 @@ button {
 
 .modal-wrap input,
 .modal-wrap button {
-    padding: 10px;
+    padding: 12px;
     margin: 7px 0 10px;
 }
 

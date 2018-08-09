@@ -23,6 +23,10 @@
     color: #848484;
 }
 
+.pet-wrap {
+    margin-bottom: 60px;
+}
+
 .pet-wrap .btn-group span {
     margin: 5px;
 }
@@ -49,11 +53,16 @@
 }
 
 .pet-item {
-    padding: 15px 10px 20px 10px;
+    padding: 15px 10px 50px 10px;
+}
+
+.pet-thumb {
+    margin: 10px 0 25px;
 }
 
 .pet-thumb img {
-    padding: 20px 38px 20px;
+    max-height: 140px;
+    padding: 10px 20px;
 }
 
 .pet-info .pet-name {
@@ -85,6 +94,7 @@
 
 .new-arrivals .title-area,
 .pet-title {
+    font-size: 1.7rem;
     margin-bottom: 30px;
 }
 
@@ -99,7 +109,6 @@
 .left-control,
 .right-control {
     position: absolute;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,6 +147,18 @@
 
 .slide-active {
     color: #fda30e;
+}
+
+.pet-list {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.pet-list .btn-group {
+    position: absolute;
+    bottom: 3%;
+    
 }
 </style>
 
@@ -245,11 +266,11 @@
                                                     <span>￥{{item.price}}</span>
                                                     <del>$1700</del>
                                                 </div>
-                                                <div class="btn-group">
-                                                    <span @click="addItemCart(item.id)" class="hvr-btn">添加到购物车</span>
-                                                </div>
                                             </div>
                                         </router-link>
+                                        <div class="btn-group">
+                                            <span @click="addItemCart(item.id)" class="hvr-btn">添加到购物车</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -46,7 +46,7 @@ export default {
     },
     data() {
         return {
-            userMenu: false,
+            userMenu: true,
             petMen: false,
             regionMenu: false
         };

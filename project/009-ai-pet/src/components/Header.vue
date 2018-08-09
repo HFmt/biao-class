@@ -28,11 +28,6 @@
     border-right: 1px solid #eee;
 }
 
-.search input,
-.search button {
-    outline: none;
-}
-
 .search button {
     color: #fff;
     background: #fda30e;
@@ -61,7 +56,8 @@
 }
 
 .nav li a {
-    padding: 26px 34px;
+    padding: 26px 20px;
+    margin: 0 10px;
     display: block;
     position: relative;
 }
@@ -121,6 +117,31 @@
     width: 24%;
     top: 10%;
     left: 38%;
+}
+
+.signIn-link,
+.signUp-link {
+    color: #f44336;
+}
+
+.signIn-link:hover,
+.signUp-link:hover {
+    color: #fda30e;
+}
+
+.login button {
+    color: #fff;
+    background: #7b7b7b;
+    transition: 0.5s all;
+}
+
+.login button:hover {
+    background: #fda30e;
+}
+
+.login input:hover,
+.login input:focus {
+    border: 1px solid #fda30e;
 }
 </style>
 
@@ -207,14 +228,14 @@
                 </div>
             </div>
         </div>
-        <div v-if="modal" @click.self="hiddenModal()" class="modal-wrap">
+        <div v-if="modalList.modal" @click.self="hiddenModal()" class="modal-wrap">
             <div class="modal-content">
                 <div class="modal-header tar">
                     <span @click="hiddenModal()" class="cancel cp">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </span>
                 </div>
-                <div v-if="sginIn" class="modal-body">
+                <div v-if="modalList.signIn" class="modal-body login">
                     <div class="title tac">
                         <h2>用户登入</h2>
                     </div>
@@ -233,10 +254,10 @@
                         </div>
                     </form>
                     <p>还没有账号？
-                        <span @click="showSginUp()">注册</span>
+                        <span @click="showSginUp()" class="signUp-link cp">注册</span>
                     </p>
                 </div>
-                <div v-if="sginUp" class="modal-body">
+                <div v-if="signUp" class="modal-body login">
                     <div class="title tac">
                         <h2>用户注册</h2>
                     </div>
@@ -270,7 +291,7 @@
                         </div>
                     </form>
                     <p>已有账号？
-                        <span @click="showSginIn()">登入</span>
+                        <span @click="showSginIn()" class="signIn-link cp">登入</span>
                     </p>
                 </div>
             </div>
@@ -282,19 +303,21 @@
 import api from "../lib/api";
 import GetCode from "../mixsin/GetCode";
 import session from "../lib/session";
-
+import signInRoot from '../hub/signInRoot';
 export default {
     props: {
         defName: {
             default: "home"
         }
     },
+    created() {
+
+    },
     mixins: [GetCode],
     data() {
         return {
-            modal: false,
-            sginIn: false,
-            sginUp: false,
+            modalList: signInRoot.modalList(),
+            signUp: false,
 
             uinfo: session.uinfo(),
 
@@ -377,17 +400,21 @@ export default {
 
         // 注册弹出框显示
         showSginIn() {
-            this.modal = true;
-            this.sginIn = true;
-            this.sginUp = false;
+            this.modalList.modal = true;
+            this.modalList.signIn = true;
+            this.signUp = false;
+            console.log('this.signIn:', this.signIn.signIn);
+
         },
         showSginUp() {
-            this.modal = true;
-            this.sginUp = true;
-            this.sginIn = false;
+            this.modalList.modal = true;
+            this.signUp = true;
+            this.modalList.signIn = false;
+            console.log('this.signIn:', this.signIn.signIn);
+
         },
         hiddenModal() {
-            this.modal = false;
+            this.modalList.modal = false;
         }
     }
 };
