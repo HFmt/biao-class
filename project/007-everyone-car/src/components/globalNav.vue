@@ -7,7 +7,6 @@
         <div class="container cf">
             <div class="content fl">
                 <router-link to="/" href="#" class="logo"></router-link>
-                <a href="#" class="nav-item">西安</a>
                 <router-link to="/searchResult" href="#" class="nav-item">搜车</router-link>
                 <router-link to="/admin/user" href="#" class="nav-item">管理员</router-link>
             </div>

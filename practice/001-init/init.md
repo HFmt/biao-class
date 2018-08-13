@@ -32,3 +32,6 @@
      - git remote show origin (查看绑定的仓库地址)
 
      git add . ; git commit -m '项目同步'  ; git push -u github master ; git push -u gitee master
+
+
+  git remote add gitee

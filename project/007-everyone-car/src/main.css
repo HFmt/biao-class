@@ -51,6 +51,31 @@ button {
     margin: 0 auto;
 }
 
+/* 文字排版 */
+
+.tac {
+    text-align: center
+}
+
+.taf {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+/* 鼠标手势 */
+
+
+.cp {
+    cursor: pointer;
+}
+
+.cp-all>* {
+    cursor: pointer;
+}
+
 .row{
     font-size: 0;
     display: block;
@@ -144,11 +169,6 @@ button {
     text-align: center;
 }
 
-
-
-.title {
-    padding: 15px;
-}
 
 .active{
     background: #000;

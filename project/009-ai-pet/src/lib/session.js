@@ -3,7 +3,7 @@ import api from './api';
 
 export default {
     uinfo() {
-        return JSON.parse(localStorage.getItem('uinfo'));
+        return JSON.parse(localStorage.getItem('uinfo_pet'));
         
     },
 
@@ -14,12 +14,12 @@ export default {
 
     replaceUnifo(item) {
         delete item.password;
-        localStorage.setItem('uinfo', JSON.stringify(item));
+        localStorage.setItem('uinfo_pet', JSON.stringify(item));
         this.uinfo();
     },
 
     signOut(url) {
-        localStorage.removeItem('uinfo');
+        localStorage.removeItem('uinfo_pet');
         location.href = url || '/';
     },
 

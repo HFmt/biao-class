@@ -17,38 +17,7 @@
     align-items: center;
 }
 
-.product-list {
-    position: relative;
-    margin: 10px;
-    box-shadow: 0px 0px 15px #d6d6d6;
-}
 
-.product-item {
-    padding: 15px 10px 20px 10px;
-}
-
-.product-thumb img {
-    padding: 20px 38px 20px;
-}
-
-.product-info .product-name {
-    color: #fda30e;
-    font-size: 1.1rem;
-}
-
-.info-price {
-    margin: 15px 0;
-}
-
-.info-price span {
-    font-size: 1.4rem;
-}
-
-.info-price del {
-    color: #a7a7a7;
-    font-size: 0.7rem;
-    margin-left: 10px;
-}
 
 /* 筛选区域 */
 
@@ -68,7 +37,17 @@
 } 
 
 
+.pet-list {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
 
+.pet-list .btn-group {
+    position: absolute;
+    bottom: 3%;
+    
+}
 
 </style>
 
@@ -114,7 +93,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row filter">
+                    <!-- <div class="row filter">
                         <div class="col-lg-1 title tac">
                             <span>疫苗</span>
                         </div>
@@ -127,7 +106,7 @@
                                 <li>猫三联</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row filter">
                         <div class="col-lg-1 title tac">
                             <span>价格</span>
@@ -160,13 +139,13 @@
                 <div class="tabs-content">
                     <div class="row">
                         <div v-for="(item, index) in allList.pet" :key="index" class="col-lg-3">
-                            <div class="product-list tac">
-                                <router-link :to="`detail/${item.id}`" class="product-item">
-                                    <div class="product-thumb">
+                            <div class="pet-list tac">
+                                <router-link :to="`detail/${item.id}`" class="pet-item">
+                                    <div class="pet-thumb">
                                         <img :src="item.cover_url" alt="">
                                     </div>
-                                    <div class="product-info">
-                                        <span class="product-name">{{item.title}}</span>
+                                    <div class="pet-info">
+                                        <span class="pet-name">{{item.title}}</span>
                                         <div class="info-price">
                                             <span>￥{{item.price}}</span>
                                             <del>$1700</del>
@@ -184,6 +163,7 @@
 </template>
 
 <script>
+import "../css/pet-wrap.css";
 import Header from "../components/Header";
 import ReadInfo from "../mixsin/ReadInfo";
 import toolCart from "../hub/toolCart";

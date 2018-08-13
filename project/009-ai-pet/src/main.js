@@ -48,140 +48,140 @@ Vue.config.productionTip = false
 // });
 
 const RouterConfig = {
-    routes: [{
-        path: '/',
-        component: Home,
-        meta: {
-          title: '首页'
-        }
-      },
-      {
-        path: '/search/:category',
-        component: Search,
-        meta: {
-          title: '搜索页'
-        }
-      },
-      {
-        path: '/detail/:id',
-        component: Detail,
-        meta: {
-          title: '详情页'
-        }
-      },
-      {
-        path: '/cart',
-        component: Cart,
-        meta: {
-          title: '我的购物车'
-        }
-      },
-      {
-        path: '/userOrder',
-        component: UserOrder,
-        meta: {
-          title: '我的订单'
-        }
-      },
-      {
-        path: '/setting',
-        component: Setting,
-        meta: {
-          title: '设置'
-        }
-      },
-      {
-        path: '/setting',
-        component: Setting,
-        children: [{
-            path: 'user',
-            component: User,
-             meta: {
-               title: '设置'
-             }
-          },
-          {
-            path: 'pet',
-            component: Pet,
-            meta: {
-              title: '设置'
-            }
-          },
-          {
-            path: 'order',
-            component: Order,
-            meta: {
-              title: '设置'
-            }
-          },
-        ]
+  routes: [{
+      path: '/',
+      component: Home,
+      meta: {
+        title: '首页'
+      }
+    },
+    {
+      path: '/search/:category',
+      component: Search,
+      meta: {
+        title: '搜索页'
+      }
+    },
+    {
+      path: '/detail/:id',
+      component: Detail,
+      meta: {
+        title: '详情页'
+      }
+    },
+    {
+      path: '/cart',
+      component: Cart,
+      meta: {
+        title: '我的购物车'
+      }
+    },
+    {
+      path: '/userOrder',
+      component: UserOrder,
+      meta: {
+        title: '我的订单'
+      }
+    },
+    {
+      path: '/setting',
+      component: Setting,
+      meta: {
+        title: '设置'
+      }
+    },
+    {
+      path: '/setting',
+      component: Setting,
+      children: [{
+          path: 'user',
+          component: User,
+          meta: {
+            title: '设置'
+          }
         },
         {
-          path: '/admin',
-          component: AdminBase,
-          children: [{
-              path: 'user',
-              component: User,
-              meta: {
-                title: '管理页'
-              }
-            },
-            {
-              path: 'pet',
-              component: Pet,
-              meta: {
-                title: '管理页-宠物信息'
-              }
-            },
-            {
-              path: 'order',
-              component: Order,
-              meta: {
-                title: '管理页-用户订单'
-              }
-            },
-            {
-              path: 'category',
-              component: Category,
-              meta: {
-                title: '管理页-宠物分类'
-              }
-            },
-            {
-              path: 'breed',
-              component: Breed,
-              meta: {
-                title: '管理页-宠物品种'
-              }
-            },
-          ]
+          path: 'pet',
+          component: Pet,
+          meta: {
+            title: '设置'
+          }
+        },
+        {
+          path: 'order',
+          component: Order,
+          meta: {
+            title: '设置'
+          }
         },
       ]
-    }
+    },
+    {
+      path: '/admin',
+      component: AdminBase,
+      children: [{
+          path: 'user',
+          component: User,
+          meta: {
+            title: '管理页'
+          }
+        },
+        {
+          path: 'pet',
+          component: Pet,
+          meta: {
+            title: '管理页-宠物信息'
+          }
+        },
+        {
+          path: 'order',
+          component: Order,
+          meta: {
+            title: '管理页-用户订单'
+          }
+        },
+        {
+          path: 'category',
+          component: Category,
+          meta: {
+            title: '管理页-宠物分类'
+          }
+        },
+        {
+          path: 'breed',
+          component: Breed,
+          meta: {
+            title: '管理页-宠物品种'
+          }
+        },
+      ]
+    },
+  ]
+}
 
-    const router = new VueRouter(
-      RouterConfig
-    );
+const router = new VueRouter(
+  RouterConfig
+);
 
-    router.beforeEach((to, from, next) => {
-      let goAdmin = to.fullPath.startsWith('/admin/');
-      let modalList = signInRoot.modalList();
+router.beforeEach((to, from, next) => {
+  let goAdmin = to.fullPath.startsWith('/admin/');
+  let modalList = signInRoot.modalList();
 
-      if (goAdmin && !session.signUped()) {
-        alert('请先登入');
-        modalList.modal = true;
-        modalList.signIn = true;
-        next(false);
-        return
-      } else next()
-      document.title = to.meta.title;
-    });
+  if (goAdmin && !session.signUped()) {
+    alert('请先登入');
+    modalList.modal = true;
+    modalList.signIn = true;
+    next(false);
+    return
+  } else next()
+  document.title = to.meta.title;
+});
 
 
-    new Vue({
-      directives: {
-        focus
-      },
-      render: h => h(App),
-      router
-    }).$mount('#app')
+new Vue({
+  directives: {
+    focus
+  },
+  render: h => h(App),
+  router
+}).$mount('#app')

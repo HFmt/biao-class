@@ -26,7 +26,7 @@
                         <button @click="addInformation">添加车辆数据</button>
                     </div>
                     <form @submit="search($event)" action="">
-                        <input type="search" v-model="keyword" placeholder="搜车型/车系">
+                        <input type="search" v-model="keyword" placeholder="搜标题">
                         <button type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
@@ -157,9 +157,9 @@ export default {
             seriesList: [],
             searchable: ["title", "price"],
             with: [
-                { model: "brand", type: "has_one" },
-                { model: "model", type: "has_one" },
-                { model: "series", type: "has_one" }
+                { model: "brand", relation: "has_one" },
+                { model: "model", relation: "has_one" },
+                { model: "series", relation: "has_one" }
             ]
         };
     },

@@ -1,7 +1,12 @@
 <style scoped>
-.admin-main {
+.main {
     margin-top: 40px;
 }
+
+.title {
+    color: #fda30e;
+}
+
 
 .sidebar,
 .content {
@@ -23,9 +28,9 @@
         <div class="page-head tac">
             <h1 class="title">个人设置</h1>
         </div>
-        <div class="admin-main">
-            <div class="admin-container row">
-                <div class="col-lg-1 sidebar">
+        <div class="main">
+            <div class="container">
+                <div class="col-lg-2 sidebar">
                     <SettingSidebar/>
                 </div>
                 <div class="col-lg-11 content">

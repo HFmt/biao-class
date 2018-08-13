@@ -66,6 +66,7 @@
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
@@ -80,11 +81,14 @@ import DropDown from "../components/dropDown"
 import VehicleGetCode from "../mixins/vehicleGetCode";
 import ReaderAll from "../mixins/readerAll";
 import GlobalNav from "../components/globalNav";
+import Footer from "../components/footer"
+
 
 export default {
     components: {
         GlobalNav,
-        DropDown
+        DropDown,
+        Footer
     },
     mixins: [VehicleGetCode, ReaderAll],
     mounted() {

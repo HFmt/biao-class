@@ -1,0 +1,37 @@
+.pet-list {
+    position: relative;
+    margin: 10px;
+    box-shadow: 0px 0px 15px #d6d6d6;
+}
+
+.pet-item {
+    padding: 15px 10px 50px 10px;
+}
+
+.pet-thumb {
+    margin: 10px 0 25px;
+}
+
+.pet-thumb img {
+    max-height: 140px;
+    padding: 10px 20px;
+}
+
+.pet-info .pet-name {
+    color: #fda30e;
+    font-size: 1.1rem;
+}
+
+.info-price {
+    margin: 15px 0;
+}
+
+.info-price span {
+    font-size: 1.4rem;
+}
+
+.info-price del {
+    color: #a7a7a7;
+    font-size: 0.7rem;
+    margin-left: 10px;
+}

@@ -94,8 +94,8 @@ export default {
             modelList: [],
             searchable: ["name", "model_id"],
             with: [
-                { model: "brand", type: "has_one" },
-                { model: "model", type: "has_one" }
+                { model: "brand", relation: "has_one" },
+                { model: "model", relation: "has_one" }
             ]
         };
     },

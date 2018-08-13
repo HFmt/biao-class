@@ -6,6 +6,8 @@ import "./main.css";
 import Vue from 'vue';
 import Root from './root.vue';
 import VueRouter from 'vue-router';
+import session from './lib/session'
+
 
 
 import Home from './page/home.vue';
@@ -34,40 +36,61 @@ const RouterConfig = {
             path: '/',
             component: Home,
             meta: {
-                title: '首页 - 洋洋车'
+                title: '首页'
             }
 
         },
         {
             path: '/login',
             component: Login,
+            meta: {
+                title: '登入页'
+            }
         },
         {
             path: '/signUp',
-            component: SignUp
+            component: SignUp,
+            meta: {
+                title: '注册页'
+            }
         },
         {
             path: '/publish',
-            component: Publish
+            component: Publish,
+            meta: {
+                title: '首页'
+            }
         },
         {
             path: '/searchResult',
-            component: SearchResult
+            component: SearchResult,
+            meta: {
+                title: '搜索页'
+            }
         },
         {
             path: '/detail/:id',
-            component: Detail
+            component: Detail,
+            meta: {
+                title: '详情页'
+            }
         },
         {
             path: '/admin',
             component: AdminBase,
             children: [{
                     path: 'user',
-                    component: AdminUser
+                    component: AdminUser,
+                    meta: {
+                        title: '用户管理'
+                    }
                 },
                 {
                     path: 'vehicle',
-                    component: AdminVehicle
+                    component: AdminVehicle,
+                    meta: {
+                        title: '上架管理'
+                    }
                 },
                 {
                     path: 'location',
@@ -75,19 +98,31 @@ const RouterConfig = {
                 },
                 {
                     path: 'brand',
-                    component: AdminBrand
+                    component: AdminBrand,
+                    meta: {
+                        title: '品牌管理'
+                    }
                 },
                 {
                     path: 'model',
-                    component: AdminModel
+                    component: AdminModel,
+                    meta: {
+                        title: '车型管理'
+                    }
                 },
                 {
                     path: 'series',
-                    component: AdminSeries
+                    component: AdminSeries,
+                    meta: {
+                        title: '车系管理'
+                    }
                 },
                 {
                     path: 'report',
-                    component: AdminReport
+                    component: AdminReport,
+                    meta: {
+                        title: '检测报告'
+                    }
                 },
             ]
         },
@@ -100,9 +135,16 @@ const router = new VueRouter(
     RouterConfig
 );
 
-// router.beforeEach((to) => {
-//     document.title = to.meta.title;
-// });
+router.beforeEach((to, from, next) => {
+    let goAdmin = to.fullPath.startsWith('/admin/');
+    if (goAdmin && !session.loginedIn()) {
+        alert('请先登入');
+
+        next('/login');
+        return
+    } else next();
+    document.title = to.meta.title;
+});
 
 new Vue({
     render: h => h(Root),

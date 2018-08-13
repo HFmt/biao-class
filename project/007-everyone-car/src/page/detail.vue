@@ -235,9 +235,9 @@
                         </div>
                         <div v-if="!appointed" class="row">
                             <div class="btn-group" v-if="showAppo">
-                                    <button @click="order" class="col-lg-4 order" >预约看车</button>                           
-                                    <button class="col-lg-4 bargain">砍价</button>                               
-                                    <button class="col-lg-4">免费咨询</button>
+                                <button @click="order" class="col-lg-4 order">预约看车</button>
+                                <button class="col-lg-4 bargain">砍价</button>
+                                <button class="col-lg-4">免费咨询</button>
                             </div>
                             <form @submit.prevent="submitAppo()" v-else class="col" action="">
                                 <div class="input-control">
@@ -483,6 +483,7 @@
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
@@ -494,12 +495,14 @@ import session from "../lib/session.js";
 import ReportPanel from "../components/reportPanel.vue";
 import SearchBar from "../components/searchBar.vue";
 import GlobalNav from "../components/globalNav.vue";
+import Footer from "../components/footer";
 
 export default {
     components: {
         SearchBar,
         GlobalNav,
-        ReportPanel
+        ReportPanel,
+        Footer
     },
     mounted() {
         let id = this.getId();

@@ -83,6 +83,7 @@
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
@@ -95,10 +96,12 @@ import "../directive/validator";
 import api from "../lib/api";
 import VehicleGetCode from "../mixins/vehicleGetCode";
 import GlobalNav from "../components/globalNav.vue";
+import Footer from "../components/footer"
 
 export default {
     components: {
-        GlobalNav
+        GlobalNav,
+        Footer
     },
     data() {
         return {};

@@ -66,6 +66,7 @@
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
@@ -77,14 +78,16 @@ import api from "../lib/api";
 import session from "../lib/session";
 import VehicleGetCode from "../mixins/vehicleGetCode";
 import GlobalNav from "../components/globalNav.vue";
+import Footer from "../components/footer";
 
 export default {
     components: {
-        GlobalNav
+        GlobalNav,
+        Footer
     },
     data() {
         return {
-            loginFailed: ''
+            loginFailed: ""
         };
     },
     methods: {
@@ -94,20 +97,18 @@ export default {
                 !(unique = this.current.$unique) ||
                 !(password = this.current.password)
             ) {
-                this.loginFailed = '账号和密码不能为空';
+                this.loginFailed = "账号和密码不能为空";
                 return;
             }
 
             api("user/read", {
                 where: {
-                    or: [
-                        ["username", "=", unique],
-                    ]
+                    or: [["username", "=", unique]]
                 }
             }).then(res => {
                 let item;
                 if (!(item = res.data[0]) || item.password !== password) {
-                    this.loginFailed = '账号或密码错误';
+                    this.loginFailed = "账号或密码错误";
                     return;
                 }
 

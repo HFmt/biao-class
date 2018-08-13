@@ -30,7 +30,7 @@
 .pet-wrap .btn-group span {
     margin: 5px;
 }
-/* 主页商品列表 */
+/* 主页商品列表标题 */
 
 .pet-title > * {
     cursor: pointer;
@@ -46,43 +46,6 @@
     border-bottom: 4px solid #fda30e;
 }
 
-.pet-list {
-    position: relative;
-    margin: 10px;
-    box-shadow: 0px 0px 15px #d6d6d6;
-}
-
-.pet-item {
-    padding: 15px 10px 50px 10px;
-}
-
-.pet-thumb {
-    margin: 10px 0 25px;
-}
-
-.pet-thumb img {
-    max-height: 140px;
-    padding: 10px 20px;
-}
-
-.pet-info .pet-name {
-    color: #fda30e;
-    font-size: 1.1rem;
-}
-
-.info-price {
-    margin: 15px 0;
-}
-
-.info-price span {
-    font-size: 1.4rem;
-}
-
-.info-price del {
-    color: #a7a7a7;
-    font-size: 0.7rem;
-    margin-left: 10px;
-}
 
 /* 公共样式 */
 
@@ -160,6 +123,13 @@
     bottom: 3%;
     
 }
+
+
+.md-top,
+.md-bottom {
+    min-height: 211px;
+    border: 1px solid #000;
+}
 </style>
 
 
@@ -208,11 +178,11 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="gd row">
-                                    <div>
-                                        <img src="http://placekitten.com/350/211" alt="">
+                                    <div class="col-lg-12 md-top">
+                                        
                                     </div>
-                                    <div class="md-bottom">
-                                        <img src="http://placekitten.com/350/211" alt="">
+                                    <div class="col-lg-12 md-bottom">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -284,6 +254,7 @@
 
 
 <script>
+import "../css/pet-wrap.css";
 import api from "../lib/api";
 import ReadInfo from "../mixsin/ReadInfo";
 import Header from "../components/Header";

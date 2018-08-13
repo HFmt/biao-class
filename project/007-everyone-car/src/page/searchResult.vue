@@ -41,14 +41,61 @@
 /* .active{
         background: #ccc;
     } */
+
+.row-mrg {
+    position: relative;
+}
+
+.row-mrg .detail {
+    padding: 20px 5px 10px;
+}
+
+.row-mrg .title {
+    font-size: 1.3rem;
+    color: #222;
+    padding: 5px 0;
+}
+
+.row-mrg .basic {
+    font-style: 0.9rem;
+    color: #999;
+}
+
+.row-mrg .btn-primary {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    padding: 7px 10px;
+    color: #ff5722;
+    border: 1px solid #ff5722;
+}
+
+.row-mrg .price {
+    font-size: 1.2rem;
+    color: #ff5722;
+}
+
+.row-mrg .btn-primary:hover {
+    color: #fff;
+    background: #ff5722;
+}
+
+.row-mrg img {
+    min-height: 192px;
+}
 </style>
 
 <template>
 
     <div>
         <GlobalNav/>
-        <SearchBar :onSubmit="onSubmit" />
         <div class="container">
+            <div class="row">
+                <div class="col-lg-6"></div>
+                <div class="col-lg-6 tar">
+                    <SearchBar :onSubmit="onSubmit" />
+                </div>
+            </div>
             <div class="filter-list">
                 <div class="row filter">
                     <div class="col-lg-1 prop">
@@ -56,9 +103,7 @@
                     </div>
                     <div class="col-lg-10 range sort">
                         <span :class="{'active': !searchParam.brand_id}" @click="removeQuery('brand_id')">不限</span>
-                        <span :class="{'active': searchParam.brand_id == item.id}"
-                        @click="setQueryWhere('brand_id', item.id)"
-                         v-for="(item, index) in list.brand" :key="index">{{item.name}}</span>
+                        <span :class="{'active': searchParam.brand_id == item.id}" @click="setQueryWhere('brand_id', item.id)" v-for="(item, index) in list.brand" :key="index">{{item.name}}</span>
                     </div>
                     <div class="col-lg-1 prop">
                         <div class="all-type">全部</div>
@@ -70,9 +115,7 @@
                     </div>
                     <div class="col-lg-10 range sort">
                         <span :class="{'active': !searchParam.model_id}" @click="removeQuery('model_id')">不限</span>
-                        <span :class="{'active': searchParam.model_id == item.id}"
-                         @click="setQueryWhere('model_id', item.id)"
-                         v-for="(item, index) in list.model" :key="index">{{item.name}}</span>
+                        <span :class="{'active': searchParam.model_id == item.id}" @click="setQueryWhere('model_id', item.id)" v-for="(item, index) in list.model" :key="index">{{item.name}}</span>
                     </div>
                     <div class="col-lg-1 prop">
                         <div class="all-type">全部</div>
@@ -140,11 +183,11 @@
                             <img :src="getVehicleCardList(item)" alt="">
                             <div class="detail">
                                 <div class="title">{{item.title}}</div>
-                                <div class="desc">2015年02月 / 3.07万公里</div>
+                                <div class="basic">2015年02月 / 3.07万公里</div>
                                 <div class="others">
                                     <span class="price">{{item.price}}万</span>
-                                    <span>首付3.5万</span>
-                                    <a class="btn btn-primary buy">购买</a>
+                                    <span class="basic">首付3.5万</span>
+                                    <a class="btn btn-primary buy">免费咨询</a>
                                 </div>
                             </div>
                         </router-link>
@@ -152,23 +195,26 @@
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
 import api from "../lib/api";
 import DropDown from "../components/dropDown";
-import ReaderName  from "../mixins/readerName";
+import ReaderName from "../mixins/readerName";
 import VehicleCardImg from "../mixins/vehicleCardImg";
 import jsonFormat from "../lib/jsonFormat";
 import GlobalNav from "../components/globalNav";
 import SearchBar from "../components/searchBar";
+import Footer from "../components/footer";
 
 export default {
     components: {
         GlobalNav,
         DropDown,
-        SearchBar
+        SearchBar,
+        Footer
     },
     mixins: [VehicleCardImg, ReaderName],
     mounted() {
@@ -176,7 +222,6 @@ export default {
         this.search();
         this.readName("brand");
         this.readName("model");
-        
     },
     data() {
         return {
@@ -190,7 +235,7 @@ export default {
             let query = this.parseRouteQuery();
             delete query[type];
 
-            this.$router.replace({query})
+            this.$router.replace({ query });
         },
         setQueryWhere(type, val) {
             let condition = {};
@@ -198,28 +243,25 @@ export default {
             condition[type] = val;
 
             let _old = this.searchParam;
-            let _new = Object.assign({}, _old, condition)
+            let _new = Object.assign({}, _old, condition);
 
-            this.$router.replace({query: _new});
-            
-        },  
+            this.$router.replace({ query: _new });
+        },
         prepareSearchParam() {
             let query = this.parseRouteQuery();
             this.searchParam = query;
         },
         parseRouteQuery() {
             let query = jsonFormat.parse(this.$route.query);
-            if(!query.sort_by)
-                query.sort_by = ['id', 'down'];
-            if(typeof query.sort_by == 'string')
-                query.sort_by = query.sort_by.split(',');
-            
+            if (!query.sort_by) query.sort_by = ["id", "down"];
+            if (typeof query.sort_by == "string")
+                query.sort_by = query.sort_by.split(",");
+
             return query;
         },
         onSubmit() {
             this.search();
-        console.log('this.$route.query:', this.$route.query);
-
+            console.log("this.$route.query:", this.$route.query);
         },
         toggleSort(property) {
             let query = this.parseRouteQuery();
@@ -227,43 +269,42 @@ export default {
             let sort_prop = query.sort_by[0];
             let direction = query.sort_by[1];
 
-            if(sort_prop == property){
-                query.sort_by[1] = direction == 'up' ? 'down' : 'up';
+            if (sort_prop == property) {
+                query.sort_by[1] = direction == "up" ? "down" : "up";
             } else {
                 query.sort_by[0] = property;
-                query.sort_by[1] = 'down';
+                query.sort_by[1] = "down";
             }
 
             query.sort_by = query.sort_by.toString();
-            this.$router.replace({query});
-            
+            this.$router.replace({ query });
         },
         search() {
             let p = this.searchParam;
 
-            let brand_query = '',
-                model_query = ''
-                ;
+            let brand_query = "",
+                model_query = "";
             p.brand_id && (brand_query = `and "brand_id" = ${p.brand_id}`);
             p.model_id && (brand_query = `and "model_id" = ${p.model_id}`);
-            let query = `where("title" contains "${p.keyword || ''}"  ${brand_query} ${model_query})`;
-            console.log('query:', query);
-            
-            api("vehicle/read", {query: query, sort_by: p.sort_by}).then(res => {
-                
-                this.cardList = res.data;
-            });
-        },
+            let query = `where("title" contains "${p.keyword ||
+                ""}"  ${brand_query} ${model_query})`;
+            console.log("query:", query);
+
+            api("vehicle/read", { query: query, sort_by: p.sort_by }).then(
+                res => {
+                    this.cardList = res.data;
+                }
+            );
+        }
     },
     watch: {
-            '$route.query': {
-                deep: true,
-                handler() {
-                    this.prepareSearchParam();
-                    this.search();
-                },
+        "$route.query": {
+            deep: true,
+            handler() {
+                this.prepareSearchParam();
+                this.search();
             }
         }
-
+    }
 };
 </script>

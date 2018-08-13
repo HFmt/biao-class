@@ -2,6 +2,7 @@
     .search-bar {
         margin-top: 15px;
     }
+
 </style>
 
 <template>
@@ -10,8 +11,8 @@
             <form @submit="search($event);submit($event)" action="">
                 <input type="text"
                 @keyup="change($event)"
-                 v-model="keyword">
-                <button type="submit">搜索</button>
+                 v-model="keyword" class="col-lg-10">
+                <button type="submit" class="col-lg-2">搜索</button>
             </form>
         </div>
     </div>

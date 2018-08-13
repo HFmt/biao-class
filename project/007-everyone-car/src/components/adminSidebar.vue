@@ -40,7 +40,7 @@
                 <div @click="userMenu=!userMenu" class="setting" :class="{'active': userMenu}">用户管理</div>
                 <div v-if="userMenu" class="menu-wrapper">
                     <router-link to="/admin/user" href="#">用户信息管理</router-link>
-                    <a href="#">用户权限管理</a>
+                    <!-- <a href="#">用户权限管理</a> -->
                 </div>
             </div>
             <div>
@@ -57,7 +57,7 @@
                     <router-link to="/admin/series" class="" href="#">车系管理</router-link>
                     <router-link to="/admin/vehicle" class="" href="#">上架管理</router-link>
                     <router-link to="/admin/report" class="" href="#">检测管理</router-link>
-                    <a href="#">交易管理</a>
+                    <!-- <a href="#">交易管理</a> -->
                 </div>
             </div>
         </div>

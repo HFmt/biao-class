@@ -154,11 +154,11 @@ export default {
             check: false,
             totalChek: 0,
             with: [
-                { model: "vehicle", type: "has_one" },
-                { model: "user", type: "has_one" },
-                { model: "brand", type: "has_one" },
-                { model: "model", type: "has_one" },
-                { model: "series", type: "has_one" }
+                { model: "vehicle", relation: "has_one" },
+                { model: "user", relation: "has_one" },
+                { model: "brand", relation: "has_one" },
+                { model: "model", relation: "has_one" },
+                { model: "series", relation: "has_one" }
             ]
         };
     },

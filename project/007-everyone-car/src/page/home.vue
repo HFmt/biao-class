@@ -80,6 +80,47 @@
     background: #fff;
 }
 
+.row-mrg {
+    position: relative;
+}
+
+.row-mrg .detail {
+    padding: 20px 5px 10px;
+}
+
+.row-mrg .title {
+    font-size: 1.3rem;
+    color: #222;
+    padding: 5px 0;
+}
+
+.row-mrg .basic {
+    font-style: 0.9rem;
+    color: #999;
+}
+
+.row-mrg .btn-primary {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    padding: 7px 10px;
+    color: #ff5722;
+    border: 1px solid #ff5722;
+}
+
+.row-mrg .price {
+    font-size: 1.2rem;
+    color: #ff5722;
+}
+
+.row-mrg .btn-primary:hover {
+    color: #fff;
+    background: #ff5722;
+}
+
+.row-mrg img {
+    min-height: 192px;
+}
 </style>
 
 <template>
@@ -93,18 +134,18 @@
                 <div class="col-lg-7 buy-wrapper">
                     <div class="col-lg-2">
                         <a href="#" class="merchandise">
-                            <div class="huge-font">买</div>
+                            <router-link to="/searchResult" href="#" class="huge-font">买</router-link>
                             <div>1年/2万公里质保</div>
                         </a>
                     </div>
                     <div class="col-lg-10">
                         <div class="row-padding">
-                            <router-link :to="'/searchReesult?brand_id=' + item.id" v-for="(item, index) in list.brand" :key="index" class="tag">
+                            <router-link :to="'/searchResult?brand_id=' + item.id" href="#" v-for="(item, index) in list.brand" :key="index" class="tag">
                                 {{item.name}}
                             </router-link>
                         </div>
                         <div class="row-padding">
-                            <router-link :to="'/searchReesult?model_id=' + item.id" v-for="(item, index) in list.model" :key="index" class="tag">
+                            <router-link :to="'/searchResult?model_id=' + item.id" href="#" v-for="(item, index) in list.model" :key="index" class="tag">
                                 {{item.name}}
                             </router-link>
                         </div>
@@ -123,7 +164,7 @@
                 <div class="col-lg-5 sell-wrapper">
                     <div class="col-lg-4">
                         <a href="#" class="merchandise">
-                            <div class="huge-font">卖</div>
+                            <router-link to="publish" class="huge-font">卖</router-link>
                             <div>平均7天售出</div>
                         </a>
                     </div>
@@ -166,25 +207,27 @@
                     </div>
                 </div>
                 <div class="vehicle-list">
-                    <div v-for="(item, index) in cardList" :key="index" class="col-lg-3 row-mrg">
-                        <div class="">
+                    <div v-for="(item, index) in cardList" :key="index" class="col-lg-3 ">
+                        <div class="row-mrg">
                             <router-link :to="'/detail/' + item.id">
                                 <img :src="getVehicleCardList(item)" alt="">
                                 <div class="detail">
                                     <div class="title">{{item.title}}</div>
-                                    <div class="desc">2015年02月 / 3.07万公里</div>
+                                    <div class="basic ">2015年02月 / 3.07万公里</div>
                                     <div class="others">
                                         <span class="price">{{item.price}}万</span>
-                                        <span>首付3.5万</span>
-                                        <a class="btn btn-primary buy">购买</a>
+                                        <span class="basic ">首付3.5万</span>
                                     </div>
                                 </div>
                             </router-link>
+                            <span class="btn-primary cp">免费咨询</span>
                         </div>
                     </div>
+                    <div v-if="!cardList">暂无数据</div>
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
@@ -197,10 +240,12 @@ import "../css/vehicle-list.css";
 import VehicleCardImg from "../mixins/vehicleCardImg.vue";
 import ReaderName from "../mixins/readerName.vue";
 import GlobalNav from "../components/globalNav.vue";
+import Footer from "../components/footer";
 
 export default {
     components: {
-        GlobalNav
+        GlobalNav,
+        Footer
     },
     mixins: [VehicleCardImg, ReaderName],
     mounted() {
@@ -211,9 +256,7 @@ export default {
     },
     data() {
         return {
-            list: {
-
-            },
+            list: {},
             cardList: [],
             model: {}
         };

@@ -101,16 +101,20 @@
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
 
 <script>
     import GlobalNav from '../components/globalNav.vue';
+    import Footer from "../components/footer"
+
 
     export default {
         components: {
-            GlobalNav
+            GlobalNav,
+            Footer
         }
     }
 </script>
