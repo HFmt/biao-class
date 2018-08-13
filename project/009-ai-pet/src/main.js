@@ -171,6 +171,7 @@ router.beforeEach((to, from, next) => {
     alert('请先登入');
     modalList.modal = true;
     modalList.signIn = true;
+    modalList.signUp = false;
     next(false);
     return
   } else next()

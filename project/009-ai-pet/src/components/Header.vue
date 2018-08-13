@@ -262,7 +262,7 @@
                         <span @click="showSginUp()" class="signUp-link cp">注册</span>
                     </p>
                 </div>
-                <div v-if="signUp" class="modal-body login">
+                <div v-if="modalList.signUp" class="modal-body login">
                     <div class="title tac">
                         <h2>用户注册</h2>
                     </div>
@@ -320,8 +320,6 @@ export default {
     data() {
         return {
             modalList: signInRoot.modalList(),
-            signUp: false,
-
             uinfo: session.uinfo(),
 
             // 登入验证的错误信息
@@ -405,11 +403,11 @@ export default {
         showSginIn() {
             this.modalList.modal = true;
             this.modalList.signIn = true;
-            this.signUp = false;
+            this.modalList.signUp = false;
         },
         showSginUp() {
             this.modalList.modal = true;
-            this.signUp = true;
+            this.modalList.signUp = true;
             this.modalList.signIn = false;
         },
         hiddenModal() {

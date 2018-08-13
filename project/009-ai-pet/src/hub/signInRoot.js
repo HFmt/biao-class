@@ -2,7 +2,8 @@
 
 const modal = {
     modal: false,
-    signIn: false
+    signIn: false,
+    signUp: false
 }
 
 const modalList = () => {
