@@ -17,8 +17,6 @@
     align-items: center;
 }
 
-
-
 /* 筛选区域 */
 
 .filter-wrap li,
@@ -34,8 +32,7 @@
 .filter-wrap li:hover,
 .sort-wrap li:hover {
     color: #fda30e;
-} 
-
+}
 
 .pet-list {
     position: relative;
@@ -46,9 +43,12 @@
 .pet-list .btn-group {
     position: absolute;
     bottom: 3%;
-    
 }
 
+.search-active {
+    color: #fda30e;
+    border-bottom: 2px solid #fda30e;
+}
 </style>
 
 <template>
@@ -66,11 +66,11 @@
                         </div>
                         <div class="col-lg-10">
                             <ul class="cp-all">
-                                <li @click="removeQuery('breed_id')">
-                                    <span>全部</span>
+                                <li @click="removeQuery('breed_id')" :class="{'search-active': !searchParam.breed_id}">
+                                    <span >全部</span>
                                 </li>
-                                <li v-for="(item, index) in allList.breed" :key="index" @click="setQueryWhere('breed_id', item.id)">
-                                    <span>{{item.name}}</span>
+                                <li v-for="(item, index) in allList.breed" :key="index" @click="setQueryWhere('breed_id', item.id)" :class="{'search-active': searchParam.breed_id == item.id}">
+                                    <span >{{item.name}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -126,13 +126,15 @@
                 <div class="sort-wrap">
                     <ul class="cp-all">
                         <li>默认排序</li>
-                        <li @click="toggleSort('price')">
+                        <li @click="toggleSort('price')" :class="{'search-active': searchParam.sort_by && searchParam.sort_by[0] == 'price'}">
                             <span >价格</span>
-                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            <i v-if="searchParam.sort_by && searchParam.sort_by[0] == 'price' &&  searchParam.sort_by[1] == 'up'" class="fa fa-arrow-down" aria-hidden="true"></i>
+                            <i v-else class="fa fa-arrow-up" aria-hidden="true"></i>
                         </li>
-                        <li @click="toggleSort('id')">
-                            <span >上架时间</span>
-                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        <li @click="toggleSort('id')" :class="{'search-active': searchParam.sort_by && searchParam.sort_by[0] == 'id'}">
+                            <span>上架时间</span>
+                            <i v-if="searchParam.sort_by && searchParam.sort_by[0] == 'id' && searchParam.sort_by[1] == 'up'" class="fa fa-arrow-down" aria-hidden="true"></i>
+                            <i v-else class="fa fa-arrow-up" aria-hidden="true"></i>
                         </li>
                     </ul>
                 </div>
@@ -244,7 +246,6 @@ export default {
                 (breed_query = `and "breed_id" = ${param.breed_id}`);
 
             let query = `where(${category_query} ${breed_query})`;
-            console.log("query:", query);
 
             this.gReadInfo("pet", { query, sort_by: param.sort_by });
 

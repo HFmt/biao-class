@@ -111,7 +111,7 @@ const RouterConfig = {
           path: 'order',
           component: Order,
           meta: {
-            title: '设置'
+            title: '订单管理'
           }
         },
       ]
@@ -162,19 +162,21 @@ const RouterConfig = {
 const router = new VueRouter(
   RouterConfig
 );
-
 router.beforeEach((to, from, next) => {
   let goAdmin = to.fullPath.startsWith('/admin/');
+  let goUserOrder = to.fullPath.startsWith('/userOrder');
+  let goSetting = to.fullPath.startsWith('/setting');
   let modalList = signInRoot.modalList();
 
-  if (goAdmin && !session.signUped()) {
+  if ((goAdmin || goUserOrder || goSetting) && !session.signUped()) {
     alert('请先登入');
     modalList.modal = true;
     modalList.signIn = true;
     modalList.signUp = false;
     next(false);
     return
-  } else next()
+  } else next();
+
   document.title = to.meta.title;
 });
 
