@@ -1,38 +1,53 @@
 <style scoped>
 .header {
-    box-shadow: 0px 1px 2px #888888;
+    position: relative;
+    box-shadow: 0px 1px 1px #888888;
 }
 
 .nav {
-    height: 46px;
-}
-
-.ivu-menu-horizontal {
-    height: 46px;
-}
-
-.ivu-menu-horizontal > * {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ivu-menu-horizontal.ivu-menu-light:after {
-    background: 0;
+    height: 60px;
 }
 
 .nav-left,
 .nav-middle,
-.nav-right
- {
-    height: 100%;
+.nav-right {
     display: flex;
     align-items: center;
+    height: 100%;
+}
+
+.nav-left .el-menu-demo > * {
+    font-size: 1.2rem;
+}
+
+.nav-middle {
+    justify-content: center;
+}
+
+.nav-right .settings {
+    font-size: 2.4rem;
 }
 
 .nav-right > * {
     padding: 0 10px;
 }
+
+.el-menu-item > * {
+    height: 100%;
+}
+
+.nav-link {
+    height: 100%;
+}
+
+
+/* el组件样式重置 */
+
+.el-menu--horizontal {
+    border: 0;
+}
+
+
 
 
 </style>
@@ -41,37 +56,36 @@
     <div>
         <div class="header">
             <div class="container">
-                    <Row class="nav">
-                        <Col span="10" class="nav-left">
-                        <Menu mode="horizontal" :theme="light" active-name="1">
-                            <MenuItem name="1">
-                            <router-link to="/">
-                                <Icon type="md-home" />
-                                <span>首页</span>
-                            </router-link>
-                            </MenuItem>
-                            <MenuItem name="2">
-                            <Icon type="md-mail" />
-                            <span>消息</span>
-                            </MenuItem>
-                            <MenuItem name="3">
-                            <Icon type="md-notifications" />
-                            <span>通知</span>
-                            </MenuItem>
-                        </Menu>
-                        </Col>
-                        <Col span="4" class="nav-middle">
-                        <div class="logo">我是logo</div>
-                        </Col>
-                        <Col span="10" class="nav-right">
-                        <form action="" class="col nav-search">
-                            <Input search placeholder="搜索" />
-                        </form>
-                        <router-link to="/signIn">
-                            <Avatar icon="ios-person" />
-                        </router-link>
-                        </Col>
-                    </Row>
+                <el-row class="nav">
+                    <el-col :span="7" class="nav-left">
+                        <el-menu default-active="/" router class="el-menu-demo"  mode="horizontal">
+                            <el-menu-item index="/">
+                                首页
+                            </el-menu-item>
+                            <el-menu-item index="/signIn" >
+                                登入
+                            </el-menu-item>
+
+                        </el-menu>
+                    </el-col>
+                    <el-col :span="8" class="nav-middle">
+                        <div class="logo">我是logo啊</div>
+                    </el-col>
+                    <el-col :span="7" class="nav-right tar">
+                        <el-col :span="16">
+                            <form action="" class="search-form">
+                                <el-input placeholder="Search" suffix-icon="el-icon-search">
+                                </el-input>
+                            </form>
+                        </el-col>
+                        <el-col :span="3">
+                            <span class="settings">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                        </el-col>
+                        <el-col :span="5">aa</el-col>
+                    </el-col>
+                </el-row>
             </div>
         </div>
     </div>
@@ -81,9 +95,7 @@
 export default {
     data() {
         return {
-            light: "light",
-            dark: "dark",
-            primary: "primary"
+
         };
     }
 };

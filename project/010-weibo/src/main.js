@@ -1,13 +1,13 @@
 import "normalize.css";
 import "./main.css";
-
-import iView from 'iview';
-import 'iview/dist/styles/iview.css';
-
+import 'font-awesome/css/font-awesome.css';
 
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from "vue-router";
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false;
 
 import Home from "./page/Home";
@@ -15,10 +15,8 @@ import SignIn from "./page/SignIn";
 import SignUp from "./page/SignUp";
 
 Vue.use(VueRouter);
-Vue.use(iView, {
-  transfer: true,
-  size: 'default'
-});
+Vue.use(ElementUI);
+
 
 const routerConfig = {
   routes: [{

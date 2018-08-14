@@ -1,13 +1,37 @@
 html {
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     font-size: 14px;
 }
 
 .container {
     max-width: 1199px;
     margin: 0 auto;
-    
 }
 
 .col {
     display: inline-block;
+}
+
+/* 鼠标手势 */
+
+.cp {
+    cursor: pointer;
+}
+
+.cp-all>* {
+    cursor: pointer;
+}
+
+/* 文字排版 */
+
+.tac {
+    text-align: center
+}
+
+.taf {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
 }
