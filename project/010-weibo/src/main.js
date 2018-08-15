@@ -1,5 +1,6 @@
 import "normalize.css";
 import "./main.css";
+import "./rest.css";
 import 'font-awesome/css/font-awesome.css';
 
 import Vue from 'vue';
