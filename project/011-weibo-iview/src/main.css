@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    font-size: 14px;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background: #e6ecf0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.col {
+    display: inline-block;
+}
+
+/* 鼠标手势 */
+
+.cp {
+    cursor: pointer;
+}
+
+.cp-all>* {
+    cursor: pointer;
+}
+
+/* 文字排版 */
+
+.tac {
+    text-align: center
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+.fll {
+    float: left;
+}
+
+.flr {
+    float: right;
+}
+
+.cf::before,
+.cf::after {
+    content: "";
+    clear: both;
+}
