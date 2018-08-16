@@ -63,6 +63,10 @@
                 <Col span="12" class="nav-right tar">
                 <Menu mode="horizontal" theme="light" :active-name="defRouter" class="nav-router-items">
                     <MenuItem name="/signIn" to="/signIn" class="nav-router-item">
+                    <Icon type="md-person " />
+                    <span>捡了只猫</span>
+                    </MenuItem>
+                    <MenuItem name="/signIn" to="/signIn" class="nav-router-item">
                     <Icon type="md-home " />
                     <span>登入</span>
                     </MenuItem>
@@ -81,7 +85,7 @@
             <Col span="6" class="tal">
             <Dropdown trigger="hover">
                 <span class="cp">
-                    <Icon type="ios-contact" size="26" />
+                    <Icon type="md-settings cl-hv" size="26" />
                 </span>
                 <DropdownMenu slot="list">
                     <DropdownItem>驴打滚</DropdownItem>

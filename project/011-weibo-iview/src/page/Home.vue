@@ -1,4 +1,7 @@
 <style scoped>
+
+
+
 .main {
     margin-top: 20px;
     display: flex;
@@ -19,6 +22,7 @@
     background: #7fb9db;
 }
 
+
 /* 发布额外信息 */
 .extras li {
     margin-right: 15px;
@@ -29,7 +33,7 @@
     padding-left: 4px;
 }
 
-.extras li span:hover {
+.extras li:hover {
     color: #ff9900;
 }
 
@@ -121,29 +125,31 @@
 
 /* .weibo-card-item底部 */
 
-.weibo-card-item-bottom {
+.weibo-operation-items {
     border-top: 1px solid #e1e1e1;
 }
 
-.weibo-card-item-bottom {
+.weibo-operation-items {
     margin-top: 15px;
 }
 
-.weibo-card-item-bottom li a {
+.weibo-operation-items li .operation-item {
     padding: 10px 0;
 }
 
-.weibo-card-item-bottom li a span {
+
+.weibo-operation-items li .operation-item span {
     border-right: 1px solid #e1e1e1;
     padding: 0 30px;
     width: 100%;
 }
 
-.weibo-card-item-bottom li:last-child span {
+
+.weibo-operation-items li:last-child span {
     border: 0;
 }
 
-.weibo-card-item-bottom li a span .i-icon {
+.weibo-operation-items li .operation-item span .i-icon {
     font-style: normal;
     padding-right: 4px;
 }
@@ -256,7 +262,7 @@
                                     </router-link>
                                 </div>
                                 <Dropdown class="flr">
-                                    <Icon type="md-arrow-dropdown" size="30" />
+                                    <Icon type="md-arrow-dropdown" class="cp cl-hv" size="30" />
                                     <DropdownMenu slot="list">
                                         <DropdownItem>驴打滚</DropdownItem>
                                         <DropdownItem>炸酱面</DropdownItem>
@@ -279,26 +285,26 @@
                             </div>
                             </Col>
                         </Row>
-                        <ul class="weibo-card-item-bottom dib-all tac">
-                            <li>
-                                <a href="#" class="db">
-                                    <span><em class="i-icon"><Icon type="md-heart" size="30" /></em>转发</span>
-                                </a>
+                        <ul class="weibo-operation-items dib-all tac cp-all">
+                            <li class="cl-hv">
+                                <span class="operation-item db">
+                                    <span><em class="i-icon"><Icon type="md-heart" size="24" /></em>收藏</span>
+                                </span>
                             </li>
-                            <li>
-                                <a href="#" class="db">
-                                    <span><em class="i-icon"><Icon type="md-share" size="30" /></em>转发</span>
-                                </a>
+                            <li class="cl-hv">
+                                <span class="operation-item db">
+                                    <span><em class="i-icon"><Icon type="md-share" size="24" /></em>转发</span>
+                                </span>
                             </li>
-                            <li>
-                                <a href="#" class="db">
-                                    <span><em class="i-icon"><Icon type="md-text" size="30" /></em>999</span>
-                                </a>
+                            <li class="cl-hv">
+                                <span class="operation-item db">
+                                    <span><em class="i-icon"><Icon type="md-text" size="24" /></em>999</span>
+                                </span>
                             </li>
-                            <li>
-                                <a href="#" class="db">
-                                    <span><em class="i-icon"><Icon type="md-thumbs-up" size="30" /></em>999</span>
-                                </a>
+                            <li class="cl-hv">
+                                <span class="operation-item db">
+                                    <span><em class="i-icon"><Icon type="md-thumbs-up" size="24" /></em>999</span>
+                                </span>
                             </li>
                         </ul>
                     </Card>

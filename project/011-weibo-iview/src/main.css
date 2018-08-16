@@ -34,7 +34,7 @@ img {
     display: inline-block;
 }
 
-.dib-all > * {
+.dib-all>* {
     display: inline-block;
 }
 
@@ -42,7 +42,7 @@ img {
     display: block;
 }
 
-.db-all > * {
+.db-all>* {
     display: block;
 }
 
@@ -83,3 +83,10 @@ img {
     content: "";
     clear: both;
 }
+
+/* hover公共样式 */
+
+.cl-hv:hover {
+    color: #2db7f5;
+}
+
