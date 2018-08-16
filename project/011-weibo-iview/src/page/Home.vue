@@ -80,7 +80,6 @@
     border-right: 1px solid #ccc;
 }
 
-
 .user-atten li:last-child {
     border: 0;
 }
@@ -104,15 +103,13 @@
 }
 
 .detail-text,
-.weibo-card-item,
-.detail-thumbnail-items
- {
-     padding-top: 10px;
+.detail-thumbnail-items {
+    margin-top: 10px;
 }
 
 .weibo-card-item .weibo-time {
-        color: #808080;
-        font-size: 0.8rem;
+    color: #808080;
+    font-size: 0.8rem;
 }
 
 .detail-text {
@@ -120,7 +117,35 @@
 }
 
 .detail-thumbnail-items {
+}
 
+/* .weibo-card-item底部 */
+
+.weibo-card-item-bottom {
+    border-top: 1px solid #e1e1e1;
+}
+
+.weibo-card-item-bottom {
+    margin-top: 15px;
+}
+
+.weibo-card-item-bottom li a {
+    padding: 10px 0;
+}
+
+.weibo-card-item-bottom li a span {
+    border-right: 1px solid #e1e1e1;
+    padding: 0 30px;
+    width: 100%;
+}
+
+.weibo-card-item-bottom li:last-child span {
+    border: 0;
+}
+
+.weibo-card-item-bottom li a span .i-icon {
+    font-style: normal;
+    padding-right: 4px;
 }
 /* iview样式重置 */
 </style>
@@ -246,7 +271,7 @@
                             </div>
                             <div class="weibo-detail-wrap">
                                 <p class="detail-text">
-                                   如果给你100w，7天后要你归还本金。你会怎么实现利益最大化？ Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maiores corrupti dolorum odit ex nam nostrum aperiam? Ullam 
+                                    如果给你100w，7天后要你归还本金。你会怎么实现利益最大化？ Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maiores corrupti dolorum odit ex nam nostrum aperiam? Ullam
                                 </p>
                                 <div class="detail-thumbnail-items">
                                     <img src="http://placekitten.com/230/150" alt="">
@@ -254,6 +279,28 @@
                             </div>
                             </Col>
                         </Row>
+                        <ul class="weibo-card-item-bottom dib-all tac">
+                            <li>
+                                <a href="#" class="db">
+                                    <span><em class="i-icon"><Icon type="md-heart" size="30" /></em>转发</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="db">
+                                    <span><em class="i-icon"><Icon type="md-share" size="30" /></em>转发</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="db">
+                                    <span><em class="i-icon"><Icon type="md-text" size="30" /></em>999</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="db">
+                                    <span><em class="i-icon"><Icon type="md-thumbs-up" size="30" /></em>999</span>
+                                </a>
+                            </li>
+                        </ul>
                     </Card>
                 </Row>
                 </Col>
