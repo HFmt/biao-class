@@ -1,9 +1,5 @@
 <style scoped>
-
-
-
 .main {
-    margin-top: 20px;
     display: flex;
 }
 
@@ -22,19 +18,16 @@
     background: #7fb9db;
 }
 
+/* 发布微博 */
 
-/* 发布额外信息 */
+/* 额外信息 */
 .extras li {
     margin-right: 15px;
-    display: inline-block;
 }
 
-.extras li span {
-    padding-left: 4px;
-}
-
-.extras li:hover {
-    color: #ff9900;
+.icon-mgr {
+    font-style: normal;
+    padding-right: 4px;
 }
 
 /* 个人信息卡片 */
@@ -44,8 +37,7 @@
 
 /* 头像缩略图 */
 
-.head-portrait,
-.user-portrait {
+.head-portrait {
     border-radius: 50%;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.3);
@@ -60,17 +52,13 @@
     border: 3px solid #fff;
 }
 
-.user-portrait {
-    height: 54px;
-    width: 54px;
-}
 
-.head-portrait img,
-.user-portrait img {
+
+.head-portrait img {
     min-height: 100%;
 }
 
-.user-info {
+.user-intro {
     padding-top: 30px;
 }
 
@@ -78,81 +66,6 @@
     padding-bottom: 10px;
 }
 
-.user-atten li {
-    padding: 0 16px;
-    display: inline-block;
-    border-right: 1px solid #ccc;
-}
-
-.user-atten li:last-child {
-    border: 0;
-}
-
-/* 推文卡片 */
-
-.weibo-card-item {
-}
-
-.weibo-card-item .user-poptip img {
-    min-height: 100%;
-    min-width: 100%;
-}
-
-.weibo-card-item .info-head .userinfo {
-}
-
-.weibo-card-item .info-head .userinfo .username {
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.detail-text,
-.detail-thumbnail-items {
-    margin-top: 10px;
-}
-
-.weibo-card-item .weibo-time {
-    color: #808080;
-    font-size: 0.8rem;
-}
-
-.detail-text {
-    font-size: 1rem;
-}
-
-.detail-thumbnail-items {
-}
-
-/* .weibo-card-item底部 */
-
-.weibo-operation-items {
-    border-top: 1px solid #e1e1e1;
-}
-
-.weibo-operation-items {
-    margin-top: 15px;
-}
-
-.weibo-operation-items li .operation-item {
-    padding: 10px 0;
-}
-
-
-.weibo-operation-items li .operation-item span {
-    border-right: 1px solid #e1e1e1;
-    padding: 0 30px;
-    width: 100%;
-}
-
-
-.weibo-operation-items li:last-child span {
-    border: 0;
-}
-
-.weibo-operation-items li .operation-item span .i-icon {
-    font-style: normal;
-    padding-right: 4px;
-}
 /* iview样式重置 */
 </style>
 
@@ -208,7 +121,7 @@
                 </ul>
                 </Col>
                 <Col span="15" class="main-middle">
-                <Card>
+                <Card class="card-mgb">
                     <div>
                         <p class="title">有什么新鲜事想告诉大家?</p>
                         <Form>
@@ -217,17 +130,23 @@
                             </FormItem>
                             <FormItem>
                                 <Col span="18">
-                                <ul class="extras tal cp-all">
+                                <ul class="extras tal cp-all dib-all cl-hv-all">
                                     <li>
-                                        <Icon type="md-images" size="24" color="#72a305" />
+                                        <em class="icon-mgr">
+                                            <Icon type="md-images" size="24" color="#72a305" />
+                                        </em>
                                         <span>图片</span>
                                     </li>
                                     <li>
-                                        <Icon type="md-videocam" size="24" color="#2b85e4" />
+                                        <em class="icon-mgr">
+                                            <Icon type="md-videocam" size="24" color="#2b85e4" />
+                                        </em>
                                         <span>视频</span>
                                     </li>
                                     <li>
-                                        <Icon type="ios-grid-outline" size="24" color="#2db7f5" />
+                                        <em class="icon-mgr">
+                                            <Icon type="ios-grid-outline" size="24" color="#2db7f5" />
+                                        </em>
                                         <span>话题</span>
                                     </li>
                                 </ul>
@@ -239,8 +158,8 @@
                         </Form>
                     </div>
                 </Card>
-                <Row class="weibo-card-items">
-                    <Card class="weibo-card-item">
+                <Row class="weibo-items">
+                    <Card class="weibo-item card-mgb">
                         <Row>
                             <Col span="3">
                             <Poptip trigger="hover" placement="top" width="400">
@@ -285,66 +204,86 @@
                             </div>
                             </Col>
                         </Row>
-                        <ul class="weibo-operation-items dib-all tac cp-all">
-                            <li class="cl-hv">
-                                <span class="operation-item db">
-                                    <span><em class="i-icon"><Icon type="md-heart" size="24" /></em>收藏</span>
+                        <Row class="weibo-operation-items tac cp-all cl-hv-all">
+                            <Col span="6">
+                            <span class="operation-item db">
+                                <span class="tooltip">
+                                    <em class="icon-mgr">
+                                        <Icon type="md-heart" size="24" />
+                                    </em>
+                                    <span>收藏</span>
                                 </span>
-                            </li>
-                            <li class="cl-hv">
-                                <span class="operation-item db">
-                                    <span><em class="i-icon"><Icon type="md-share" size="24" /></em>转发</span>
+                            </span>
+                            </Col>
+                            <Col span="6">
+                            <span class="operation-item db">
+                                <span class="tooltip">
+                                    <em class="icon-mgr">
+                                        <Icon type="md-share" size="24" />
+                                    </em>
+                                    <span>转发</span>
                                 </span>
-                            </li>
-                            <li class="cl-hv">
-                                <span class="operation-item db">
-                                    <span><em class="i-icon"><Icon type="md-text" size="24" /></em>999</span>
+                            </span>
+                            </Col>
+                            <Col span="6">
+                            <span class="operation-item db">
+                                <span class="tooltip">
+                                    <em class="icon-mgr">
+                                        <Icon type="md-text" size="24" />
+                                    </em>
+                                    <span>999</span>
                                 </span>
-                            </li>
-                            <li class="cl-hv">
-                                <span class="operation-item db">
-                                    <span><em class="i-icon"><Icon type="md-thumbs-up" size="24" /></em>999</span>
+                            </span>
+                            </Col>
+                            <Col span="6">
+                            <span class="operation-item db">
+                                <span>
+                                    <em class="icon-mgr">
+                                        <Icon type="md-thumbs-up" size="24" />
+                                    </em>
+                                    <span>999</span>
                                 </span>
-                            </li>
-                        </ul>
+                            </span>
+                            </Col>
+                        </Row>
                     </Card>
                 </Row>
                 </Col>
                 <Col span="6" class="main-right">
-                <Card>
-                    <div class="user-info-card">
+                <Card class="card-mgb">
+                    <div class="user-intro-wrap">
                         <div class="user-bg">
                             <img src="http://placekitten.com/230/75" alt="">
                             <router-link to="/" class="head-portrait">
                                 <!-- <img src="http://placekitten.com/230/75" alt=""> -->
                             </router-link>
                         </div>
-                        <div class="user-info tac">
+                        <div class="user-intro tac">
                             <div class="user-title-wrap">
                                 <router-link to="/signIn">
                                     <span class="title">捡了只猫</span>
                                 </router-link>
                             </div>
-                            <ul class="user-atten">
-                                <li>
-                                    <a href="#">
-                                        <p>999</p>
-                                        <span>关注</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <p>999</p>
-                                        <span>微博</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <p>999</p>
-                                        <span>粉丝</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <Row class="user-atten">
+                                <Col span="8">
+                                <a href="#">
+                                    <p>999</p>
+                                    <span>关注</span>
+                                </a>
+                                </Col>
+                                <Col span="8">
+                                <a href="#">
+                                    <p>999</p>
+                                    <span>微博</span>
+                                </a>
+                                </Col>
+                                <Col span="8">
+                                <a href="#">
+                                    <p>999</p>
+                                    <span>粉丝</span>
+                                </a>
+                                </Col>
+                            </Row>
                         </div>
                     </div>
                 </Card>
@@ -358,6 +297,7 @@
 </template>
 
 <script>
+import "../css/weibo-item.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 

@@ -1,6 +1,6 @@
 <style scoped>
 .main {
-    padding-top: 20px;
+   
 }
 
 .content {

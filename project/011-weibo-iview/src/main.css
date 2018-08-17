@@ -90,3 +90,29 @@ img {
     color: #2db7f5;
 }
 
+.cl-hv-all>*:hover {
+    color: #2db7f5;
+}
+
+/* 卡片下间距 */
+.card-mgb {
+    margin-bottom: 15px;
+}
+
+/* 带文字的图片右间隔 */
+.icon-mgr {
+    font-style: normal;
+    margin-right: 4px;
+}
+
+
+/* 关注、粉丝，类名待修改 */
+
+.user-atten li {
+    padding: 0 16px;
+    border-right: 1px solid #ccc;
+}
+
+.user-atten li:last-child {
+    border: 0;
+}

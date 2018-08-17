@@ -1,6 +1,6 @@
 <style scoped>
 .main {
-    padding-top: 20px;
+    
     background: #e6ecf0;
     height: 100%;
 }
