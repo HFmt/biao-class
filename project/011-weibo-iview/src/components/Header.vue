@@ -34,7 +34,7 @@
     line-height: 47px;
 }
 
-.nav-router-items::after {
+.nav-router-items.ivu-menu::after {
     height: 0;
 }
 
@@ -64,7 +64,7 @@
                     </Col>
                     <Col span="13" class="nav-right">
                     <Menu mode="horizontal" theme="light" :active-name="defRouter" class="nav-router-items">
-                        <MenuItem name="/userPage" to="/userPage" class="nav-router-item">
+                        <MenuItem name="/personalPage" to="/personalPage" class="nav-router-item">
                         <Icon type="md-person " size="24" />
                         <span>捡了只猫</span>
                         </MenuItem>

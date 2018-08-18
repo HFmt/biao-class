@@ -14,7 +14,7 @@ import 'iview/dist/styles/iview.css';
 Vue.config.productionTip = false;
 
 import Home from "./page/Home";
-import UserPage from "./page/UserPage";
+import PersonalPage from "./page/PersonalPage";
 import SignIn from "./page/SignIn";
 import SignUp from "./page/SignUp";
 
@@ -28,8 +28,8 @@ const routerConfig = {
       component: Home
     },
     {
-      path: '/userPage',
-      component: UserPage
+      path: '/personalPage',
+      component: PersonalPage
     },
     {
       path: '/signIn',

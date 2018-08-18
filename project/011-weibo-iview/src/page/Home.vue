@@ -159,94 +159,7 @@
                     </div>
                 </Card>
                 <Row class="weibo-items">
-                    <Card class="weibo-item card-mgb">
-                        <Row>
-                            <Col span="3">
-                            <Poptip trigger="hover" placement="top" width="400">
-                                <div class="user-portrait">
-                                    <router-link to="/">
-                                        <img src="http://placekitten.com/230/75" alt="">
-                                    </router-link>
-                                </div>
-                                <div slot="content" class="user-poptip">
-                                    <img src="http://placekitten.com/230/75" alt="">
-                                </div>
-                            </Poptip>
-                            </Col>
-                            <Col span="21">
-                            <div class="info-head cf">
-                                <div class="userinfo col">
-                                    <router-link to="/" class="username">
-                                        jlzm
-                                    </router-link>
-                                </div>
-                                <Dropdown class="flr">
-                                    <Icon type="md-arrow-dropdown" class="cp cl-hv" size="30" />
-                                    <DropdownMenu slot="list">
-                                        <DropdownItem>驴打滚</DropdownItem>
-                                        <DropdownItem>炸酱面</DropdownItem>
-                                        <DropdownItem disabled>豆汁儿</DropdownItem>
-                                        <DropdownItem>冰糖葫芦</DropdownItem>
-                                        <DropdownItem divided>北京烤鸭</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown>
-                            </div>
-                            <div class="weibo-time">
-                                {{weiboTime}}分钟之前发布
-                            </div>
-                            <div class="weibo-detail-wrap">
-                                <p class="detail-text">
-                                    如果给你100w，7天后要你归还本金。你会怎么实现利益最大化？ Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maiores corrupti dolorum odit ex nam nostrum aperiam? Ullam
-                                </p>
-                                <div class="detail-thumbnail-items">
-                                    <img src="http://placekitten.com/230/150" alt="">
-                                </div>
-                            </div>
-                            </Col>
-                        </Row>
-                        <Row class="weibo-operation-items tac cp-all cl-hv-all">
-                            <Col span="6">
-                            <span class="operation-item db">
-                                <span class="tooltip">
-                                    <em class="icon-mgr">
-                                        <Icon type="md-heart" size="24" />
-                                    </em>
-                                    <span>收藏</span>
-                                </span>
-                            </span>
-                            </Col>
-                            <Col span="6">
-                            <span class="operation-item db">
-                                <span class="tooltip">
-                                    <em class="icon-mgr">
-                                        <Icon type="md-share" size="24" />
-                                    </em>
-                                    <span>转发</span>
-                                </span>
-                            </span>
-                            </Col>
-                            <Col span="6">
-                            <span class="operation-item db">
-                                <span class="tooltip">
-                                    <em class="icon-mgr">
-                                        <Icon type="md-text" size="24" />
-                                    </em>
-                                    <span>999</span>
-                                </span>
-                            </span>
-                            </Col>
-                            <Col span="6">
-                            <span class="operation-item db">
-                                <span>
-                                    <em class="icon-mgr">
-                                        <Icon type="md-thumbs-up" size="24" />
-                                    </em>
-                                    <span>999</span>
-                                </span>
-                            </span>
-                            </Col>
-                        </Row>
-                    </Card>
+                    <WeiboItem/>
                 </Row>
                 </Col>
                 <Col span="6" class="main-right">
@@ -292,38 +205,21 @@
             </Col>
             <!-- <Col span="6"></Col> -->
         </Row>
-        <Footer/> {{weiboTime}}
+        <Footer/>
     </div>
 </template>
 
 <script>
-import "../css/weibo-item.css";
+import WeiboItem from '../components/WeiboItem';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default {
     components: {
         Header,
+        WeiboItem,
         Footer
     },
 
-    data() {
-        return {
-            weiboTime: ""
-        };
-    },
-    mounted() {
-        this.getOldTime();
-    },
-    methods: {
-        getOldTime() {
-            let date = new Date();
-            this.weiboTime = date.getMinutes();
-            setInterval(() => {
-                let date = new Date();
-                this.weiboTime = date.getMinutes();
-            }, 60);
-        }
-    }
 };
 </script>
