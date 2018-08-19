@@ -10,7 +10,7 @@ html {
 
 body {
     height: 100%;
-    background: #e6ecf0;
+    background-color: #e6ecf0 !important;
 }
 
 img {
@@ -20,6 +20,10 @@ img {
 
 .container {
     margin: 0 auto;
+}
+
+.main {
+    margin-top: 34px;
 }
 
 .col {

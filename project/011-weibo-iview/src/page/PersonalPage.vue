@@ -50,11 +50,11 @@
                     </MenuItem>
                     <MenuItem name="/signUp" to="/signUp" class="cover-operation-item">
                     <Icon type="md-home" size="20" />
-                    <span>注册</span>
+                    <span>相册</span>
                     </MenuItem>
                     <MenuItem name="/" to="/" class="cover-operation-item">
                     <Icon type="md-home" size="20" />
-                    <span>首页</span>
+                    <span>设置</span>
                     </MenuItem>
                 </Menu>
             </Card>
@@ -104,6 +104,7 @@
                         </p>
                     </div>
                 </Card>
+                <Card></Card>
                 </Col>
                 <Col span="16">
                 <Row class="weibo-items">

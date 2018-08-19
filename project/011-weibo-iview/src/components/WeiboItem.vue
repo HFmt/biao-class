@@ -1,32 +1,50 @@
 <style>
-/* 微博信息卡片 */
+/* weibo Card */
 
 /* search */
 
-/* iview Card  */
+.weibo-nav-wrap {
+    display: flex;
+    align-items: center;
+}
 
-.weibo-search-wrap .ivu-card-body {
-    padding-top: 0;
-    padding-bottom: 0;
+/* iview Card Reset*/
+
+.weibo-nav-card .ivu-card-body {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.weibo-nav-items.ivu-menu::after {
+    height: 0;
 }
 
 .weibo-nav-item.ivu-menu-item {
     padding: 0 10px;
 }
 
+.weibo-nav-items.ivu-menu .weibo-nav-item.ivu-menu-item,
+.weibo-nav-items.ivu-menu .weibo-nav-item.ivu-menu-submenu {
+    border: 0;
+}
 
+.weibo-nav-items.ivu-menu .weibo-nav-item.ivu-menu-item:hover,
+.weibo-nav-items.ivu-menu .weibo-nav-item.ivu-menu-submenu:hover {
+    border: 0;
+}
+
+.weibo-form.ivu-form-item {
+    margin: 0;
+}
+
+/* iview Card Reset End*/
 
 .weibo-nav-items {
     height: 37px;
     line-height: 37px;
 }
 
-
-
-
 /* search End*/
-
-
 
 .weibo-content-item {
     margin-bottom: 15px;
@@ -98,30 +116,40 @@
 .user-portrait img {
     min-height: 100%;
 }
-
-
-.weibo-nav-items.ivu-menu::after {
-    height: 0;
-}
 </style>
 
 <template>
     <div>
-        <Card class="weibo-search-wrap card-mgb">
-            <Menu mode="horizontal" theme="light" class="weibo-nav-items">
-                <MenuItem name="/personalPage" to="/personalPage" class="weibo-nav-item">
-                <Icon type="md-home " size="20" />
-                <span>主页</span>
-                </MenuItem>
-                <MenuItem name="/signUp" to="/signUp" class="weibo-nav-item">
-                <Icon type="md-home" size="20" />
-                <span>注册</span>
-                </MenuItem>
-                <MenuItem name="/" to="/" class="weibo-nav-item">
-                <Icon type="md-home" size="20" />
-                <span>首页</span>
-                </MenuItem>
-            </Menu>
+        <Card class="weibo-nav-card card-mgb">
+            <Row class="weibo-nav-wrap">
+                <Col span="14">
+                <Menu mode="horizontal" theme="light" class="weibo-nav-items dib">
+                    <MenuItem name="1" class="weibo-nav-item">
+                    <span>全部</span>
+                    </MenuItem>
+                    <Submenu name="2" class="weibo-nav-item">
+                        <template slot="title">
+                            <span>原创</span>
+                        </template>
+                        <MenuItem name="3-1">图片</MenuItem>
+                        <MenuItem name="3-2">视频</MenuItem>
+                        <MenuItem name="3-3">音乐</MenuItem>
+                        <MenuItem name="3-3">文章</MenuItem>
+                    </Submenu>
+                </Menu>
+                </Col>
+                <Col span="10">
+                <Form @submit.native ="test()" class="weibo-search-wrap">
+                    <FormItem class="weibo-form">
+                        <!-- <Input class="weibo-search">
+                            <Icon type="ios-search" slot="suffix" />
+                        </Input> -->
+                        <Input icon="md-search" @on-click="test()" placeholder="Enter something..." />
+                    </FormItem>
+                </Form>
+                </Col>
+            </Row>
+
         </Card>
         <Card class="weibo-content-item card-mgb">
             <Row>
@@ -226,6 +254,10 @@ export default {
         this.getOldTime();
     },
     methods: {
+        test() {
+            console.log('1:', 1);
+            alert(1)
+        },
         getOldTime() {
             let date = new Date();
             this.weiboTime = date.getMinutes();

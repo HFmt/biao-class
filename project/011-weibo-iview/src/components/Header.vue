@@ -38,11 +38,11 @@
     height: 0;
 }
 
-/* .nav-router-items .nav-router-item {
+/* .nav-router-item.ivu-menu-item {
     border: 0;
 }
 
-.nav-router-items .nav-router-item:hover {
+.nav-router-item.ivu-menu-item:hover {
     border: 0;
 } */
 </style>
