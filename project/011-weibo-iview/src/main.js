@@ -25,26 +25,49 @@ Vue.use(iView);
 const routerConfig = {
   routes: [{
       path: '/',
-      component: Home
+      component: Home,
+      meta: {
+        title: '首页'
+      }
     },
     {
       path: '/personalPage',
-      component: PersonalPage
+      component: PersonalPage,
+      meta: {
+        title: '个人中心'
+      }
     },
     {
       path: '/signIn',
-      component: SignIn
+      component: SignIn,
+      meta: {
+        title: '登入'
+      }
     },
     {
       path: '/signUp',
-      component: SignUp
+      component: SignUp,
+      meta: {
+        title: '注册'
+      }
     },
   ]
 };
 
+
+
+
 const router = new VueRouter(
   routerConfig
-)
+);
+
+
+router.beforeEach((to, from, next) => {
+  next();
+
+  document.title = to.meta.title;
+});
+
 new Vue({
   render: h => h(App),
   router

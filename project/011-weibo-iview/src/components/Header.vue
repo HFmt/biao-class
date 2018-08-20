@@ -64,9 +64,9 @@
                     </Col>
                     <Col span="13" class="nav-right">
                     <Menu mode="horizontal" theme="light" :active-name="defRouter" class="nav-router-items">
-                        <MenuItem name="/personalPage" to="/personalPage" class="nav-router-item">
+                        <MenuItem v-if="uinfo" name="/personalPage" to="/personalPage" class="nav-router-item">
                         <Icon type="md-person " size="24" />
-                        <span>捡了只猫</span>
+                        <span>{{uinfo.username}}</span>
                         </MenuItem>
                         <MenuItem name="/signIn" to="/signIn" class="nav-router-item">
                         <Icon type="md-home " size="24" />
@@ -94,7 +94,7 @@
                         <DropdownItem>炸酱面</DropdownItem>
                         <DropdownItem disabled>豆汁儿</DropdownItem>
                         <DropdownItem>冰糖葫芦</DropdownItem>
-                        <DropdownItem divided>北京烤鸭</DropdownItem>
+                        <DropdownItem @click.native="signOut()" divided>退出</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
                 </Col>
@@ -104,6 +104,7 @@
 </template>
 
 <script>
+import session from "../lib/session";
 export default {
     props: {
         defRouter: {
@@ -111,7 +112,17 @@ export default {
         }
     },
     data() {
-        return {};
+        return {
+            uinfo: session.uinfo()
+        };
+    },
+    methods: {
+        signOut() {
+            console.log('1:', 1);
+            
+            session.signOut();
+        }
     }
+
 };
 </script>

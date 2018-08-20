@@ -24,25 +24,44 @@
                 账号登入
             </h2>
             <Card class="signIn-wrap">
-                <Form class="signIn-form" ref="formValidate" :model="formValidate" :rules="ruleValidate">
-                    <FormItem prop="account">
-                        <Input v-model="formValidate.account" placeholder="手机号、邮箱或用户名">
-                            <Icon type="md-person" slot="prefix"/>
-                        </Input>
-                    </FormItem>
-                    <FormItem prop="password">
-                        <Input v-model="formValidate.password" type="password" placeholder="密码">
+                <Form @submit.native.prevent="handleSubmit('formValidate')" class="signIn-form" ref="formValidate" :model="formValidate" :rules="ruleValidate">
+                    <div v-if="accountSignIn">
+                        <FormItem prop="account">
+                            <Input v-model="formValidate.account" placeholder="手机号码、邮箱或用户名">
+                            <Icon type="md-person" slot="prefix" />
+                            </Input>
+                        </FormItem>
+                        <FormItem prop="password">
+                            <Input v-model="formValidate.password" type="password" placeholder="密码">
                             <Icon type="md-lock" slot="prefix" />
-                        </Input>
-                    </FormItem>
+                            </Input>
+                        </FormItem>
+                    </div>
+                    <div v-else>
+                        <FormItem prop="phoneCode">
+                            <Input v-model="formValidate.phoneCode" placeholder="手机号码">
+                            <Icon type="md-phone-portrait" slot="prefix" />
+                            </Input>
+                        </FormItem>
+                        <FormItem prop="securityCode">
+                            <Row>
+                                <Col span="16">
+                                <Input v-model="formValidate.securityCode" placeholder="手机验证码">
+                                <Icon type="md-key" slot="prefix" />
+                                </Input>
+                                </Col>
+                                <Col span="8">
+                                <Button type="primary" long>获取手机验证码</Button>
+                                </Col>
+                            </Row>
+                        </FormItem>
+                    </div>
                     <FormItem prop="interest">
-                        <CheckboxGroup>
-                            <Checkbox label="记住我"></Checkbox>
-                        </CheckboxGroup>
+                        <span @click="accountSignIn=!accountSignIn" class="cp cl-hv">手机验证码登入</span>
                     </FormItem>
                     <FormItem>
-                        <Button type="primary">登入</Button>
-                        <Button @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
+                        <Button html-type="submit" type="primary">登入</Button>
+                        <Button @click.native="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
                     </FormItem>
                 </Form>
             </Card>
@@ -53,20 +72,44 @@
 </template>
 
 <script>
+import api from "../lib/api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import session from "../lib/session";
 
 export default {
     components: {
         Header,
         Footer
     },
-        data() {
+    data() {
+        const validatePass = (rule, value, callback) => {
+            if (value === "") {
+                callback(new Error("Please enter your password"));
+            } else {
+                if (this.formCustom.passwdCheck !== "") {
+                    // 对第二个密码框单独验证
+                    this.$refs.formCustom.validateField("passwdCheck");
+                }
+                callback();
+            }
+        };
+        const validatePassCheck = (rule, value, callback) => {
+            if (value === "") {
+                callback(new Error("Please enter your password again"));
+            } else if (value !== this.formCustom.passwd) {
+                callback(new Error("The two input passwords do not match!"));
+            } else {
+                callback();
+            }
+        };
         return {
+            accountSignIn: true,
             formValidate: {
                 account: "",
-                password: '',
-
+                password: "",
+                phoneCode: "",
+                securityCode: ""
             },
             ruleValidate: {
                 account: [
@@ -82,23 +125,57 @@ export default {
                         message: "请输入密码",
                         trigger: "blur"
                     }
-                ],
+                ]
             }
         };
-    }, 
+    },
     methods: {
-            handleSubmit (name) {
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        this.$Message.success('Success!');
-                    } else {
-                        this.$Message.error('Fail!');
-                    }
-                })
-            },
-            handleReset (name) {
-                this.$refs[name].resetFields();
-            }
+        handleSubmit(name) {
+            this.$refs[name].validate(valid => {
+                if (valid) {
+                    let account, password;
+                    account = this.formValidate.account;
+                    password = this.formValidate.password;
+                    console.log('account:', account);
+
+                    console.log('password:', password);
+                    
+                    
+                    api
+                        .api("user/read", {
+                            where: {
+                                or: [
+                                    ["username", "=", account],
+                                    ["phone", "=", account],
+                                    ["mail", "=", account],
+                                    ["password", "=", password],
+                                ]
+                            }
+                        })
+                        .then(res => {
+                            console.log('res.data:', res.data);
+                            
+                            let item;
+                            if (
+                                !(item = res.data[0]) ||
+                                item.password !== password
+                            ) {
+                                this.$Message.error("?");
+                                return;
+                            }
+                            session.signIn(item);
+                            this.$router.push("/");
+                        });
+
+                    this.$Message.success("登入成功");
+                } else {
+                    this.$Message.error("账号密码错误");
+                }
+            });
+        },
+        handleReset(name) {
+            this.$refs[name].resetFields();
         }
+    }
 };
 </script>
