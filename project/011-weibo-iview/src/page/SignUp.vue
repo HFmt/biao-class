@@ -17,7 +17,7 @@
 
 <template>
     <div>
-        <Header defRouter="/signIn" />
+        <Header defRouter="/signUp" />
         <Row class="main">
             <Col span="9" class="container">
             <h2 class="signIn-title tac">
@@ -26,7 +26,7 @@
             <Card class="signIn-wrap">
                 <Form class="signIn-form" ref="formValidate" :model="formValidate" :rules="ruleValidate">
                     <FormItem label="用户名" prop="username">
-                        <Input v-model="formValidate.username" type="password" placeholder="">
+                        <Input v-model="formValidate.username" placeholder="不可包含特殊字符">
                         </Input>
                     </FormItem>
                     <FormItem label="邮箱" prop="mail">
@@ -36,14 +36,14 @@
                     <FormItem>
                         <Row :gutter="14">
                             <Col span="12">
-                            <FormItem label="密码">
-                                <Input type="password" placeholder="">
+                            <FormItem label="密码" prop="password">
+                                <Input v-model="formValidate.password" type="password" placeholder="">
                                 </Input>
                             </FormItem>
                             </Col>
                             <Col span="12">
-                            <FormItem label="确认密码">
-                                <Input type="password" placeholder="">
+                            <FormItem label="确认密码" prop="confirmPassword">
+                                <Input v-model="formValidate.confirmPassword" type="password" placeholder="">
                                 </Input>
                             </FormItem>
                             </Col>
@@ -51,7 +51,7 @@
                     </FormItem>
                     <FormItem>
                         <Button type="primary">注册</Button>
-                        <Button style="margin-left: 8px">重置</Button>
+                        <Button @click="handleReset('formValidate')"  style="margin-left: 8px">重置</Button>
                     </FormItem>
 
                 </Form>
@@ -73,22 +73,18 @@ export default {
     },
     data() {
         return {
-            labelPosition: "right",
             formValidate: {
-                name: "",
+                username: "",
                 mail: "",
-                city: "",
-                gender: "",
-                interest: [],
-                date: "",
-                time: "",
-                desc: ""
+                password: '',
+                confirmPassword: ''
+
             },
             ruleValidate: {
                 username: [
                     {
-                        required: false,
-                        message: "邮箱为必填项",
+                        required: true,
+                        message: "用户名为必填项",
                         trigger: "blur"
                     }
                 ],
@@ -100,12 +96,40 @@ export default {
                     },
                     {
                         type: "email",
-                        message: "Incorrect email format",
+                        message: "邮箱格式错误",
                         trigger: "blur"
                     }
-                ]
+                ],
+                password: [
+                    {
+                        required: true,
+                        message: "密码为必填项",
+                        trigger: "blur"
+                    }
+                ],
+                confirmPassword: [
+                    {
+                        required: true,
+                        message: "请确认密码",
+                        trigger: "blur"
+                    }
+                ],
             }
         };
-    }
+    }, 
+    methods: {
+            handleSubmit (name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('Success!');
+                    } else {
+                        this.$Message.error('Fail!');
+                    }
+                })
+            },
+            handleReset (name) {
+                this.$refs[name].resetFields();
+            }
+        }
 };
 </script>

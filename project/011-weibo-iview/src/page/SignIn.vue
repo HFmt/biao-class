@@ -24,14 +24,14 @@
                 账号登入
             </h2>
             <Card class="signIn-wrap">
-                <Form class="signIn-form">
-                    <FormItem >
-                        <Input placeholder="手机号、邮箱或用户名">
+                <Form class="signIn-form" ref="formValidate" :model="formValidate" :rules="ruleValidate">
+                    <FormItem prop="account">
+                        <Input v-model="formValidate.account" placeholder="手机号、邮箱或用户名">
                             <Icon type="md-person" slot="prefix"/>
                         </Input>
                     </FormItem>
-                    <FormItem>
-                        <Input type="password" placeholder="密码">
+                    <FormItem prop="password">
+                        <Input v-model="formValidate.password" type="password" placeholder="密码">
                             <Icon type="md-lock" slot="prefix" />
                         </Input>
                     </FormItem>
@@ -42,7 +42,7 @@
                     </FormItem>
                     <FormItem>
                         <Button type="primary">登入</Button>
-                        <Button style="margin-left: 8px">重置</Button>
+                        <Button @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
                     </FormItem>
                 </Form>
             </Card>
@@ -61,10 +61,44 @@ export default {
         Header,
         Footer
     },
-    data() {
+        data() {
         return {
-            labelPosition: "right"
+            formValidate: {
+                account: "",
+                password: '',
+
+            },
+            ruleValidate: {
+                account: [
+                    {
+                        required: true,
+                        message: "请输入账号",
+                        trigger: "blur"
+                    }
+                ],
+                password: [
+                    {
+                        required: true,
+                        message: "请输入密码",
+                        trigger: "blur"
+                    }
+                ],
+            }
         };
-    }
+    }, 
+    methods: {
+            handleSubmit (name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('Success!');
+                    } else {
+                        this.$Message.error('Fail!');
+                    }
+                })
+            },
+            handleReset (name) {
+                this.$refs[name].resetFields();
+            }
+        }
 };
 </script>
