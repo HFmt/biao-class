@@ -174,7 +174,8 @@
                         <div class="user-intro tac">
                             <div class="user-title-wrap">
                                 <router-link to="/signIn">
-                                    <span class="title">捡了只猫</span>
+                                    <span v-if="uinfo" class="title">{{uinfo.username}}</span>
+                                    <span v-else>首页待完善</span>
                                 </router-link>
                             </div>
                             <Row class="user-atten">
@@ -214,12 +215,19 @@ import WeiboItem from '../components/WeiboItem';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+import session from "../lib/session";
+
 export default {
     components: {
         Header,
         WeiboItem,
         Footer
     },
+    data() {
+        return {
+            uinfo: session.uinfo()
+        }
+    }
 
 };
 </script>
