@@ -136,38 +136,30 @@ export default {
                     let account, password;
                     account = this.formValidate.account;
                     password = this.formValidate.password;
-                    console.log('account:', account);
 
-                    console.log('password:', password);
-                    
-                    
                     api
                         .api("user/read", {
                             where: {
                                 or: [
                                     ["username", "=", account],
                                     ["phone", "=", account],
-                                    ["mail", "=", account],
-                                    ["password", "=", password],
+                                    ["mail", "=", account]
                                 ]
                             }
                         })
                         .then(res => {
-                            console.log('res.data:', res.data);
-                            
                             let item;
                             if (
                                 !(item = res.data[0]) ||
                                 item.password !== password
                             ) {
-                                this.$Message.error("?");
+                                this.$Message.error("账号密码错误");
                                 return;
                             }
                             session.signIn(item);
                             this.$router.push("/");
+                            this.$Message.success("登入成功");
                         });
-
-                    this.$Message.success("登入成功");
                 } else {
                     this.$Message.error("账号密码错误");
                 }

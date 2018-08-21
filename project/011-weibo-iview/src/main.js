@@ -14,6 +14,7 @@ import 'iview/dist/styles/iview.css';
 Vue.config.productionTip = false;
 
 import Home from "./page/Home";
+import Found from "./page/Found";
 import PersonalPage from "./page/PersonalPage";
 import SignIn from "./page/SignIn";
 import SignUp from "./page/SignUp";
@@ -28,6 +29,13 @@ const routerConfig = {
       component: Home,
       meta: {
         title: '首页'
+      }
+    },
+    {
+      path: '/found',
+      component: Found,
+      meta: {
+        title: '发现'
       }
     },
     {

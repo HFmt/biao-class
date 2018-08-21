@@ -51,12 +51,12 @@
     <div>
         <div class="header">
             <Row class="nav-wrap">
-                <Col span="6" class="logo tar">
+                <Col span="5" class="logo tar">
                 <router-link to="/">
                     Logooooooooooo
                 </router-link>
                 </Col>
-                <Col span="12">
+                <Col span="14">
                 <Row class="nav">
                     <Col span="11 " class="nav-left">
                     <AutoComplete icon="ios-search" placeholder="input here">
@@ -68,13 +68,17 @@
                         <Icon type="md-person " size="24" />
                         <span>{{uinfo.username}}</span>
                         </MenuItem>
-                        <MenuItem name="/signIn" to="/signIn" class="nav-router-item">
-                        <Icon type="md-home " size="24" />
+                        <MenuItem v-if="!uinfo" name="/signIn" to="/signIn" class="nav-router-item">
+                        <Icon type="md-person " size="24" />
                         <span>登入</span>
                         </MenuItem>
                         <MenuItem name="/signUp" to="/signUp" class="nav-router-item">
-                        <Icon type="md-home" size="24" />
+                        <Icon type="md-person-add" size="24" />
                         <span>注册</span>
+                        </MenuItem>
+                        <MenuItem name="/found" to="/found" class="nav-router-item">
+                        <Icon type="md-eye" size="24" />
+                        <span>发现</span>
                         </MenuItem>
                         <MenuItem name="/" to="/" class="nav-router-item">
                         <Icon type="md-home" size="24" />
@@ -84,7 +88,7 @@
                     </Col>
                 </Row>
                 </Col>
-                <Col span="6" class="tal">
+                <Col span="5" class="tal">
                 <Dropdown trigger="hover">
                     <span class="cp">
                         <Icon type="md-settings cl-hv" size="24" />
@@ -118,11 +122,9 @@ export default {
     },
     methods: {
         signOut() {
-            console.log('1:', 1);
-            
             session.signOut();
+            this.$router.push("/signIn");
         }
     }
-
 };
 </script>

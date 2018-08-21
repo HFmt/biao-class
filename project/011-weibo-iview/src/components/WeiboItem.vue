@@ -120,44 +120,13 @@
 
 <template>
     <div>
-        <Card class="weibo-nav-card card-mgb">
-            <Row class="weibo-nav-wrap">
-                <Col span="14">
-                <Menu mode="horizontal" theme="light" class="weibo-nav-items dib">
-                    <MenuItem name="1" class="weibo-nav-item">
-                    <span>全部</span>
-                    </MenuItem>
-                    <Submenu name="2" class="weibo-nav-item">
-                        <template slot="title">
-                            <span>原创</span>
-                        </template>
-                        <MenuItem name="3-1">图片</MenuItem>
-                        <MenuItem name="3-2">视频</MenuItem>
-                        <MenuItem name="3-3">音乐</MenuItem>
-                        <MenuItem name="3-3">文章</MenuItem>
-                    </Submenu>
-                </Menu>
-                </Col>
-                <Col span="10">
-                <Form @submit.native ="test()" class="weibo-search-wrap">
-                    <FormItem class="weibo-form">
-                        <!-- <Input class="weibo-search">
-                            <Icon type="ios-search" slot="suffix" />
-                        </Input> -->
-                        <Input icon="md-search" @on-click="test()" placeholder="Enter something..." />
-                    </FormItem>
-                </Form>
-                </Col>
-            </Row>
-
-        </Card>
         <Card class="weibo-content-item card-mgb">
             <Row>
                 <Col span="3">
                 <Poptip trigger="hover" placement="top" width="400">
                     <div class="user-portrait">
                         <router-link to="/">
-                            <img src="http://placekitten.com/230/75" alt="">
+                            <img :src="item && item.portrait || 'http://placekitten.com/150/75'" alt="">
                         </router-link>
                     </div>
                     <div slot="content" class="user-poptip">
@@ -169,7 +138,7 @@
                 <div class="info-head cf">
                     <div class="userinfo col">
                         <router-link to="/" class="username">
-                            jlzm
+                            {{item && item.$user && item.$user.username || '账号已注销'}}
                         </router-link>
                     </div>
                     <Dropdown class="flr">
@@ -184,14 +153,14 @@
                     </Dropdown>
                 </div>
                 <div class="weibo-time">
-                    {{weiboTime}}分钟之前发布
+                    {{item && item.time || '-'}}
                 </div>
                 <div class="weibo-detail-wrap">
                     <p class="detail-text">
-                        如果给你100w，7天后要你归还本金。你会怎么实现利益最大化？ Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maiores corrupti dolorum odit ex nam nostrum aperiam? Ullam
+                        {{item && item.text || '文字内容'}}
                     </p>
                     <div class="detail-thumbnail-items">
-                        <img src="http://placekitten.com/230/150" alt="">
+                        <img :src="item && item.portrait || 'http://placekitten.com/230/150'" alt="">
                     </div>
                 </div>
                 </Col>
@@ -242,6 +211,13 @@
 import Header from "../components/Header";
 
 export default {
+    props: {
+        item: {
+            default() {
+                return {};
+            }
+        }
+    },
     components: {
         Header
     },
@@ -251,21 +227,10 @@ export default {
         };
     },
     mounted() {
-        this.getOldTime();
+        
     },
     methods: {
-        test() {
-            console.log('1:', 1);
-            alert(1)
-        },
-        getOldTime() {
-            let date = new Date();
-            this.weiboTime = date.getMinutes();
-            setInterval(() => {
-                let date = new Date();
-                this.weiboTime = date.getMinutes();
-            }, 60);
-        }
+
     }
 };
 </script>

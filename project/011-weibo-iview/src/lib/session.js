@@ -17,9 +17,8 @@ export default {
         this.uinfo();
     },
 
-    signOut(url) {
+    signOut() {
         localStorage.removeItem('uinfo_weibo');
-        location.href = url || '/';
     },
 
     isAdmin() {

@@ -20,8 +20,7 @@
         methods: {
             getPhoneVerificationCode() {
                 if(!this.formValidate.phone || this.count.phone) {
-                    console.log('手机号码有误:');
-                    
+                    this.$Message.error("手机号码不能为空");
                     return
                 }
 

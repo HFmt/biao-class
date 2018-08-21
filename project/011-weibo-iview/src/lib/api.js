@@ -1,32 +1,34 @@
  import axios from 'axios';
 
-const key = "92c59a9bbd34c349db233adca806b8da86f92cf4444165cae422ff2f2088c33d";
+ const key = '92c59a9bbd34c349db233adca806b8da86f92cf4444165cae422ff2f2088c33d';
 
-const baseApi = "http://mock.biaoyansu.com/api/1/";
+ const baseApi = "http://mock.biaoyansu.com/api/1/";
 
-const sign = (key, timestamp) => {
-    return btoa(key + timestamp);
-}
+ const sign = (key, timestamp) => {
+     return btoa(key + timestamp);
+ }
 
-const api = (url, params) => {
-    let timestamp = (new Date).getTime();
-    let signature = sign(key, timestamp);
+ const api = (url, params) => {
+     let timestamp = (new Date).getTime();
+     let signature = sign(key, timestamp);
 
-    let opt = {
-        headers: {
-            'biao-mock-app-key': key,
-            'biao-mock-timestamp': timestamp,
-            'biao-mock-signature': signature,
-        }
-    }
+     let opt = {
+         headers: {
+             'biao-mock-app-key': key,
+             'biao-mock-timestamp': timestamp,
+             'biao-mock-signature': signature,
+         }
+     }
 
-    url = baseApi + url;
+     url = baseApi + url;
 
-    return axios.post(url, params, opt).then(res => {
-        return res.data;
-    });
-}
+     return axios
+         .post(url, params, opt)
+         .then(res => {
+             return res.data;
+         })
+ }
 
-export default {
-    api
-}
+ export default {
+     api
+ }

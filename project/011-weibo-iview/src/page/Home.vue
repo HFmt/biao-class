@@ -52,8 +52,6 @@
     border: 3px solid #fff;
 }
 
-
-
 .head-portrait img {
     min-height: 100%;
 }
@@ -74,10 +72,45 @@
         <Header defRouter="/" />
         <Row class="main">
             <!-- <Col span="6"></Col> -->
-            <Col span="12" class="container">
+            <Col span="14" class="container">
             <Row :gutter="14">
-                <Col span="3" class="main-middle">
-                <ul class="sidebar-router-items">
+                <Col span="5" class="main-middle">
+                <Card>
+                    <p slot="title">
+                        <span class="suggested-title">推荐关注</span>
+                        <span>刷新</span>
+                        <span>全部</span>
+                    </p>
+                    <div v-for="(item, index) in allList.user" class="suggested-users">
+                        <Row>
+                            <Col span="8">
+                            <Poptip trigger="hover" placement="top" width="400">
+                                <div class="user-portrait">
+                                    <router-link to="/">
+                                        <img :src="item.portrait || 'http://placekitten.com/150/75'" alt="">
+                                    </router-link>
+                                </div>
+                                <div slot="content" class="user-poptip">
+                                    <img src="http://placekitten.com/230/75" alt="">
+                                </div>
+                            </Poptip>
+                            </Col>
+                            <Col span="16">
+                            
+                            <div class="userinfo">
+                                
+                                <router-link to="/" class="username">
+                                    {{item.username}}
+                                </router-link>
+                            </div>
+                            
+                            <Button v-if="hasFollower(item.id)"  @click.native="unfollower(item.id)" type="primary">取消关注</Button>
+                            <Button v-else @click.native="follower(item.id)" type="primary">关注</Button>
+                            </Col>
+                        </Row>
+                    </div>
+                </Card>
+                <!-- <ul class="sidebar-router-items">
                     <li class="sidebar-router-item">
                         <router-link to="/" class="db">
                             首页
@@ -118,15 +151,15 @@
                             首页
                         </router-link>
                     </li>
-                </ul>
+                </ul> -->
                 </Col>
-                <Col span="15" class="main-middle">
+                <Col span="13" class="main-middle">
                 <Card class="card-mgb">
                     <div>
                         <p class="title">有什么新鲜事想告诉大家?</p>
-                        <Form>
+                        <Form @submit.native.prevent="publishWeibo()">
                             <FormItem>
-                                <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..." />
+                                <Input v-model="publishContent.text" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..." />
                             </FormItem>
                             <FormItem>
                                 <Col span="18">
@@ -152,14 +185,45 @@
                                 </ul>
                                 </Col>
                                 <Col span="6 tar">
-                                <Button type="primary">发布</Button>
+                                <Button @click.native="publishWeibo()" type="primary">发布</Button>
                                 </Col>
                             </FormItem>
                         </Form>
                     </div>
                 </Card>
                 <Row class="weibo-items">
-                    <WeiboItem/>
+                    <Card class="weibo-nav-card card-mgb">
+                        <Row class="weibo-nav-wrap">
+                            <Col span="12">
+                            <Menu mode="horizontal" theme="light" class="weibo-nav-items dib">
+                                <MenuItem name="1" class="weibo-nav-item">
+                                <span>全部</span>
+                                </MenuItem>
+                                <Submenu name="2" class="weibo-nav-item">
+                                    <template slot="title">
+                                        <span>原创</span>
+                                    </template>
+                                    <MenuItem name="3-1">图片</MenuItem>
+                                    <MenuItem name="3-2">视频</MenuItem>
+                                    <MenuItem name="3-3">音乐</MenuItem>
+                                    <MenuItem name="3-3">文章</MenuItem>
+                                </Submenu>
+                            </Menu>
+                            </Col>
+                            <Col span="10">
+                            <Form @submit.native="test()" class="weibo-search-wrap">
+                                <FormItem class="weibo-form">
+                                    <!-- <Input class="weibo-search">
+                                            <Icon type="ios-search" slot="suffix" />
+                                </Input> -->
+                                    <Input icon="md-search" @on-click="test()" placeholder="Enter something..." />
+                                </FormItem>
+                            </Form>
+                            </Col>
+                        </Row>
+
+                    </Card>
+                    <WeiboItem v-for="(item, index) in allList.weibo" :key="index" :item="item" />
                 </Row>
                 </Col>
                 <Col span="6" class="main-right">
@@ -211,13 +275,16 @@
 </template>
 
 <script>
-import WeiboItem from '../components/WeiboItem';
+import api from "../lib/api";
+
+import WeiboItem from "../components/WeiboItem";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import GReadInfo from "../mixins/GReadInfo";
 import session from "../lib/session";
 
 export default {
+    mixins: [GReadInfo],
     components: {
         Header,
         WeiboItem,
@@ -225,9 +292,106 @@ export default {
     },
     data() {
         return {
-            uinfo: session.uinfo()
+            allList: {},
+            publishContent: {},
+            uinfo: session.uinfo(),
+            followerWith: [
+                {
+                    relation: "belongs_to_many",
+                    model: "user"
+                }
+            ],
+            weiboWith: [
+                {
+                    relation: "belongs_to",
+                    model: "user"
+                }
+            ]
+        };
+    },
+    mounted() {
+        this.readSuggestedUser();
+        this.readWeiboPublic(); 
+    },
+    methods: {
+        // 发布微博
+        publishWeibo() {
+            this.publishContent.time = this.getCurrentTime();
+            this.publishContent.user_id = this.uinfo.id;
+            api.api("weibo/create", this.publishContent).then(res => {
+                this.publishContent = {};
+                this.allList.weibo.push(res.data);
+                this.readWeiboPublic();
+            });
+        },
+        // 渲染全部微博
+        readWeiboPublic() {
+            this.gReadInfo("weibo", this.allList, {
+                with: this.weiboWith
+            });
+        },
+        // 渲染全部用户
+        readSuggestedUser() {
+            this.gReadInfo("user", this.allList);
+        },
+        // 关注某用户
+        follower(userId) {
+            api
+                .api("user/bind", {
+                    model: "user",
+                    glue: {
+                        [this.uinfo.id]: userId
+                    }
+                })
+                .then(res => {
+                    this.readFollowerUser();
+                });
+        },
+        // 取关某用户
+        unfollower(userId) {
+            api
+                .api("user/unbind", {
+                    model: "user",
+                    glue: {
+                        [this.uinfo.id]: userId
+                    }
+                })
+                .then(res => {
+                    this.readFollowerUser();
+                });
+        },
+        // 渲染关注用户
+        readFollowerUser() {
+            return api
+                .api("user/find", {
+                    id: this.uinfo.id,
+                    with: this.followerWith
+                })
+                .then(res => {
+                    this.$set(this.allList, 'follower', res.data.$user);
+                });
+        },
+        // 判断是否关注
+        hasFollower(targetId) {
+            if (!this.allList.follower) return false;
+            return !!this.allList.follower.find(item => {
+                return item.id == targetId;
+            });
+        },
+        // 获取当前时间
+        getCurrentTime() {
+            let date = new Date();
+            let y = date.getFullYear(),
+                m = date.getMonth() + 1,
+                d = date.getDate(),
+                h = date.getHours(),
+                min = date.getMinutes(),
+                s = date.getSeconds();
+            if (date.getMonth() < 10) {
+                m = "0" + m;
+            }
+            return `${y}-${m}-${d} ${h}:${min}:${s}`;
         }
     }
-
 };
 </script>

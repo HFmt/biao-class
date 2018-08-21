@@ -86,7 +86,7 @@
                             <FormItem label="确认密码" prop="passwordCheck">
                                 <Input v-model="formValidate.passwordCheck" type="password" placeholder="">
                                 <Icon type="ios-lock" slot="prefix" />
-                                <Icon type="md-eye" slot="suffix"class="cp" />
+                                <Icon type="md-eye" slot="suffix" class="cp" />
                                 </Input>
                             </FormItem>
                             </Col>
@@ -134,7 +134,7 @@ export default {
             }
         };
         return {
-            signUpType: 'phone',
+            signUpType: "phone",
             formCustom: {},
             formValidate: {
                 username: "",
@@ -176,7 +176,7 @@ export default {
                         required: true,
                         message: "请输入手机验证码",
                         trigger: "blur"
-                    },
+                    }
                 ],
                 password: [
                     {
@@ -184,7 +184,7 @@ export default {
                         message: "请设置密码",
                         trigger: "blur"
                     },
-                    { validator: validatePass, trigger: "blur" },
+                    { validator: validatePass, trigger: "blur" }
                 ],
                 passwordCheck: [
                     {
@@ -192,7 +192,7 @@ export default {
                         message: "请确认密码",
                         trigger: "blur"
                     },
-                    { validator: validatePassCheck, trigger: "blur" },
+                    { validator: validatePassCheck, trigger: "blur" }
                 ]
             }
         };
@@ -201,12 +201,16 @@ export default {
         handleSubmit(name) {
             this.$refs[name].validate(valid => {
                 if (valid) {
-                    !this.formValidate.username && this.$set(this.formValidate, 'username', this.formValidate[this.signUpType])
-                    api.api('user/create', this.formValidate)
-                            .then(res => {
-                                this.$router.push('/signIn');
-                            })
-                    this.$Message.success("注册成功");
+                    !this.formValidate.username &&
+                        this.$set(
+                            this.formValidate,
+                            "username",
+                            this.formValidate[this.signUpType]
+                        );
+                    api.api("user/create", this.formValidate).then(res => {
+                        this.$router.push("/signIn");
+                        this.$Message.success("注册成功");
+                    });
                 } else {
                     this.$Message.error("注册失败");
                 }
