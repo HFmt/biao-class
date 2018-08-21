@@ -96,15 +96,15 @@
                             </Poptip>
                             </Col>
                             <Col span="16">
-                            
+
                             <div class="userinfo">
-                                
+
                                 <router-link to="/" class="username">
                                     {{item.username}}
                                 </router-link>
                             </div>
-                            
-                            <Button v-if="hasFollower(item.id)"  @click.native="unfollower(item.id)" type="primary">取消关注</Button>
+
+                            <Button v-if="hasFollower(item.id)" @click.native="unfollower(item.id)" type="primary">取消关注</Button>
                             <Button v-else @click.native="follower(item.id)" type="primary">关注</Button>
                             </Col>
                         </Row>
@@ -223,7 +223,7 @@
                         </Row>
 
                     </Card>
-                    <WeiboItem v-for="(item, index) in allList.weibo" :key="index" :item="item" />
+                    <WeiboItem v-for="(item, index) in allList.publicWeibo" :key="index" :item="item" />
                 </Row>
                 </Col>
                 <Col span="6" class="main-right">
@@ -294,24 +294,12 @@ export default {
         return {
             allList: {},
             publishContent: {},
-            uinfo: session.uinfo(),
-            followerWith: [
-                {
-                    relation: "belongs_to_many",
-                    model: "user"
-                }
-            ],
-            weiboWith: [
-                {
-                    relation: "belongs_to",
-                    model: "user"
-                }
-            ]
+            uinfo: session.uinfo()
         };
     },
     mounted() {
         this.readSuggestedUser();
-        this.readWeiboPublic(); 
+        this.readPublicWeibo();
     },
     methods: {
         // 发布微博
@@ -321,18 +309,48 @@ export default {
             api.api("weibo/create", this.publishContent).then(res => {
                 this.publishContent = {};
                 this.allList.weibo.push(res.data);
-                this.readWeiboPublic();
+                this.readPublicWeibo();
             });
         },
         // 渲染全部微博
-        readWeiboPublic() {
-            this.gReadInfo("weibo", this.allList, {
-                with: this.weiboWith
+        readPublicWeibo() {
+            this.gReadInfo("weibo", this.allList, 'publicWeibo', {
+                with: [
+                    {
+                        relation: "belongs_to",
+                        model: "user"
+                    }
+                ]
             });
         },
-        // 渲染全部用户
+        // 渲染关注人微博
+        readFollowerWeibo() {
+            console.log(
+                "this.pluck()",
+                this.pluck(this.allList.follower, "id")
+            );
+
+            this.gReadInfo("weibo", this.allList, 'followerWeibo', {
+                where: [
+                    [
+                        "user_id",
+                        "in",
+                        this.pluck(this.allList.follower, "id").concat(
+                            this.uinfo.id
+                        )
+                    ]
+                ],
+                with: [
+                    {
+                        relation: "belongs_to",
+                        model: "user"
+                    }
+                ]
+            })
+        },
+        // 渲染推荐用户
         readSuggestedUser() {
-            this.gReadInfo("user", this.allList);
+            this.gReadInfo("user", this.allList, 'user');
         },
         // 关注某用户
         follower(userId) {
@@ -365,10 +383,15 @@ export default {
             return api
                 .api("user/find", {
                     id: this.uinfo.id,
-                    with: this.followerWith
+                    with: [
+                        {
+                            relation: "belongs_to_many",
+                            model: "user"
+                        }
+                    ]
                 })
                 .then(res => {
-                    this.$set(this.allList, 'follower', res.data.$user);
+                    this.$set(this.allList, "follower", res.data.$user);
                 });
         },
         // 判断是否关注
@@ -377,6 +400,15 @@ export default {
             return !!this.allList.follower.find(item => {
                 return item.id == targetId;
             });
+        },
+        pluck(arr, key) {
+            const result = [];
+
+            arr.forEach(item => {
+                result.push(item[key]);
+            });
+
+            return result;
         },
         // 获取当前时间
         getCurrentTime() {
