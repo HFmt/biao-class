@@ -2,11 +2,12 @@
 import api from "../lib/api";
 export default {
     methods: {
-        gReadInfo(model, obj, list, condition) {
+        gReadInfo(model, obj, condition) {
             api.api(`${model}/read`, condition).then(res => {
-                this.$set(obj, list, res.data);
+                this.$set(obj, model, res.data);
+                // obj[model] = res.data;
             });
-        }
+        },
     }
 };
 </script>

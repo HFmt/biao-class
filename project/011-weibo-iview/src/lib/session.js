@@ -26,7 +26,7 @@ export default {
         return info && this.uinfo().isAdmin;
     },
 
-    signUped() {
+    signIned() {
         return !!this.hisId();
     },
 

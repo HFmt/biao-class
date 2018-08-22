@@ -150,7 +150,7 @@ export default {
                         .then(res => {
                             let item;
                             if (
-                                !(item = res.data[0]) ||
+                                !res.data || !(item = res.data[0]) ||
                                 item.password !== password
                             ) {
                                 this.$Message.error("账号密码错误");
@@ -160,9 +160,7 @@ export default {
                             this.$router.push("/");
                             this.$Message.success("登入成功");
                         });
-                } else {
-                    this.$Message.error("账号密码错误");
-                }
+                } 
             });
         },
         handleReset(name) {

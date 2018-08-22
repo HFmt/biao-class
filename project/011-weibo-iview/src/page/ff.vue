@@ -96,11 +96,14 @@
                             </Poptip>
                             </Col>
                             <Col span="16">
+
                             <div class="userinfo">
+
                                 <router-link to="/" class="username">
                                     {{item.username}}
                                 </router-link>
                             </div>
+
                             <Button v-if="hasFollower(item.id)" @click.native="unfollower(item.id)" type="primary">取消关注</Button>
                             <Button v-else @click.native="follower(item.id)" type="primary">关注</Button>
                             </Col>
@@ -290,27 +293,20 @@ export default {
     data() {
         return {
             allList: {},
-            itemList: {
-                follower: []
-            },
             publishContent: {},
-            uinfo: session.uinfo(),
+            uinfo: session.uinfo()
         };
     },
     mounted() {
         this.readSuggestedUser();
-        this.readPublicWeibo();
-        
         if(session.signIned()) {
             this.readFollowerUser()
                 .then(res => this.readFollowerWeibo());
-        } 
-        else {
+        } else {
             this.readPublicWeibo();
         }
     },
     methods: {
-
         // 发布微博
         publishWeibo() {
             this.publishContent.time = this.getCurrentTime();
@@ -339,7 +335,7 @@ export default {
                     [
                         "user_id",
                         "in",
-                        this.pluck(this.itemList.follower, "id").concat(
+                        this.pluck(this.allList.follower, "id").concat(
                             this.uinfo.id
                         )
                     ]
@@ -395,21 +391,20 @@ export default {
                     ]
                 })
                 .then(res => {
-                    // this.$set(this.allList, 'follower', res.data.$user);
-                    this.itemList.follower = res.data.$user;
+                    this.allList.follower = res.data.$user;
                 });
         },
         // 判断是否关注
         hasFollower(targetId) {
-            if (!this.itemList.follower) return false;
-            return !!this.itemList.follower.find(item => {
+            if (!this.allList.follower) return false;
+            return !!this.allList.follower.find(item => {
                 return item.id == targetId;
             });
         },
         pluck(arr, key) {
             const result = [];
             if(!arr)
-               return result;
+                 result;
             arr.forEach(item => {
                 result.push(item[key]);
             });
